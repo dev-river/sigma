@@ -20,7 +20,43 @@ public class boardController {
 
 	@RequestMapping(value = "/boardFR/list", method = RequestMethod.GET)
 	public void boardFRList(Model model) {
-		List<boardVO> vo = bservice.boardFRList();
+		List<boardVO> vo = bservice.boardFRlist();
 		model.addAttribute("vo", vo);
+	}
+	
+	@RequestMapping(value = "/boardFR/insert", method = RequestMethod.GET)
+	public void boardFRinsertUI() {
+	}
+	
+	@RequestMapping(value = "/boardFR/insert", method = RequestMethod.POST)
+	public String boardFRinsert(boardVO vo) {
+		bservice.boardFRinsert(vo);
+		return "redirect:/board/boardFR/list";
+	}
+	
+	@RequestMapping(value = "/boardFR/read")
+	public void boardFRread(boardVO vo, Model model) {
+		boardVO readvo  = bservice.boardFRread(vo);
+		model.addAttribute("readvo", readvo);
+	}
+	
+	@RequestMapping(value = "/boardFR/update")
+	public void boardFRupdateUI(int num,Model model) {
+		boardVO updatevo = bservice.boardFRupdateUI(num);
+		model.addAttribute("updatevo", updatevo);
+	}
+	
+	@RequestMapping(value = "/boardFR/update", method = RequestMethod.POST)
+	public String boardFRupdate(boardVO vo) {
+		bservice.boardFRupdate(vo);
+		return "redirect:/board/boardFR/read?num=" + vo.getNum();
+		
+	}
+	
+	@RequestMapping(value = "/boardFR/delete", method = RequestMethod.GET)
+	public String boardFRdelete(int num) {
+		bservice.boardFRdelete(num);
+		return "redirect:/board/boardFR/list";
+		
 	}
 }

@@ -19,7 +19,7 @@
 
 <hr>
 
-	<a href="#" class="btn btn-primary">글쓰기</a>
+	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a>
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -34,7 +34,7 @@
 			<c:forEach items="${vo}" var="vo">
 				<tr>
 					<td>${vo.num}</td>
-					<td><a>${vo.title}</a></td>
+					<td><a href="/board/boardFR/read?num=${vo.num}">${vo.title}</a></td>
 					<td>${vo.writer}</td>
 					<td>${vo.updatedate}</td>
 					<td>${vo.viewcnt}</td>

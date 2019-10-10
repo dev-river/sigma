@@ -5,5 +5,16 @@ import java.util.List;
 import kr.co.domain.boardVO;
 
 public interface boardDAO {
-	public List<boardVO> boardFRList();
+	public List<boardVO> boardFRlist();
+
+	public void boardFRinsert(boardVO vo);
+
+	public boardVO boardFRread(boardVO vo);
+
+	public boardVO boardFRupdateUI(int num);
+
+	public void boardFRupdate(boardVO vo);
+
+	public void boardFRdelete(int num);
+
 }

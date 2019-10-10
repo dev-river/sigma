@@ -22,6 +22,13 @@ public class boardVO implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
+	public boardVO(int num) {
+		super();
+		this.num = num;
+	}
+
 	public boardVO(int num, String title, String content, String writer, String regidate, String updatedate,
 			int viewcnt, String filepath, int adminselect) {
 		super();
