@@ -7,17 +7,18 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import kr.co.domain.MemberVO;
+import kr.co.domain.boardVO;
 
 @Repository
-public class MemberDAOImpl implements MemberDAO {
+public class boardDAOImpl implements boardDAO{
 	@Inject
 	private SqlSession session;
+	private final String NS = "kr.co.mapper.board";
 	
-	private final String NS = "kr.co.mapper.member";
-
 	@Override
-	public List<MemberVO> hlist() {
-		return session.selectList(NS + ".hlist");
+	public List<boardVO> boardFRList() {
+		return session.selectList(NS+".FRlist");
 	}
+	
+	
 }

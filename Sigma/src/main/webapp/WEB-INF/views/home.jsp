@@ -1,17 +1,19 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
 	<title>Home</title>
 </head>
 <body>
 <h3>
-	jwchoi test home page.  
+	 Sigma main home page.  
 </h3>
 
 <P>Please click the follow link.</P>
 <br/>
-<a href="#">link</a>
+<a href="/board/boardFR/list">자유게시판</a>
 
 </body>
 </html>
