@@ -6,6 +6,16 @@ import kr.co.domain.boardVO;
 
 public interface boardService {
 
-	List<boardVO> boardFRList();
+	List<boardVO> boardFRlist();
+
+	void boardFRinsert(boardVO vo);
+
+	boardVO boardFRread(boardVO vo);
+
+	boardVO boardFRupdateUI(int num);
+
+	void boardFRupdate(boardVO vo);
+
+	void boardFRdelete(int num);
 
 }

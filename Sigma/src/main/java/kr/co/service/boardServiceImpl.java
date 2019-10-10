@@ -17,9 +17,33 @@ public class boardServiceImpl implements boardService{
 	private boardDAO bdao;
 
 	@Override
-	public List<boardVO> boardFRList() {
-		return bdao.boardFRList();
+	public List<boardVO> boardFRlist() {
+		return bdao.boardFRlist();
 	}
-	
-	
+
+	@Override
+	public void boardFRinsert(boardVO vo) {
+		bdao.boardFRinsert(vo);
+	}
+
+	@Override
+	public boardVO boardFRread(boardVO vo) {
+		return bdao.boardFRread(vo);
+	}
+
+	@Override
+	public boardVO boardFRupdateUI(int num) {
+		return bdao.boardFRupdateUI(num);
+	}
+
+	@Override
+	public void boardFRupdate(boardVO vo) {
+		bdao.boardFRupdate(vo);
+	}
+
+	@Override
+	public void boardFRdelete(int num) {
+		bdao.boardFRdelete(num);
+	}
+
 }

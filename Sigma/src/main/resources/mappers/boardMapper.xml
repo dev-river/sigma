@@ -5,6 +5,30 @@
 
 <mapper namespace="kr.co.mapper.board">
 	<select id="FRlist" resultType="kr.co.domain.boardVO">
-		select * from boardFR
+		select * from boardFR order by num desc
 	</select>
+	
+	<insert id="FRinsert">
+		insert into boardFR values((select nvl2(max(num), max(num)+1, 1) from boardfr), #{title}, #{content}, #{writer}, sysdate, sysdate, 0, null, 0)
+	</insert>
+	
+	<select id="FRread" resultType="kr.co.domain.boardVO">
+		select * from boardFR where num = #{num}
+	</select>
+	
+	<update id="addFRviewcnt">
+		update boardFR set viewcnt = viewcnt + 1 where num=#{num}
+	</update>
+	
+	<select id="FRupdateUI" resultType="kr.co.domain.boardVO">
+		select * from boardFR where num = #{num}
+	</select>
+	
+	<update id="FRupdate">
+		update boardFR set writer=#{writer}, title=#{title}, content=#{content} where num=#{num}
+	</update>
+	
+	<delete id="FRdelete">
+		delete from boardFR where num=#{num}
+	</delete>
 </mapper>

@@ -1,6 +1,8 @@
 package kr.co.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -16,9 +18,33 @@ public class boardDAOImpl implements boardDAO{
 	private final String NS = "kr.co.mapper.board";
 	
 	@Override
-	public List<boardVO> boardFRList() {
+	public List<boardVO> boardFRlist() {
 		return session.selectList(NS+".FRlist");
 	}
-	
-	
+
+	@Override
+	public void boardFRinsert(boardVO vo) {
+		session.insert(NS+".FRinsert", vo);
+	}
+
+	@Override
+	public boardVO boardFRread(boardVO vo) {
+		session.update(NS+".addFRviewcnt", vo.getNum());
+		return session.selectOne(NS+".FRread", vo);
+	}
+
+	@Override
+	public boardVO boardFRupdateUI(int num) {
+		return session.selectOne(NS+".FRupdateUI", num);
+	}
+
+	@Override
+	public void boardFRupdate(boardVO vo) {
+		session.update(NS+".FRupdate", vo);
+	}
+
+	@Override
+	public void boardFRdelete(int num) {
+		session.delete(NS+".FRdelete", num);
+	}
 }
