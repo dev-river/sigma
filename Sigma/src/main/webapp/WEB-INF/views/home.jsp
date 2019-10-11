@@ -14,6 +14,6 @@
 <P>Please click the follow link.</P>
 <br/>
 <a href="/board/boardFR/list">자유게시판</a>
-
+<a href="/compManage/compInform/read?id=kihoon">판매자 페이지</a>
 </body>
 </html>

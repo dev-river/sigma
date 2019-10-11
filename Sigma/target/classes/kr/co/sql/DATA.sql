@@ -1,4 +1,4 @@
--- 웹페이지 메뉴버튼 테이블
+-- 웹페이지 메뉴버튼 테이블                                                                 #191010 최진우 생성
 create table menuinfo(
 name varchar2(20) primary key,
 degree number not null
@@ -224,7 +224,7 @@ updatedate date,
 constraint fk_board**Reply_**num foreign key(**num) references board**(num)
 );
 
---자유게시판 테이블
+--자유게시판 									#191010 최진우 생성
 create table boardFR(
 num number primary key,
 title varchar2(50) constraint boardFR_title_nn not null,
