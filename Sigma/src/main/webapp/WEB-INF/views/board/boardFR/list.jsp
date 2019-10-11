@@ -19,6 +19,16 @@
 
 <hr>
 
+
+	<!-- 로그인 되면 뜨는 창 -->
+	<c:if test="${not empty login}">
+		${login.id} 님, 안녕하세요. <a href="/member/logout">로그아웃</a>
+	</c:if>
+	<!-- 미로그인시 뜨는 창 -->
+	<c:if test="${empty login}">
+		<a href="/member/login/login">로그인</a>
+	</c:if>
+	
 	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a>
 	<table class="table table-hover">
 		<thead>

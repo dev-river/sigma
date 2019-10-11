@@ -25,4 +25,14 @@
 	
 	
 	
+	<beans:bean class="kr.co.in.LoginIn" id="loginIn"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/login/loginpost"/>
+			<beans:ref bean="loginIn"/>
+		</interceptor>
+	</interceptors>
+	
+	
 </beans:beans>
