@@ -22,7 +22,7 @@
 
 	<!-- 로그인 되면 뜨는 창 -->
 	<c:if test="${not empty login}">
-		${login.id} 님, 안녕하세요. <a href="/member/logout">로그아웃</a>
+		${login.nickname}(${login.id}) 님, 안녕하세요. <a href="/member/logout">로그아웃</a>
 	</c:if>
 	<!-- 미로그인시 뜨는 창 -->
 	<c:if test="${empty login}">

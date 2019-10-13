@@ -1,5 +1,7 @@
 package kr.co.controller;
 
+import java.awt.Window;
+
 import javax.inject.Inject;
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import kr.co.domain.memberVO;
@@ -18,6 +21,7 @@ import kr.co.service.memberService;
 
 @Controller
 @RequestMapping("/member")
+@SessionAttributes("vo")
 public class memberController {
 	@Inject
 	private memberService mservice;
@@ -62,7 +66,6 @@ public class memberController {
 	//로그인
 	@RequestMapping(value = "/login/loginpost", method = RequestMethod.POST)
 	public void login(memberVO vo, Model model) {
-
 		memberVO mvo = mservice.login(vo);
 		if (mvo == null) {
 			return;
@@ -97,7 +100,7 @@ public class memberController {
 		memberVO mvo = mservice.searchID(vo);
 		
 		if(mvo != null) {
-			model.addAttribute("vo", mvo);
+			model.addAttribute("search_id", mvo);
 		} else {
 			model.addAttribute("err_searchID", "존재하는 아이디가 없습니다.");
 		}
@@ -116,10 +119,19 @@ public class memberController {
 		memberVO mvo = mservice.searchPW(vo);
 		
 		if(mvo != null) {
-			model.addAttribute("vo", mvo);
+			model.addAttribute("search_pw", mvo);
 		} else {
 			model.addAttribute("err_searchPW", "입력하신 정보가 맞지 않습니다.");
 		}
 		
 	}
+	
+	@RequestMapping(value = "/sign/signSelect", method = RequestMethod.GET)
+	public void signselect() {
+	}
+	
+	@RequestMapping(value = "/login/searchSelect", method = RequestMethod.GET)
+	public void searchselect() {
+	}
+	
 }

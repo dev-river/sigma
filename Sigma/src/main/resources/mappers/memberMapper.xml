@@ -16,7 +16,7 @@
 	</insert>
 	
 	<select id="login" resultType="kr.co.domain.memberVO">
-		select id, pw, name from userinfo where id = #{id} and pw = #{pw}
+		select id, pw, name, nickname from userinfo where id = #{id} and pw = #{pw}
 	</select>
 	
 	<select id="searchID" resultType="kr.co.domain.memberVO">

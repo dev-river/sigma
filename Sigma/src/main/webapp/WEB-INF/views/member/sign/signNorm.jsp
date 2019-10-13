@@ -15,12 +15,11 @@
 </head>
 <body>
 	<div class="container" style="padding-top: 50px;">
-		<div class="row col-xs-push-2 col-xs-8" >
+		<div class="row col-xs-push-1 col-xs-11" >
 		
 			<h2>일반 회원 가입</h2>
 			<!-- 회원가입 창 -->
 			<form name="info" action="/member/sign/signNorm" method="post" onsubmit="return check()">
-			<div style="width: 45%;" class="pull-left">
 				<div class="form-group">
 					<label id="id">아이디</label>
 					<input name="id" id="id" class="form-control" placeholder="아이디를 입력해주세요.">
@@ -31,14 +30,6 @@
 				<div class="form-group">
 					<label id="pw">비밀번호</label>
 					<input type="password" name="pw" id="pw" class="form-control" placeholder="비밀번호를 입력해주세요.">
-				</div>
-				
-				<br>
-				
-				<div class="form-group">
-					<label id="pw">비밀번호 확인</label>
-					<input type="password" name="pwcheck" id="pwcheck" class="form-control" placeholder="비밀번호를 다시 입력해주세요.">
-					<p class="pwcheckp"></p>
 				</div>
 				
 				<br>
@@ -64,13 +55,12 @@
 				<input type="radio" name="sex" id="woman" value="여자">
 					
 				<br>
+				<br>
 					
-				</div>
 				
-			<div style="width: 45%;" class="pull-right">
 				<div class="form-group">
 					<label for="nickname">닉네임</label>
-					<input name="nickname" id="nickname" class="form-control" placeholder="닉니엠을 입력해주세요.">
+					<input name="nickname" id="nickname" class="form-control" placeholder="닉네임을 입력해주세요.">
 				</div>
 				
 				<br>
@@ -99,11 +89,10 @@
 				<div class="form-group">
 					<label for="address1">주소</label>
 					<br>
-					<input name="address1" id="address1" class="form-control pull-left" placeholder="주소를 입력해주세요." style="width: 90%;">
-					<input type="button" class="search1 pull-rigth" value="찾기" style="width: 10%; height: 33.99px;">
+					<input name="address1" id="address1" class="form-control pull-left" placeholder="주소를 입력해주세요." style="width: 80%;">
+					<input type="button" class="search1 pull-rigth" value="찾기" style="width: 20%; height: 33.99px;">
 					<input name="address2" id="address2" class="form-control" placeholder="상세주소를 입력해주세요.">
 				</div>
-			</div>
 				
 				
 				<!-- 회원가입 버튼 -->
@@ -138,9 +127,6 @@
 		var pw = $("#pw").val();
 		var pwcheck = $("#pwcheck").val();
 		
-		if (pw == pwcheck) {
-			$(".pwcheckp").text("안녕")
-		};
 		
 		$(".search").on("click",function(){
 	         new daum.Postcode({

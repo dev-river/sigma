@@ -14,8 +14,8 @@
 
 </head>
 <body>
-	<div class="container" style="padding-top: 150px;">
-		<div class="row col-xs-push-4 col-xs-4" >
+	<div class="container">
+		<div class="row col-xs-push-2 col-xs-8" >
 			<h2>아이디 찾기</h2>
 			<form name="info" action="/member/login/searchID" method="post" onsubmit="return check()">
 				<div class="form-group">
@@ -36,22 +36,23 @@
 						<input value="아이디 찾기" type="submit" class="form-control btn btn-primary">
 					</div>
 					<div class="form-group">
-						<a href="/member/login/searchPW"><input value="비밀번호 찾으러 가기" type="button" class="form-control btn btn-primary"></a>
-					</div>
-					<div class="form-group">
-						<a href="/member/login/login"><input value="로그인 화면으로 돌아가기" type="button" class="form-control btn btn-primary"></a>
+						<a href="/member/login/searchPW"><input value="비밀번호 찾기로 이동" type="button" class="form-control btn btn-primary"></a>
 					</div>
 			</form>
-			${err_searchID}
+			<c:choose>
+				<c:when test="${search_id.id != null}">
+					당신의 비밀번호는 ${search_id.id} 입니다.
+				</c:when>
+				<c:otherwise>
+					${err_searchID}
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 
 <script type="text/javascript">
 
 	$(document).ready(function() {
-		if(${vo.id} != null){
-			alert("당신의 아이디는 ${vo.id} 입니다.");
-		}
 
 	});
 

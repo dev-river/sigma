@@ -14,8 +14,8 @@
 
 </head>
 <body>
-	<div class="container" style="padding-top: 200px;">
-		<div class="row col-xs-push-4 col-xs-4" >
+	<div class="container">
+		<div class="row col-xs-push-2 col-xs-8">
 			<h2>비밀번호 찾기</h2>
 			<form name="info" action="/member/login/searchPW" method="post" onsubmit="return check()">
 				<div class="form-group">
@@ -31,24 +31,28 @@
 					<input name="phone" id="phone" class="form-control">
 				</div>
 						
-					<div class="form-group">
-						<input value="비밀번호 찾기" type="submit" class="form-control btn btn-primary">
-					</div>
-					<div class="form-group">
-						<a href="/member/login/login"><input value="로그인 화면으로 돌아가기" type="button" class="form-control btn btn-primary"></a>
-					</div>
+				<div class="form-group">
+					<input value="비밀번호 찾기" type="submit" class="form-control btn btn-primary">
+				</div>
+				<div class="form-group">
+					<a href="/member/login/searchID"><input value="아이디 찾기로 이동" type="button" class="form-control btn btn-primary"></a>
 				</div>
 			</form>
-			${err_searchPW}
+			<c:choose>
+				<c:when test="${search_pw.pw != null}">
+					당신의 비밀번호는 ${search_pw.pw} 입니다.
+				</c:when>
+				<c:otherwise>
+					${err_searchPW}
+				</c:otherwise>
+			</c:choose>
+			
 		</div>
 	</div>
 
 <script type="text/javascript">
 
 	$(document).ready(function() {
-		if(${vo.pw} != null){
-			alert("당신의 비밀번호는 ${vo.pw} 입니다.");
-		}
 	});
 
 	/* 빈 칸 있으면 알림 해 줌 */

@@ -33,9 +33,10 @@ public class LoginIn extends HandlerInterceptorAdapter{
 		Object obj = modelAndView.getModel().get("vo");
 		
 		if(obj != null) {
-			session.setAttribute("login", obj);
-			
+
 			session.removeAttribute("login_failed");
+			
+			session.setAttribute("login", obj);
 			
 			String dest = (String) session.getAttribute("dest");
 			session.removeAttribute("dest");

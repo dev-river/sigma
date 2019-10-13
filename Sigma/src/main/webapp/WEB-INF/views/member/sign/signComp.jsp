@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row">
+		<div class="row col-xs-push-1 col-xs-11">
 		
 		
 			<!-- 회원가입 창 -->
@@ -31,14 +31,6 @@
 				<div class="form-group">
 					<label id="pw">비밀번호</label>
 					<input type="password" name="pw" id="pw" class="form-control" placeholder="비밀번호를 입력해주세요.">
-				</div>
-				
-				<br>
-				
-				<div class="form-group">
-					<label id="pw">비밀번호 확인</label>
-					<input type="password" name="pwcheck" id="pwcheck" class="form-control" placeholder="비밀번호를 다시 입력해주세요.">
-					<p class="pwcheckp"></p>
 				</div>
 				
 				<br>
@@ -64,10 +56,11 @@
 				<input type="radio" name="sex" id="woman" value="여자">
 					
 				<br>
+				<br>
 					
 				<div class="form-group">
 					<label for="nickname">닉네임</label>
-					<input name="nickname" id="nickname" class="form-control" placeholder="닉니엠을 입력해주세요.">
+					<input name="nickname" id="nickname" class="form-control" placeholder="닉네임을 입력해주세요.">
 				</div>
 				
 				<br>
@@ -95,7 +88,9 @@
 					
 				<div class="form-group">
 					<label for="address1">주소</label>
-					<input name="address1" id="address1" class="form-control" placeholder="주소를 입력해주세요."> <input type="button" class="search1" value="찾기"></input>
+					<br>
+					<input name="address1" id="address1" class="form-control pull-left" placeholder="주소를 입력해주세요." style="width: 80%;">
+					<input type="button" class="search1 pull-right" value="찾기" style="width: 20%; height: 33.99px;">
 					<input name="address2" id="address2" class="form-control" placeholder="상세주소를 입력해주세요.">
 				</div>
 					
@@ -124,7 +119,9 @@
 					
 				<div class="form-group">
 					<label for="compaddress1">업체주소</label>
-					<input name="compaddress1" id="compaddress1" class="form-control" placeholder="주소를 입력해주세요."> <input type="button" class="search2" value="찾기"></input>
+					<br>
+					<input name="compaddress1" id="compaddress1" class="form-control pull-left" placeholder="주소를 입력해주세요." style="width: 80%;">
+					<input type="button" class="search2 pull-right" value="찾기" style="width: 20%; height: 33.99px;">
 					<input name="compaddress2" id="compaddress2" class="form-control" placeholder="상세주소를 입력해주세요.">
 				</div>
 				
@@ -171,9 +168,6 @@
 		var pw = $("#pw").val();
 		var pwcheck = $("#pwcheck").val();
 		
-		if (pw == pwcheck) {
-			$(".pwcheckp").text("안녕")
-		};
 		
 		$(".search1").on("click",function(){
 	         new daum.Postcode({
