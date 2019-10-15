@@ -10,9 +10,10 @@ public interface replyDAO {
 
 	List<replyVO> replyList(int frnum);
 
-	void replyUpdate(int num);
+	
 
 	void replyDelete(int num);
-	
+
+	void replyUpdate(replyVO vo);
 
 }

@@ -39,7 +39,8 @@ public class boardController {
 		boardVO readvo  = bservice.boardFRread(vo);
 		model.addAttribute("readvo", readvo);
 	}
-	
+
+
 	@RequestMapping(value = "/boardFR/update")
 	public void boardFRupdateUI(int num,Model model) {
 		boardVO updatevo = bservice.boardFRupdateUI(num);

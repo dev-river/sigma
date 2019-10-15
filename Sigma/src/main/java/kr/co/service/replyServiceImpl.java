@@ -29,11 +29,8 @@ public class replyServiceImpl implements replyService{
 		return rdao.replyList(frnum);
 	}
 
-	@Override
-	public void replyUpdate(int num) {
-		rdao.replyUpdate(num);
-		
-	}
+
+
 
 	@Override
 	public void delete(int num) {
@@ -41,6 +38,10 @@ public class replyServiceImpl implements replyService{
 		
 	}
 
-
+	@Override
+	public void replyUpdate(replyVO vo) {
+		rdao.replyUpdate(vo);
+		
+	}
 
 }

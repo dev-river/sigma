@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.domain.replyVO;
@@ -63,14 +64,13 @@ public class replyController {
 	}
 	
 	
-	@RequestMapping(value = "/{num}" , method = RequestMethod.PUT)
-	public ResponseEntity<String> replyUpdate(@PathVariable("num") int num , @RequestBody replyVO vo){
-		
+	@RequestMapping(value = "/{num}" , method = RequestMethod.POST , produces = "application/text; charset=utf-8")
+	public ResponseEntity<String> replyUpdate(@PathVariable("num") int num , replyVO vo){
 		ResponseEntity<String> entity = null;
 		vo.setNum(num);
 		
 		try {
-			rservice.replyUpdate(num);
+			rservice.replyUpdate(vo);
 			entity = new ResponseEntity<String>("UPDATE_SUCCESS", HttpStatus.OK);
 			
 		} catch (Exception e) {
@@ -81,7 +81,7 @@ public class replyController {
 	}
 	
 	@RequestMapping(value="/{num}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> delete(@PathVariable("num") int num){
+	public ResponseEntity<String> replyDelete(@PathVariable("num") int num){
 		ResponseEntity<String> entity = null;
 		
 		try {
