@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mapper.member">
+	
+	<insert id="signin">
+		insert into userinfo (id, nickname, name, pw, author, phone, email, birth, sex, address1, address2) values 
+		(#{id}, #{nickname}, #{name}, #{pw}, 'user', #{phone}, #{email}, #{birth}, #{sex}, #{address1}, #{address2})
+	</insert>
+	
+	<insert id="signincomp">
+		insert into userinfo (id, nickname, name, pw, author, phone, email, birth, sex, address1, address2, compname, compdetail, compnum, compaddress1, compaddress2, compphone) values 
+		(#{id}, #{nickname}, #{name}, #{pw}, 'seller', #{phone}, #{email}, #{birth}, #{sex}, #{address1}, #{address2}, #{compname}, #{compdetail}, (select nvl2(max(compnum), max(compnum)+1, 1) from userinfo), #{compaddress1}, #{compaddress2}, #{compphone})
+	</insert>
+	
+	<select id="login" resultType="kr.co.domain.memberVO">
+		select id, pw, name, nickname from userinfo where id = #{id} and pw = #{pw}
+	</select>
+	
+	<select id="searchID" resultType="kr.co.domain.memberVO">
+		select id from userinfo where name=#{name} and phone=#{phone}
+	</select>
+	
+	<select id="searchPW" resultType="kr.co.domain.memberVO">
+		select pw from userinfo where id=#{id} and phone=#{phone}
+	</select>
+	
+	<update id="updateJsidNvalidtime">
+		update userinfo set jsid=#{jsid}, validtime=#{validtime} where id=#{id}
+	</update>
+	
+	<select id="getmemberVO" resultType="kr.co.domain.memberVO">
+		select * from userinfo where jsid = #{jsid}
+	</select>
+	
+	<update id="timeUpdate">
+		update userinfo set validtime = #{validtime} where jsid = #{jsid}
+	</update>
+	
+		
+</mapper>

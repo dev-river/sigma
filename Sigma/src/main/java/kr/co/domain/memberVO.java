@@ -4,40 +4,45 @@ import java.io.Serializable;
 
 public class memberVO implements Serializable{
 
-   /**
-    * 
-    */
-   private static final long serialVersionUID = 1L;
-   private String id;
-   private String nickname;
-   private String name;
-   private String pw;
-   private int accessing;
-   private String author;
-   private String phone;
-   private String email;
-   private String birth;
-   private String sex;
-   private String address1;
-   private String address2;
-   private String joindate;
-   private int cash;
-   private String compname;
-   private String compdetail;
-   private int compnum;
-   private String compaddress1;
-   private String compaddress2;
-   private String compphone;
-   private String filepath;
-   
-   public memberVO() {
-      // TODO Auto-generated constructor stub
-   }
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String id;
+	private String nickname;
+	private String name;
+	private String pw;
+	private int accessing;
+	private String author;
+	private String phone;
+	private String email;
+	private String birth;
+	private String sex;
+	private String address1;
+	private String address2;
+	private String joindate;
+	private int cash;
+	private String compname;
+	private String compdetail;
+	private int compnum;
+	private String compaddress1;
+	private String compaddress2;
+	private String compphone;
+	private String filepath;
+	private boolean useCookie;
+	private String jsid;
+	private long validtime;
+	
+	public memberVO() {
+		// TODO Auto-generated constructor stub
+	}
 
+	
+	
 	public memberVO(String id, String nickname, String name, String pw, int accessing, String author, String phone,
 			String email, String birth, String sex, String address1, String address2, String joindate, int cash,
 			String compname, String compdetail, int compnum, String compaddress1, String compaddress2, String compphone,
-			String filepath) {
+			String filepath, boolean useCookie, String jsid, long validtime) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -60,7 +65,50 @@ public class memberVO implements Serializable{
 		this.compaddress2 = compaddress2;
 		this.compphone = compphone;
 		this.filepath = filepath;
+		this.useCookie = useCookie;
+		this.jsid = jsid;
+		this.validtime = validtime;
 	}
+	
+	
+
+
+
+	public boolean isUseCookie() {
+		return useCookie;
+	}
+
+
+
+	public void setUseCookie(boolean useCookie) {
+		this.useCookie = useCookie;
+	}
+
+
+
+	public String getJsid() {
+		return jsid;
+	}
+
+
+
+	public void setJsid(String jsid) {
+		this.jsid = jsid;
+	}
+
+
+
+	public long getValidtime() {
+		return validtime;
+	}
+
+
+
+	public void setValidtime(long validtime) {
+		this.validtime = validtime;
+	}
+
+
 
 	public String getId() {
 		return id;
@@ -234,6 +282,8 @@ public class memberVO implements Serializable{
 		return serialVersionUID;
 	}
 
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -241,6 +291,8 @@ public class memberVO implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -258,6 +310,25 @@ public class memberVO implements Serializable{
 			return false;
 		return true;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "memberVO [id=" + id + ", nickname=" + nickname + ", name=" + name + ", pw=" + pw + ", accessing="
+				+ accessing + ", author=" + author + ", phone=" + phone + ", email=" + email + ", birth=" + birth
+				+ ", sex=" + sex + ", address1=" + address1 + ", address2=" + address2 + ", joindate=" + joindate
+				+ ", cash=" + cash + ", compname=" + compname + ", compdetail=" + compdetail + ", compnum=" + compnum
+				+ ", compaddress1=" + compaddress1 + ", compaddress2=" + compaddress2 + ", compphone=" + compphone
+				+ ", filepath=" + filepath + ", useCookie=" + useCookie + ", jsid=" + jsid + ", validtime=" + validtime
+				+ "]";
+	}
+
+
+
+	
+	
+
 	
 	
 }
