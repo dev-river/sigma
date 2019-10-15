@@ -91,7 +91,7 @@ public class memberController {
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-		return "redirect:/member/login/login";
+		return "redirect:/board/boardFR/list";
 	}
 	
 	//ID찾기 UI
