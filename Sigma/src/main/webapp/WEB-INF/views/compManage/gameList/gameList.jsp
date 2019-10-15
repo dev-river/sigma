@@ -33,7 +33,7 @@
 			</div>
 			<div>
 				<h2>판매하는 게임</h2>
-				<input type="button" value="게임 등록" class="btn" onclick="location.href='/compManage/gameList/gameInsert?writer=kihoon'">
+				<input type="button" value="게임 등록" class="btn" onclick="location.href='/compManage/gameList/gameInsert?writer=idid'">
 			</div>
 			<div>
 				<c:if test="${empty gamelist}">

@@ -56,6 +56,6 @@ public class compController {
 	@RequestMapping(value = "/gameList/gameInsert", method = RequestMethod.POST)
 	public String gameinsert(gameVO vo) {
 		compservice.gameinsert(vo);
-		return "redirect:/compManage/gameList/gameList?writer=kihoon";
+		return "redirect:/compManage/gameList/gameList?writer=idid";
 	}
 }
