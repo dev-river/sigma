@@ -29,6 +29,9 @@ public class memberVO implements Serializable{
 	private String compaddress2;
 	private String compphone;
 	private String filepath;
+	private boolean useCookie;
+	private String jsid;
+	private long validtime;
 	
 	public memberVO() {
 		// TODO Auto-generated constructor stub
@@ -39,7 +42,7 @@ public class memberVO implements Serializable{
 	public memberVO(String id, String nickname, String name, String pw, int accessing, String author, String phone,
 			String email, String birth, String sex, String address1, String address2, String joindate, int cash,
 			String compname, String compdetail, int compnum, String compaddress1, String compaddress2, String compphone,
-			String filepath) {
+			String filepath, boolean useCookie, String jsid, long validtime) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -62,6 +65,47 @@ public class memberVO implements Serializable{
 		this.compaddress2 = compaddress2;
 		this.compphone = compphone;
 		this.filepath = filepath;
+		this.useCookie = useCookie;
+		this.jsid = jsid;
+		this.validtime = validtime;
+	}
+	
+	
+
+
+
+	public boolean isUseCookie() {
+		return useCookie;
+	}
+
+
+
+	public void setUseCookie(boolean useCookie) {
+		this.useCookie = useCookie;
+	}
+
+
+
+	public String getJsid() {
+		return jsid;
+	}
+
+
+
+	public void setJsid(String jsid) {
+		this.jsid = jsid;
+	}
+
+
+
+	public long getValidtime() {
+		return validtime;
+	}
+
+
+
+	public void setValidtime(long validtime) {
+		this.validtime = validtime;
 	}
 
 
@@ -276,8 +320,14 @@ public class memberVO implements Serializable{
 				+ ", sex=" + sex + ", address1=" + address1 + ", address2=" + address2 + ", joindate=" + joindate
 				+ ", cash=" + cash + ", compname=" + compname + ", compdetail=" + compdetail + ", compnum=" + compnum
 				+ ", compaddress1=" + compaddress1 + ", compaddress2=" + compaddress2 + ", compphone=" + compphone
-				+ ", filepath=" + filepath + "]";
+				+ ", filepath=" + filepath + ", useCookie=" + useCookie + ", jsid=" + jsid + ", validtime=" + validtime
+				+ "]";
 	}
+
+
+
+	
+	
 
 	
 	

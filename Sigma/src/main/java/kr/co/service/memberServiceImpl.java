@@ -44,5 +44,23 @@ public class memberServiceImpl implements memberService{
 		return mdao.searchPW(vo);
 	}
 
+	@Override
+	public void updateJsidNvalidtime(String jsid, long validtime, String id) {
+		mdao.updateJsidNvalidtime(jsid, validtime, id);
+		
+	}
+
+	@Override
+	public memberVO getmemberVO(String jsid) {
+		// TODO Auto-generated method stub
+		return mdao.getmemberVO(jsid);
+	}
+
+	@Override
+	public void timeUpdate(String jsid, long validtime) {
+		mdao.timeUpdate(jsid, validtime);
+		
+	}
+
 
 }
