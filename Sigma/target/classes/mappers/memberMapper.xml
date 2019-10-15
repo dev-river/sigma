@@ -12,7 +12,7 @@
 	
 	<insert id="signincomp">
 		insert into userinfo (id, nickname, name, pw, author, phone, email, birth, sex, address1, address2, compname, compdetail, compnum, compaddress1, compaddress2, compphone) values 
-		(#{id}, #{nickname}, #{name}, #{pw}, 'seller', #{phone}, #{email}, #{birth}, #{sex}, #{address1}, #{address2}, #{compname}, #{compdetail}, #{compnum}, #{compaddress1}, #{compaddress2}, #{compphone})
+		(#{id}, #{nickname}, #{name}, #{pw}, 'seller', #{phone}, #{email}, #{birth}, #{sex}, #{address1}, #{address2}, #{compname}, #{compdetail}, (select nvl2(max(compnum), max(compnum)+1, 1) from userinfo), #{compaddress1}, #{compaddress2}, #{compphone})
 	</insert>
 	
 	<select id="login" resultType="kr.co.domain.memberVO">
@@ -27,4 +27,17 @@
 		select pw from userinfo where id=#{id} and phone=#{phone}
 	</select>
 	
+	<update id="updateJsidNvalidtime">
+		update userinfo set jsid=#{jsid}, validtime=#{validtime} where id=#{id}
+	</update>
+	
+	<select id="getmemberVO" resultType="kr.co.domain.memberVO">
+		select * from userinfo where jsid = #{jsid}
+	</select>
+	
+	<update id="timeUpdate">
+		update userinfo set validtime = #{validtime} where jsid = #{jsid}
+	</update>
+	
+		
 </mapper>

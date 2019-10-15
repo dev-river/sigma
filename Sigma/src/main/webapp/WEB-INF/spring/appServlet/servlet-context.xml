@@ -26,8 +26,19 @@
 	
 	
 	<beans:bean class="kr.co.in.LoginIn" id="loginIn"></beans:bean>
+	<beans:bean class="kr.co.in.AuthIn" id="AuthIn"></beans:bean>
+<!-- 	
+	오토 로그인 보류
+	<beans:bean class="kr.co.in.AutoLoginIn" id="AutoLoginIn"></beans:bean>
 
-	
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/member/login/login"/>
+			<exclude-mapping path="/member/login/logout"/>
+			<beans:ref bean="AutoLoginIn"/>
+		</interceptor>
+	</interceptors> -->
 	<interceptors>
 		<interceptor>
 			<mapping path="/member/login/loginpost"/>

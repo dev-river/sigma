@@ -14,4 +14,10 @@ public interface memberService {
 
 	memberVO searchPW(memberVO vo);
 
+	void updateJsidNvalidtime(String jsid, long validtime, String id);
+
+	memberVO getmemberVO(String jsid);
+
+	void timeUpdate(String jsid, long validtime);
+
 }

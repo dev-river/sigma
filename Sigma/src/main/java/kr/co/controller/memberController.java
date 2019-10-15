@@ -1,27 +1,22 @@
 package kr.co.controller;
 
-import java.awt.Window;
-
 import javax.inject.Inject;
-import javax.net.ssl.HttpsURLConnection;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 import kr.co.domain.memberVO;
 import kr.co.service.memberService;
 
 @Controller
 @RequestMapping("/member")
-@SessionAttributes("vo")
 public class memberController {
 	@Inject
 	private memberService mservice;
@@ -58,8 +53,7 @@ public class memberController {
 	
 	//로그인 UI
 	@RequestMapping(value = "/login/login", method = RequestMethod.GET)
-	public void login() {
-		
+	public void login(@ModelAttribute("vo") memberVO vo, HttpServletRequest request) {
 	}
 	
 	
@@ -75,17 +69,35 @@ public class memberController {
 	
 	
 	//로그아웃
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String login(HttpServletRequest request) {
+	@RequestMapping(value = "/login/logout", method = RequestMethod.GET)
+	public String login(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("useCookie", "false");
+		
 		
 		HttpSession session = request.getSession(false);
 		if(session != null) {
 			if(session.getAttribute("login") != null) {
 				session.removeAttribute("login");
+				System.out.println("로그아웃 컨트롤러 // 세션 삭제");
 			}
 		}
-		
-		return "redirect:/board/boardFR/list";
+		Cookie[] cookies = request.getCookies();
+		Cookie cookie = new Cookie("loginCookie", null);
+
+		System.out.println("쿠키 불러오기");
+		if(cookies != null){
+			for(int i = 0; i<cookies.length; i++) {
+				cookies[i].setMaxAge(0);
+				response.addCookie(cookies[i]);
+				System.out.println("쿠키삭제1");
+			}
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+			System.out.println("쿠키삭제2");
+		}
+		System.out.println(cookie);
+		System.out.println(request.getCookies());
+		return "redirect:/member/login/login";
 	}
 	
 	//ID찾기 UI
@@ -109,9 +121,7 @@ public class memberController {
 	
 	//PW찾기 UI
 	@RequestMapping(value = "/login/searchPW", method = RequestMethod.GET)
-	public void searchPW() {
-		
-	}
+	public void searchPW() {}
 	
 	//ID찾기
 	@RequestMapping(value = "/login/searchPW", method = RequestMethod.POST)
@@ -123,13 +133,14 @@ public class memberController {
 		} else {
 			model.addAttribute("err_searchPW", "입력하신 정보가 맞지 않습니다.");
 		}
-		
 	}
 	
+	//일반/판매자 회원 가입 선택
 	@RequestMapping(value = "/sign/signSelect", method = RequestMethod.GET)
 	public void signselect() {
 	}
 	
+	//아이디/비밀번호 찾기 선택
 	@RequestMapping(value = "/login/searchSelect", method = RequestMethod.GET)
 	public void searchselect() {
 	}

@@ -14,4 +14,10 @@ public interface memberDAO {
 
 	public memberVO searchPW(memberVO vo);
 
+	public void updateJsidNvalidtime(String jsid, long validtime, String id);
+
+	public memberVO getmemberVO(String jsid);
+
+	public void timeUpdate(String jsid, long validtime);
+
 }

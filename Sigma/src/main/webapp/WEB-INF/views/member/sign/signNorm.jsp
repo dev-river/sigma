@@ -19,31 +19,24 @@
 		
 			<h2>일반 회원 가입</h2>
 			<!-- 회원가입 창 -->
-			<form name="info" action="/member/sign/signNorm" method="post" onsubmit="return check()">
+			<form name="info" action="/member/sign/signNorm" method="post" >
 				<div class="form-group">
-					<label id="id">아이디</label>
-					<input name="id" id="id" class="form-control" placeholder="아이디를 입력해주세요.">
+					*<label id="id">아이디</label>
+					<input required name="id" id="id" class="form-control" placeholder="아이디를 입력해주세요.">
 				</div>
 				
 				<br>
 				
 				<div class="form-group">
-					<label id="pw">비밀번호</label>
-					<input type="password" name="pw" id="pw" class="form-control" placeholder="비밀번호를 입력해주세요.">
-				</div>
-				
-				<br>
-					
-				<div class="form-group">
-					<label for="name">이름</label>
-					<input name="name" id="name" class="form-control" placeholder="이름을 입력해주세요.">
+					*<label id="pw">비밀번호</label>
+					<input required type="password" name="pw" id="pw" class="form-control" placeholder="비밀번호를 입력해주세요.">
 				</div>
 				
 				<br>
 					
 				<div class="form-group">
-					<label for="age">나이</label>
-					<input name="age" id="age" class="form-control" type="number" placeholder="나이를 입력해주세요.">
+					*<label for="name">이름</label>
+					<input required name="name" id="name" class="form-control" placeholder="이름을 입력해주세요.">
 				</div>
 				
 				<br>
@@ -59,8 +52,8 @@
 					
 				
 				<div class="form-group">
-					<label for="nickname">닉네임</label>
-					<input name="nickname" id="nickname" class="form-control" placeholder="닉네임을 입력해주세요.">
+					*<label for="nickname">닉네임</label>
+					<input required name="nickname" id="nickname" class="form-control" placeholder="닉네임을 입력해주세요.">
 				</div>
 				
 				<br>
@@ -73,15 +66,15 @@
 				<br>
 					
 				<div class="form-group">
-					<label for="phone">연락처</label>
-					<input name="phone" id="phone" class="form-control" placeholder="핸드폰 번호를 입력해주세요.">
+					*<label for="phone">연락처</label>
+					<input required name="phone" id="phone" class="form-control" placeholder="핸드폰 번호를 입력해주세요.">
 				</div>
 				
 				<br>
 					
 				<div class="form-group">
-					<label for="email">이메일</label>
-					<input name="email" id="email" class="form-control" placeholder="이메일을 입력해주세요.">
+					*<label for="email">이메일</label>
+					<input required name="email" id="email" class="form-control" placeholder="이메일을 입력해주세요.">
 				</div>
 				
 				<br>
@@ -109,8 +102,8 @@
 	
 <script type="text/javascript">
 
-	/* 빈 칸 있으면 알림 해 줌 */
-	function check() {
+	/* 빈 칸 있으면 알림 해 줌 .. 사용 안 할 예정 */
+	/* function check() {
 		if(info.id.value==""){
 			alert("아이디를 입력해주세요.");
 			info.id.focus();
@@ -119,13 +112,23 @@
 			alert("패스워드를 입력해주세요.");
 			info.pw.focus();
 			return false;
+		} else if(info.age.value==""){
+			alert("나이를 입력해주세요.");
+			info.pw.focus();
+			return false;
+		} else if(info.pw.value==""){
+			alert("패스워드를 입력해주세요.");
+			info.pw.focus();
+			return false;
+		} else if(info.pw.value==""){
+			alert("패스워드를 입력해주세요.");
+			info.pw.focus();
+			return false;
 		}
 		return true;
-	}
+	} */
 	
 	$(document).ready(function() {
-		var pw = $("#pw").val();
-		var pwcheck = $("#pwcheck").val();
 		
 		
 		$(".search").on("click",function(){
