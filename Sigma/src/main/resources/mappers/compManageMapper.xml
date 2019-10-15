@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mapper.compManage">
+	<select id="read" resultType="kr.co.domain.memberVO">
+		select * from userinfo where id = #{id}
+	</select>
+	
+	<update id="update">
+		update userinfo set compname = #{compname}, compdetail = #{compdetail}, compaddress1 = #{compaddress1}, compaddress2 = #{compaddress2}, compphone = #{compphone} where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from userinfo where id = #{id}
+	</delete>
+	
+	<select id="gamelist" resultType="kr.co.domain.gameVO">
+		select * from gameDetail where writer = #{writer}
+	</select>
+	
+	<insert id="gameinsert">
+		insert into gamedetail (num, title, content, writer, category, price, dcrate, gamefilepath) values((select nvl2(max(num), max(num)+1, 1) from gamedetail), #{title}, #{content}, #{writer}, #{category}, #{price}, #{dcrate}, #{gamefilepath})
+	</insert>
+</mapper>
