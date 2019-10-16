@@ -18,6 +18,13 @@
 		<div class="row">
 			
 			<h1>글 자세히 보기</h1>
+			
+			<form action="">
+				<input type="hidden" name="num" value="${readvo.num}">
+				<input type="hidden" name="curPage" value="${to.curPage}">
+				<input type="hidden" name="perPage" value="${to.perPage}">
+			</form>
+			
 				<div class="form-group">
 					<label for="num">글번호</label>
 					<input class="form-control" id="num" value="${readvo.num}" readonly="readonly">
@@ -43,9 +50,9 @@
 					<textarea  class="form-control" id="content" readonly="readonly">${readvo.content}</textarea>
 				</div>
 				<div>
-				    <input type="button" value="수정" class="btn update">
-					<input type="button" value="목록" class="btn" onclick="location.href='/board/boardFR/list'">
-					<input type="button" value="삭제" class="btn" onclick="location.href='/board/boardFR/delete?num=${readvo.num}'">
+				    <input type="button" value="수정" class="btn update btn-primary">
+					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/board/boardFR/list?curPage=${to.curPage}&perPage=${to.perPage}'">
+					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/board/boardFR/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
 				</div>
 		</div>
 		<hr>
@@ -175,7 +182,7 @@
 		
 		/* boardUpdate 부분 */
 		$(".update").on("click",function(){
-			location.href="/board/boardFR/update?num=${readvo.num}";
+			location.href="/board/boardFR/update?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}";
 		})
 		
 		/* replyReset 부분 */

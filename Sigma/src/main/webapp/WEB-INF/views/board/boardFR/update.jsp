@@ -19,8 +19,9 @@
 		<h3>게시글 수정</h3><br/>
 		
 		<form action="/board/boardFR/update" method="post">
-			<%-- <input type="hidden" name="curPage" value="${to.curPage}">
-			<input type="hidden" name="perPage" value="${to.perPage}"> --%>
+			<input type="hidden" name="curPage" value="${to.curPage}">
+			<input type="hidden" name="perPage" value="${to.perPage}">
+			
 			<div class="form-group">
 				<label for="title">글번호</label>
 				<input class="form-control" id="num" name="num" value="${updatevo.num}" readonly="readonly">

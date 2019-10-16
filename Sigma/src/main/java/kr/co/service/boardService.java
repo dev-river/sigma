@@ -21,6 +21,8 @@ public interface boardService {
 
 	PageTO pageList(PageTO to);
 
+	int amount();
+
 	
 
 

@@ -29,16 +29,16 @@
 		<a href="/member/login/login">로그인</a>
 	</c:if>
 	
-<%-- 	  <div class="row">
+  	<div class="row">
          <div class="col-xs-push-10 col-xs-2">
             <select id="perPageSel" class="form-control">
                <option disabled>페이지당 글 수</option>
-               <option ${to.perPage==5? 'selected':''}>5</option>
-               <option ${to.perPage==10? 'selected':''}>10</option>
-               <option ${to.perPage==20? 'selected':''}>20</option>
+               <option ${dbTO.perPage == 5? 'selected':''}>5</option>
+               <option ${dbTO.perPage == 10? 'selected':''}>10</option>
+               <option ${dbTO.perPage == 20? 'selected':''}>20</option>
             </select>
          </div>
-      </div> --%>
+      </div> 
 	
 	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a>
 	<table class="table table-hover">
@@ -55,7 +55,7 @@
 			<c:forEach items="${dbTO.list}" var="vo">
 				<tr>
 					<td>${vo.num}</td>
-					<td><a href="/board/boardFR/read?num=${vo.num}">${vo.title}</a></td>
+					<td><a href="/board/boardFR/read?num=${vo.num}&curPage=${dbTO.curPage}&perPage=${dbTO.perPage}">${vo.title}</a></td>
 					<td>${vo.writer}</td>
 					<td>${vo.updatedate}</td>
 					<td>${vo.viewcnt}</td>
@@ -81,9 +81,54 @@
 					
 				</ul>
 			</div>
-	
-		
-	
-</body>
+				<div class="row">
+				<div class="input-group">
+					<span class="input-group-addon">
+						<select id="searchSel">
+							<option disabled>검색 기준</option>
+							<option value="writer">작성자</option>
+								<!-- value : 서버로 넘어가는거, 작성자 : JSP에 보이는거 -->
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+						</select>
+					</span>
+					
+					<input class="form-control" id="keyword">
+					
+					<span class="input-group-btn">
+						<button id="searchBtn" class="btn btn-info">검색</button>
+					</span>
+				</div>
+			</div>
+			
+			<script type="text/javascript">
+			   $(document).ready(function() {
+				      $("#perPageSel").change(function() {
+				         var perPage = $("#perPageSel option:selected").val();
+				         $.ajax({
+				            type:'GET',
+				            url: '/board/boardFR/amount/'+perPage,
+				            dataType:'text',
+				            success: function(totalPage) {
+				               if(${dbTO.curPage}>totalPage){
+				                  location.assign("/board/boardFR/list?perPage="+perPage+"&curPage="+totalPage);
+				               }else {
+				                  location.assign("/board/boardFR/list?perPage="+perPage+"&curPage=${dbTO.curPage}");
+				               }
+				            }
+				         });
+				      });
+				      
+					   $("#searchBtn").on("click", function() {
+							var searchType = $("#searchSel option:selected").val();
+							var keyword = $("#keyword").val();
+							var url = "/sboard/list? searchType = "+searchType+"&keyword="+keyword;
+							window.open(url);
+						});
+				   });
+			   
 
+			   
+			</script>
+</body>
 </html>

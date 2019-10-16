@@ -37,7 +37,7 @@ public class PageTO {
 		spn = ((curPage-1)/perLine+1)*perLine;
 		spn = spn < totalPage? spn : totalPage;
 	}
-
+ 
 	public int getAmount() {
 		return amount;
 	}
