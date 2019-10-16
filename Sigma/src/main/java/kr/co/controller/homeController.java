@@ -16,6 +16,7 @@ import kr.co.domain.replyVO;
 import kr.co.service.replyService;
 
 @Controller
+@RequestMapping("/")
 public class homeController {
 	
 	@Autowired
@@ -25,22 +26,10 @@ public class homeController {
 	public String home(Locale locale, Model model) {
 		return "redirect:board/boardFR/list";
 	}
-	
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "", method = RequestMethod.POST , produces =
-	 * "application/text; charset=utf-8") public String replyInsert(replyVO vo){
-	 * 
-	 * System.out.println(
-	 * "testestestsaetsdf----------------------------------------------------");
-	 * 
-	 * try { rservice.replyInsert(vo); // entity = new
-	 * ResponseEntity<String>("INSERT_SUCCESS",HttpStatus.CREATED);
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); // entity = new
-	 * ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST); } return
-	 * "Insert_success"; }
-	 */
+  
+	@RequestMapping(value = "/event", method = RequestMethod.GET)
+	public String event(Locale locale, Model model) {
+		return "event";
+	}
 	
 }

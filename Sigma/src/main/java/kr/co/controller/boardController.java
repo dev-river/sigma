@@ -1,6 +1,7 @@
 package kr.co.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -64,7 +65,6 @@ public class boardController {
 	public String boardFRdelete(int num , PageTO to) throws Exception {
 		bservice.boardFRdelete(num);
 		return "redirect:/board/boardFR/list?curPage="+to.getCurPage()+"&perPage="+to.getPerPage();
-
 	}
 	
 	@ResponseBody
@@ -73,5 +73,10 @@ public class boardController {
 		int amount = bservice.amount();
 		System.out.println(amount);
 		return (amount-1)/perPage+1;
+	
+	@RequestMapping(value = "/boardFR/mainboard", method = RequestMethod.GET)
+	public void mainboard(Model model) {
+		List<boardVO> vo = bservice.boardFRlist();
+		model.addAttribute("vo", vo);
 	}
 }
