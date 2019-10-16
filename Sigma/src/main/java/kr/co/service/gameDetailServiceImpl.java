@@ -26,5 +26,10 @@ public class gameDetailServiceImpl implements gameDetailService{
 		return gdao.read(num);
 	}
 
+	@Override
+	public List<String> filepath(int num) {
+		return gdao.filepath(num);
+	}
+
 	
 }

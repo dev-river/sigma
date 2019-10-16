@@ -33,10 +33,14 @@ public class gameDetailController {
 	@RequestMapping(value = "/inform/read", method = RequestMethod.GET)
 	public void gameDetailread(Model model, int num) {
 		gameVO vo = gservice.read(num);
-		
-		System.out.println(vo);
+		List<String> filepath = gservice.filepath(num);
+		String mainfilepath = filepath.get(0);
+		filepath.remove(0);
 		
 		model.addAttribute("vo", vo);
+		model.addAttribute("mainfilepath", mainfilepath);
+		System.out.println(filepath);
+		model.addAttribute("filepath", filepath);
 	}
 	
 	

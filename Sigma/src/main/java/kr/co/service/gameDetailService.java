@@ -10,4 +10,6 @@ public interface gameDetailService {
 
 	gameVO read(int num);
 
+	List<String> filepath(int num);
+
 }

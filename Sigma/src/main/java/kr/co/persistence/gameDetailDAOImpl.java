@@ -26,6 +26,11 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 	public gameVO read(int num) {
 		return session.selectOne(NS+".read", num);
 	}
+
+	@Override
+	public List<String> filepath(int num) {
+		return session.selectList(NS+".filepath", num);
+	}
 	
 	
 }

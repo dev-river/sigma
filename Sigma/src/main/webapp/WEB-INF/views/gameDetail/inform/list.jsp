@@ -27,7 +27,7 @@
 			<a href="/gameDetail/inform/read?num=${gvo.num}">
 			<c:choose>
 				<c:when test="${gvo.filepath eq null}">
-					<img alt="No image" src="/resources/gameDetail/noimage.png" width="280px" height="280px">
+					<img alt="No image" src="/resources/gameDetailFile/noimage.png" width="280px" height="280px">
 				</c:when>
 				<c:when test="${gvo.filepath ne null}">
 					<img alt="Game image" src="/resources/gameDetail/${gvo.filepath}" width="280px" height="280px">

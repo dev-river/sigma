@@ -10,4 +10,6 @@ public interface gameDetailDAO {
 
 	gameVO read(int num);
 
+	List<String> filepath(int num);
+
 }
