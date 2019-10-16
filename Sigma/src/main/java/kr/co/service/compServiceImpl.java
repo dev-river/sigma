@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
+import kr.co.domain.refundVO;
 import kr.co.persistence.compDAO;
 
 @Service
@@ -41,5 +42,15 @@ public class compServiceImpl implements compService{
 	@Override
 	public void gameinsert(gameVO vo) {
 		dao.gameinsert(vo);
+	}
+
+	@Override
+	public int count(String id) {
+		return dao.count(id);
+	}
+
+	@Override
+	public List<refundVO> refundList(String id) {
+		return dao.refundList(id);
 	}
 }

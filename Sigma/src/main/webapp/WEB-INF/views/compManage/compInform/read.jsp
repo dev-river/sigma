@@ -32,7 +32,7 @@
 		ID : ${vo.id}
 		대표자명 : ${vo.name}<br>
 		업체명 : ${vo.compname}
-		판매중인 게임 수 : <br>
+		판매중인 게임 수 : ${count}<br>
 		업체주소 : ${vo.compaddress1} ${vo.compaddress2}
 		메일 주소 : ${vo.email}<br>
 		업체번호 : ${vo.compphone}
@@ -40,7 +40,7 @@
 	</div>
 	<div class="">
 		<input type="button" value="판매 관리" class="btn gamelist">
-		<input type="button" value="환불 관리" class="btn">
+		<input type="button" value="환불 관리" class="btn refund">
 	</div>
 </div>
 <script type="text/javascript">
@@ -51,6 +51,10 @@
 		
 		$(".gamelist").on("click", function(){
 			location.href="/compManage/gameList/gameList?writer=${vo.id}";
+		});
+		
+		$(".refund").on("click", function(){
+			location.href="/compManage/refund/refundList?id=${vo.id}";
 		});
 	});
 </script>

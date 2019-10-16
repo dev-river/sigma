@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
+import kr.co.domain.refundVO;
 import kr.co.service.compService;
 
 @Controller
@@ -24,7 +25,9 @@ public class compController {
 	@RequestMapping(value = "/compInform/read")
 	public void read(@RequestParam String id, Model model) {
 		memberVO vo = compservice.read(id);
+		int count = compservice.count(id);
 		model.addAttribute("vo", vo);
+		model.addAttribute("count", count);
 	}
 	
 	@RequestMapping(value = "/compInform/update")
@@ -57,5 +60,12 @@ public class compController {
 	public String gameinsert(gameVO vo) {
 		compservice.gameinsert(vo);
 		return "redirect:/compManage/gameList/gameList?writer=idid";
+	}
+	
+	@RequestMapping(value = "/refund/refundList")
+	public void refundList(@RequestParam String id, Model model) {
+		List<refundVO> list = compservice.refundList(id);
+		System.out.println("list : "+list);
+		model.addAttribute("refundList", list);
 	}
 }

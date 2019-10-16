@@ -41,11 +41,11 @@
 			<div class="form-group">
 				<label>카테고리</label>
 				<select id="category" name="category" class="select">
-					<option value="a" selected="selected">RPG</option>
-					<option value="b">스포츠/레이싱</option>
-					<option value="c">전략/시뮬레이션</option>
-					<option value="d">액션/어드벤쳐</option>
-					<option value="e">기타</option>
+					<option value="rpg" selected="selected">RPG</option>
+					<option value="sports/racing">스포츠/레이싱</option>
+					<option value="strategy/simulation">전략/시뮬레이션</option>
+					<option value="action/Adventure">액션/어드벤쳐</option>
+					<option value="other">기타</option>
 				</select>
 			</div>
 			<div class="form-group">
@@ -62,7 +62,7 @@
 			</div>
 			<div>
 				<button class="btn">등록</button>
-				<input type="button" class="btn" value="취소" onclick="location.href='/compManage/gameList/gameList?writer=kihoon'">
+				<input type="button" class="btn" value="취소" onclick="location.href='/compManage/gameList/gameList?writer=idid'">
 			</div>
 		</form>
 	</div>

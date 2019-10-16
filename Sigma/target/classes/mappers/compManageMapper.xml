@@ -17,10 +17,20 @@
 	</delete>
 	
 	<select id="gamelist" resultType="kr.co.domain.gameVO">
-		select * from gameDetail where writer = #{writer}
+		select * from gameDetail where writer = #{writer} order by num desc
 	</select>
 	
 	<insert id="gameinsert">
 		insert into gamedetail (num, title, content, writer, category, price, dcrate, gamefilepath) values((select nvl2(max(num), max(num)+1, 1) from gamedetail), #{title}, #{content}, #{writer}, #{category}, #{price}, #{dcrate}, #{gamefilepath})
 	</insert>
+	
+	<select id="count" resultType="Integer">
+		select count(num) from gamedetail where writer = #{writer}  
+	</select>
+	
+	<select id="refundList" resultType="kr.co.domain.refundVO">
+		select r.num, r.id, g.title, r.updatedate, r.status
+		from refundlist r, buylist b, gamedetail g
+		where r.buynum = b.num and b.gdnum = g.num and g.writer = #{id}
+	</select>
 </mapper>
