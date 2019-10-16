@@ -28,7 +28,7 @@
 
 <style type="text/css">
 html, body {
-	background: linear-gradient(60deg, orange, gray,#5D5D5D,gray,black,orange);
+	background: linear-gradient(60deg, orange, black,#5D5D5D,gray,black,orange);
 	margin: auto;
 	width: auto;
 	height: auto;

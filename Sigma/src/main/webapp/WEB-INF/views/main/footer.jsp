@@ -47,8 +47,9 @@
 
 <footer>
 	<div class="footer">
-		<p>© 2019 Valve Corporation. All rights reserved. 모든 상표는 준경님 및 기타 국가에서 해당하는 소유자의 재산입니다.
-부가가치세 포함   개인정보 보호정책   |   사용권   |   시그마 이용 약관   |   환불</p>
+		<p>© 2019 Valve Corporation. All rights reserved. 모든 상표는 준경님 및 기타 국가에서 해당하는 소유자의 재산입니다.</p>
+		<p>부가가치세 포함   개인정보 보호정책   |   사용권   |   시그마 이용 약관   |   환불</p>
+		<p>중앙 정보 처리 학원  | 대표자 : 강기훈 | 팩스번호 : 02-506-2312 | 대표번호 : 010 - 4800 -3998</p>
 	</div>
 </footer>
 

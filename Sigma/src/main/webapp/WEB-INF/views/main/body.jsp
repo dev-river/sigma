@@ -30,7 +30,7 @@
 .bodymain {
 	position: relative;
 	margin: auto;
-	height: 1000px;
+	height: 900px;
 	width: auto;
 }
 
@@ -38,7 +38,7 @@
 	position: relative;
 	left: 0%;
 	width: 1070px;
-	height: 950px;
+	height: 850px;
 	margin: 0;
 }
 
@@ -81,6 +81,9 @@ box-shadow: 5px 5px 20px black;
 }
 #mainimg{
 	border-radius: 20px;
+}
+.table0 th, .table0 td , .table1 th, .table1 td , .table2 th  , .table2 td{
+	color: white;
 }
 </style>
 </head>
@@ -149,27 +152,26 @@ box-shadow: 5px 5px 20px black;
 					<table class="table table-dark">
 						<thead>
 							<tr>
-								<th>게임순위<a href="#"><img
-										src="/resources/main/icon_more.gif"
+								<th>게임순위<a href="#"><img src="/resources/main/icon_more.gif"
 										style="position: relative; left: 215px;"></a></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>1.<a href="#">배틀오브<img src="/resources/main/TOP.jpg"
+								<td>1.&nbsp;&nbsp;<a href="#">배틀오브<img src="/resources/main/TOP.jpg"
 										alt="#" id="img1"></a></td>
 							</tr>
 							<tr>
-								<td>2.<a>메이플 스토리</a></td>
+								<td>2.&nbsp;&nbsp;<a>메이플 스토리</a></td>
 							</tr>
 							<tr>
-								<td>3.<a>던전 앤 파이터</a></td>
+								<td>3.&nbsp;&nbsp;<a>던전 앤 파이터</a></td>
 							</tr>
 							<tr>
-								<td>4.<a>하스 스톤</a></td>
+								<td>4.&nbsp;&nbsp;<a>하스 스톤</a></td>
 							</tr>
 							<tr>
-								<td>5.<a>리그 오브 레전드</a></td>
+								<td>5.&nbsp;&nbsp;<a>리그 오브 레전드</a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -178,27 +180,27 @@ box-shadow: 5px 5px 20px black;
 					<table class="table">
 						<thead>
 							<tr>
-								<th>최신 순위<a href="#"><img
+								<th>최신 순위&nbsp;&nbsp;<a href="#"><img
 										src="/resources/main/icon_more.gif"
 										style="position: relative; left: 215px;"></a></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>1.<a href="#">배틀오브<img src="/resources/main/TOP.jpg"
+								<td>1.&nbsp;&nbsp;<a href="#">배틀오브<img src="/resources/main/TOP.jpg"
 										alt="#" id="img2"></a></td>
 							</tr>
 							<tr>
-								<td>2.<a>메이플 스토리</a></td>
+								<td>2.&nbsp;&nbsp;<a>메이플 스토리</a></td>
 							</tr>
 							<tr>
-								<td>3.<a>던전 앤 파이터</a></td>
+								<td>3.&nbsp;&nbsp;<a>던전 앤 파이터</a></td>
 							</tr>
 							<tr>
-								<td>4.<a>하스 스톤</a></td>
+								<td>4.&nbsp;&nbsp;<a>하스 스톤</a></td>
 							</tr>
 							<tr>
-								<td>5.<a>리그 오브 레전드</a></td>
+								<td>5.&nbsp;&nbsp;<a>리그 오브 레전드</a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -207,26 +209,26 @@ box-shadow: 5px 5px 20px black;
 					<table class="table">
 						<thead>
 							<tr>
-								<th>무료 순위<a href="#"><img
+								<th>무료 순위&nbsp;&nbsp;<a href="#"><img
 										src="/resources/main/icon_more.gif"
 										style="position: relative; left: 215px;"></a></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>1.<a href="#">배틀오브<img src="/resources/main/TOP.jpg" alt="#" id="img3"></a></td>
+								<td>1.&nbsp;&nbsp;<a href="#">배틀오브<img src="/resources/main/TOP.jpg" alt="#" id="img3"></a></td>
 							</tr>
 							<tr>
-								<td>2.<a>메이플 스토리</a></td>
+								<td>2.&nbsp;&nbsp;<a>메이플 스토리</a></td>
 							</tr>
 							<tr>
-								<td>3.<a>던전 앤 파이터</a></td>
+								<td>3.&nbsp;&nbsp;<a>던전 앤 파이터</a></td>
 							</tr>
 							<tr>
-								<td>4.<a>하스 스톤</a></td>
+								<td>4.&nbsp;&nbsp;<a>하스 스톤</a></td>
 							</tr>
 							<tr>
-								<td>5.<a>리그 오브 레전드</a></td>
+								<td>5.&nbsp;&nbsp;<a>리그 오브 레전드</a></td>
 							</tr>
 						</tbody>
 					</table>
