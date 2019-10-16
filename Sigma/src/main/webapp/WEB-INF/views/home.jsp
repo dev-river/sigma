@@ -13,6 +13,9 @@
 
 <P>Please click the follow link.</P>
 <br/>
+
+<a href="#">게임추천</a>
+<a href="/gameDetail/inform/list?category=all">카테고리별</a>
 <a href="/board/boardFR/list">자유게시판</a>
 <a href="/compManage/compInform/read?id=idid">판매자 페이지</a>
 </body>
