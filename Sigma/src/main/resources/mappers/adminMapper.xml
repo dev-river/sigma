@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mapper.admin">
+
+	<select id="userList" resultType="kr.co.domain.memberVO">
+		select * from userinfo where author='user' order by id asc
+	</select>
+
+	<select id="sellerList" resultType="kr.co.domain.memberVO">
+		select * from userinfo where author='seller' order by id asc
+	</select>
+
+	<select id="adminList" resultType="kr.co.domain.memberVO">
+		select * from userinfo where author='admin' order by id asc
+	</select>
+	
+	<select id="userRead" resultType="kr.co.domain.memberVO">
+		select * from userinfo where id = #{id}
+	</select>
+</mapper>
