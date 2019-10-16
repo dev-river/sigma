@@ -71,8 +71,6 @@ public class memberController {
 	//로그아웃
 	@RequestMapping(value = "/login/logout", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, HttpServletResponse response) {
-		request.setAttribute("useCookie", "false");
-		
 		
 		HttpSession session = request.getSession(false);
 		if(session != null) {
@@ -80,16 +78,30 @@ public class memberController {
 				session.removeAttribute("login");
 			}
 		}
-		Cookie[] cookies = request.getCookies();
-		Cookie cookie = new Cookie("loginCookie", null);
-
-		if(cookies != null){
-			for(int i = 0; i<cookies.length; i++) {
-				cookies[i].setMaxAge(0);
-				response.addCookie(cookies[i]);
+		Cookie[] arr = request.getCookies();
+		Cookie loginCookie = null;
+		if(arr != null){
+			for(Cookie x : arr) {
+				if(x.getName().equalsIgnoreCase("loginCookie")) {
+					loginCookie = x;
+					break;
+				}
 			}
-			cookie.setMaxAge(0);
-			response.addCookie(cookie);
+			long curTime = System.currentTimeMillis();
+			//jsid 있는지 확인하고 없으면 안 돌아가~~
+			if(loginCookie != null) {
+			String jsid = loginCookie.getValue();
+			mservice.timeUpdate(jsid, curTime);
+			
+			for(int i = 0; i<arr.length; i++) {
+				/* cookies[i].setPath("/"); */
+				arr[i].setMaxAge(0);
+				response.addCookie(arr[i]);
+			}
+			loginCookie.setMaxAge(0);
+			response.addCookie(loginCookie);
+			}
+			
 		}
 		return "redirect:/board/boardFR/list";
 	}

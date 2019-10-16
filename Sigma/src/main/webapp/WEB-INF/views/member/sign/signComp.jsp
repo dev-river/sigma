@@ -125,7 +125,7 @@
 				
 				<!-- 회원가입 버튼 -->
 				<div class="form-group">
-					<input value="회원가입" type="submit" class="form-control btn btn-primary">
+					<input class="signIn" value="회원가입" type="submit" class="form-control btn btn-primary">
 				</div>
 				
 			</form>
@@ -164,6 +164,11 @@
 } */
 	
 	$(document).ready(function() {
+		
+		$(".signIn").click(function() {
+	    	alert("가입 완료 되었습니다.")
+	        window.close();
+	    });
 		
 		
 		$(".search1").on("click",function(){
