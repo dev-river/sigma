@@ -225,7 +225,19 @@
 						<a href="/"><img alt="..." src="/resources/main/로고2.png"></a>
 					</div>
 					<div class="login">
-						<a class="glyphicon glyphicon-user" href="#">로그인</a>
+					<c:if test="${empty login}">
+						<a class="glyphicon glyphicon-user" href="/member/login/login">로그인</a>
+					</c:if>
+					<c:if test="${!empty login}">
+						<c:if test="${login.author eq 'user'}">
+							<a class="glyphicon glyphicon-user" href="/myPage/myPage/mypage">마이페이지</a>
+							<a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
+						</c:if>
+						<c:if test="${login.author eq 'seller'}">
+							<a class="glyphicon glyphicon-user" href="/compManage/compInform/read?id=${login.id}">판매자페이지</a>
+							<a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
+						</c:if>
+					</c:if>
 					</div>
 					<div class="ser">
 

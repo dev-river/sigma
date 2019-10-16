@@ -44,35 +44,31 @@ public class LoginIn extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession();
 		Object obj = modelAndView.getModel().get("vo");
 
-		String suseCookie = request.getParameter("useCookie");
-		boolean useCookie = Boolean.valueOf(suseCookie);
+//		String suseCookie = request.getParameter("useCookie");
+//		boolean useCookie = Boolean.valueOf(suseCookie);
 		
 		
 		if(obj != null) {
-			if(useCookie) {
-				String id = ((memberVO)obj).getId(); 
-				
-				String jsid = session.getId();
-				Cookie loginCookie = new Cookie("loginCookie", jsid);
-				loginCookie.setPath("/");
-				loginCookie.setMaxAge(60*2);
-				response.addCookie(loginCookie);
-				
-				long validtime = System.currentTimeMillis()+1000*60*2;
-				
-				mService.updateJsidNvalidtime(jsid, validtime, id);
-			}
+//			if(useCookie) {
+//				String id = ((memberVO)obj).getId(); 
+//				
+//				String jsid = session.getId();
+//				Cookie loginCookie = new Cookie("loginCookie", jsid);
+//				loginCookie.setPath("/");
+//				loginCookie.setMaxAge(60*2);
+//				response.addCookie(loginCookie);
+//				
+//				long validtime = System.currentTimeMillis()+1000*60*2;
+//				
+//				mService.updateJsidNvalidtime(jsid, validtime, id);
+//			}
 			session.removeAttribute("login_failed");
-			
 			session.setAttribute("login", obj);
-			
 			String dest = (String) session.getAttribute("dest");
 			session.removeAttribute("dest");
 			response.sendRedirect(dest!=null?dest:"/");
 		} else {
-			
 			session.setAttribute("login_failed", "로그인 정보가 틀렸습니다. 다시 확인해주세요.");
-			
 			response.sendRedirect("/member/login/login");
 			
 		}

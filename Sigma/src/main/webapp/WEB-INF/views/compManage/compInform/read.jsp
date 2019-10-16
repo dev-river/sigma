@@ -13,16 +13,17 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
 .head{
-	width: 400px;
-	margin: 10px auto;
+	width: 300px;
+	margin: 30px auto;
 }
 .body{
-	width: 400px;
-	margin: 10px auto;
+	width: 300px;
+	margin: 30px auto;
 }
 </style>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 <div class="">
 	<div class="row head">
 		<h2>판매자 페이지(${vo.id})</h2>

@@ -20,7 +20,7 @@
 				<p style="color: red">${login_failed}</p>
 			</c:if>
 			<!-- 로그인 창 -->
-			<form name="info" action="/member/login/loginpost" method="post" onsubmit="return check()">
+			<form id="info" action="/member/login/loginpost" method="post">
 				<div class="form-group">
 					<label id="id">아이디</label>
 					<input name="id" id="id" class="form-control">

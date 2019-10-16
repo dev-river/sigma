@@ -22,9 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.co.controller" />
-	
-	
-	
+		
 	<beans:bean class="kr.co.in.LoginIn" id="loginIn"></beans:bean>
 	<beans:bean class="kr.co.in.AuthIn" id="AuthIn"></beans:bean>
 	<beans:bean class="kr.co.in.AutoLoginIn" id="AutoLoginIn"></beans:bean>

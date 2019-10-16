@@ -15,6 +15,5 @@
 </head>
 <body>
 	<a href="/board/boarFR/list">로그아웃 되었습니다.</a>
-	sgasfs
 </body>
 </html>

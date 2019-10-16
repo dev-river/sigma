@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import kr.co.domain.memberVO;
 import kr.co.service.memberService;
@@ -20,6 +21,7 @@ import kr.co.service.memberService;
 @Controller
 @RequestMapping("/member")
 public class memberController {
+	
 	@Inject
 	private memberService mservice;
 	
@@ -34,7 +36,7 @@ public class memberController {
 	@RequestMapping(value = "/sign/signNorm", method = RequestMethod.POST)
 	public String signin(memberVO vo) {
 		mservice.signin(vo);
-		return "redirect:/board/boardFR/list";
+		return "redirect:/";
 	}
 	
 	
@@ -54,8 +56,7 @@ public class memberController {
 	
 	//로그인 UI
 	@RequestMapping(value = "/login/login", method = RequestMethod.GET)
-	public void login(@ModelAttribute("vo") memberVO vo, HttpServletRequest request) {
-	}
+	public void login(@ModelAttribute("vo") memberVO vo) {}
 	
 	
 	//로그인
@@ -66,6 +67,7 @@ public class memberController {
 			return;
 		}
 		model.addAttribute("vo", mvo);
+		
 	}
 	
 	
@@ -104,7 +106,7 @@ public class memberController {
 			}
 			
 		}
-		return "redirect:/board/boardFR/list";
+		return "redirect:/member/login/login";
 	}
 	
 	//ID찾기 UI
