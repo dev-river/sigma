@@ -1,6 +1,7 @@
 package kr.co.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -57,6 +58,11 @@ public class boardController {
 	public String boardFRdelete(int num) {
 		bservice.boardFRdelete(num);
 		return "redirect:/board/boardFR/list";
-		
+	}
+	
+	@RequestMapping(value = "/boardFR/mainboard", method = RequestMethod.GET)
+	public void mainboard(Model model) {
+		List<boardVO> vo = bservice.boardFRlist();
+		model.addAttribute("vo", vo);
 	}
 }
