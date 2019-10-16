@@ -73,6 +73,7 @@ public class boardController {
 		int amount = bservice.amount();
 		System.out.println(amount);
 		return (amount-1)/perPage+1;
+	}
 	
 	@RequestMapping(value = "/boardFR/mainboard", method = RequestMethod.GET)
 	public void mainboard(Model model) {

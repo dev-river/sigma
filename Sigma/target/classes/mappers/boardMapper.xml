@@ -52,7 +52,7 @@
 	
 	<!-- 검색처리 부분 -->
 	
-	<sql id="search">
+	<!-- <sql id="search">
 		<if test="seachType == 'writer'.toString()">
 			where lower(writer) like '%' || lower(#{keyword}) || '%'
 		</if>
@@ -64,17 +64,6 @@
 		</if>
 	</sql>
 	
- 	<sql id="search">
-    		<if test="searchType == 'writer'.toString()">
-    			where lower(writer) like '%'||lower(#{keyword})||'%'
-    		</if>
-    		<if test="searchType == 'title'.toString()">
-    			where lower(title) like '%'||lower(#{keyword})||'%'
-    		</if>
-    		<if test="searchType == 'content'.toString()">
-    			where lower(content) like '%'||lower(#{keyword})||'%'
-    		</if>
-    	</sql>
     	
     	<select id="searchList" resultType="kr.co.domain.BoardVO"> search List의 페이징처리
     		<![CDATA[
@@ -87,7 +76,7 @@
     	
     	<select id="searchAmount" resultType="Integer"> search List의 amount 가져오기
     		<![CDATA[select count(bno) from boardFR]]> <include refid="search"></include>
-    	</select> 
+    	</select>  -->
 	
 	
 </mapper>
