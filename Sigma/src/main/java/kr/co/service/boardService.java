@@ -2,6 +2,7 @@ package kr.co.service;
 
 import java.util.List;
 
+import kr.co.domain.PageTO;
 import kr.co.domain.boardVO;
 
 public interface boardService {
@@ -17,5 +18,13 @@ public interface boardService {
 	void boardFRupdate(boardVO vo);
 
 	void boardFRdelete(int num);
+
+	PageTO pageList(PageTO to);
+
+	int amount();
+
+	
+
+
 
 }

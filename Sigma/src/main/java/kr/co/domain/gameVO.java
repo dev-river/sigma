@@ -2,6 +2,10 @@ package kr.co.domain;
 
 import java.io.Serializable;
 
+/**
+ * @author user
+ *
+ */
 public class gameVO implements Serializable{
 
 	/**
@@ -214,4 +218,22 @@ public class gameVO implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "gameVO [num=" + num + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regidate="
+				+ regidate + ", category=" + category + ", price=" + price + ", dcrate=" + dcrate + ", mancount="
+				+ mancount + ", womancount=" + womancount + ", totalage=" + totalage + ", profit=" + profit
+				+ ", buycharge=" + buycharge + ", viewcnt=" + viewcnt + ", filepath=" + filepath + ", gamefilepath="
+				+ gamefilepath + ", status=" + status + ", getNum()=" + getNum() + ", getTitle()=" + getTitle()
+				+ ", getContent()=" + getContent() + ", getWriter()=" + getWriter() + ", getRegidate()=" + getRegidate()
+				+ ", getCategory()=" + getCategory() + ", getPrice()=" + getPrice() + ", getDcrate()=" + getDcrate()
+				+ ", getMancount()=" + getMancount() + ", getWomancount()=" + getWomancount() + ", getTotalage()="
+				+ getTotalage() + ", getProfit()=" + getProfit() + ", getBuycharge()=" + getBuycharge()
+				+ ", getViewcnt()=" + getViewcnt() + ", getFilepath()=" + getFilepath() + ", getGamefilepath()="
+				+ getGamefilepath() + ", getStatus()=" + getStatus() + ", hashCode()=" + hashCode() + ", getClass()="
+				+ getClass() + ", toString()=" + super.toString() + "]";
+	}
+	
+	
 }

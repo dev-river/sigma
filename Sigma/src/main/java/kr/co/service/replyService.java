@@ -10,12 +10,9 @@ public interface replyService {
 
 	List<replyVO> replyList(int frnum);
 
-	void replyUpdate(int num);
+	
 
 	void delete(int num);
 
-
-	
-	
-
+	void replyUpdate(replyVO vo);
 }
