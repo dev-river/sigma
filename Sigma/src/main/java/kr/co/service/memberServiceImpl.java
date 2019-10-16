@@ -62,5 +62,23 @@ public class memberServiceImpl implements memberService{
 		
 	}
 
+	@Override
+	public memberVO idcheck(String id) {
+		// TODO Auto-generated method stub
+		return mdao.idcheck(id);
+	}
+
+	@Override
+	public memberVO nickcheck(String nickname) {
+		// TODO Auto-generated method stub
+		return mdao.nickcheck(nickname);
+	}
+
+	@Override
+	public memberVO compcheck(String compname) {
+		// TODO Auto-generated method stub
+		return mdao.compcheck(compname);
+	}
+
 
 }

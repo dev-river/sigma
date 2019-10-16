@@ -39,5 +39,16 @@
 		update userinfo set validtime = #{validtime} where jsid = #{jsid}
 	</update>
 	
+	<select id="idcheck" resultType="kr.co.domain.memberVO">
+		select * from userinfo where id = #{id}
+	</select>
+	
+	<select id="nickcheck" resultType="kr.co.domain.memberVO">
+		select * from userinfo where nickname = #{nickname}
+	</select>
+	
+	<select id="compcheck" resultType="kr.co.domain.memberVO">
+		select * from userinfo where compname = #{compname}
+	</select>
 		
 </mapper>

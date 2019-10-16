@@ -20,4 +20,10 @@ public interface memberService {
 
 	void timeUpdate(String jsid, long validtime);
 
+	memberVO idcheck(String id);
+
+	memberVO nickcheck(String nickname);
+
+	memberVO compcheck(String compname);
+
 }

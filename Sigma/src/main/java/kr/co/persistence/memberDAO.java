@@ -20,4 +20,10 @@ public interface memberDAO {
 
 	public void timeUpdate(String jsid, long validtime);
 
+	public memberVO idcheck(String id);
+
+	public memberVO nickcheck(String nickname);
+
+	public memberVO compcheck(String compname);
+
 }

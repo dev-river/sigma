@@ -73,6 +73,24 @@ public class memberDAOImpl implements memberDAO{
 		
 	}
 
+	@Override
+	public memberVO idcheck(String id) {
+		// TODO Auto-generated method stub
+		return session.selectOne(NS+".idcheck", id);
+	}
+
+	@Override
+	public memberVO nickcheck(String nickname) {
+		// TODO Auto-generated method stub
+		return session.selectOne(NS+".nickcheck", nickname);
+	}
+
+	@Override
+	public memberVO compcheck(String compname) {
+		// TODO Auto-generated method stub
+		return session.selectOne(NS+".compcheck", compname);
+	}
+
 
 	
 }

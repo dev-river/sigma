@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.domain.memberVO;
 import kr.co.service.memberService;
@@ -31,7 +33,6 @@ public class memberController {
 	//일반 회원가입
 	@RequestMapping(value = "/sign/signNorm", method = RequestMethod.POST)
 	public String signin(memberVO vo) {
-
 		mservice.signin(vo);
 		return "redirect:/board/boardFR/list";
 	}
@@ -71,8 +72,6 @@ public class memberController {
 	//로그아웃
 	@RequestMapping(value = "/login/logout", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, HttpServletResponse response) {
-		request.setAttribute("useCookie", "false");
-		
 		
 		HttpSession session = request.getSession(false);
 		if(session != null) {
@@ -80,18 +79,32 @@ public class memberController {
 				session.removeAttribute("login");
 			}
 		}
-		Cookie[] cookies = request.getCookies();
-		Cookie cookie = new Cookie("loginCookie", null);
-
-		if(cookies != null){
-			for(int i = 0; i<cookies.length; i++) {
-				cookies[i].setMaxAge(0);
-				response.addCookie(cookies[i]);
+		Cookie[] arr = request.getCookies();
+		Cookie loginCookie = null;
+		if(arr != null){
+			for(Cookie x : arr) {
+				if(x.getName().equalsIgnoreCase("loginCookie")) {
+					loginCookie = x;
+					break;
+				}
 			}
-			cookie.setMaxAge(0);
-			response.addCookie(cookie);
+			long curTime = System.currentTimeMillis();
+			//jsid 있는지 확인하고 없으면 안 돌아가~~
+			if(loginCookie != null) {
+			String jsid = loginCookie.getValue();
+			mservice.timeUpdate(jsid, curTime);
+			
+			for(int i = 0; i<arr.length; i++) {
+				/* cookies[i].setPath("/"); */
+				arr[i].setMaxAge(0);
+				response.addCookie(arr[i]);
+			}
+			loginCookie.setMaxAge(0);
+			response.addCookie(loginCookie);
+			}
+			
 		}
-		return "redirect:/member/login/login";
+		return "redirect:/board/boardFR/list";
 	}
 	
 	//ID찾기 UI
@@ -137,6 +150,44 @@ public class memberController {
 	//아이디/비밀번호 찾기 선택
 	@RequestMapping(value = "/login/searchSelect", method = RequestMethod.GET)
 	public void searchselect() {
+	}
+	
+	//id중복 체크
+	@RequestMapping(value = "/sign/idcheck", method = RequestMethod.POST, produces = "application/text;charset=utf-8")
+	@ResponseBody
+	public String idcheck(String id) {
+		memberVO what = mservice.idcheck(id);
+		if(what == null) {
+			return id+"은(는) 사용[가능]한 아이디입니다.";
+		}else {
+			return id+"은(는) 사용[불가능]한 아이디입니다.";
+		}
+	}
+	
+	//닉네임중복 체크
+	@RequestMapping(value = "/sign/nickcheck", method = RequestMethod.POST, produces = "application/text;charset=utf-8")
+	@ResponseBody
+	public String nickcheck(String nickname) {
+		memberVO what = mservice.nickcheck(nickname);
+		
+		if(what == null) {
+			return nickname+"은(는) 사용[가능]한 닉네임입니다.";
+		}else {
+			return nickname+"은(는) 사용[불가능]한 닉네임입니다.";
+		}
+	}
+	
+	//회사중복 체크
+	@RequestMapping(value = "/sign/compcheck", method = RequestMethod.POST, produces = "application/text;charset=utf-8")
+	@ResponseBody
+	public String compname(String compname) {
+		memberVO what = mservice.compcheck(compname);
+		
+		if(what == null) {
+			return compname+"은(는) 사용[가능]한 닉네임입니다.";
+		}else {
+			return compname+"은(는) 사용[불가능]한 닉네임입니다.";
+		}
 	}
 	
 }
