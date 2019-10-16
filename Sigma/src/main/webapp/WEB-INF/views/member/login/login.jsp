@@ -31,7 +31,7 @@
 				
 				<div class="form-group">
 					<label id="pw">비밀번호</label>
-					<input name="pw" id="pw" class="form-control">
+					<input type="password" name="pw" id="pw" class="form-control">
 				</div>
 				
 				

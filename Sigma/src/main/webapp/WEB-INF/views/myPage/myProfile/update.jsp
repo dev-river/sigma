@@ -34,7 +34,7 @@
 				
 				<div class="form-group">
 					<label id="pw">비밀번호</label>
-					<input required type="password" name="pw" id="pw" class="form-control" value="${updateUIInfo.pw}">
+					<input required name="pw" id="pw" class="form-control" value="${updateUIInfo.pw}">
 				</div>
 				
 				<br>

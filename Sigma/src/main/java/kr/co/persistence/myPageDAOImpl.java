@@ -32,7 +32,7 @@ public class myPageDAOImpl implements myPageDAO{
 
 	@Override
 	public void update(memberVO vo) {
-		session.update(NS+".update", vo);
+		session.update(NS+".myProfileUpdate", vo);
 		
 	}
 
@@ -41,7 +41,7 @@ public class myPageDAOImpl implements myPageDAO{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pw", pw);
 		map.put("id", id);
-		session.delete(NS+".delete", map);
+		session.delete(NS+".deleteUser", map);
 		
 	}
 	

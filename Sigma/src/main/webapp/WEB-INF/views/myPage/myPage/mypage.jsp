@@ -36,7 +36,7 @@
 			<div style="position: relative; left:5%; width:40%" class="pull-right">
 				<button style="margin: 5px; padding:5px; width:80%" class="btn zzimList">찜목록</button>
 				<button style="margin: 5px; padding:5px; width:80%" class="btn shopBasket">장바구니</button>
-				<button style="margin: 5px; padding:5px; width:80%" class="btn cach">캐시충전</button>
+				<a href="/myPage/cash/charge?id=${myinfo.id}" style="text-decoration:none; color: #333333;"><button style="margin: 5px; padding:5px; width:80%" class="btn cach">캐쉬 충전</button></a>
 			</div>
 		</div>
 		
@@ -51,12 +51,22 @@
 		</div>
 	</div>
 	<input type="hidden" id="id" value="${myinfo.id}"></input>
+	
+	
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		//프로필 수정
 		var id = $("input[id='id']").val();
 		$(".update").on("click",function(){
 			location.href = "/myPage/myProfile/update?id="+id;
 		});
+		
+		//캐쉬 충전 ---- 페이지 이동이 안 되서 버튼 안에 a 태그 넣음
+		//$(".cash").click(function(event) {
+		//	event.preventDefault();
+		//	location.href = "/myPage/cash/charge?id="+id;
+		//});
 	});
 	
 	

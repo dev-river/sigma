@@ -31,7 +31,7 @@
 				
 				<div class="form-group">
 					*<label id="pw">비밀번호</label>
-					<input required type="password" name="pw" id="pw" class="form-control" placeholder="비밀번호를 입력해주세요.">
+					<input required name="pw" id="pw" class="form-control" placeholder="비밀번호를 입력해주세요.">
 				</div>
 				
 				<br>

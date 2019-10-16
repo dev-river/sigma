@@ -13,11 +13,11 @@
 		select * from userinfo where id = #{id}
 	</select>
 	
-	<update id="update">
+	<update id="myProfileUpdate">
 		update userinfo set nickname=#{nickname}, name=#{name}, pw=#{pw}, phone=#{phone}, email=#{email}, address1=#{address1}, address2=#{address2} where id = #{id}
 	</update>
 	
-	<delete id="delete">
+	<delete id="deleteUser">
 		delete from userinfo where id = #{id} and pw = #{pw}
 	</delete>
 	
