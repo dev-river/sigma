@@ -8,4 +8,12 @@
 		select * from gamedetail where category like #{category}
 	</select>
 	
+	<select id="read" resultType="kr.co.domain.gameVO">
+		select * from gamedetail where num = #{num}
+	</select>
+	
+	<select id="filepath" resultType="String">
+		select filename from gamedetailfile where gdnum = #{num} order by num
+	</select>
+	
 </mapper>

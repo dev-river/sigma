@@ -26,8 +26,22 @@ public class gameDetailController {
 		}
 		List<gameVO> vo = new ArrayList<gameVO>();
 		vo = gservice.list(category);
-		System.out.println(vo);
 		
 		model.addAttribute("vo", vo);
 	}
+	
+	@RequestMapping(value = "/inform/read", method = RequestMethod.GET)
+	public void gameDetailread(Model model, int num) {
+		gameVO vo = gservice.read(num);
+		List<String> filepath = gservice.filepath(num);
+		String mainfilepath = filepath.get(0);
+		filepath.remove(0);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("mainfilepath", mainfilepath);
+		System.out.println(filepath);
+		model.addAttribute("filepath", filepath);
+	}
+	
+	
 }
