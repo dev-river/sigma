@@ -19,10 +19,11 @@
 		
 			<h2>일반 회원 가입</h2>
 			<!-- 회원가입 창 -->
-			<form name="info" action="/member/sign/signNorm" method="post" >
+			<form name="info">
 				<div class="form-group">
-					*<label id="id">아이디</label>
-					<input required name="id" id="id" class="form-control" placeholder="아이디를 입력해주세요.">
+					*<label id="id">아이디</label><br>
+					<input required name="id" id="id" class="form-control pull-left" placeholder="아이디를 입력해주세요." style="width: 80%;">
+					<input type="button" name="idcheck" class="idcheck pull-rigth" value="중복확인" style="width: 20%; height: 33.99px;">
 				</div>
 				
 				<br>
@@ -35,7 +36,7 @@
 				<br>
 					
 				<div class="form-group">
-					*<label for="name">이름</label>
+					*<label for="name">이름</label><br>
 					<input required name="name" id="name" class="form-control" placeholder="이름을 입력해주세요.">
 				</div>
 				
@@ -52,8 +53,9 @@
 					
 				
 				<div class="form-group">
-					*<label for="nickname">닉네임</label>
-					<input required name="nickname" id="nickname" class="form-control" placeholder="닉네임을 입력해주세요.">
+					*<label for="nickname">닉네임</label><br>
+					<input required name="nickname" id="nickname" class="form-control pull-left" placeholder="닉네임을 입력해주세요." style="width: 80%;">
+					<input type="button" name="nickcheck" class="nickcheck pull-rigth" value="중복체크" style="width: 20%; height: 33.99px;">
 				</div>
 				
 				<br>
@@ -80,8 +82,7 @@
 				<br>
 					
 				<div class="form-group">
-					<label for="address1">주소</label>
-					<br>
+					<label for="address1">주소</label><br>
 					<input name="address1" id="address1" class="form-control pull-left" placeholder="주소를 입력해주세요." style="width: 80%;">
 					<input type="button" class="search1 pull-rigth" value="찾기" style="width: 20%; height: 33.99px;">
 					<input name="address2" id="address2" class="form-control" placeholder="상세주소를 입력해주세요.">
@@ -130,16 +131,84 @@
 	
 	$(document).ready(function() {
 		
-	    $(".signIn").click(function() {
-	    	alert("가입 완료 되었습니다.")
-	        window.close();
-	    });
+		//아이디 중복체크
+		$(".idcheck").on("click", function(event) {
+			event.preventDefault();
+			var id = $("input[name='id']").val();
+			$.ajax({
+				type : 'post',
+				url : '/member/sign/idcheck',
+				data : {
+					id : id
+				},
+				dataType : 'text',
+				success : function(result) {
+					alert(result)
+				}
+			});
+		})
+		
+		//닉네임 중복체크
+		$(".nickcheck").on("click", function(event) {
+			event.preventDefault();
+			var nickname = $("input[name='nickname']").val();
+			$.ajax({
+				type : 'post',
+				url : '/member/sign/nickcheck',
+				data : {
+					nickname : nickname
+				},
+				dataType : 'text',
+				success : function(result) {
+					alert(result)
+				}
+			});
+		})
+		
+		
+		$(".signIn").on("click", function(event) {
+			event.preventDefault();
+			var id = $("input[id='id']").val();
+			var pw = $("input[id='pw']").val();
+			var name = $("input[id='name']").val();
+			var sex = $("input[name='sex']").val();
+			var nickname = $("input[id='nickname']").val();
+			var birth = $("input[id='birth']").val();
+			var phone= $("input[id='phone']").val();
+			var email = $("input[id='email']").val();
+			var address1 = $("input[id='address1']").val();
+			var address2 = $("input[id='address2']").val();
 
-		$(".search").on("click",function(){
+
+			$.ajax({
+				type : 'post',
+				url : '/member/sign/signNorm',
+				data : {
+					id : id,
+					pw : pw,
+					name : name,
+					sex : sex,
+					nickname : nickname,
+					birth : birth,
+					phone : phone,
+					email : email,
+					address1: address1,
+					address2 : address2
+				},
+				dataType : 'text',
+				success : function() {
+					alert("가입 완료 되었습니다.");
+					window.close();	
+				}
+			});
+		});
+		
+
+		$(".search1").on("click",function(){
 	         new daum.Postcode({
 	            oncomplete: function(data) {
 	               var addr = data.address;
-	               document.getElementById("compaddress1").value = addr;
+	               document.getElementById("address1").value = addr;
 	            }
 	         }).open();
 	    });

@@ -21,4 +21,22 @@ public class myPageServiceImpl implements myPageService{
 		
 	}
 
+	@Override
+	public memberVO updateUI(String id) {
+		// TODO Auto-generated method stub
+		return mpdao.updateUI(id);
+	}
+
+	@Override
+	public void update(memberVO vo) {
+		mpdao.update(vo);
+		
+	}
+
+	@Override
+	public void delete(String id, String pw) {
+		mpdao.delete(id, pw);
+		
+	}
+
 }
