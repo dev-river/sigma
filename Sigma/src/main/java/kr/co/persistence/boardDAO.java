@@ -2,6 +2,7 @@ package kr.co.persistence;
 
 import java.util.List;
 
+import kr.co.domain.PageTO;
 import kr.co.domain.boardVO;
 
 public interface boardDAO {
@@ -16,5 +17,9 @@ public interface boardDAO {
 	public void boardFRupdate(boardVO vo);
 
 	public void boardFRdelete(int num);
+
+	public int getAmount();
+
+	public List<boardVO> pageList(PageTO to);
 
 }

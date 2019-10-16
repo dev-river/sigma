@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.domain.PageTO;
 import kr.co.domain.boardVO;
 
 @Repository
@@ -47,4 +48,17 @@ public class boardDAOImpl implements boardDAO{
 	public void boardFRdelete(int num) {
 		session.delete(NS+".FRdelete", num);
 	}
+
+	@Override
+	public int getAmount() {
+		// TODO Auto-generated method stub
+		return session.selectOne(NS+".getAmount");
+	}
+
+	@Override
+	public List<boardVO> pageList(PageTO to) {
+		// TODO Auto-generated method stub
+		return session.selectList(NS+".pageList", to);
+	}
+
 }

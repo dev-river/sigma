@@ -28,15 +28,17 @@ public class replyDAOImpl implements replyDAO{
 		return session.selectList(NS+".replyList", frnum);
 	}
 
-	@Override
-	public void replyUpdate(int num) {
-		session.update(NS+".replyUpdate", num);
-		
-	}
+
 
 	@Override
 	public void replyDelete(int num) {
 		session.delete(NS+".replyDelete", num);
+		
+	}
+
+	@Override
+	public void replyUpdate(replyVO vo) {
+		session.update(NS+".replyUpdate", vo);
 		
 	};
 

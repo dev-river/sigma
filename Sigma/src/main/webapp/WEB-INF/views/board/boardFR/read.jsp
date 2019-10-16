@@ -18,6 +18,13 @@
 		<div class="row">
 			
 			<h1>글 자세히 보기</h1>
+			
+			<form action="">
+				<input type="hidden" name="num" value="${readvo.num}">
+				<input type="hidden" name="curPage" value="${to.curPage}">
+				<input type="hidden" name="perPage" value="${to.perPage}">
+			</form>
+			
 				<div class="form-group">
 					<label for="num">글번호</label>
 					<input class="form-control" id="num" value="${readvo.num}" readonly="readonly">
@@ -43,9 +50,9 @@
 					<textarea  class="form-control" id="content" readonly="readonly">${readvo.content}</textarea>
 				</div>
 				<div>
-				    <input type="button" value="수정" class="btn update">
-					<input type="button" value="목록" class="btn" onclick="location.href='/board/boardFR/list'">
-					<input type="button" value="삭제" class="btn" onclick="location.href='/board/boardFR/delete?num=${readvo.num}'">
+				    <input type="button" value="수정" class="btn update btn-primary">
+					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/board/boardFR/list?curPage=${to.curPage}&perPage=${to.perPage}'">
+					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/board/boardFR/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
 				</div>
 		</div>
 		<hr>
@@ -98,10 +105,10 @@
 				<div class="modal-dialog">
 					<div class="modal-header">
 						<button data-dismiss="modal" class="close">&times;</button>
-						<p id="modal_rno"></p>
+						<p id="modal_num"></p>
 					</div>
 					<div class="modal-body">
-						<input id="modal_replytext" class="form-control">
+						<input id="modal_content" class="form-control">
 					</div>
 					<div class="modal-footer">
 						<button id="modal_update" data-dismiss="modal" class="btn">수정</button>
@@ -121,12 +128,17 @@
 	$(document).ready(function(){
 		var frnum = ${readvo.num}; /* 계속 사용될것이므로 전역변수로 지정 */
 		
+		/* replyDelete 부분 */
 		$("#modal_delete").click(function(){
-			var num = $("#modal_rno").text();
+			var num = $("#modal_num").text();
 			
 			$.ajax({
-				type : 'delete',
+				type : 'DELETE',
 				url : '/reply/'+num,
+				headers : {
+					'Content-Type' : 'application/json',
+					'X-HTTP-Method-Override' : 'DELETE'
+				},
 				dataType : 'text',
 				success : function(result){
 					alert(result);
@@ -135,42 +147,45 @@
 			});
 		});
 		
+		/* replyUpdate 부분 */
 		$("#modal_update").click(function() {
-			var num = $("#modal_rno").text();
-			var replytext = $("#modal_replytext").val();
-
+			
+			var num = $("#modal_num").text();
+			var replytext = $("#modal_content").val();
+			
+			
 			$.ajax({
-				type : 'PUT',
-				url : '/reply/'+num,					
-				headers : {
-					'Content-Type' : 'application/json',
-					'X-HTTP-Method-Override' : 'PUT'
+				type : 'POST',
+				url : '/reply/'+num,
+				ContentType : 'application/json',
+				data : {
+					'content' : replytext
 				},
-				data : JSON.stringify({
-					replytext : replytext
-				}),
 				dataType : 'text',
 				success : function(result) {
-					alter(result);
+					alert(result);
 					getAllList(frnum);
 				}
 			});
 		});
 		
+		/* replyModal 창 */
 		$("#replyList").on("click", ".callModal", function(){
-			var rno = $(this).prev("p").attr("data-rno");
+			var num = $(this).prev("p").attr("data-num");
 			var replytext = $(this).prev("p").text();
 			
-			$("#modal_rno").text(rno);
+			$("#modal_num").text(num);
 			$("#modal_replytext").val(replytext);
 			
 			$("#myModal").modal("show");
 		});
 		
+		/* boardUpdate 부분 */
 		$(".update").on("click",function(){
-			location.href="/board/boardFR/update?num=${readvo.num}";
+			location.href="/board/boardFR/update?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}";
 		})
 		
+		/* replyReset 부분 */
 		$("#btnReset").click(function(){
 			$("#replycontent").val("");
 			$("#replyer").val("");
@@ -178,6 +193,7 @@
 		
 		getAllList(frnum);
 		
+		/* replyInsert 부분 */
 		$("#btnReplyInsert").click(function() {
 			
 			var replyer = $("#replyer").val();
@@ -205,6 +221,7 @@
 			});
 		});
 		
+		/* replyList 부분 */
 		function getAllList(frnum) {
 		
 			$.getJSON("/reply/"+frnum, function(arr) {
@@ -213,11 +230,11 @@
 				for(var i=0; i<arr.length;i++){
 					str += '<div class="panel panel-info">'+
 					'<div class="panel-heading">'+
-						'<span>frnum:'+arr[i].frnum+', 작성자: <span class="glyphicon glyphicon-user"></span>'+arr[i].replyer+'</span>'+
+						'<span>No.'+arr[i].num+' 작성자: <span class="glyphicon glyphicon-user"></span>'+arr[i].replyer+'</span>'+
 						'<span class="pull-right"><span class="glyphicon glyphicon-time"></span>'+arr[i].updatedate+'</span>'+
 					'</div>'+
 					'<div class="panel-body">'+
-						'<p data-frnum="'+arr[i].frnum+'">'+arr[i].content+'</p>'+
+						'<p data-num="'+arr[i].num+'">'+arr[i].content+'</p>'+
 						'<button class="btn callModal"><span class="glyphicon glyphicon-edit"></span>수정/삭제<span class="glyphicon glyphicon-trash"></span></button>'+
 					'</div>'+
 					'</div>';
@@ -226,8 +243,6 @@
 				$("#replyList").html(str);
 				
 			});
-			
-			
 		}
 	});
 	
