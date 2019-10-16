@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
+import kr.co.domain.refundVO;
 
 @Repository
 public class compDAOImpl implements compDAO {
@@ -42,4 +43,15 @@ public class compDAOImpl implements compDAO {
 	public void gameinsert(gameVO vo) {
 		session.insert(NS+".gameinsert", vo);
 	}
+
+	@Override
+	public int count(String id) {
+		return session.selectOne(NS+".count", id);
+	}
+
+	@Override
+	public List<refundVO> refundList(String id) {
+		return session.selectList(NS+".refundList", id);
+	}
+
 }
