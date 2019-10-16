@@ -75,9 +75,10 @@
 }
 #img1,#img2,#img3{
  border-radius: 10px;
+ 
 }
-#img1,#img2,#img3 #mainimg :hover {
-box-shadow: 5px 5px 20px black;
+#img1,#img2,#img3 :hover {
+box-shadow: 15px 15px 20px black;
 }
 #mainimg{
 	border-radius: 20px;

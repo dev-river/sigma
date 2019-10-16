@@ -71,6 +71,9 @@
 	margin: 0;
 }
 .menubar {
+	transition : .30s ease-in-out;
+	transform : rotateX (-90deg) rotateY (0);
+	transform-origin : 0 0;
 	position: relative;
 	left: 22%;
 	top : 30px;
@@ -82,24 +85,35 @@
 	font-weight: 1500;
 	width: 700px;
 	font: italic;
+		
 
 }
 
 .menubar ul {
+	transition : .30s ease-in-out;
+	transform : rotateX (-90deg) rotateY (0);
+	transform-origin : 0 0;
 	background: write;
 	height: 50px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	width: 700px;
+	
 }
 
 .menubar li {
+	transition : .30s ease-in-out;
+	transform : rotateX (-90deg) rotateY (0);
+	transform-origin : 0 0;
 	float: left;
 	padding: 0px;
 }
 
 .menubar li a { /*메뉴*/
+	transition : .30s ease-in-out;
+	transform : rotateX (-90deg) rotateY (0);
+	transform-origin : 0 0;
 	background: linear-gradient(gray, orange 50%, gray);
 	color: black;
 	display: block;
@@ -112,6 +126,7 @@
 	text-align: center;
 	text-decoration: none;
 	border-radius: 0;
+	
 }
 #me2{
 	border-radius: 0px 90px 90px 0px;
@@ -120,12 +135,18 @@
 	border-radius: 90px 0px 0px 90px;
 }
 .menubar li a:hover, .menubar ul li:hover a { /*드랍 마우스*/
+	transition : .30s ease-in-out;	/*천천히 반응 하게 하는거 transition*/
+	transform : rotateX (-90deg) rotateY (0);
+	transform-origin : 0 0;
 	background: orange;
 	color: black;
 	text-decoration: none;
 }
 
 .menubar li ul {
+	transition : .30s ease-in-out;
+	transform : rotateX (-90deg) rotateY (0);
+	transform-origin : 0 0;
 	display: none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
 	height: auto;
 	padding: 0px;
@@ -134,13 +155,20 @@
 	position: absolute;
 	width: 150px;
 	z-index: 200;
+	
 }
 
 .menubar li:hover ul {
+	transition : .30s ease-in-out;
+	transform : rotateX (-90deg) rotateY (0);
+	transform-origin : 0 0;
 	display: block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
 }
 
 .menubar li li {
+	transition : .30s ease-in-out;
+	transform : rotateX (-90deg) rotateY (0);
+	transform-origin : 0 0;
 	background: orange;
 	display: block;
 	float: none;
@@ -149,13 +177,20 @@
 	height: 50px;
 	width: 150px;
 	border-radius: 50px;
+	
 }
 
 .menubar li:hover li a {
+	transition : .30s ease-in-out;
+	transform : rotateX (-90deg) rotateY (0);
+	transform-origin : 0 0;
 	background: none;
 }
 
 .menubar li ul a {
+	transition : .30s ease-in-out;
+	transform : rotateX (-90deg) rotateY (0);
+	transform-origin : 0 0;
 	display: block;
 	height: 50px;
 	font-size: 14px;
@@ -165,6 +200,9 @@
 }
 
 .menubar li ul a:hover, .menubar li ul li:hover a {
+	transition : .30s ease-in-out;
+	transform : rotateX (-90deg) rotateY (0);
+	transform-origin : 0 0;
 	background: black;
 	border: 0px;
 	color: #ffffff;
