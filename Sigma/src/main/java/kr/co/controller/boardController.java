@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.co.domain.PageTO;
 import kr.co.domain.boardVO;
 import kr.co.service.boardService;
 
@@ -19,9 +20,11 @@ public class boardController {
 	private boardService bservice;
 
 	@RequestMapping(value = "/boardFR/list", method = RequestMethod.GET)
-	public void boardFRList(Model model) {
-		List<boardVO> vo = bservice.boardFRlist();
-		model.addAttribute("vo", vo);
+	public void boardFRList(PageTO to, Model model) {
+		System.out.println(to.getCurPage());
+		PageTO dbTO = bservice.pageList(to);
+		model.addAttribute("dbTO", dbTO);
+		System.out.println(dbTO.getList());
 	}
 	
 	@RequestMapping(value = "/boardFR/insert", method = RequestMethod.GET)

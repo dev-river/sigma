@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.domain.PageTO;
 import kr.co.domain.boardVO;
 import kr.co.persistence.boardDAO;
 
@@ -44,6 +45,19 @@ public class boardServiceImpl implements boardService{
 	@Override
 	public void boardFRdelete(int num) {
 		bdao.boardFRdelete(num);
+		
 	}
+
+	@Override
+	public PageTO pageList(PageTO to) {
+		int amount = bdao.getAmount();
+		to.setAmount(amount);
+		
+		List<boardVO> list = bdao.pageList(to);
+		to.setList(list);
+		
+		return to;
+	}
+
 
 }
