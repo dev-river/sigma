@@ -21,6 +21,11 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 	public List<gameVO> list(String category) {
 		return session.selectList(NS+".list", category);
 	}
+
+	@Override
+	public gameVO read(int num) {
+		return session.selectOne(NS+".read", num);
+	}
 	
 	
 }

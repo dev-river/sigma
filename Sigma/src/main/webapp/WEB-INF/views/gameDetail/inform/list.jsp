@@ -18,20 +18,34 @@
 		</style>
 </head>
 <body>
-<h1>GameDetail list</h1>
+<h1>GameDetail category list page</h1>
 <hr>
 
 <div class=container>
 	<c:forEach items="${vo}" var="gvo">
 	<div style="width: 33%; margin: 0; float: left;">
+			<a href="/gameDetail/inform/read?num=${gvo.num}">
 			<c:choose>
 				<c:when test="${gvo.filepath eq null}">
-					<a href="#"><img alt="No image" src="/resources/gameDetail/noimage.png" width="280px" height="280px"><p style="text-align: center;">${gvo.title}</p></a>
+					<img alt="No image" src="/resources/gameDetail/noimage.png" width="280px" height="280px">
 				</c:when>
 				<c:when test="${gvo.filepath ne null}">
-					<a href="#"><img alt="Game image" src="/resources/gameDetail/${gvo.filepath}" width="280px" height="280px"><p style="text-align: center;">${gvo.title}</p></a>
+					<img alt="Game image" src="/resources/gameDetail/${gvo.filepath}" width="280px" height="280px">
 				</c:when>
 			</c:choose>
+			<p style="text-align: center; margin-top: 5px; margin-bottom: 0px">Title: ${gvo.title}</p>
+			<p style="text-align: center; margin-bottom: 10px;">Price: 
+			<c:choose>
+				<c:when test="${gvo.dcrate eq 0}">
+					${gvo.price}
+				</c:when>
+				<c:when test="${gvo.dcrate ne 0}">
+					${gvo.price * (1 - gvo.dcrate / 100)} <span style="color:red">(${gvo.dcrate}%off)</span>
+				</c:when>
+			</c:choose>
+			</p>
+			</a>
+			<hr>
 	</div>
 	</c:forEach>
 </div>

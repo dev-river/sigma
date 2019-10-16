@@ -8,4 +8,6 @@ public interface gameDetailDAO {
 
 	List<gameVO> list(String category);
 
+	gameVO read(int num);
+
 }
