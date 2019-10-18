@@ -258,12 +258,13 @@
 									<li><a href="#">이벤트게임</a></li>
 									<li><a href="#">할인게임</a></li>
 								</ul>
-							<li><a href="#">카테고리</a>
+							<li><a href="/gameDetail/inform/list?category=all">카테고리</a>
 								<ul>
-									<li><a href="#">RPG</a></li>
-									<li><a href="#">전쟁</a></li>
-									<li><a href="#">스포츠</a></li>
-									<li><a href="#">기타</a></li>
+									<li><a href="/gameDetail/inform/list?category=rpg">RPG</a></li>
+									<li><a href="/gameDetail/inform/list?category=sportsracing">스포츠/레이싱</a></li>
+									<li><a href="/gameDetail/inform/list?category=strategysimulation">전략/시뮬레이션</a></li>
+									<li><a href="/gameDetail/inform/list?category=actionadventure">액션/어드벤쳐</a></li>
+									<li><a href="/gameDetail/inform/list?category=etc">기타</a></li>
 								</ul></li>
 							<li><a href="#">커뮤니티</a>
 								<ul>

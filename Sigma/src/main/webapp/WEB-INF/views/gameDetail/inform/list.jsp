@@ -30,7 +30,7 @@
 					<img alt="No image" src="/resources/gameDetailFile/noimage.png" width="280px" height="280px">
 				</c:when>
 				<c:when test="${gvo.filepath ne null}">
-					<img alt="Game image" src="/resources/gameDetail/${gvo.filepath}" width="280px" height="280px">
+					<img alt="Game image" src="/resources/gameDetailFile/${gvo.filepath}" width="280px" height="280px">
 				</c:when>
 			</c:choose>
 			<p style="text-align: center; margin-top: 5px; margin-bottom: 0px">Title: ${gvo.title}</p>
