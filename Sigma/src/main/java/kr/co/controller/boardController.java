@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,19 +16,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.domain.PageTO;
 import kr.co.domain.boardVO;
 import kr.co.service.boardService;
+import kr.co.service.replyService;
 
 @Controller
 @RequestMapping("/board")
 public class boardController {
 	@Inject
 	private boardService bservice;
+	
+	@Autowired
+	private replyService rservice;
 
 	@RequestMapping(value = "/boardFR/list", method = RequestMethod.GET)
 	public void boardFRList(PageTO to, Model model) {
 		
 		PageTO dbTO = bservice.pageList(to);
 		model.addAttribute("dbTO", dbTO);
-		
 	}
 	
 	@RequestMapping(value = "/boardFR/insert", method = RequestMethod.GET)
@@ -63,6 +67,7 @@ public class boardController {
 	
 	@RequestMapping(value = "/boardFR/delete", method = RequestMethod.GET)
 	public String boardFRdelete(int num , PageTO to) throws Exception {
+		
 		bservice.boardFRdelete(num);
 		return "redirect:/board/boardFR/list?curPage="+to.getCurPage()+"&perPage="+to.getPerPage();
 	}
@@ -75,5 +80,12 @@ public class boardController {
 		return (amount-1)/perPage+1;
 	}
 	
-	
+	@RequestMapping(value = "/boardFR/mainboard", method = RequestMethod.GET)
+	public void mainboard(PageTO to, Model model) {
+		
+		PageTO dbTO = bservice.pageList(to);
+		model.addAttribute("dbTO", dbTO);
+		
+	}
+
 }

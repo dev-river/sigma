@@ -9,9 +9,7 @@ public interface replyService {
 	void replyInsert(replyVO vo);
 
 	List<replyVO> replyList(int frnum);
-
 	
-
 	void delete(int num);
 
 	void replyUpdate(replyVO vo);
