@@ -22,4 +22,6 @@ public interface boardDAO {
 
 	public List<boardVO> pageList(PageTO to);
 
+	
+
 }
