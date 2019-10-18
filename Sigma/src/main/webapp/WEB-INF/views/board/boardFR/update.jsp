@@ -11,14 +11,30 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+.bodymain {
+	position: relative;
+	margin: auto;
+	height: auto;
+	width: 1070px;
+}
+.update{
+	position: relative;
+	width: 1070px;
+	height: auto;
+	margin: 0;
+	right: 0%;
+}
+</style>
 </head>
 <body>
-	<h1>게시물 등록</h1>
-	
+	<div class="bodymain">
 	<div class="container">
+		<div class="update">
+		<br>
 		<h3>게시글 수정</h3><br/>
 		
-		<form action="/board/boardFR/update" method="post">
+		<form action="/mainboardupdate" method="post">
 			<input type="hidden" name="curPage" value="${to.curPage}">
 			<input type="hidden" name="perPage" value="${to.perPage}">
 			
@@ -46,5 +62,9 @@
 			</div>
 		</form>
 	</div>
+	</div>
+	</div>
+		<br>
+		<br><br><br><br><br><br><br><br><br>
 </body>
 </html>

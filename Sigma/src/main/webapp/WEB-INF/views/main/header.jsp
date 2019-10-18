@@ -28,7 +28,9 @@
 
 <style type="text/css">
 .header {
-	background : linear-gradient(black, gray,orange,black 50%,gray, black);
+	background-image : url(/resources/main/black.jpg);
+	background-repeat: no-repeat; 
+	background-position: center top;
 	position: relative;
 	margin: auto;
 	width: auto;
@@ -38,7 +40,7 @@
 .head {
 	position: relative;
 	left: 0%;
-	width: 1070px;
+	width: auto;
 	margin: 0;
 }
 
@@ -51,11 +53,11 @@
 	position: relative;
 	left: 28%;
 	top: 10%;
-	width: 440px;
+	width: auto;
 }
 
 #se {
-	width: 400px;
+	width: 440px;
 	height: 50px;
 	border-radius: 70px;
 }
@@ -63,8 +65,20 @@
 
 .login{
 	position: relative;
-	left: 100%;
-	width: 58px;
+	left: 95%;
+	width: 200px;
+	margin: 0;
+}
+#user{
+	position: relative;
+	right: 60%;
+	width: 200px;
+	margin: 0;
+}
+#seller{
+	position: relative;
+	right: 60%;
+	width: 200px;
 	margin: 0;
 }
 .menubar {
@@ -80,7 +94,7 @@
 	padding: 0px;
 	font-size: 17px;
 	font-weight: 1500;
-	width: 700px;
+	width: 600px;
 	font: italic;
 		
 
@@ -95,7 +109,7 @@
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	width: 700px;
+	width: 600px;
 	
 }
 
@@ -123,6 +137,7 @@
 	text-align: center;
 	text-decoration: none;
 	border-radius: 0;
+	width: auto;
 	
 }
 
@@ -130,7 +145,7 @@
 	transition : .30s ease-in-out;	/*천천히 반응 하게 하는거 transition*/
 	transform : rotateX (-90deg) rotateY (0);
 	transform-origin : 0 0;
-	background: orange;
+	background: linear-gradient(30deg, orange,gray);
 	color: black;
 	text-decoration: none;
 }
@@ -194,7 +209,7 @@
 	transition : .30s ease-in-out;
 	transform : rotateX (-90deg) rotateY (0);
 	transform-origin : 0 0;
-	background: skyblue;
+	background: linear-gradient(30deg, orange,gray);
 	border: 0px;
 	color: #ffffff;
 	text-decoration: none;
@@ -202,8 +217,8 @@
 
 .img {
 	position: absolute;
-	width: 200px;
-	height: 80px;
+	width: auto;
+	height: auto;
 }
 
 .img2 {
@@ -215,6 +230,7 @@
 </style>
 </head>
 <body>
+
 	<div class="header">
 
 		<!-- 메뉴 상단 -->
@@ -224,9 +240,28 @@
 					<div class="img">
 						<a href="/"><img alt="..." src="/resources/main/로고2.png"></a>
 					</div>
-					<div class="login">
-						<a class="glyphicon glyphicon-user" href="#">로그인</a>
-					</div>
+				<div class="login">
+					
+               		 <c:if test="${empty login}">
+                		  <a class="glyphicon glyphicon-user" href="/member/login/login">로그인</a>
+              		 </c:if>
+              		
+              		 <c:if test="${!empty login}">
+              		 	 <div id="user">
+             		     <c:if test="${login.author eq 'user'}">
+                		     <a class="glyphicon glyphicon-user" href="/myPage/myPage/mypage">마이페이지</a>
+                  			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
+                		 </c:if>
+                		 </div>
+                		 <div id="seller">
+               		 	 <c:if test="${login.author eq 'seller'}">
+                    		 <a class="glyphicon glyphicon-user" href="/compManage/compInform/read?id=${login.id}">판매자페이지</a>
+                   			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
+                		 </c:if>
+                		 </div>
+              		 </c:if>
+               	</div>
+               
 					<div class="ser">
 
 							<form class="form-inline m-auto" action="#">
@@ -267,7 +302,7 @@
 								</ul></li>
 							<li><a href="#">커뮤니티</a>
 								<ul>
-									<li><a href="/board/boardFR/mainboard">자유게시판</a></li>
+									<li><a href="/mainboard">자유게시판</a></li>
 								</ul></li>
 							<li><a href="#" id="me2">고객센터</a>
 								<ul>
