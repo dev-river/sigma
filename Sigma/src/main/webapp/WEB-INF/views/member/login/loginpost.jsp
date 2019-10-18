@@ -18,7 +18,7 @@
 
 
 <script type="text/javascript">
-	location.assign("/board/boardFR/list");
+	location.assign("/");
 
 </script>
 </body>

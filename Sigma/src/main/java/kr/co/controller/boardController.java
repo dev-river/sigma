@@ -75,9 +75,5 @@ public class boardController {
 		return (amount-1)/perPage+1;
 	}
 	
-	@RequestMapping(value = "/boardFR/mainboard", method = RequestMethod.GET)
-	public void mainboard(Model model) {
-		List<boardVO> vo = bservice.boardFRlist();
-		model.addAttribute("vo", vo);
-	}
+	
 }

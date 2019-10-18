@@ -12,18 +12,38 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="/resources/js/uploadutils.js" type="text/javascript"></script>
+<style type="text/css">
+.bodymain {
+	position: relative;
+	margin: auto;
+	height: auto;
+	width: 1070px;
+}
+.read{
+	position: relative;
+	width: 1070px;
+	height: auto;
+	margin: 0;
+	right: 0%;
+	
+	
+}
+.callModal{
+	float: right;
+}
+</style>
 </head>
 <body>
-<div class="container">
-		<div class="row">
-			
-			<h1>글 자세히 보기</h1>
-			
-			<form action="">
-				<input type="hidden" name="num" value="${readvo.num}">
-				<input type="hidden" name="curPage" value="${to.curPage}">
-				<input type="hidden" name="perPage" value="${to.perPage}">
-			</form>
+	<br>
+	<div class="bodymain">
+<div class="container">	
+		<div class="read">
+			<div class="row">
+				<form action="">
+					<input type="hidden" name="num" value="${readvo.num}">
+					<input type="hidden" name="curPage" value="${to.curPage}">
+					<input type="hidden" name="perPage" value="${to.perPage}">
+				</form>
 			
 				<div class="form-group">
 					<label for="num">글번호</label>
@@ -51,10 +71,10 @@
 				</div>
 				<div>
 				    <input type="button" value="수정" class="btn update btn-primary">
-					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/board/boardFR/list?curPage=${to.curPage}&perPage=${to.perPage}'">
-					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/board/boardFR/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
+					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/mainboard?curPage=${to.curPage}&perPage=${to.perPage}'">
+					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
 				</div>
-		</div>
+			</div>
 		<hr>
 			<!-- Reply Form {s} -->
 		
@@ -119,8 +139,9 @@
 			</div>
 		</div>
 </div>
-
-
+</div>
+</div>
+<br>
 <script type="text/javascript">
 
  
@@ -182,7 +203,7 @@
 		
 		/* boardUpdate 부분 */
 		$(".update").on("click",function(){
-			location.href="/board/boardFR/update?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}";
+			location.href="/mainboardupdate?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}";
 		})
 		
 		/* replyReset 부분 */
