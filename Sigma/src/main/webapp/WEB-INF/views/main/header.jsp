@@ -28,7 +28,9 @@
 
 <style type="text/css">
 .header {
-	background : linear-gradient(black, gray,orange,black 50%,gray, black);
+	background-image : url(/resources/main/black.jpg);
+	background-repeat: no-repeat; 
+	background-position: center top;
 	position: relative;
 	margin: auto;
 	width: auto;
@@ -63,7 +65,19 @@
 
 .login{
 	position: relative;
-	left: 90%;
+	left: 95%;
+	width: 200px;
+	margin: 0;
+}
+#user{
+	position: relative;
+	right: 60%;
+	width: 200px;
+	margin: 0;
+}
+#seller{
+	position: relative;
+	right: 60%;
 	width: 200px;
 	margin: 0;
 }
@@ -131,7 +145,7 @@
 	transition : .30s ease-in-out;	/*천천히 반응 하게 하는거 transition*/
 	transform : rotateX (-90deg) rotateY (0);
 	transform-origin : 0 0;
-	background: orange;
+	background: linear-gradient(30deg, orange,gray);
 	color: black;
 	text-decoration: none;
 }
@@ -195,7 +209,7 @@
 	transition : .30s ease-in-out;
 	transform : rotateX (-90deg) rotateY (0);
 	transform-origin : 0 0;
-	background: skyblue;
+	background: linear-gradient(30deg, orange,gray);
 	border: 0px;
 	color: #ffffff;
 	text-decoration: none;
@@ -228,6 +242,7 @@
 </style>
 </head>
 <body>
+
 	<div class="header">
 
 		<!-- 메뉴 상단 -->
@@ -300,7 +315,7 @@
 								</ul></li>
 							<li><a href="#">커뮤니티</a>
 								<ul>
-									<li><a href="/board/boardFR/mainboard">자유게시판</a></li>
+									<li><a href="/mainboard">자유게시판</a></li>
 								</ul></li>
 							<li><a href="#" id="me2">고객센터</a>
 								<ul>

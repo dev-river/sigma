@@ -37,7 +37,7 @@
 .main {
 	position: relative;
 	left: 0%;
-	width: 1070px;
+	width: auto;
 	height: 850px;
 	margin: 0;
 }
@@ -61,16 +61,16 @@
 .table1 {
 	width: 300px;
 	position: relative;
-	left: 380px;
+	left: 415px;
 	margin: 0px;
-	bottom: 412px;
+	bottom: 411px;
 }
 
 .table2 {
 	width: 300px;
 	position: relative;
-	left: 770px;
-	bottom: 824px;
+	left: 830px;
+	bottom: 822px;
 	margin: 0px;
 }
 #img1,#img2,#img3{
