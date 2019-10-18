@@ -34,8 +34,8 @@
 					<p class="pull-right" style="width:50%">작성 리뷰 수 : 개</p>
 			</div>
 			<div style="position: relative; left:5%; width:40%" class="pull-right">
-				<button style="margin: 5px; padding:5px; width:80%" class="btn zzimList">찜목록</button>
-				<button style="margin: 5px; padding:5px; width:80%" class="btn shopBasket">장바구니</button>
+				<a href="/myPage/zzimList/list" style="text-decoration:none; color: #333333;"><button style="margin: 5px; padding:5px; width:80%" class="btn zzimList">찜목록</button></a>
+				<a href="/myPage/shopBasket/regiBasket" style="text-decoration:none; color: #333333;"><button style="margin: 5px; padding:5px; width:80%" class="btn shopBasket">장바구니</button></a>
 				<a href="/myPage/cash/charge?id=${myinfo.id}" style="text-decoration:none; color: #333333;"><button style="margin: 5px; padding:5px; width:80%" class="btn cach">캐쉬 충전</button></a>
 			</div>
 		</div>

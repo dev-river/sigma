@@ -56,7 +56,67 @@
 			class="carousel-control-next-icon" aria-hidden="true"></span> <span
 			class="sr-only">Next</span>
 		</a>
+		<br>
+	</div>
+	<div class="row pull-right" style="width:30%;">
+		<input class="pull-left shopBasket" style="width:45%; margin:5px;" type="button" value="장바구니에 추가">
+		<input class="pull-left zzim_list" style="width:45%; margin:5px;" type="button" value="찜목록에 추가">
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//장바구니에 추가
+		$(".shopBasket").click(function() {
+			var gdnum = ${vo.num};
+			$.ajax({
+				type : 'post',
+				url : '/myPage/shopBasket/regiBasket',
+				data : {
+					gdnum : gdnum
+				},
+				dataType : 'text',
+				success : function(event) {
+					if(event=='failed'){
+						var con = confirm("해당 상품이 이미 장바구니에 들어있습니다. 장바구니로 이동하시겠습니까?")
+						if(con){
+							location.href = "/myPage/shopBasket/regiBasket";
+						}
+					} else{
+						var con = confirm("해당 상품을 장바구니에 집어넣었습니다. 장바구니로 이동하시겠습니까?")
+						if(con){
+							location.href = "/myPage/shopBasket/regiBasket";
+						}
+					}
+				}
+			});
+		});
+		
+		//찜목록에 추가
+		$(".zzim_list").click(function() {
+			var gdnum = ${vo.num};
+			$.ajax({
+				type : 'post',
+				url : '/myPage/zzimList/list',
+				data : {
+					gdnum : gdnum
+				},
+				dataType : 'text',
+				success : function(event) {
+					if(event=='failed'){
+						var con = confirm("해당 상품이 이미 찜목록에 들어있습니다. 찜목록으로 이동하시겠습니까?")
+						if(con){
+							location.href = "/myPage/zzimList/list";
+						}
+					} else{
+						var con = confirm("해당 상품을 찜목록에 집어넣었습니다. 찜목록으로 이동하시겠습니까?")
+						if(con){
+							location.href = "/myPage/zzimList/list";
+						}
+					}
+				}
+			});
+		});
+	});
+</script>
 </body>
 </html>

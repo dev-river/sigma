@@ -18,38 +18,63 @@
 		<div class="row">
 			<h3>${usercash.nickname}(${usercash.id})님의 캐쉬 충전</h3>
 			<br>
-			<div  style="position: relative; left:5%; width:85%;">
+			<div style="position: relative; left:5%; width:85%;" class="cash">
 				<h3>결제하실 금액을 선택해주세요.</h3> <br>
-				<button style="position: relative; left: 5%; height:50px; width: 20%; rgb(200,200,200)" class="btn one" name="one" value="1000">1,000원</button>
-				<button style="position: relative; left: 5%; height:50px; width: 20%; rgb(200,200,200)" class="btn two" name="two" value="5000">5,000원</button>
-				<button style="position: relative; left: 5%; height:50px; width: 20%; rgb(200,200,200)" class="btn three" name="three" value="10000">10,000원</button>
-				<button style="position: relative; left: 5%; height:50px; width: 20%; rgb(200,200,200)" class="btn four" name="four" value="50000">50,000</button>
+				<button style="position: relative; left: 5%; height:50px; width: 20%;" class="btn num" value="1000" onclick="plus(thie)">1,000원</button>
+				<button style="position: relative; left: 5%; height:50px; width: 20%;" class="btn num" value="5000" onclick="plus(thie)">5,000원</button>
+				<button style="position: relative; left: 5%; height:50px; width: 20%;" class="btn num" value="10000" onclick="plus(thie)">10,000원</button>
+				<button style="position: relative; left: 5%; height:50px; width: 20%;" class="btn num" value="50000" onclick="plus(thie)">50,000</button>
 			</div>
 			<hr>
 			<form action="/myPage/cash/charge" method="post">
 				<div style="position: relative; width: 40%;" class="pull-right">
-					<h3 style="width: 90%">현재 잔액 : ${usercash.cash}원</h3><br>
-					<h3 style="width: 90%">충전후 잔액 : 원</h3>
-					<button type="reset" style="position: relative; left:5px; width:25%; height: 18px; rgb(200,200,200)" class="btn pull-left">리셋</button>
+					<h3>현재 잔액 : ${usercash.cash}원</h3>
+					<br>
+					<h3 class="pull-left" style="width:43%;">충전 후 잔액 : </h3>
+					<input class="pull-left after_cash"  style="width: 40%; height: 24px; margin-top: 20px;" name="cash" value="${usercash.cash}" readonly="readonly"><h3 class="pull-right">원</h3>
+					<br>
+					<button type="reset" style="position: relative; top: -70px; left:55px;" class="btn pull-right">리셋</button>
 				</div>
 				<br>
 				<div style="position: relative; width:70%" class="pull-right">
 					<button style="margin: 5px; padding:5px; width:28%" class="btn return pull-right">취소</button>
 					<button style="margin: 5px; padding:5px; width:28%" class="btn charge pull-right">충전</button>
 				</div>
+				
+				<input type="hidden" id="id" name="id" value="${usercash.id}"></input>
 			</form>
 		</div>
 	</div>
-	
 <script type="text/javascript">
-
 	$(document).ready(function() {
+		
+		$(".num").click(function() {
+			var after = $(".after_cash").val();
+			var val = $(this).val();
+			
+			after = (Number(after)+Number(val));
+			$(".after_cash").val(after);
+		});
+		
 		
 		$(".return").click(function(event) {
 			event.preventDefault();
 			location.href = "/myPage/myPage/mypage";
 		});
 		
+		$(".cash").children("button").click(function() {
+			var cash = $(this).val();
+			$.ajax({
+				type : 'post',
+				url : '/myPage/cash/charge',
+				data : {
+					cash : cash
+				}, 
+				dataType : 'text',
+				success : function(result) {
+				}
+			});
+		});
 		
 	});
 	

@@ -21,5 +21,32 @@
 		delete from userinfo where id = #{id} and pw = #{pw}
 	</delete>
 	
+	<update id="updateCash">
+		update userinfo set cash=#{cash} where id=#{id}
+	</update>
+	
+	<insert id="regiBasket">
+		insert into shopBasket (num, id, gdnum) values ((select nvl2(max(num), max(num)+1, 1) from shopBasket), #{id}, #{gdnum})
+	</insert>
+	
+	<select id="basketList" resultType="kr.co.domain.basketVO">
+		select sb.gdnum, gd.title, gd.writer, gd.regidate gregidate, sb.regidate sregidate, gd.price from gamedetail gd, (select * from shopbasket where id=#{id}) sb where gd.num = sb.gdnum order by sregidate desc
+	</select>
+	
+	<delete id="deleteBasketList">
+		delete from shopBasket where id=#{id} and gdnum=#{gdnum}
+	</delete>
+	
+	<insert id="zzim_insert">
+		insert into zzimlist (num, id, gdnum) values ((select nvl2(max(num), max(num)+1, 1) from zzimlist), #{id}, #{gdnum})
+	</insert>
+	
+	<select id="zzim_list" resultType="kr.co.domain.basketVO">
+		select sb.gdnum, gd.title, gd.writer, gd.regidate gregidate, sb.updatedate sregidate, gd.price from gamedetail gd, (select * from zzimlist where id=#{id}) sb where gd.num = sb.gdnum order by sregidate desc
+	</select>
+	
+	<delete id="zzimDelete">
+		delete from zzimlist where id=#{id} and gdnum=#{gdnum}
+	</delete>
 	
 </mapper>

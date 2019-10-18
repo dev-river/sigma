@@ -22,7 +22,7 @@ public class boardController {
 	@Inject
 	private boardService bservice;
 
-	@RequestMapping(value = "/boardFR/list", method = RequestMethod.GET)
+	@RequestMapping(value = "boardFR/list", method = RequestMethod.GET)
 	public void boardFRList(PageTO to, Model model) {
 		
 		PageTO dbTO = bservice.pageList(to);
