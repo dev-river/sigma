@@ -104,7 +104,7 @@ public class memberController {
 			}
 			
 		}
-		return "redirect:/board/boardFR/list";
+		return "redirect:/";
 	}
 	
 	//ID찾기 UI

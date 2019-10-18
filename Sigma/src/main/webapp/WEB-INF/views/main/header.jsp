@@ -38,7 +38,7 @@
 .head {
 	position: relative;
 	left: 0%;
-	width: 1070px;
+	width: auto;
 	margin: 0;
 }
 
@@ -51,11 +51,11 @@
 	position: relative;
 	left: 28%;
 	top: 10%;
-	width: 440px;
+	width: auto;
 }
 
 #se {
-	width: 400px;
+	width: 440px;
 	height: 50px;
 	border-radius: 70px;
 }
@@ -63,8 +63,8 @@
 
 .login{
 	position: relative;
-	left: 100%;
-	width: 58px;
+	left: 90%;
+	width: 200px;
 	margin: 0;
 }
 .menubar {
@@ -80,7 +80,7 @@
 	padding: 0px;
 	font-size: 17px;
 	font-weight: 1500;
-	width: 700px;
+	width: 600px;
 	font: italic;
 		
 
@@ -95,7 +95,7 @@
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	width: 700px;
+	width: 600px;
 	
 }
 
@@ -123,6 +123,7 @@
 	text-align: center;
 	text-decoration: none;
 	border-radius: 0;
+	width: auto;
 	
 }
 
@@ -202,8 +203,8 @@
 
 .img {
 	position: absolute;
-	width: 200px;
-	height: 80px;
+	width: auto;
+	height: auto;
 }
 
 .img2 {
@@ -211,6 +212,18 @@
 	left: 15px;
 	width: 1070px;
 	height: 500px;
+}
+#user{
+	position: relative;
+	right: 50%;
+	width: 200px;
+	margin: 0;
+}
+#seller{
+	position: relative;
+	right: 55%;
+	width: 200px;
+	margin: 0;
 }
 </style>
 </head>
@@ -224,9 +237,28 @@
 					<div class="img">
 						<a href="/"><img alt="..." src="/resources/main/로고2.png"></a>
 					</div>
-					<div class="login">
-						<a class="glyphicon glyphicon-user" href="#">로그인</a>
-					</div>
+				<div class="login">
+					
+               		 <c:if test="${empty login}">
+                		  <a class="glyphicon glyphicon-user" href="/member/login/login">로그인</a>
+              		 </c:if>
+              		
+              		 <c:if test="${!empty login}">
+              		 	 <div id="user">
+             		     <c:if test="${login.author eq 'user'}">
+                		     <a class="glyphicon glyphicon-user" href="/myPage/myPage/mypage">마이페이지</a>
+                  			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
+                		 </c:if>
+                		 </div>
+                		 <div id="seller">
+               		 	 <c:if test="${login.author eq 'seller'}">
+                    		 <a class="glyphicon glyphicon-user" href="/compManage/compInform/read?id=${login.id}">판매자페이지</a>
+                   			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
+                		 </c:if>
+                		 </div>
+              		 </c:if>
+               	</div>
+               
 					<div class="ser">
 
 							<form class="form-inline m-auto" action="#">
@@ -258,12 +290,13 @@
 									<li><a href="#">이벤트게임</a></li>
 									<li><a href="#">할인게임</a></li>
 								</ul>
-							<li><a href="#">카테고리</a>
+							<li><a href="/gameDetail/inform/list?category=all">카테고리</a>
 								<ul>
-									<li><a href="#">RPG</a></li>
-									<li><a href="#">전쟁</a></li>
-									<li><a href="#">스포츠</a></li>
-									<li><a href="#">기타</a></li>
+									<li><a href="/gameDetail/inform/list?category=rpg">RPG</a></li>
+									<li><a href="/gameDetail/inform/list?category=sportsracing">스포츠/레이싱</a></li>
+									<li><a href="/gameDetail/inform/list?category=strategysimulation">전략/시뮬레이션</a></li>
+									<li><a href="/gameDetail/inform/list?category=actionadventure">액션/어드벤쳐</a></li>
+									<li><a href="/gameDetail/inform/list?category=etc">기타</a></li>
 								</ul></li>
 							<li><a href="#">커뮤니티</a>
 								<ul>

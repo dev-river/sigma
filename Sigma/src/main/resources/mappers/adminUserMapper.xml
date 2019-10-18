@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="kr.co.mapper.admin">
+<mapper namespace="kr.co.mapper.adminUser">
 
 	<select id="userList" resultType="kr.co.domain.memberVO">
 		select * from userinfo where author='user' order by id asc
@@ -20,4 +20,17 @@
 	<select id="userRead" resultType="kr.co.domain.memberVO">
 		select * from userinfo where id = #{id}
 	</select>
+	
+	<select id="userAuthorUI" resultType="kr.co.domain.memberVO">
+		select * from userinfo where id = #{id}
+	</select>
+	
+	<update id="userAuthor">
+		update userinfo set author = #{author} where id = #{id}
+	</update>
+	
+	<delete id="userDelete">
+		delete from userinfo where id = #{id} 
+	</delete>
+	
 </mapper>
