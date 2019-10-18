@@ -1,12 +1,14 @@
 package kr.co.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
@@ -53,4 +55,31 @@ public class compServiceImpl implements compService{
 	public List<refundVO> refundList(String id) {
 		return dao.refundList(id);
 	}
+
+	@Override
+	public List<gameDetailDcVO> gameDetailDC(String writer) {
+		return dao.gameDetailDC(writer);
+	}
+
+	@Override
+	public refundVO refundRead(String id) {
+		return dao.refundRead(id);
+	}
+	
+	@Override
+	public void refundOK(int num) {
+		dao.refundOK(num);
+	}
+	
+	@Override
+	public void refundReject(Map<String, Object> map) {
+		dao.refundReject(map);
+	}
+
+	@Override
+	public void returncash(Map<String, Object> map) {
+		dao.returncash(map);
+	}
+
+	
 }

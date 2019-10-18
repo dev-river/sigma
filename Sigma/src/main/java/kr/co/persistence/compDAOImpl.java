@@ -1,12 +1,14 @@
 package kr.co.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
@@ -54,4 +56,30 @@ public class compDAOImpl implements compDAO {
 		return session.selectList(NS+".refundList", id);
 	}
 
+	@Override
+	public List<gameDetailDcVO> gameDetailDC(String writer) {
+		return session.selectList(NS+".gameDetailDC", writer);
+	}
+
+	@Override
+	public refundVO refundRead(String id) {
+		return session.selectOne(NS+".refundRead", id);
+	}
+
+	@Override
+	public void refundOK(int num) {
+		session.update(NS+".refundOK", num);
+	}
+	
+	@Override
+	public void refundReject(Map<String, Object> map) {
+		session.update(NS+".refundReject", map);
+	}
+
+	@Override
+	public void returncash(Map<String, Object> map) {
+		session.update(NS+".returncash", map);
+	}
+
+	
 }
