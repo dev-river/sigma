@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mapper.adminSetting">
+	
+	<select id="changeChargeUI" resultType="kr.co.domain.adminSetVO">
+		select * from adminSetting
+	</select>
+	
+	<update id="changeCharge">
+		update adminSetting set regiCharge = #{regiCharge}, buyCharge = #{buyCharge}
+	</update>
+	
+</mapper>
