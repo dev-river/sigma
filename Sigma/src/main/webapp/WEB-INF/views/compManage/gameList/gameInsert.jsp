@@ -42,10 +42,10 @@
 				<label>카테고리</label>
 				<select id="category" name="category" class="select">
 					<option value="rpg" selected="selected">RPG</option>
-					<option value="sports/racing">스포츠/레이싱</option>
-					<option value="strategy/simulation">전략/시뮬레이션</option>
-					<option value="action/Adventure">액션/어드벤쳐</option>
-					<option value="other">기타</option>
+					<option value="sportsracing">스포츠/레이싱</option>
+					<option value="strategysimulation">전략/시뮬레이션</option>
+					<option value="actionadventure">액션/어드벤쳐</option>
+					<option value="etc">기타</option>
 				</select>
 			</div>
 			<div class="form-group">

@@ -16,4 +16,31 @@
 		select filename from gamedetailfile where gdnum = #{num} order by num
 	</select>
 	
+	<select id="dccheck" resultType="kr.co.domain.gameDetailDcVO">
+		select * from gamedetaildc where gdnum=#{num} and joinclick<![CDATA[ <= ]]>goal and sysdate <![CDATA[ < ]]> dcenddate and rownum=1 order by dcstartdate
+	</select>
+	
+	<update id="dcadd">
+		update gamedetaildc set joinclick=joinclick+1 where gdnum=#{num} and num=(select min(num) from gamedetaildc where gdnum=#{num})
+	</update>
+
+	<update id="update">
+		update gamedetail set title=#{title}, price=#{price}, category=#{category}, content=#{content}, dcrate=#{dcrate}, gamefilepath=#{gamefilepath} where num=#{num}
+	</update>
+	
+	<select id="reviewlist" resultType="kr.co.domain.reviewVO">
+		select * from gamereview where gdnum = #{num} order by regidate
+	</select>
+	
+	<select id="maxYesReview" resultType="kr.co.domain.reviewVO">
+		select * from gamereview where gdnum=#{num} and recommend='추천' and rownum=1 order by assistyes desc
+	</select>
+	
+	<select id="maxNoReview" resultType="kr.co.domain.reviewVO">
+		select * from gamereview where gdnum=#{num} and recommend='비추천' and rownum=1 order by assistyes desc
+	</select>
+	
+	<update id="reviewadd">
+		update gamereview set ${assist} = ${assist} + 1 where num = #{num}
+	</update>
 </mapper>

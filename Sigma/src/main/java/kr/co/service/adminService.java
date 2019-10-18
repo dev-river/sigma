@@ -1,7 +1,9 @@
 package kr.co.service;
 
 import java.util.List;
+import java.util.Map;
 
+import kr.co.domain.adminSetVO;
 import kr.co.domain.memberVO;
 
 public interface adminService {
@@ -13,5 +15,17 @@ public interface adminService {
 	List<memberVO> adminAdminList();
 	
 	memberVO adminUserRead(memberVO vo);
+
+	memberVO userAuthorUI(String id);
+
+	void userAuthor(memberVO vo);
+
+	void userDelete(String id);
+
+	adminSetVO changeChargeUI();
+
+	void changeCharge(adminSetVO vo);
+
+
 
 }

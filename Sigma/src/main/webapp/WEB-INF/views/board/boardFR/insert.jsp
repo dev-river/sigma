@@ -11,11 +11,27 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+.bodymain {
+	position: relative;
+	margin: auto;
+	height: auto;
+	width: 1070px;
+}
+.insert{
+	position: relative;
+	width: 1070px;
+	height: 850px;
+	margin: 0;
+	right: 45px;
+}
+</style>
 </head>
+
 <body>
-	<h1>자유게시판 등록</h1>
-	
+	<br><br><br>
 	<div class="container">
+		<div class="insert">
 		<div class="row">
 			<form action="/board/boardFR/insert" method="post">
 				<div class="form-group">
@@ -26,6 +42,7 @@
 					<label for="writer">작성자</label>
 					<input id="writer" name="writer" class="form-control">
 				</div>
+				<br><br>
 				<div class="form-group">
 					<label for="content">내용</label>
 					<textarea id="content" name="content" class="form-control" rows="3"></textarea>
@@ -36,6 +53,6 @@
 			</form>
 		</div>
 	</div>
-
+</div>
 </body>
 </html>
