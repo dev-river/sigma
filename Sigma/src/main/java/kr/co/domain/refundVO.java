@@ -16,13 +16,16 @@ public class refundVO implements Serializable{
 	private String compcontent;
 	private String updatedate;
 	private String refunddate;
+	private String title;
 	
 	public refundVO() {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
 	public refundVO(int num, String id, int buynum, String status, String content, String compcontent,
-			String updatedate, String refunddate) {
+			String updatedate, String refunddate, String title) {
 		super();
 		this.num = num;
 		this.id = id;
@@ -32,7 +35,22 @@ public class refundVO implements Serializable{
 		this.compcontent = compcontent;
 		this.updatedate = updatedate;
 		this.refunddate = refunddate;
+		this.title = title;
 	}
+
+	
+
+	public String getTitle() {
+		return title;
+	}
+
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
 
 	public int getNum() {
 		return num;
