@@ -20,4 +20,8 @@
 	<delete id="replyDelete">
 		delete from boardFRReply where num = #{num}
 	</delete>
+	
+	<delete id="deleteAll">
+		delete from boardFRReply where num = #{num}
+	</delete>
 </mapper>

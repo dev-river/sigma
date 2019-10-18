@@ -61,4 +61,6 @@ public class boardDAOImpl implements boardDAO{
 		return session.selectList(NS+".pageList", to);
 	}
 
+
+
 }

@@ -65,5 +65,4 @@ public class boardServiceImpl implements boardService{
 		return bdao.getAmount();
 	}
 
-
 }
