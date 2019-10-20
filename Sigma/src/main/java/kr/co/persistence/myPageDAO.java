@@ -3,6 +3,7 @@ package kr.co.persistence;
 import java.util.List;
 
 import kr.co.domain.basketVO;
+import kr.co.domain.buyListVO;
 import kr.co.domain.memberVO;
 
 public interface myPageDAO {
@@ -28,5 +29,9 @@ public interface myPageDAO {
 	List<basketVO> zzim_list(String id);
 
 	void zzimDelete(int gdnum, String id);
+
+	void insertBuyList(int gdnum, String id, int price);
+
+	List<buyListVO> buyList(String id);
 
 }

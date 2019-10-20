@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.domain.basketVO;
+import kr.co.domain.buyListVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.service.gameDetailService;
@@ -36,7 +38,28 @@ public class myPageController {
 		//세션에 저장된 아이디를 가져오는 코드
 		HttpSession session = request.getSession(false);
 		memberVO obj = (memberVO)session.getValue("login");
+		
+		//세션에 저장된 id가져와서 정보 가져옴
+		String id = obj.getId();
+		obj = mpService.getMemberVO(id);
+		
+
+		//구매 기록
+		List<buyListVO> list = mpService.buyList(id);
+		list.get(0).getGdnum();
+		
+		for(int i=0; i<list.size(); i++) {
+			int gdnum = list.get(i).getGdnum();
+			
+			List<String> filepath = gservice.filepath(gdnum);
+			String firstfilepath = filepath.get(1);
+			
+			model.addAttribute("img", firstfilepath);
+		}
+		
+		
 		model.addAttribute("myinfo", obj);
+		model.addAttribute("buyList", list);
 	}
 	
 	
@@ -94,6 +117,18 @@ public class myPageController {
 		//내가 가지고 있는게임 리스트 가져오기
 		String id = obj.getId();
 		List<basketVO> list = mpService.getBasket(id);
+		
+
+		for(int i=0; i<list.size(); i++) {
+			int gdnum = list.get(i).getGdnum();
+			
+			List<String> filepath = gservice.filepath(gdnum);
+			String firstfilepath = filepath.get(1);
+			
+			model.addAttribute("img", firstfilepath);
+		}
+		
+		
 		model.addAttribute("basket", list);
 	}
 	
@@ -139,6 +174,18 @@ public class myPageController {
 		//내가 가지고 있는게임 리스트 가져오기
 		String id = obj.getId();
 		List<basketVO> list = mpService.zzim_list(id);
+		
+
+		for(int i=0; i<list.size(); i++) {
+			int gdnum = list.get(i).getGdnum();
+			
+			List<String> filepath = gservice.filepath(gdnum);
+			String firstfilepath = filepath.get(1);
+			
+			model.addAttribute("img", firstfilepath);
+		}
+		
+		
 		model.addAttribute("zzim", list);
 	}
 	
@@ -171,14 +218,49 @@ public class myPageController {
 	}
 	
 	
-	//게임 정보 가져오기 ㅠㅠ
+	@ResponseBody
+	@RequestMapping(value = "/shopBasket/buyGame", method = RequestMethod.POST)
+	public void insertBuyList(int gdnum, String id) {
+		//장바구니에서 삭제
+		mpService.deleteBasketList(gdnum, id);
+		//게임 정보 가져오기
+		gameVO vo = gservice.read(gdnum);
+		//구매 리스트에 추가
+		mpService.insertBuyList(gdnum, id, vo.getPrice());
+		//찜목록에서 삭제
+		List<basketVO> list = mpService.zzim_list(id);
+		if(list != null) {
+			for(int i=0; i<list.size(); i++) {
+				int gnum = list.get(i).getGdnum();
+				if(gdnum==gnum) {
+					mpService.zzimDelete(gdnum, id);
+				}
+			}
+		}
+		//캐쉬 차감
+		int gamePrice = vo.getPrice();
+		memberVO myinfo = mpService.getMemberVO(id);
+		int myCash = myinfo.getCash();
+		int nowCash = myCash - gamePrice;
+		mpService.updateCash(nowCash, id);
+	}
+	
+
+	//게임 정보 가져오기 
 	@ResponseBody
 	@RequestMapping(value = "/shopBasket/gameInfo", method = RequestMethod.GET)
 	public gameVO gameInfo(int gdnum) {
-		
 		gameVO vo = gservice.read(gdnum);
 		
 		return vo;
+	}
+	
+	//게임 구매 리스트
+	@RequestMapping(value = "/buyList/list", method = RequestMethod.GET)
+	public void buyList(String id, Model model) {
+		List<buyListVO> list = mpService.buyList(id);
+		System.out.println(list);
+		model.addAttribute("buyList", list);
 	}
 	
 

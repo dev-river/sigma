@@ -49,4 +49,12 @@
 		delete from zzimlist where id=#{id} and gdnum=#{gdnum}
 	</delete>
 	
+	<insert id="insertBuyList">
+		insert into buyList (buyprice, gdnum, id, num) values (#{buyprice}, #{gdnum}, #{id}, (select nvl2(max(num), max(num)+1., 1) from buyList))
+	</insert>
+	
+	<select id="buyList" resultType="kr.co.domain.buyListVO">
+		select id, buyprice, title, category, buydate, gdnum from buylist, gamedetail where gamedetail.num = buylist.gdnum and id=#{id}
+	</select>
+	
 </mapper>

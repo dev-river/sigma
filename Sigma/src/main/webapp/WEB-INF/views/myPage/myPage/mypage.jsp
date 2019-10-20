@@ -43,11 +43,25 @@
 		
 		<hr style="border: double; 1px; black;">
 		
-		<div class="row" style="width:65%; height:500px; border-right: double; 1px; black;">
-			<h4 style="position: relative; left: 10%">게임</h4>
-			<div>
-				
+		<div class="row" style="width:65%; height:500px; padding-right:40px; border-right: double; 1px; black;">
+			<h4 style="position: relative; left: 10%">게임</h4> <a class="pull-right">자세히 보기</a>
+			<div  style="position: relative; left: 13%">
+				<h5>최근 구매 목록</h5>
+				<c:forEach items="${buyList}" var="buylist" varStatus="status">
+					<c:if test="${status.index < 5}">
+						<a>
+							<div style="width:18%; margin:2px; height:150px; text-align: center;" class="pull-left">
+								<img alt="" src="/resources/gameDetailFile/${img}" style="width: 80%; height: 80%;">
+								<br>
+								${buylist.title}
+							</div>
+						</a>
+					</c:if>
+				</c:forEach>
 			</div>
+			
+			<hr>
+			
 		</div>
 	</div>
 	<input type="hidden" id="id" value="${myinfo.id}"></input>

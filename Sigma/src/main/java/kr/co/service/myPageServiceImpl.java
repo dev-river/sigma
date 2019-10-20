@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.basketVO;
+import kr.co.domain.buyListVO;
 import kr.co.domain.memberVO;
 import kr.co.persistence.myPageDAO;
 
@@ -82,6 +83,17 @@ public class myPageServiceImpl implements myPageService{
 	public void zzimDelete(int gdnum, String id) {
 		mpdao.zzimDelete(gdnum,id);
 		
+	}
+
+	@Override
+	public void insertBuyList(int gdnum, String id, int price) {
+		mpdao.insertBuyList(gdnum, id, price);
+	}
+
+	@Override
+	public List<buyListVO> buyList(String id) {
+		// TODO Auto-generated method stub
+		return mpdao.buyList(id);
 	}
 
 }

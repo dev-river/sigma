@@ -35,11 +35,16 @@
 					<c:forEach items="${basket}" var="basket">
 						<tr>
 							<td>
-								<p style="width:45%" class="pull-left gn">게임 이름 : ${basket.title}</p><p style="width:54%;" class="pull-right">배급사 : ${basket.writer}</p> 
-								<p style="width:45%" class="pull-left">출시일 : ${basket.gregidate}</p><p style="width:54%;" class="pull-right">등록 날짜 : ${basket.sregidate}</p>
-								<p style="width:45%" class="pull-left">가격 : ${basket.price}</p>
-								<input type="hidden" class="hiddengn" value="${basket.title}"><input type="hidden" class="hiddenpr" value="${basket.price}">
-								<input style="position: relative; left: 250px; bottom: 30px; width: 200px;" type="checkbox" name="input_check" value="${basket.gdnum}">
+								<img alt="" src="/resources/gameDetailFile/${img}" style="width:25%; padding-right: 5px;" class="pull-left">
+								<p style="position:relative; top:20px; width:35%" class="pull-left gn">게임 이름 : ${basket.title}</p>
+								<p style="position:relative; top:20px; width:38%;" class="pull-right">배급사 : ${basket.writer}</p> 
+								<p style="position:relative; top:20px; width:35%" class="pull-left">출시일 : ${basket.gregidate}</p>
+								<p style="position:relative; top:20px; width:38%;" class="pull-right">등록 날짜 : ${basket.sregidate}</p>
+								<p style="position:relative; top:20px; width:35%" class="pull-left">가격 : ${basket.price}</p>
+								<input style="position: relative; left: 145px; bottom: 14px; width: 200px;" type="checkbox" name="input_check" value="${basket.gdnum}">
+								
+								<input type="hidden" class="hiddengn" value="${basket.title}">
+								<input type="hidden" class="hiddenpr" value="${basket.price}">
 							</td>
 						</tr>
 					</c:forEach>
@@ -56,7 +61,42 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
-		
+		//구매 버튼 눌렀을 때 체크된 상품 구매
+		$(".buy").on("click", function() {
+			$("input:checkbox:checked").each(function(index) {  
+				var gdnum = $(this).val();
+				var id = $(".hiddenid").val();
+				
+				$.ajax({
+					type : 'get',
+					url : '/myPage/shopBasket/gameInfo',
+					data : {
+						gdnum : gdnum
+					},
+					dataType : 'text',
+					success : function(vo) {
+						var gamename = JSON.parse(vo);
+						
+						confirm("["+gamename.title+"]는 "+gamename.price+"원 입니다. 구매하시겠습니까?")
+						
+						$.ajax({
+							type : 'post',
+							url : '/myPage/shopBasket/buyGame',
+							data : {
+								gdnum : gdnum,
+								id : id
+							},
+							dataType : 'text',
+							success : function(event) {
+								alert("["+gamename.title+"]를 구매 완료 했습니다.");
+								window.location.reroad();
+							}
+						});	
+					}
+				});
+		    });
+			
+		});
 		
 		//삭제 버튼 눌렀을 때 장바구니에서 체크된 상품 제거
 		$(".del").on("click", function() {

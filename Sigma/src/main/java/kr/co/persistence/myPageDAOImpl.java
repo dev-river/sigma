@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.domain.basketVO;
+import kr.co.domain.buyListVO;
 import kr.co.domain.memberVO;
 
 
@@ -100,6 +101,21 @@ public class myPageDAOImpl implements myPageDAO{
 		map.put("id", id);
 		session.delete(NS+".zzimDelete", map);
 		
+	}
+
+	@Override
+	public void insertBuyList(int gdnum, String id, int price) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("gdnum", gdnum);
+		map.put("id", id);
+		map.put("buyprice", price);
+		session.insert(NS+".insertBuyList", map);
+	}
+
+	@Override
+	public List<buyListVO> buyList(String id) {
+		// TODO Auto-generated method stub
+		return session.selectList(NS+".buyList", id);
 	}
 	
 }
