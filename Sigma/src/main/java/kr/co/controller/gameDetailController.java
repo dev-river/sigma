@@ -1,7 +1,9 @@
 package kr.co.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -38,12 +40,27 @@ public class gameDetailController {
 	}
 	
 	@RequestMapping(value = "/inform/read", method = RequestMethod.GET)
-	public void gameDetailread(Model model, int num) {
+	public void gameDetailread(Model model, int num, HttpServletRequest request) {
+		//Session 정보 가져오기
+		HttpSession session = request.getSession(false);
+		memberVO obj = (memberVO)session.getValue("login");
+		String id = obj.getId();
+		String author = obj.getAuthor();
+		model.addAttribute("id", id);
+		model.addAttribute("author", author);
+		
 		//num으로 gameVO 상세정보 부르기 from gameDetail
 		gameVO vo = gservice.read(num);
 		
 		//해당 num에 걸려있는 이미지 파일 가져오기  from gameDetailFile
 		List<String> filepath = gservice.filepath(num);
+		if(filepath.size() == 0) {
+			filepath.add("noimage.png");
+			filepath.add("noimage.png");
+		}
+		if(filepath.size() == 1) {
+			filepath.add("noimage.png");
+		}
 		String firstfilepath = filepath.get(1);
 		filepath.remove(0);
 		filepath.remove(0);
@@ -69,6 +86,28 @@ public class gameDetailController {
 		model.addAttribute("reviewlist", reviewlist);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/inform/reviewinsert", method = RequestMethod.POST)
+	public void reviewinsert(int gdnum, String reviewContent, String likeselect, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		memberVO obj = (memberVO)session.getValue("login");
+		String id = obj.getId();
+		
+		gservice.reviewinsert(gdnum, reviewContent, likeselect, id);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/inform/reviewupdate", method = RequestMethod.GET)
+	public void reviewupdate(int num) {
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/inform/reviewdelete", method = RequestMethod.GET)
+	public void reviewdelete(int num) {
+		gservice.reviewdelete(num);
+	}
+	
 	@RequestMapping(value = "/inform/dcCountAdd", method = RequestMethod.GET)
 	public String gameDetailDCcountAdd(Model model, int num) {
 		gservice.dcadd(num);
@@ -91,6 +130,6 @@ public class gameDetailController {
 	@ResponseBody
 	public String reviewadd(int num, String assist) {
 		gservice.reviewadd(num, assist);
-		return "good";
+		return "success";
 	}
 }

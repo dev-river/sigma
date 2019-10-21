@@ -74,8 +74,20 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 		session.update(NS+".reviewadd", map);
 	}
 
-	
+	@Override
+	public void reviewinsert(int gdnum, String reviewContent, String likeselect, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("gdnum", gdnum);
+		map.put("reviewContent", reviewContent);
+		map.put("likeselect", likeselect);
+		map.put("id", id);
+		
+		session.insert(NS+".reviewinsert", map);
+	}
 
-	
-	
+	@Override
+	public void reviewdelete(int num) {
+		session.delete(NS+".reviewdelete", num);
+	}
+
 }

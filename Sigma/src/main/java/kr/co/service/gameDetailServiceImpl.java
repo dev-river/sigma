@@ -1,6 +1,7 @@
 package kr.co.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -67,6 +68,17 @@ public class gameDetailServiceImpl implements gameDetailService{
 	public void reviewadd(int num, String assist) {
 		gdao.reviewadd(num, assist);
 	}
+
+	@Override
+	public void reviewinsert(int gdnum, String reviewContent, String likeselect, String id) {
+		gdao.reviewinsert(gdnum, reviewContent, likeselect, id);
+	}
+
+	@Override
+	public void reviewdelete(int num) {
+		gdao.reviewdelete(num);
+	}
+
 
 
 

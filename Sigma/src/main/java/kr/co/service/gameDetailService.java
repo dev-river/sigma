@@ -1,6 +1,7 @@
 package kr.co.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
@@ -27,6 +28,11 @@ public interface gameDetailService {
 	reviewVO maxNoReview(int num);
 
 	void reviewadd(int num, String assist);
+
+	void reviewinsert(int gdnum, String reviewContent, String likeselect, String id);
+
+	void reviewdelete(int num);
+
 
 
 

@@ -49,6 +49,4 @@
 			<beans:ref bean="loginIn"/>
 		</interceptor>
 	</interceptors>
-	
-	
 </beans:beans>
