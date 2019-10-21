@@ -27,8 +27,32 @@ public class gameDetailController {
 	@Inject
 	private gameDetailService gservice;
 	
+	public Map<String, Object> sessionInfo(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		//Session 정보 가져오기
+		String id = null;
+		String author = null;
+		HttpSession session = request.getSession();
+		
+		if(session.getValue("login") != null) {
+			memberVO obj = (memberVO) session.getValue("login");
+			if (obj.getId() != null) {
+				id = obj.getId();
+			}
+			if (obj.getAuthor() != null) {
+				author = obj.getAuthor();
+			}
+
+			map.put("id", id);
+			map.put("author", author);
+		}
+
+		return map;
+	}
+	
 	@RequestMapping(value = "/inform/list", method = RequestMethod.GET)
-	public void gameDetaillist(Model model, String category) {
+	public void gameDetaillist(Model model, String category, HttpServletRequest request) {
 		//list 페이지 파라미터로 category
 		if(category.equalsIgnoreCase("all")) {
 			category = "%";
@@ -41,13 +65,9 @@ public class gameDetailController {
 	
 	@RequestMapping(value = "/inform/read", method = RequestMethod.GET)
 	public void gameDetailread(Model model, int num, HttpServletRequest request) {
-		//Session 정보 가져오기
-		HttpSession session = request.getSession(false);
-		memberVO obj = (memberVO)session.getValue("login");
-		String id = obj.getId();
-		String author = obj.getAuthor();
-		model.addAttribute("id", id);
-		model.addAttribute("author", author);
+		String id = null;
+		Map<String, Object> sessioninfo = sessionInfo(request);
+		id = (String) sessioninfo.get("id");
 		
 		//num으로 gameVO 상세정보 부르기 from gameDetail
 		gameVO vo = gservice.read(num);
@@ -84,14 +104,15 @@ public class gameDetailController {
 		model.addAttribute("maxYesReview", maxYesReview);
 		model.addAttribute("maxNoReview", maxNoReview);
 		model.addAttribute("reviewlist", reviewlist);
+		model.addAttribute("id", id);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/inform/reviewinsert", method = RequestMethod.POST)
 	public void reviewinsert(int gdnum, String reviewContent, String likeselect, HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		memberVO obj = (memberVO)session.getValue("login");
-		String id = obj.getId();
+		String id = null;
+		Map<String, Object> sessioninfo = sessionInfo(request);
+		id = (String) sessioninfo.get("id");
 		
 		gservice.reviewinsert(gdnum, reviewContent, likeselect, id);
 	}
