@@ -79,6 +79,11 @@ public class gameDetailServiceImpl implements gameDetailService{
 		gdao.reviewdelete(num);
 	}
 
+	@Override
+	public reviewVO reviewselect(int num) {
+		return gdao.reviewselect(num);
+	}
+
 
 
 

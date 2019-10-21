@@ -90,4 +90,9 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 		session.delete(NS+".reviewdelete", num);
 	}
 
+	@Override
+	public reviewVO reviewselect(int num) {
+		return session.selectOne(NS+".reviewselect", num);
+	}
+
 }

@@ -48,6 +48,10 @@
 		insert into gamereview (num, gdnum, writer, content, recommend) values((select nvl2(max(num), max(num)+1, 1) from gamereview), #{gdnum}, #{id}, #{reviewContent}, #{likeselect})
 	</insert>
 	
+	<select id="reviewselect" resultType="kr.co.domain.reviewVO">
+		select * from gamereview where num = #{num}
+	</select>
+	
 	<delete id="reviewdelete">
 		delete gamereview where num=#{num}
 	</delete>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -117,10 +118,16 @@ public class gameDetailController {
 		gservice.reviewinsert(gdnum, reviewContent, likeselect, id);
 	}
 	
-	@ResponseBody
 	@RequestMapping(value = "/inform/reviewupdate", method = RequestMethod.GET)
-	public void reviewupdate(int num) {
-		
+	public void reviewupdate(int num, Model model) {
+		reviewVO vo = gservice.reviewselect(num);
+		model.addAttribute("vo", vo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/inform/reviewupdate", method = RequestMethod.POST)
+	public void reviewupdate(reviewVO vo) {
+		System.out.println(vo);
 	}
 	
 	@ResponseBody

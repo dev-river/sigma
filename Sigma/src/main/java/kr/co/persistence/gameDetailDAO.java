@@ -33,6 +33,8 @@ public interface gameDetailDAO {
 
 	void reviewdelete(int num);
 
+	reviewVO reviewselect(int num);
+
 
 
 

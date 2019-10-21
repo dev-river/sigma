@@ -33,8 +33,6 @@ public interface gameDetailService {
 
 	void reviewdelete(int num);
 
-
-
-
+	reviewVO reviewselect(int num);
 
 }
