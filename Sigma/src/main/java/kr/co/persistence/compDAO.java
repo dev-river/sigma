@@ -32,6 +32,14 @@ public interface compDAO {
 
 	void refundOK(int num);
 
-	void returncash(Map<String, Object> map);
+	void returncash(Map<String, Object> map2);
+
+	void giveback(Map<String, Object> map1);
+
+	int seachcash(gameVO vo);
+
+	void givemoney();
+
+	void sellermoney(gameVO vo);
 
 }

@@ -57,4 +57,20 @@
 	<update id="returncash">
 		update userinfo set cash = cash + #{buynum} where id = #{id}
 	</update>
+	
+	<update id="giveback">
+		update userinfo set cash = cash - #{buynum} where id = #{id} 
+	</update>
+	
+	<select id="seachcash" resultType="Integer">
+		select cash from userinfo where id = #{writer}
+	</select>
+	
+	<update id="givemoney">
+		update userinfo set cash = cash + 1000  where id = 'cashadmin'
+	</update>
+	
+	<update id="sellermoney">
+		update userinfo set cash = cash - 1000  where id = #{writer}
+	</update>
 </mapper>

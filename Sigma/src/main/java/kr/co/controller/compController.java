@@ -1,5 +1,6 @@
 package kr.co.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +53,7 @@ public class compController {
 		compservice.delete(id);
 	}
 	
+	//판매자가 등록한 게임 리스트
 	@RequestMapping(value = "/gameList/gameList")
 	public void gamelist(String writer, Model model) {
 		List<gameVO> gamelist = compservice.gamelist(writer);
@@ -60,40 +62,71 @@ public class compController {
 		model.addAttribute("gameDetailDC", gameDetailDC);
 	}
 	
+	//게임 등록 UI
 	@RequestMapping(value = "/gameList/gameInsert")
 	public void gameinsertUI() {}
 	
+	//게임 등록
 	@RequestMapping(value = "/gameList/gameInsert", method = RequestMethod.POST)
 	public String gameinsert(gameVO vo) {
+		//판매자의 캐시 확인
+		int cash = compservice.seachcash(vo);
+		if(cash < 1000) {
+			return "redirect:/myPage/cash/charge?id="+vo.getWriter();
+		}else {
+		//판매자의 캐시 1000원을 관리자에게 준다
+			compservice.sellermoney(vo);
+			compservice.givemoney();
+		//게임 등록
 		compservice.gameinsert(vo);
 		return "redirect:/compManage/gameList/gameList?writer="+vo.getWriter();
+		}
 	}
 	
+	//환불 리스트
 	@RequestMapping(value = "/refund/refundList")
 	public void refundList(@RequestParam String id, Model model) {
 		List<refundVO> list = compservice.refundList(id);
 		model.addAttribute("list", list);
 	}
 	
+	//환불 상세보기
 	@RequestMapping(value = "/refund/refundRead")
 	public void refundRead(String id, Model model) {
 		refundVO rvo = compservice.refundRead(id);
 		model.addAttribute("vo", rvo);
 	}
 	
+	//환불 승인
 	@ResponseBody
 	@RequestMapping(value = "/refund/refundOK", method = RequestMethod.POST)
-	public void refundOK(int num, int buynum, String id) {
+	public String refundOK(int num, int buynum, String id, int cash, String userid) {
+		System.out.println(num+":"+buynum+":"+id+":"+cash);
+		//캐시 부족 일 경우
+//		if(cash < buynum) {
+//			return "wait";
+//		}else {
+		//캐시 확인 후 승인 및 사용자에게 캐시 환원
 		compservice.refundOK(num);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("buynum", buynum);
-		map.put("id", id);
-		compservice.returncash(map);
+		System.out.println(num);
+		//판매자의 캐시에서 가격만큼 캐시 차감
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("userid", userid);
+		map1.put("buynum", buynum);
+		compservice.giveback(map1);
+		//환불 신청 받은 buynum만큼 캐시 돌려 받음
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("buynum", buynum);
+		map2.put("id", id);
+		compservice.returncash(map2);
+		return "ok";
+//		}
 	}
 	
+	//환불 거절
 	@ResponseBody
 	@RequestMapping(value = "/refund/refundReject", method = RequestMethod.POST)
-	public void refundReject(String id, int num, String inputString) {
+	public void refundReject(int num, String inputString) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("num", num);
 		map.put("inputString", inputString);

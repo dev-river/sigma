@@ -13,12 +13,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div>
+<div class="container">
 	<div class="row">
 		<h2>환불 신청 자세히 보기</h2>
 		<input type="hidden" id="num" value="${vo.num}">
 		<input type="hidden" id="buynum" value="${vo.buynum}">
 		<input type="hidden" id="id" value="${vo.id}">
+		<input type="hidden" id="userid" value="${login.id}">
+		<input type="hidden" id="cash" value="${login.cash}">
 	</div>
 	<c:if test="${vo.status eq '-'}">
 		<div>
@@ -125,16 +127,27 @@
 			var num = $("input[id='num']").val();
 			var buynum = $("input[id='buynum']").val();
 			var id = $("input[id='id']").val();
+			var cash = $("input[id='cash']").val();
 			$.ajax({
 				type : 'post',
 				url : '/compManage/refund/refundOK',
 				data : {
 					num : num,
 					buynum : buynum,
-					id : id
+					id : id,
+					cash : cash,
+					userid : userid
 				},
-				success : function(){
-					location.href="/compManage/refund/refundList?id=${login.id}";
+				dataType : 'text',
+				success : function(result){
+					if(result == 'wait'){
+						alert("캐시가 부족합니다.");
+						location.href="/compManage/refund/refundList?id=${login.id}";
+					}else{
+						alert("환불신청이 완료 되었습니다.");
+						location.href="/compManage/refund/refundList?id=${login.id}";
+					}
+					
 				}
 			});
 		});

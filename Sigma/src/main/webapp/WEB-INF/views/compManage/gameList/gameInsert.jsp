@@ -29,7 +29,7 @@
 	</div>
 	<div class="row body">
 		<form action="/compManage/gameList/gameInsert" method="post">
-			<input type="hidden" id="writer" name="writer" value="idid">
+			<input type="hidden" id="writer" name="writer" value="${login.id}">
 			<div class="form-group">
 				<label>게임 이름</label>
 				<input id="title" name="title" placeholder="게임 이름을 작성하세요." class="form-control">
