@@ -25,7 +25,6 @@
 <body>
 
 <hr>
-
 <div class="container">
 	<h3>게임이름: ${vo.title}</h3>
 	<h5>배급사: ${vo.writer}</h5>
@@ -118,14 +117,18 @@
 		</div>
 		
 		<!-- 판매자만 보이게 할 버튼 -->
-		<a class="btn btn-primary" href="/maincategoryupdate?num=${vo.num}">게임정보수정</a>
-      	<a class="btn btn-primary" href="/maincategoryupdate?num=${vo.num}">할인 요청 등록</a>
-      	
-      	<hr>
+		<c:if test="${author eq 'seller'}">
+			<a class="btn btn-primary" href="/gameDetail/inform/update?num=${vo.num}">게임정보수정</a>
+	      	<a class="btn btn-primary" href="/gameDetail/inform/DCRqSet?num=${vo.num}&title=${vo.title}" target="_blank">할인 요청 등록</a>
+      		<hr>
+      	</c:if>
       	
       	<!-- 긍정리뷰 최다글 및 부정리뷰 최다글 -->
       	<div>
       		<c:choose>
+      			<c:when test="${empty maxYesReview.assistyes}">
+      				<p>아직 추천 공감 리스트가 없습니다!</p>
+      			</c:when>
       			<c:when test="${maxYesReview.assistyes eq 0}">
       				<p>아직 추천 공감 리스트가 없습니다!</p>
       			</c:when>
@@ -134,13 +137,21 @@
 		      		<p>작성자: ${maxYesReview.writer}</p>
 		      		<p>내용: ${maxYesReview.content}</p>
 		      		<p>수정일: ${maxYesReview.updatedate}</p>
-		      		<p>좋아요: ${maxYesReview.assistyes} <button class="btn btn-success" id="assistYes" value="${maxYesReview.num}">좋아요</button></p>
-		      		<p>싫어요: ${maxYesReview.assistno} <button class="btn btn-danger" id="assistNo" value="${maxYesReview.num}">싫어요</button></p>
+		      		<p>좋아요: ${maxYesReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxYesReview.num}">좋아요</button></p>
+		      		<p>싫어요: ${maxYesReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxYesReview.num}">싫어요</button></p>
+		      		
+		      		<c:if test="${id eq maxYesReview.writer}">
+		      		
+		      			<%-- <button class="reviewupdate btn btn-warning" value="${maxYesReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxYesReview.num}">삭제</button> --%>
+		      		</c:if>
       			</c:otherwise>
       		</c:choose>
 
 			<c:choose>
-				<c:when test="${maxNoReview.assistno eq 0}">
+				<c:when test="${empty maxNoReview.assistyes}">
+					<p>아직 비추천 공감 리스트가 없습니다!</p>
+				</c:when>
+				<c:when test="${maxNoReview.assistyes eq 0}">
 					<p>아직 비추천 공감 리스트가 없습니다!</p>
 				</c:when>
 				<c:otherwise>
@@ -148,10 +159,27 @@
 		      		<p>작성자: ${maxNoReview.writer}</p>
 		      		<p>내용: ${maxNoReview.content}</p>
 		      		<p>수정일: ${maxNoReview.updatedate}</p>
-		      		<p>좋아요: ${maxNoReview.assistyes} <button class="btn btn-success" id="assistYes" value="${maxNoReview.num}">좋아요</button></p>
-		      		<p>싫어요: ${maxNoReview.assistno} <button class="btn btn-danger" id="assistNo" value="${maxNoReview.num}">싫어요</button></p>
+		      		<p>좋아요: ${maxNoReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxNoReview.num}">좋아요</button></p>
+		      		<p>싫어요: ${maxNoReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxNoReview.num}">싫어요</button></p>
+		      		<c:if test="${id eq maxNoReview.writer}">
+		      			<a href="/gameDetail/inform/reviewupdate?num=${maxNoReview.num}" target="_blank" class="btn btn-warning">수정</a>
+		      			<%-- <button class="reviewupdate btn btn-warning" value="${maxNoReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button> --%>
+		      		</c:if>
 				</c:otherwise>
 			</c:choose>
+      	</div>
+      	
+      	<hr>
+      	
+      	<!-- 리뷰 등록 -->
+      	<div>
+	      	<label for="reviewContent">리뷰 등록: </label>
+	      	<input id="reviewContent" type="text" required="required">
+	      	<select id="likeselect">
+	      		<option value="추천">추천</option>
+	      		<option value="비추천">비추천</option>
+	      	</select>
+	      	<button class="reviewInsert btn btn-primary">등록</button>
       	</div>
       	
       	<hr>
@@ -160,11 +188,16 @@
       	<div>
       		<c:forEach items="${reviewlist}" var="review">
       			<div style="border: 1px dashed black">
+      				<p>-${review.recommend} 리뷰-</p>
 		      		<p>작성자: ${review.writer}</p>
 		      		<p>내용: ${review.content}</p>
 		      		<p>수정일: ${review.updatedate}</p>
-		      		<p>좋아요: ${review.assistyes} <button class="btn btn-success" id="assistYes" value="${review.num}">좋아요</button></p>
-		      		<p>싫어요: ${review.assistno} <button class="btn btn-danger" id="assistNo" value="${review.num}">싫어요</button></p>
+		      		<p>좋아요: ${review.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${review.num}">좋아요</button></p>
+		      		<p>싫어요: ${review.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${review.num}">싫어요</button></p>
+		      		<c:if test="${id eq review.writer}">
+		      			<a href="/gameDetail/inform/reviewupdate?num=${review.num}" target="_blank" class="btn btn-warning">수정</a>
+		      			<%-- <button class="reviewupdate btn btn-warning" value="${review.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button> --%>
+		      		</c:if>
       			</div>
       		</c:forEach>
       	</div>
@@ -172,7 +205,7 @@
    <br>
    <script type="text/javascript">
    	$(document).ready(function(){
-   		$("button").on("click", function(){
+   		$(".yesorno").on("click", function(){
    			var reviewnum = $(this).val();
    			var assist = $(this).attr("id");
    			
@@ -190,6 +223,72 @@
    				}
    			});
    		});
+   		
+   		$(".reviewInsert").on("click", function(){
+			var reviewContent = $("#reviewContent").val();
+			var obj = document.getElementById("likeselect");
+			var likeselect = obj.options[obj.selectedIndex].value;
+			
+   			$.ajax({
+   				type: 'post',
+   				url: '/gameDetail/inform/reviewinsert',
+   				data: {
+   					'gdnum': "${vo.num}",
+   					'reviewContent': reviewContent,
+   					'likeselect': likeselect
+   				},
+   				datatype: 'text',
+   				success: function(){
+   					alert('등록 되었습니다!');
+   					window.location.reload();
+   				},
+   				error: function(){
+   					alert('로그인 또는 리뷰 내용 입력이 필요합니다.');
+   				}
+   			});
+   		});
+   		
+   		$(".reviewupdate").on("click", function(){
+			var num = $(this).val();
+			
+   			$.ajax({
+   				type: 'get',
+   				url: '/gameDetail/inform/reviewupdate',
+   				data: {
+   					'num': num,
+   				},
+   				datatype: 'text',
+   				success: function(){
+   					alert('등록 되었습니다!');
+   					window.location.reload();
+   				},
+   				error: function(){
+   					alert('로그인 또는 리뷰 내용 입력이 필요합니다.');
+   				}
+   			});
+   		});
+   		
+   		$(".reviewdelete").on("click", function(){
+			var num = $(this).val();
+			
+   			$.ajax({
+   				type: 'get',
+   				url: '/gameDetail/inform/reviewdelete',
+   				data: {
+   					'num': num,
+   				},
+   				datatype: 'text',
+   				success: function(){
+   					alert('삭제 되었습니다!');
+   					window.location.reload();
+   				},
+   				error: function(){
+   					alert('로그인 또는 리뷰 내용 입력이 필요합니다.');
+   				}
+   			});
+   		});
+   		
+   		
    		
    	//장바구니에 추가
 		$(".shopBasket").click(function() {

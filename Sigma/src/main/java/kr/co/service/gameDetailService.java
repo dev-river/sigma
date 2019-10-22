@@ -1,6 +1,7 @@
 package kr.co.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
@@ -28,7 +29,17 @@ public interface gameDetailService {
 
 	void reviewadd(int num, String assist);
 
+	void reviewinsert(int gdnum, String reviewContent, String likeselect, String id);
 
+	void reviewdelete(int num);
+
+	reviewVO reviewselect(int num);
+
+	void reviewupdate(reviewVO vo);
+
+	List<gameDetailDcVO> dcrqlist(int num);
+
+	void DCRqSet(gameDetailDcVO vo);
 
 
 }
