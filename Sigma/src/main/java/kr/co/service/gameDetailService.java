@@ -35,4 +35,11 @@ public interface gameDetailService {
 
 	reviewVO reviewselect(int num);
 
+	void reviewupdate(reviewVO vo);
+
+	List<gameDetailDcVO> dcrqlist(int num);
+
+	void DCRqSet(gameDetailDcVO vo);
+
+
 }

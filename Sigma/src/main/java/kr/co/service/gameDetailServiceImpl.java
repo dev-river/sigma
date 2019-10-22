@@ -84,7 +84,18 @@ public class gameDetailServiceImpl implements gameDetailService{
 		return gdao.reviewselect(num);
 	}
 
+	@Override
+	public void reviewupdate(reviewVO vo) {
+		gdao.reviewupdate(vo);
+	}
 
+	@Override
+	public List<gameDetailDcVO> dcrqlist(int num) {
+		return gdao.dcrqlist(num);
+	}
 
-
+	@Override
+	public void DCRqSet(gameDetailDcVO vo) {
+		gdao.DCRqSet(vo);
+	}
 }

@@ -66,9 +66,10 @@ public class gameDetailController {
 	
 	@RequestMapping(value = "/inform/read", method = RequestMethod.GET)
 	public void gameDetailread(Model model, int num, HttpServletRequest request) {
-		String id = null;
+		String id = null; String author = null;
 		Map<String, Object> sessioninfo = sessionInfo(request);
 		id = (String) sessioninfo.get("id");
+		author = (String) sessioninfo.get("author");
 		
 		//num으로 gameVO 상세정보 부르기 from gameDetail
 		gameVO vo = gservice.read(num);
@@ -89,6 +90,10 @@ public class gameDetailController {
 		//할인정보 가져오기
 		gameDetailDcVO dcvo = null;
 		dcvo = gservice.dccheck(num);
+		dcvo.setRqstartdate(dcvo.getRqstartdate().substring(0, 10));
+		dcvo.setRqenddate(dcvo.getRqenddate().substring(0, 10));
+		dcvo.setDcstartdate(dcvo.getDcstartdate().substring(0, 10));
+		dcvo.setDcenddate(dcvo.getDcenddate().substring(0, 10));
 		
 		//최다 리뷰글 가져오기
 		reviewVO maxYesReview = gservice.maxYesReview(num);
@@ -106,6 +111,28 @@ public class gameDetailController {
 		model.addAttribute("maxNoReview", maxNoReview);
 		model.addAttribute("reviewlist", reviewlist);
 		model.addAttribute("id", id);
+		model.addAttribute("author", author);
+	}
+	
+	@RequestMapping(value = "/inform/DCRqSet", method = RequestMethod.GET)
+	public void DCRqSet(int num, String title, Model model) {
+		List<gameDetailDcVO> list = gservice.dcrqlist(num);
+		gameDetailDcVO lastvo = list.get(list.size()-1);
+		lastvo.setRqstartdate(lastvo.getRqstartdate().substring(0,10));
+		lastvo.setRqenddate(lastvo.getRqenddate().substring(0,10));
+		lastvo.setDcstartdate(lastvo.getDcstartdate().substring(0,10));
+		lastvo.setDcenddate(lastvo.getDcenddate().substring(0,10));
+		
+		model.addAttribute("list", list);
+		model.addAttribute("lastvo", lastvo);
+		model.addAttribute("title", title);
+		model.addAttribute("num", num);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/inform/DCRqSet", method = RequestMethod.POST)
+	public void DCRqSet(gameDetailDcVO vo) {
+		gservice.DCRqSet(vo);
 	}
 	
 	@ResponseBody
@@ -127,7 +154,7 @@ public class gameDetailController {
 	@ResponseBody
 	@RequestMapping(value = "/inform/reviewupdate", method = RequestMethod.POST)
 	public void reviewupdate(reviewVO vo) {
-		System.out.println(vo);
+		gservice.reviewupdate(vo);
 	}
 	
 	@ResponseBody

@@ -95,4 +95,18 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 		return session.selectOne(NS+".reviewselect", num);
 	}
 
+	@Override
+	public void reviewupdate(reviewVO vo) {
+		session.update(NS+".reviewupdate", vo);
+	}
+
+	@Override
+	public List<gameDetailDcVO> dcrqlist(int num) {
+		return session.selectList(NS+".dcrqlist", num);
+	}
+
+	@Override
+	public void DCRqSet(gameDetailDcVO vo) {
+		session.insert(NS+".DCRqSet", vo);
+	}
 }
