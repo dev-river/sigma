@@ -321,7 +321,7 @@
 								<ul>
 									<li><a href="#">1:1 문의</a></li>
 									<li><a href="#">Q and A</a></li>
-									<li><a href="#">환불신청</a></li>
+									<li><a href="/myPage/buyList/refundInsert">환불신청</a></li>
 								</ul></li>
 						</ul>
 					</div>

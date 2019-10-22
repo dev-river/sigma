@@ -43,16 +43,64 @@
 		
 		<hr style="border: double; 1px; black;">
 		
-		<div class="row" style="width:65%; height:500px; border-right: double; 1px; black;">
-			<h4 style="position: relative; left: 10%">게임</h4>
-			<div>
-				
+		<div class="row" style="width:65%; height:500px; padding-right:40px; border-right: double; 1px; black;">
+			<h3 style="position: relative; left: 10%">게임</h3>
+			<div style="height: 180px;">
+				<h4 style="position: relative; left: 13%" top: -5px; class="pull-left">최근 구매 목록</h4>
+				<a class="pull-right" href="/myPage/buyList/list">자세히 보기</a>
+				<br>
+				<c:forEach items="${buyList}" var="buylist" varStatus="status">
+					<c:if test="${status.index < 4}">
+						<a href="/gameDetail/inform/read?num=${buylist.gdnum}">
+							<div style="width:18%; margin:2px; height:150px; text-align: center;" class="pull-left">
+								<c:choose>
+									<c:when test="${buylist.filepath eq null}">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 80%; height: 80%; border: 1px; solid; black;">
+									</c:when>
+									<c:otherwise>
+										<img alt="" src="/resources/gameDetailFile/${buylist.filepath}" style="width: 80%; height: 80%; border: 1px; solid; black;">
+									</c:otherwise>
+								</c:choose>
+								<br>
+								${buylist.title}
+							</div>
+						</a>
+					</c:if>
+				</c:forEach>
 			</div>
+			
+			<hr>
+			
+			<div style="height: 180px;">
+				<h4 style="position: relative; left: 13%" top: -15px; class="pull-left">환불 신청 목록</h4>
+				<a class="pull-right" href="/myPage/buyList/refundList">자세히 보기</a>
+				<br>
+				<c:forEach items="${refund}" var="refund" varStatus="status">
+					<c:if test="${status.index < 4}">
+						<a href="/gameDetail/inform/read?num=${refund.gdnum}">
+							<div style="width:18%; margin:2px; height:150px; text-align: center;" class="pull-left">
+								<c:choose>
+									<c:when test="${refund.filepath eq null}">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 80%; height: 80%; border: 1px; solid; black;">
+									</c:when>
+									<c:otherwise>
+										<img alt="" src="/resources/gameDetailFile/${refund.filepath}" style="width: 80%; height: 80%; border: 1px; solid; black;">
+									</c:otherwise>
+								</c:choose>
+								<br>
+								${refund.title}
+							</div>
+						</a>
+					</c:if>
+				</c:forEach>
+			</div>
+			
+			
 		</div>
 	</div>
 	<input type="hidden" id="id" value="${myinfo.id}"></input>
 	
-	
+	<button class="abc">abc</button>
 <script type="text/javascript">
 	$(document).ready(function() {
 		
