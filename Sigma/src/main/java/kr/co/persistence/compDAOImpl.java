@@ -82,13 +82,8 @@ public class compDAOImpl implements compDAO {
 	}
 
 	@Override
-	public void giveback(Map<String, Object> map1) {
-		session.update(NS+".giveback", map1);
-	}
-
-	@Override
-	public int seachcash(gameVO vo) {
-		return session.selectOne(NS+".seachcash", vo);
+	public void giveback1(Map<String, Object> map1) {
+		session.update(NS+".giveback1", map1);
 	}
 
 	@Override
@@ -99,6 +94,16 @@ public class compDAOImpl implements compDAO {
 	@Override
 	public void sellermoney(gameVO vo) {
 		session.update(NS+".sellermoney", vo);
+	}
+
+	@Override
+	public void giveback2(int buynum) {
+		session.update(NS+".giveback2", buynum);
+	}
+
+	@Override
+	public int seachcash(String writer) {
+		return session.selectOne(NS+".seachcash", writer);
 	}
 
 	

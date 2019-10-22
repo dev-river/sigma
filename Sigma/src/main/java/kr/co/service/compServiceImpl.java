@@ -82,13 +82,8 @@ public class compServiceImpl implements compService{
 	}
 
 	@Override
-	public void giveback(Map<String, Object> map1) {
-		dao.giveback(map1);
-	}
-
-	@Override
-	public int seachcash(gameVO vo) {
-		return dao.seachcash(vo);
+	public void giveback1(Map<String, Object> map1) {
+		dao.giveback1(map1);
 	}
 
 	@Override
@@ -99,6 +94,16 @@ public class compServiceImpl implements compService{
 	@Override
 	public void sellermoney(gameVO vo) {
 		dao.sellermoney(vo);
+	}
+
+	@Override
+	public void giveback2(int buynum) {
+		dao.giveback2(buynum);
+	}
+
+	@Override
+	public int seachcash(String writer) {
+		return dao.seachcash(writer);
 	}
 
 	

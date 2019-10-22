@@ -58,8 +58,12 @@
 		update userinfo set cash = cash + #{buynum} where id = #{id}
 	</update>
 	
-	<update id="giveback">
-		update userinfo set cash = cash - #{buynum} where id = #{id} 
+	<update id="giveback1">
+		update userinfo set cash = cash - #{buynum} * 90 / 100 where id = #{userid}
+	</update>
+	
+	<update id="giveback2">
+		update userinfo set cash = cash - #{buynum} * 10 / 100 where id = 'cashadmin'
 	</update>
 	
 	<select id="seachcash" resultType="Integer">
