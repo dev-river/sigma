@@ -26,6 +26,13 @@ public interface adminService {
 
 	void changeCharge(adminSetVO vo);
 
+	void LogoUpdate(adminSetVO vo, String savedName);
+
+	void BGUpdate(adminSetVO vo, String savedName);
+
+	adminSetVO getBGimg();
+
+	adminSetVO getLogoimg();
 
 
 }

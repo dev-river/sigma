@@ -13,6 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <h3>
 	 chargeManage test.  
 </h3>
@@ -21,11 +22,11 @@
 
 	<form action="/admin/adminSetting/chargeManage" method="post">
 		<div class="form-group">
-			<label for="regiCharge">게임 등록수수료 설정</label>
+			<label for="regiCharge">게임 등록수수료 설정(원)</label>
 			<input class="form-control" id="regiCharge" name="regiCharge" value="${updatevo.regiCharge}">
 		</div>
 		<div class="form-group">
-			<label for="buyCharge">게임 판매수수료 설정</label>
+			<label for="buyCharge">게임 판매수수료 설정(%)</label>
 			<input class="form-control" id="buyCharge" name="buyCharge" value="${updatevo.buyCharge}">
 		</div>
 		
