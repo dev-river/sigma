@@ -29,7 +29,9 @@
 	</div>
 	<div class="row body">
 		<form action="/compManage/gameList/gameInsert" method="post">
-			<input type="hidden" id="writer" name="writer" value="idid">
+			<input type="hidden" id="writer" name="writer" value="${login.id}">
+			<input type="hidden" id="cash" name="cash" value="${cash}">
+			<!-- 이름 -> 회사명으로 -->
 			<div class="form-group">
 				<label>게임 이름</label>
 				<input id="title" name="title" placeholder="게임 이름을 작성하세요." class="form-control">
@@ -61,8 +63,8 @@
 				<input id="gamefilepath" name="gamefilepath" class="form-contorl" placeholder="파일경로" style="width: 80px;">
 			</div>
 			<div>
-				<button class="btn">등록</button>
-				<input type="button" class="btn" value="취소" onclick="location.href='/compManage/gameList/gameList?writer=idid'">
+				<button class="btn insert">등록</button>
+				<input type="button" class="btn" value="취소" onclick="location.href='/compManage/gameList/gameList?writer=${login.id}'">
 			</div>
 		</form>
 	</div>
@@ -78,6 +80,23 @@
 			}
 		});
 		
+		$(".insert").on("click",function(){
+			var cash = $("input[id='cash']").val();
+			var writer = $("input[id='writer']").val();
+			if(cash < 1000){
+				var check = confirm("캐시 충전하시겠습니까?");
+				if(check==true){
+					location.href="/myPage/cash/charge?id="+writer;
+					return false;
+				}else{
+					alert("리스트로 돌아갑니다.");
+					location.href="/compManage/gameList/gameList?writer="+writer;
+					return false;
+				}
+			}else{
+				location.href="/compManage/gameList/gameInsert";
+			}	
+		});
 	});
 </script>
 </body>
