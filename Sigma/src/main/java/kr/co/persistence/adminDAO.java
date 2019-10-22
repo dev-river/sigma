@@ -26,6 +26,11 @@ public interface adminDAO {
 
 	public void changeCharge(adminSetVO vo);
 
+	public void logoupdate(String logofilepath, adminSetVO vo);
 
+	public void bgupdate(String bgfilepath, adminSetVO vo);
 
+	public adminSetVO getBGimg();
+
+	public adminSetVO getLogoimg();
 }

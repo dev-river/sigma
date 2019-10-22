@@ -43,25 +43,32 @@
 					</div>
 					<div class="login">
 					
-               			 <c:if test="${empty login}">
-                			  <a class="glyphicon glyphicon-user" href="/member/login/login">로그인</a>
-              			 </c:if>
-              			
-              			 <c:if test="${!empty login}">
-              		 		 <div id="user">
-             		   	  <c:if test="${login.author eq 'user'}">
-                			     <a class="glyphicon glyphicon-user" href="/myPage/myPage/mypage">마이페이지</a>
-                  				 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
-                			 </c:if>
-                			 </div>
-                			 <div id="seller">
-               		 		 <c:if test="${login.author eq 'seller'}">
-                    			 <a class="glyphicon glyphicon-user" href="/compManage/compInform/read?id=${login.id}">판매자페이지</a>
-                   				 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
-                			 </c:if>
-                			 </div>
-              			 </c:if>
-               		</div>
+               		 <c:if test="${empty login}">
+                		  <a class="glyphicon glyphicon-user" href="/member/login/login">로그인</a>
+              		 </c:if>
+              		
+              		 <c:if test="${!empty login}">
+              		 	 <div id="user">
+             		     <c:if test="${login.author eq 'user'}">
+                		     <a class="glyphicon glyphicon-user" href="/myPage/myPage/mypage">마이페이지</a>
+                  			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
+                		 </c:if>
+                		 </div>
+                		 <div id="seller">
+               		 	 <c:if test="${login.author eq 'seller'}">
+                    		 <a class="glyphicon glyphicon-user" href="/compManage/compInform/read?id=${login.id}">판매자페이지</a>
+                   			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
+                		 </c:if>
+                		 </div>
+                		 <div id="admin">
+               		 	 <c:if test="${login.author eq 'admin'}">
+                    		 <a class="glyphicon glyphicon-user" href="/admin/userManage/userlist?id=${login.id}">관리자페이지</a>
+                   			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
+                		 </c:if>
+                		 </div>
+              		 </c:if>
+               	</div>
+               
 					<div class="ser">
 							<form class="form-inline m-auto" action="#">
 								<input class="form-control" type="text"
@@ -76,7 +83,7 @@
 							<li><a href="#" id="me1">새소식</a>
 								<ul>
 									<li><a href="/event">이벤트</a></li>
-									<li><a href="#">새 게임 소식</a></li>
+									<li><a href="/mainboardNG/mainboardNG">새 게임 소식</a></li>
 								</ul></li>
 
 							<li><a href="#" id="current">게임 추천</a>
@@ -103,9 +110,9 @@
 									<li><a href="#">공지사항</a></li>
 									<li><a href="#">1:1 문의</a></li>
 									<li><a href="#">Q and A</a></li>
-									<li><a href="#">환불신청</a></li>
+									<li><a href="/myPage/buyList/refundInsert">환불신청</a></li>
 								</ul>
-							</li>
+              </li>
 						</ul>
 					</div>
 			</div> <!--head -->

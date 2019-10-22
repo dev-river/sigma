@@ -13,4 +13,8 @@ public interface replyService {
 	void delete(int num);
 
 	void replyUpdate(replyVO vo);
+
+	void deleteAll(int num);
+
+	
 }

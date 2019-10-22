@@ -13,4 +13,19 @@
 		update adminSetting set regiCharge = #{regiCharge}, buyCharge = #{buyCharge}
 	</update>
 	
+	<update id="changeBG">
+		update adminSetting set bgfilepath = #{bgfilepath}
+	</update>
+	
+	<update id="changeLogo">
+		update adminSetting set logofilepath = #{logofilepath}
+	</update>
+	
+	<select id="getBGimg" resultType="kr.co.domain.adminSetVO">
+		select bgfilepath from adminSetting
+	</select>
+	
+	<select id="getLogoimg" resultType="kr.co.domain.adminSetVO">
+		select logofilepath from adminSetting
+	</select>
 </mapper>

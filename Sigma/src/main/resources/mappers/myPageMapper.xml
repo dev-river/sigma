@@ -49,4 +49,60 @@
 		delete from zzimlist where id=#{id} and gdnum=#{gdnum}
 	</delete>
 	
+	<insert id="insertBuyList">
+		insert into buyList (buyprice, gdnum, id, num) values (#{buyprice}, #{gdnum}, #{id}, (select nvl2(max(num), max(num)+1, 1) from buyList))
+	</insert>
+	
+	<select id="buyList" resultType="kr.co.domain.buyListVO">
+		select filepath, writer, regidate, id, buyprice, title, category, buydate, gdnum from buylist, gamedetail where gamedetail.num = buylist.gdnum and id=#{id} order by regidate desc
+	</select>
+	
+	<delete id="buyListdelete">
+		delete from buyList where id=#{id} and gdnum=#{gdnum}
+	</delete>
+	
+	<select id="refundList" resultType="kr.co.domain.refundVO">
+		select filepath, title, writer, r.num, r.id, gdnum, buyprice, buydate, r.status, r.content, compcontent, updatedate, refunddate, regidate from buylist b, refundlist r, gamedetail g where r.num=b.num and g.num = b.gdnum and r.id=#{id} order by updatedate desc
+	</select>
+	
+	<select id="getrefundgdnum" resultType="Integer">
+		select gdnum from buyList where num=#{num} and id=#{id}
+	</select>
+	
+	<select id="buyList24" resultType="kr.co.domain.buyListVO">
+		select gdnum, title, b.num from buyList b, gamedetail g where id=#{id} and buydate between (SELECT sysdate - 1 FROM DUAL) and sysdate and b.gdnum=g.num
+	</select>
+	
+	<insert id="refundInsert">
+		insert into refundlist(num, id, buynum, content) values ((select nvl2(max(num), max(num)+1, 1) from refundlist), #{id}, #{buynum}, #{content})
+	</insert>
+	
+	<select id="getSex" resultType="kr.co.domain.memberVO">
+		select * from userinfo where id=#{id}
+	</select>
+	
+	<update id="mancount">
+		update gamedetail set mancount=mancount+1 where num=#{gdnum}
+	</update>
+	
+	<update id="womancount">
+		update gamedetail set womancount=womancount+1 where num=#{gdnum}
+	</update>
+	
+	<update id="totalAge">
+		update gamedetail set totalage = totalage+#{age} where num=#{num}
+	</update>
+	
+	<update id="profit">
+		update gamedetail set profit = profit + (price*(1-(dcrate/100))) where num=#{gdnum}
+	</update>
+	
+	<update id="sellCharge">
+		update gameDetail set sellCharge = sellCharge + (price*(1-dcrate/100))*(1-(select buycharge from adminsetting)/100) where num=#{gdnum}
+	</update>
+	
+	<select id="subComp" resultType="kr.co.domain.gameVO">
+		select g.num, g.title, g.content, g.writer, g.filepath gamefilepath, u.filepath from gamedetail g, userinfo u where u.id=#{writer} and g.writer=#{writer} order by g.regidate desc
+	</select>
+	
 </mapper>

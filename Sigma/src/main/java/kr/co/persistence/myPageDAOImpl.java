@@ -10,7 +10,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.domain.basketVO;
+import kr.co.domain.buyListVO;
+import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
+import kr.co.domain.refundVO;
 
 
 @Repository
@@ -99,6 +102,103 @@ public class myPageDAOImpl implements myPageDAO{
 		map.put("gdnum", gdnum);
 		map.put("id", id);
 		session.delete(NS+".zzimDelete", map);
+		
+	}
+
+	@Override
+	public void insertBuyList(int gdnum, String id, int price) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("gdnum", gdnum);
+		map.put("id", id);
+		map.put("buyprice", price);
+		session.insert(NS+".insertBuyList", map);
+	}
+
+	@Override
+	public List<buyListVO> buyList(String id) {
+		// TODO Auto-generated method stub
+		return session.selectList(NS+".buyList", id);
+	}
+
+	@Override
+	public void buyListdelete(int gdnum, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("gdnum", gdnum);
+		map.put("id", id);
+		session.delete(NS+".buyListdelete", map);
+		
+	}
+
+	@Override
+	public List<refundVO> refundList(String id) {
+		// TODO Auto-generated method stub
+		return session.selectList(NS+".refundList", id);
+	}
+
+	@Override
+	public int getrefundgdnum(int buynum, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", buynum);
+		map.put("id", id);
+		return session.selectOne(NS+".getrefundgdnum", map);
+		
+	}
+
+	@Override
+	public List<buyListVO> buyList24(String id) {
+		// TODO Auto-generated method stub
+		return session.selectList(NS+".buyList24", id);
+	}
+
+	@Override
+	public void refundInsert(int num, String content, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("buynum", num);
+		map.put("content", content);
+		map.put("id", id);
+		session.insert(NS+".refundInsert", map);
+	}
+
+	@Override
+	public memberVO getSex(String id) {
+		System.out.println(id);
+		return session.selectOne(NS+".getSex", id);
+	}
+
+	@Override
+	public void mancount(int gdnum) {
+		session.update(NS+".mancount", gdnum);
+	}
+
+	@Override
+	public void womancount(int gdnum) {
+		session.update(NS+".womancount", gdnum);
+	}
+
+	@Override
+	public void totalAge(int age, int gdnum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", gdnum);
+		map.put("age", age);
+		session.update(NS+".totalAge", map);
+		
+	}
+
+	@Override
+	public void profit(int gdnum) {
+		session.update(NS+".profit", gdnum);
+		
+	}
+
+	@Override
+	public void sellCharge(int gdnum) {
+		session.update(NS+".sellCharge", gdnum);
+		
+	}
+
+	@Override
+	public List<gameVO> subComp(String writer) {
+		return session.selectList(NS+".subComp", writer);
 		
 	}
 	

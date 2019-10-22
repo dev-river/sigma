@@ -1,5 +1,7 @@
 package kr.co.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.domain.basketVO;
+import kr.co.domain.buyListVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
+import kr.co.domain.refundVO;
 import kr.co.service.gameDetailService;
 import kr.co.service.myPageService;
 
@@ -36,7 +40,22 @@ public class myPageController {
 		//세션에 저장된 아이디를 가져오는 코드
 		HttpSession session = request.getSession(false);
 		memberVO obj = (memberVO)session.getValue("login");
+		
+		//세션에 저장된 id가져와서 정보 가져옴
+		String id = obj.getId();
+		obj = mpService.getMemberVO(id);
+
+		//구매 기록
+		List<buyListVO> list = mpService.buyList(id);
+		
+		//환불 기록
+		List<refundVO> refundList = mpService.refundList(id);
+
+		model.addAttribute("buyList", list);
+		model.addAttribute("refund", refundList);
 		model.addAttribute("myinfo", obj);
+		
+		
 	}
 	
 	
@@ -94,6 +113,18 @@ public class myPageController {
 		//내가 가지고 있는게임 리스트 가져오기
 		String id = obj.getId();
 		List<basketVO> list = mpService.getBasket(id);
+		
+		for(int i=0; i<list.size(); i++) {
+			int gdnum = list.get(i).getGdnum();
+			List<String> filepath = gservice.filepath(gdnum);
+			if(filepath.size() == 0) {
+				model.addAttribute("img", "noimage.png");
+			} else if(filepath.size() != 0){
+				String firstfilepath = filepath.get(0);
+				model.addAttribute("img", firstfilepath);
+			}
+		}
+		
 		model.addAttribute("basket", list);
 	}
 	
@@ -139,6 +170,18 @@ public class myPageController {
 		//내가 가지고 있는게임 리스트 가져오기
 		String id = obj.getId();
 		List<basketVO> list = mpService.zzim_list(id);
+		
+
+		for(int i=0; i<list.size(); i++) {
+			int gdnum = list.get(i).getGdnum();
+			
+			List<String> filepath = gservice.filepath(gdnum);
+			String firstfilepath = filepath.get(1);
+			
+			model.addAttribute("img", firstfilepath);
+		}
+		
+		
 		model.addAttribute("zzim", list);
 	}
 	
@@ -170,16 +213,155 @@ public class myPageController {
 		mpService.zzimDelete(gdnum, id);
 	}
 	
+	//게임 구매
+	@ResponseBody
+	@RequestMapping(value = "/shopBasket/buyGame", method = RequestMethod.POST)
+	public void insertBuyList(int gdnum, String id) {
+		//장바구니에서 삭제
+		mpService.deleteBasketList(gdnum, id);
+		//게임 정보 가져오기
+		gameVO vo = gservice.read(gdnum);
+		//구매 리스트에 추가
+		mpService.insertBuyList(gdnum, id, vo.getPrice());
+		//찜목록에서 삭제
+		List<basketVO> list = mpService.zzim_list(id);
+		if(list != null) {
+			for(int i=0; i<list.size(); i++) {
+				int gnum = list.get(i).getGdnum();
+				if(gdnum==gnum) {
+					mpService.zzimDelete(gdnum, id);
+				}
+			}
+		}
+		//캐쉬 차감
+		int gamePrice = vo.getPrice();
+		memberVO myinfo = mpService.getMemberVO(id);
+		int myCash = myinfo.getCash();
+		int nowCash = myCash - gamePrice;
+		mpService.updateCash(nowCash, id);
+		//게임 통계 업데이트
+		//구매자 성별
+		memberVO userinfo = mpService.getSex(id); //원래는 sex만 받아왔는데 오류나서 memberVO 형태로 받아온 후 sex를 뺴옴
+		String sex = userinfo.getSex();
+		if(sex.equals("남자")) {
+			mpService.mancount(gdnum);
+		}else if(sex.equals("여자")){
+			mpService.womancount(gdnum);
+		}
+		//totalage 측정
+		//현재 년도
+		SimpleDateFormat year = new SimpleDateFormat("yyyy"); //현재 날짜 년도만 출력
+		Date time = new Date();
+		String nowyear = year.format(time); //현재 년도를 '2019' 이런식으로 출력
+		//구매자 나이 불러오기
+		memberVO uservo = mpService.getMemberVO(id); //아이디로 유저 정보 불러옴
+		String userbirth = uservo.getBirth(); //유저 생일 가져옴
+		String agebirthyear = userbirth.substring(0, 4); //유저 생일중 년도만 가져옴 
+		int age = Integer.valueOf(nowyear) - Integer.valueOf(agebirthyear) +1; //현재 년도 - 유저 태어난 년도+1 = 나이		
+		//유저 나이 totalage에 입력
+		mpService.totalAge(age, gdnum);
+		//총 수익 더하기
+		mpService.profit(gdnum);
+		//수수료 구하기
+		mpService.sellCharge(gdnum);
+		
+		
+	}
 	
-	//게임 정보 가져오기 ㅠㅠ
+
+	//게임 정보 가져오기 
 	@ResponseBody
 	@RequestMapping(value = "/shopBasket/gameInfo", method = RequestMethod.GET)
 	public gameVO gameInfo(int gdnum) {
-		
 		gameVO vo = gservice.read(gdnum);
 		
 		return vo;
 	}
 	
+	//게임 구매 리스트
+	@RequestMapping(value = "/buyList/list", method = RequestMethod.GET)
+	public void buyList(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		memberVO obj = (memberVO)session.getValue("login");
+
+		String id = obj.getId();
+		
+		List<buyListVO> list = mpService.buyList(id);
+		for(int i=0; i<list.size(); i++) {
+			int gdnum = list.get(i).getGdnum();
+			List<String> filepath = gservice.filepath(gdnum);
+			if(filepath.size() == 0) {
+				model.addAttribute("img", "noimage.png");
+			} else if(filepath.size() != 0){
+				String firstfilepath = filepath.get(0);
+				model.addAttribute("img", firstfilepath);
+			}
+		}
+		model.addAttribute("buyList", list);
+		model.addAttribute("id", id);
+	}
+	
+	
+	//구매 리스트 삭제
+	@ResponseBody
+	@RequestMapping(value = "/buyList/delete", method = RequestMethod.POST)
+	public void buyListdelete(int gdnum, String id) {
+		mpService.buyListdelete(gdnum, id);
+	}
+	
+	//환불 신청 조회
+	@RequestMapping(value = "buyList/refundList", method = RequestMethod.GET)
+	public void refundList(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		memberVO obj = (memberVO)session.getValue("login");
+
+		String id = obj.getId();
+		
+		//환불 기록
+		List<refundVO> refundList = mpService.refundList(id);
+		for(int i=0; i<refundList.size(); i++) {
+			int buynum = refundList.get(i).getNum();
+			int gdnum = mpService.getrefundgdnum(buynum, id);
+
+			List<String> filepath = gservice.filepath(gdnum);
+			if(filepath.size() == 0) {
+				model.addAttribute("img", "noimage.png");
+			} else if(filepath.size() != 0){
+				String firstfilepath = filepath.get(0);
+				model.addAttribute("img", firstfilepath);
+			}
+		}
+		model.addAttribute("refund", refundList);
+	}
+	
+	//환불 신청 UI
+	@RequestMapping(value = "/buyList/refundInsert", method = RequestMethod.GET)
+	public void refundInsert(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		memberVO obj = (memberVO)session.getValue("login");
+
+		String id = obj.getId();
+		List<buyListVO> gamelist = mpService.buyList24(id);
+		
+		model.addAttribute("gamelist", gamelist);
+		model.addAttribute("id", id);
+	}
+	
+	//환불 신청
+	@RequestMapping(value = "/buyList/refundInsert", method = RequestMethod.POST)
+	public String refundInsert(int buynum, String content, String id) {
+		mpService.refundInsert(buynum, content, id);
+		return "redirect:/myPage/buyList/refundList";
+	}
+	
+	//배급사 리스트로 이동
+	@ResponseBody
+	@RequestMapping(value = "/subscribe/subComp", method = RequestMethod.POST)
+	public String subComp(String writer, Model model) {
+		List<gameVO> comp = mpService.subComp(writer);
+		model.addAttribute("comp", comp);
+		
+		return "";
+	}
 
 }

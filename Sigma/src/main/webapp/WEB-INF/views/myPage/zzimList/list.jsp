@@ -24,8 +24,10 @@
 				<thead>
 					<tr>
 						<th  style="height: 150px; ">
-							<h5 style="width:70%;" class="pull-left">전체 선택</h5>
-							<input style="position: relative; top:6px; width:29%;" class="pull-right" type="checkbox" name="check_all">
+							<div style="position: relative; left:83%; width: 15%;">
+								<h5 style="width:70%;" class="pull-left">전체 선택</h5>
+								<input style="position: relative; top:6px; width:29%;" class="pull-right" type="checkbox" name="check_all">
+							</div>
 						</th>
 					</tr>
 				</thead>
@@ -33,10 +35,13 @@
 					<c:forEach items="${zzim}" var="zzim">
 						<tr>
 							<td>
-								<p style="width:45%; font-weight: bold;" class="pull-left">게임 이름 : ${zzim.title}</p><p style="width:54%;" class="pull-right">배급사 : ${zzim.writer}</p> 
-								<p style="width:45%" class="pull-left">출시일 : ${zzim.gregidate}</p><p style="width:54%;" class="pull-right">등록 날짜 : ${zzim.sregidate}</p>
-								<p style="width:45%" class="pull-left">가격 : ${zzim.price}</p>
-								<input style="position: relative; left: 250px; bottom: 30px; width: 200px;" type="checkbox" name="input_check" value="${zzim.gdnum}">
+								<img alt="" src="/resources/gameDetailFile/${img}" style="width:25%; padding-right: 5px;" class="pull-left">
+								<p style="position:relative; top:20px; width:35%" class="pull-left">게임 이름 : ${zzim.title}</p>
+								<p style="position:relative; top:20px; width:38%" class="pull-right">배급사 : ${zzim.writer}</p> 
+								<p style="position:relative; top:20px; width:35%" class="pull-left">출시일 : ${zzim.gregidate}</p>
+								<p style="position:relative; top:20px; width:38%" class="pull-right">등록 날짜 : ${zzim.sregidate}</p>
+								<p style="position:relative; top:20px; width:35%" class="pull-left">가격 : ${zzim.price}</p>
+								<input style="position: relative; left: 145px; bottom: 14px; width: 200px;" type="checkbox" name="input_check" value="${zzim.gdnum}">
 							</td>
 						</tr>
 					</c:forEach>
@@ -57,18 +62,43 @@
 			$("input:checkbox:checked").each(function (index) {  
 				var gdnum = $(this).val(); 
 				var id = $(".hiddenid").val();
+				
 				$.ajax({
-					type : 'post',
-					url : '/myPage/shopBasket/regiBasket',
+					type : 'get',
+					url : '/myPage/shopBasket/gameInfo',
 					data : {
-						gdnum : gdnum,
-						id : id
+						gdnum : gdnum
 					},
 					dataType : 'text',
-					success : function() {
-						alert("찜한 상품이 장바구니에 추가 되었습니다.");
+					success : function(vo) {
+						var gamename = JSON.parse(vo);
+						
+						
+						
+						$.ajax({
+							type : 'post',
+							url : '/myPage/shopBasket/regiBasket',
+							data : {
+								gdnum : gdnum,
+								id : id
+							},
+							dataType : 'text',
+							success : function(event) {
+								if(event=='failed'){
+									var con = confirm("["+gamename.title+"]이(가)  이미 장바구니에 들어있습니다. 장바구니로 이동하시겠습니까?")
+									if(con){
+										location.href = "/myPage/shopBasket/regiBasket";
+									}
+								} else{
+									var con = confirm("["+gamename.title+"]이(가)  장바구니에 집어넣었습니다. 장바구니로 이동하시겠습니까?")
+									if(con){
+										location.href = "/myPage/shopBasket/regiBasket";
+									}
+								}
+							}
+						})
 					}
-				})
+				});
 		    });
 		});
 		

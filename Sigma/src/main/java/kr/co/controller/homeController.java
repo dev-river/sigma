@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.domain.PageTO;
+import kr.co.domain.SPageTO;
 import kr.co.domain.boardVO;
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
@@ -22,6 +23,7 @@ import kr.co.domain.reviewVO;
 import kr.co.service.boardService;
 import kr.co.service.gameDetailService;
 import kr.co.service.replyService;
+import kr.co.service.sboardService;
 
 @Controller
 @RequestMapping("/")
@@ -31,8 +33,12 @@ public class homeController {
 	private replyService rservice;
 	@Inject
 	private boardService bservice;
-	@Inject
+
+  @Inject
 	private gameDetailService gservice;
+
+  @Autowired
+	private sboardService sbService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -52,6 +58,7 @@ public class homeController {
 		model.addAttribute("dbTO", dbTO);
 		
 	}
+	
 	@RequestMapping(value = "/mainboardinsert", method = RequestMethod.GET)
 	public void boardFRmaininsertUI() {
 	}
@@ -93,6 +100,55 @@ public class homeController {
 		int amount = bservice.amount();
 		System.out.println(amount);
 		return (amount-1)/perPage+1;
+	}
+	
+	@RequestMapping("/searchMainboard")
+	public void list(SPageTO sto, Model model) {
+		SPageTO dbSTO = sbService.list(sto);
+		model.addAttribute("to", dbSTO); 
+	}
+	
+	@RequestMapping(value = "/searchMainboardread")
+	public void read(Model model, int num, SPageTO sto) {
+		boardVO svo = sbService.read(num);
+		
+		model.addAttribute("vo", svo);
+		model.addAttribute("to", sto);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/searchMainboardDel", method = RequestMethod.POST)
+	public void delete(int num) {
+		rservice.deleteAll(num);
+	    sbService.del(num);
+	}
+	
+	@RequestMapping(value="/searchMainboardupdate", method = RequestMethod.GET) 
+	public void	updateUI(Model model, SPageTO sto, int num) {
+		boardVO vo = sbService.updateUI(num); 
+		model.addAttribute("vo", vo);
+		model.addAttribute("to", sto); 
+	}
+
+	@RequestMapping(value="/searchMainboardupdate", method = RequestMethod.POST)
+	public String update(boardVO vo, SPageTO sto) { 
+		
+		sbService.update(vo);
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("redirect:/searchMainboardread?num=");
+		sb.append(vo.getNum());
+		sb.append("&CurPage=");
+		sb.append(sto.getCurPage());
+		sb.append("&perPage=");
+		sb.append(sto.getPerPage());
+		sb.append("&searchType=");
+		sb.append(sto.getSearchType());
+		sb.append("&keyword=");
+		sb.append(sto.getKeyword());
+		
+		return sb.toString();
+//		return "redirect:/sboard/read?bno="+vo.getBno()+"&curPage="+sto.getCurPage()+"&perPage"+sto.getPerPage()+"&searchType="+sto.getSearchType()+"&keyword="+sto.getKeyword();
 	}
 	//======================================board END============================================
 	

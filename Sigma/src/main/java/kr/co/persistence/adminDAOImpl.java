@@ -1,5 +1,6 @@
 package kr.co.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -75,6 +76,37 @@ public class adminDAOImpl implements adminDAO{
 		session.update(NSsetting+".changeCharge", vo);
 	}
 
+	@Override
+	public void logoupdate(String logofilepath, adminSetVO vo) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("logofilepath", logofilepath);
+		map.put("vo", vo);
+		
+		session.update(NSsetting+".changeLogo", map);
+	}
+
+	@Override
+	public void bgupdate(String bgfilepath, adminSetVO vo) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("bgfilepath", bgfilepath);
+		map.put("vo", vo);
+		
+		session.update(NSsetting+".changeBG", map);
+	}
+
+	@Override
+	public adminSetVO getBGimg() {
+
+		return session.selectOne(NSsetting+".getBGimg");
+	}
+
+	@Override
+	public adminSetVO getLogoimg() {
+		
+		return session.selectOne(NSsetting+".getLogoimg");
+	}
 	
 
 }

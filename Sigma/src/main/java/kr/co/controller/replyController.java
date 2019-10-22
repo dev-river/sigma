@@ -46,7 +46,7 @@ public class replyController {
 	}
 	 
 	/* Reply List 출력 부분 */
-	  
+	/* 댓글 페이징 부분 수정 */
 	@RequestMapping(value = "/{frnum}", method = RequestMethod.GET)
 	public ResponseEntity<List<replyVO>> replyList(@PathVariable ("frnum") int frnum){
 		ResponseEntity<List<replyVO>> entity = null;
