@@ -1,5 +1,7 @@
 package kr.co.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -15,7 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.domain.PageTO;
 import kr.co.domain.SPageTO;
 import kr.co.domain.boardVO;
+import kr.co.domain.gameDetailDcVO;
+import kr.co.domain.gameVO;
+import kr.co.domain.reviewVO;
 import kr.co.service.boardService;
+import kr.co.service.gameDetailService;
 import kr.co.service.replyService;
 import kr.co.service.sboardService;
 
@@ -27,7 +33,11 @@ public class homeController {
 	private replyService rservice;
 	@Inject
 	private boardService bservice;
-	@Autowired
+
+  @Inject
+	private gameDetailService gservice;
+
+  @Autowired
 	private sboardService sbService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -142,4 +152,59 @@ public class homeController {
 	}
 	//======================================board END============================================
 	
+	//======================================gameDetail============================================
+	@RequestMapping(value = "/maincategory", method = RequestMethod.GET)
+	public void gameDetaillist(Model model, String category) {
+		//list 페이지 파라미터로 category
+		if(category.equalsIgnoreCase("all")) {
+			category = "%";
+		}
+		List<gameVO> vo = new ArrayList<gameVO>();
+		vo = gservice.list(category);
+		
+		model.addAttribute("vo", vo);
+	}
+	@RequestMapping(value = "/maincategoryread", method = RequestMethod.GET)
+	public void gameDetailread(Model model, int num) {
+		//num으로 gameVO 상세정보 부르기 from gameDetail
+		gameVO vo = gservice.read(num);
+		
+		//해당 num에 걸려있는 이미지 파일 가져오기  from gameDetailFile
+		List<String> filepath = gservice.filepath(num);
+		String firstfilepath = filepath.get(1);
+		filepath.remove(0);
+		filepath.remove(0);
+		
+		//할인정보 가져오기
+		gameDetailDcVO dcvo = null;
+		dcvo = gservice.dccheck(num);
+		
+		//최다 리뷰글 가져오기
+		reviewVO maxYesReview = gservice.maxYesReview(num);
+		reviewVO maxNoReview= gservice.maxNoReview(num);
+		
+		//전체 리뷰글 가져오기
+		List<reviewVO> reviewlist = gservice.reviewlist(num);
+		
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("firstfilepath", firstfilepath);
+		model.addAttribute("filepath", filepath);
+		model.addAttribute("dcvo", dcvo);
+		model.addAttribute("maxYesReview", maxYesReview);
+		model.addAttribute("maxNoReview", maxNoReview);
+		model.addAttribute("reviewlist", reviewlist);
+	}
+	@RequestMapping(value = "/maincategoryupdate", method = RequestMethod.GET)
+	public void update(Model model, int num) {
+		gameVO vo = gservice.read(num);
+		model.addAttribute("vo", vo);
+	}
+	
+	@RequestMapping(value = "/maincategoryupdate", method = RequestMethod.POST)
+	public String update(gameVO vo) {
+		gservice.update(vo);
+		return "redirect:/maincategoryread?num="+vo.getNum();
+	}
+	//======================================gameDetail END============================================
 }

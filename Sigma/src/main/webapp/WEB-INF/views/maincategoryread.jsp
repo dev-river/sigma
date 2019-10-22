@@ -36,7 +36,7 @@
 	<!-- 헤더 -->
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<!-- 바디 -->
-	<jsp:include page="/WEB-INF/views/board/boardFR/list.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/gameDetail/inform/read.jsp"></jsp:include>
 	<!-- 풋터 -->
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 </body>

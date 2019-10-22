@@ -11,19 +11,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.bodymain {
-	position: relative;
-	margin: auto;
-	height: auto;
-	width: 1070px;
-}
 .update{
 	position: relative;
 	width: 1070px;
 	height: auto;
 	margin: 0;
 	right: 0%;
+}
+label{
+	color: white;
 }
 </style>
 </head>
@@ -65,6 +63,6 @@
 	</div>
 	</div>
 		<br>
-		<br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>

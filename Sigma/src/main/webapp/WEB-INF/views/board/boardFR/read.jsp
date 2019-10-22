@@ -12,13 +12,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="/resources/js/uploadutils.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.bodymain {
-	position: relative;
-	margin: auto;
-	height: auto;
-	width: 1070px;
-}
 .read{
 	position: relative;
 	width: 1070px;

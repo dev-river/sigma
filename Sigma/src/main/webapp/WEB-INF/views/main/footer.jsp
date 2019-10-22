@@ -27,14 +27,17 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-
-
 .footer{
+	position : relative;
+	left: 0;
+	right: 0;
+	bottom :100%;
 	background : linear-gradient(black, #5D5D5D 40%, black);
 	margin: auto;
 	height : 100px;
 	width: auto;
 	text-align: center;
+	
 }
 .footer p{
 	color: white;

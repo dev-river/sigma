@@ -11,20 +11,32 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
 			img { display: block; margin: 0px auto;
 			text-align: center;
+			border-radius: 10px;
+ 			box-shadow: 15px 15px 20px black;
 			}
+			checkbox{
+				position: relative;
+				left: 100%;
+			}
+			p{
+			color: white;
+	
 		</style>
 </head>
 <body>
-<h1>GameDetail category list page</h1>
-<hr>
 
+<hr>
+		<div class=bodymain>
+			
 <div class=container>
 	<c:forEach items="${vo}" var="gvo">
 	<div style="width: 33%; margin: 0; float: left;">
-			<a href="/gameDetail/inform/read?num=${gvo.num}">
+			
+			<a href="/maincategoryread?num=${gvo.num}">
 			<c:choose>
 				<c:when test="${gvo.filepath eq null}">
 					<img alt="No image" src="/resources/gameDetailFile/noimage.png" width="280px" height="280px">
@@ -49,5 +61,13 @@
 	</div>
 	</c:forEach>
 </div>
+</div>
+<script type="text/javascript">
+function movepage(page)
+{
+window.document.location.href=page;
+return;
+}
+</script>
 </body>
 </html>

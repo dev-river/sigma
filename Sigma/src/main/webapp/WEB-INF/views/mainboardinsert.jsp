@@ -25,14 +25,9 @@
 <!-- Latest compiled and minified JavaScript -->
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-html, body {
-	background: linear-gradient(60deg, orange, black,#5D5D5D,gray,black,orange);
-	margin: auto;
-	width: auto;
-	height: auto;
-}
+
 
 
 
