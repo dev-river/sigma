@@ -16,4 +16,6 @@ public interface replyDAO {
 
 	void replyUpdate(replyVO vo);
 
+	void deleteAll(int num);
+
 }

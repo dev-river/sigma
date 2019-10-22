@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.domain.SPageTO;
 import kr.co.domain.boardVO;
+import kr.co.service.replyService;
 import kr.co.service.sboardService;
 
 @Controller
@@ -17,6 +18,9 @@ public class searchBoardController {
 
 	@Autowired
 	private sboardService sbService;
+	
+	@Autowired
+	private replyService rservice;
 
 	@RequestMapping("/sboardFR/list")
 	public void list(SPageTO sto, Model model) {
@@ -35,8 +39,8 @@ public class searchBoardController {
 	@ResponseBody
 	@RequestMapping(value = "/sboardFR/del", method = RequestMethod.POST)
 	public void delete(int num) {
-
-		  sbService.del(num);
+		rservice.deleteAll(num);
+		sbService.del(num);
 
 		/*
 		 * StringBuffer sb = new StringBuffer();
@@ -69,7 +73,7 @@ public class searchBoardController {
 		sbService.update(vo);
 		
 		StringBuffer sb = new StringBuffer();
-		sb.append("redirect:/sboard/sboardFR/read?num=");
+		sb.append("redirect:/searchMainboardread?num=");
 		sb.append(vo.getNum());
 		sb.append("&CurPage=");
 		sb.append(sto.getCurPage());

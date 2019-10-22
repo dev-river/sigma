@@ -43,6 +43,7 @@
 					<input type="hidden" name="num" value="${readvo.num}">
 					<input type="hidden" name="curPage" value="${to.curPage}">
 					<input type="hidden" name="perPage" value="${to.perPage}">
+					<input type="hidden" name="perPage" value="${vo.nickname}">
 				</form>
 			
 				<div class="form-group">
@@ -67,12 +68,12 @@
 				
 				<div class="form-group">
 					<label for="content">내용</label>
-					<textarea  class="form-control" id="content" readonly="readonly">${readvo.content}</textarea>
+					<div id="content">${readvo.content}</div>
 				</div>
 				<div>
 				    <input type="button" value="수정" class="btn update btn-primary">
 					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/mainboard?curPage=${to.curPage}&perPage=${to.perPage}'">
-					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
+					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/board/boardFR/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
 				</div>
 			</div>
 		<hr>
@@ -120,6 +121,12 @@
 
 			</div> 
 			
+<!-- 			<div class="row"> 댓글 페이징 들어갈 곳
+				<ul class="pagination">
+				
+				</ul>
+			</div> -->
+			
 		<div class="row">
 			<div data-backdrop="static" id="myModal" class="modal fade">
 				<div class="modal-dialog">
@@ -148,6 +155,13 @@
 
 	$(document).ready(function(){
 		var frnum = ${readvo.num}; /* 계속 사용될것이므로 전역변수로 지정 */
+		/* var replyPage = 1; */
+		
+		$(".pagination").on("click","li a", function(event) {
+			event.preventDefault();
+			replyPage =$(this).attr("href");
+			getAllList(frnum);
+		});
 		
 		/* replyDelete 부분 */
 		$("#modal_delete").click(function(){
@@ -263,9 +277,28 @@
 				
 				$("#replyList").html(str);
 				
+				printPaging(result);
 			});
 		}
 	});
+	
+/* 	function printPaging(to) {
+		var str = '';
+		if(to.curPage > 1){
+			str+="<li><a href='"+(to.curPage)+"'>&laquo;</a></li>"
+		}
+		
+		for(var i=to.bpn;i<to.spn+1;i++){
+			var strClass = to.curPage == i ? 'active':'';
+			str+="<li class='"+strClass+"'><a href='"+i+"'>"+i+"</a></li>";
+		}
+		
+		if(to.curPage < to.totalPage){
+			str+="<li><a href='"+(to.curPage+1)+"'>&raquo;</a></li>"
+		}
+		
+		$(".pagination").html(str);
+	} */
 	
 	
 </script>

@@ -22,6 +22,6 @@
 	</delete>
 	
 	<delete id="deleteAll">
-		delete from boardFRReply where num = #{num}
+		delete from boardFRReply where frnum = #{num}
 	</delete>
 </mapper>

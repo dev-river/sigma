@@ -20,8 +20,6 @@ public interface boardDAO {
 
 	public int getAmount();
 
-	public List<boardVO> pageList(PageTO to);
-
-	
+	public List<boardVO> pageList(PageTO<boardVO> to);
 
 }

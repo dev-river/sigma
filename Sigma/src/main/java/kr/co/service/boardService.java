@@ -19,11 +19,7 @@ public interface boardService {
 
 	void boardFRdelete(int num);
 
-	PageTO pageList(PageTO to);
+	PageTO<boardVO> pageList(PageTO<boardVO> to);
 
 	int amount();
-
-	
-
-
 }

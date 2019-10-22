@@ -40,6 +40,12 @@ public class replyDAOImpl implements replyDAO{
 	public void replyUpdate(replyVO vo) {
 		session.update(NS+".replyUpdate", vo);
 		
+	}
+
+	@Override
+	public void deleteAll(int num) {
+		// TODO Auto-generated method stub
+		session.delete(NS+".deleteAll", num);
 	};
 
 

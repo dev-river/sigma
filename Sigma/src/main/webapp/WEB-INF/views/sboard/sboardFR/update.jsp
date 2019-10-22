@@ -43,6 +43,7 @@
 				<label for="content">내용</label>
 				<textarea class="form-control" id="content" name="content" rows="3">${vo.content}</textarea>
 			</div>
+			
 			<div class="form-group">
 				<button class="btn btn-warning modify">수정</button>
 			</div>
@@ -55,7 +56,7 @@
 			var $from = $("form");
 			
 			$(".modify").on("click", function() {
-				$form.attr("action","/sboard/sboardFR/update");
+				$form.attr("action","/searchMainboardupdate");
 				$form.attr("method","post");
 				$form.submit();
 			});
