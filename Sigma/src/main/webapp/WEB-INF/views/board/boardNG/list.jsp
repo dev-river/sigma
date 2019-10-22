@@ -57,7 +57,7 @@
       </div> 
 	
 	
-	<a href="/mainboardinsert" class="btn btn-primary">글쓰기</a>
+	<a href="/mainboardNG/mainboardNGinsert" class="btn btn-primary">글쓰기</a>
 <!-- 	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a> -->
 	<table class="table table-hover" style="color: white">
 		<thead>
@@ -87,19 +87,19 @@
 				
 					<c:if test="${dbTO.curPage>1}">
 						<li><a
-							href="/mainboard?curPage=${dbTO.curPage-1}&perPage=${dbTO.perPage}">&laquo;</a></li>
+							href="/mainboardNG?curPage=${dbTO.curPage-1}&perPage=${dbTO.perPage}">&laquo;</a></li>
 					</c:if>
 					<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
 
 					<c:forEach begin="${dbTO.bpn}" end="${dbTO.spn}" var="idx">
 						<li class="${dbTO.curPage == idx?'active':''}"><a
-							href="/mainboard?curPage=${idx}&perPage=${dbTO.perPage}">${idx}</a></li>
+							href="/mainboardNG?curPage=${idx}&perPage=${dbTO.perPage}">${idx}</a></li>
 						<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
 					</c:forEach>
 
 					<c:if test="${dbTO.curPage<dbTO.totalPage}">
 						<li><a
-							href="/mainboard?curPage=${dbTO.curPage+1}&perPage=${dbTO.perPage}">&raquo;</a></li>
+							href="/mainboardNG?curPage=${dbTO.curPage+1}&perPage=${dbTO.perPage}">&raquo;</a></li>
 					</c:if>
 
 				</ul>
@@ -138,9 +138,9 @@
 				            dataType:'text',
 				            success: function(totalPage) {
 				               if(${dbTO.curPage}>totalPage){
-				                  location.assign("/mainboard?perPage="+perPage+"&curPage="+totalPage);
+				                  location.assign("/mainboardNG?perPage="+perPage+"&curPage="+totalPage);
 				               }else {
-				                  location.assign("/mainboard?perPage="+perPage+"&curPage=${dbTO.curPage}");
+				                  location.assign("/mainboardNG?perPage="+perPage+"&curPage=${dbTO.curPage}");
 				               }
 				            }
 				         });

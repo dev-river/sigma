@@ -44,4 +44,10 @@ public class replyServiceImpl implements replyService{
 		
 	}
 
+	@Override
+	public void deleteAll(int num) {
+		rdao.deleteAll(num);
+		
+	}
+
 }

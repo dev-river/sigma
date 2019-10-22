@@ -49,7 +49,7 @@ public class boardServiceImpl implements boardService{
 	}
 
 	@Override
-	public PageTO pageList(PageTO to) {
+	public PageTO<boardVO> pageList(PageTO<boardVO> to) {
 		int amount = bdao.getAmount();
 		to.setAmount(amount);
 		

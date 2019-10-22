@@ -16,6 +16,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
@@ -28,6 +29,7 @@
 		id="multipartResolver">
 		<beans:property value="10485760" name="maxUploadSize"></beans:property>
 	</beans:bean>
+	
 	<beans:bean class="java.lang.String" id="uploadPath">
 		<beans:constructor-arg value="C:\\Users\\user\\git\\sigma\\Sigma\\src\\main\\webapp\\resources\\main"></beans:constructor-arg>
 	</beans:bean>
@@ -35,6 +37,9 @@
 	<beans:bean class="kr.co.in.LoginIn" id="loginIn"></beans:bean>
 	<beans:bean class="kr.co.in.AuthIn" id="AuthIn"></beans:bean>
 	<beans:bean class="kr.co.in.AutoLoginIn" id="AutoLoginIn"></beans:bean>
+	
+	
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/**"/>
@@ -49,6 +54,4 @@
 			<beans:ref bean="loginIn"/>
 		</interceptor>
 	</interceptors>
-	
-	
 </beans:beans>
