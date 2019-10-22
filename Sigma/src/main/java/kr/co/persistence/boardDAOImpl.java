@@ -56,7 +56,7 @@ public class boardDAOImpl implements boardDAO{
 	}
 
 	@Override
-	public List<boardVO> pageList(PageTO to) {
+	public List<boardVO> pageList(PageTO<boardVO> to) {
 		// TODO Auto-generated method stub
 		return session.selectList(NS+".pageList", to);
 	}

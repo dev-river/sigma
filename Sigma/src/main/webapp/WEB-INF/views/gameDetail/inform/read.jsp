@@ -11,9 +11,19 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+<style type="text/css">
+	p{
+	color: white;
+	}
+		img {
+			border-radius: 10px;
+ 			box-shadow: 15px 15px 20px black;
+			}
+</style>
 </head>
 <body>
-<h1>GameDetail read page</h1>
+
 <hr>
 <div class="container">
 	<h3>게임이름: ${vo.title}</h3>
@@ -192,7 +202,7 @@
       		</c:forEach>
       	</div>
    </div>
-   
+   <br>
    <script type="text/javascript">
    	$(document).ready(function(){
    		$(".yesorno").on("click", function(){

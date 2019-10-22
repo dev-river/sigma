@@ -33,6 +33,9 @@
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
+	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
 	<context:component-scan base-package="kr.co.persistence"/>
 	<context:component-scan base-package="kr.co.service"/>
 	

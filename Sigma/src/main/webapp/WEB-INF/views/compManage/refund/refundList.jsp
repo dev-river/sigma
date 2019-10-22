@@ -27,8 +27,6 @@
 					<th>환불 게임</th>
 					<th>환불 신청 날짜</th>
 					<th>환불 상태</th>
-					<th style="display: none;">환불 거절 사유</th>
-					<th style="display: none;">환불 결정 날짜</th>
 				</tr>
 			</thead>
 			<tbody>

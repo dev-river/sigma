@@ -32,6 +32,15 @@ public interface compService {
 
 	void refundOK(int num);
 
-	void returncash(Map<String, Object> map);
+	void returncash(Map<String, Object> map2);
 
+	void giveback1(Map<String, Object> map1);
+
+	void givemoney();
+
+	void sellermoney(gameVO vo);
+
+	void giveback2(int buynum);
+
+	int seachcash(String writer);
 }

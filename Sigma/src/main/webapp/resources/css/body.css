@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+.bodymain {
+	position: relative;
+	margin: auto;
+	height: auto;
+	width: auto;
+}
+
+.main {
+	position: relative;
+	left: 0%;
+	width: auto;
+	height: 1000px;
+	margin: 0;
+}
+
+
+.img2 {
+	position: relative;
+	left: 15px;
+	width: 1070px;
+	height: 400px;
+}
+
+.table0 {
+	width: 300px;
+	position: relative;
+	right: 10px;
+}
+.table0 a,.table1 a, .table2 a{
+	color: white;
+}
+.table1 {
+	width: 300px;
+	position: relative;
+	left: 415px;
+	margin: 0px;
+	bottom: 411px;
+}
+
+.table2 {
+	width: 300px;
+	position: relative;
+	left: 830px;
+	bottom: 822px;
+	margin: 0px;
+}
+
+#img1,#img2,#img3{
+ border-radius: 10px;
+ box-shadow: 15px 15px 20px black;
+}
+
+#mainimg{
+	border-radius: 20px;
+}
+.table0 th, .table0 td , .table1 th, .table1 td , .table2 th  , .table2 td{
+	color: white;
+}

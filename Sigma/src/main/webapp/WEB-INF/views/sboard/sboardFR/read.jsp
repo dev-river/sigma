@@ -53,7 +53,7 @@
 				</div>
 				<div>
 				    <input type="button" value="수정" class="btn btn-primary update">
-					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/sboard/sboardFR/list?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}'">
+					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/searchMainboard?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}'">
 					<input type="button" value="삭제" class="btn btn-warning del" >
 					<%-- onclick="location.href='/board/boardFR/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}' --%>
 				</div>
@@ -185,7 +185,7 @@
 		
 		/* boardUpdate 부분 */
 		$(".update").on("click",function(){
-			location.href="/sboard/sboardFR/update?num=${vo.num}&searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}";
+			location.href="/searchMainboardupdate?num=${vo.num}&searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}";
 		});
 		
 			$(".del").click(function(){
@@ -194,12 +194,12 @@
 				
 				$.ajax({
 					type : 'post',
-					url : '/sboard/sboardFR/del',
+					url : '/searchMainboardDel',
 					data : {
 						num : num
 					},
 					success : function(){
-				   	 location.href="/sboard/sboardFR/list?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}";
+				   	 location.href="/searchMainboard?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}";
 					}
 				});
 			});
