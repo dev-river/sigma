@@ -73,6 +73,35 @@ public class adminServiceImpl implements adminService{
 		addao.changeCharge(vo);
 	}
 
+	@Override
+	public void LogoUpdate(adminSetVO vo, String savedName) {
+
+		String logofilepath = savedName.substring(3);
+		
+		addao.logoupdate(logofilepath, vo);
+		
+	}
+
+	@Override
+	public void BGUpdate(adminSetVO vo, String savedName) {
+		
+		String bgfilepath = savedName.substring(3);
+		
+		addao.bgupdate(bgfilepath, vo);
+		
+	}
+
+	@Override
+	public adminSetVO getBGimg() {
+
+		return addao.getBGimg();
+	}
+
+	@Override
+	public adminSetVO getLogoimg() {
+		
+		return addao.getLogoimg();
+	}
 
 
 }

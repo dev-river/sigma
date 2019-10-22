@@ -11,12 +11,12 @@ function getOriginalLink(data) {
 			}
 		}
 		
-		function getOriginalName(data) {
+function getOriginalName(data) {
  			var idx = data.lastIndexOf("_")+1;
 			return data.substring(idx);
 		}
 		
-		function checkImageType(data) {
+function checkImageType(data) {
 			var pattern = /jpg|png|jpeg|gif/i;
 			return data.match(pattern);
 		}
