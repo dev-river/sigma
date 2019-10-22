@@ -334,6 +334,7 @@ public class myPageController {
 		model.addAttribute("refund", refundList);
 	}
 	
+	//환불 신청 UI
 	@RequestMapping(value = "/buyList/refundInsert", method = RequestMethod.GET)
 	public void refundInsert(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
@@ -346,10 +347,21 @@ public class myPageController {
 		model.addAttribute("id", id);
 	}
 	
+	//환불 신청
 	@RequestMapping(value = "/buyList/refundInsert", method = RequestMethod.POST)
 	public String refundInsert(int buynum, String content, String id) {
 		mpService.refundInsert(buynum, content, id);
 		return "redirect:/myPage/buyList/refundList";
+	}
+	
+	//배급사 리스트로 이동
+	@ResponseBody
+	@RequestMapping(value = "/subscribe/subComp", method = RequestMethod.POST)
+	public String subComp(String writer, Model model) {
+		List<gameVO> comp = mpService.subComp(writer);
+		model.addAttribute("comp", comp);
+		
+		return "";
 	}
 
 }

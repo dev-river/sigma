@@ -101,4 +101,8 @@
 		update gameDetail set sellCharge = sellCharge + (price*(1-dcrate/100))*(1-(select buycharge from adminsetting)/100) where num=#{gdnum}
 	</update>
 	
+	<select id="subComp" resultType="kr.co.domain.gameVO">
+		select g.num, g.title, g.content, g.writer, g.filepath gamefilepath, u.filepath from gamedetail g, userinfo u where u.id=#{writer} and g.writer=#{writer} order by g.regidate desc
+	</select>
+	
 </mapper>

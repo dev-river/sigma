@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.domain.basketVO;
 import kr.co.domain.buyListVO;
+import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
 
@@ -56,5 +57,7 @@ public interface myPageDAO {
 	void profit(int gdnum);
 
 	void sellCharge(int gdnum);
+
+	List<gameVO> subComp(String writer);
 
 }

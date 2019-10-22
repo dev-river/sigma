@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.domain.basketVO;
 import kr.co.domain.buyListVO;
+import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
 
@@ -192,6 +193,12 @@ public class myPageDAOImpl implements myPageDAO{
 	@Override
 	public void sellCharge(int gdnum) {
 		session.update(NS+".sellCharge", gdnum);
+		
+	}
+
+	@Override
+	public List<gameVO> subComp(String writer) {
+		return session.selectList(NS+".subComp", writer);
 		
 	}
 	

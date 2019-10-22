@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.basketVO;
 import kr.co.domain.buyListVO;
+import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
 import kr.co.persistence.myPageDAO;
@@ -159,6 +160,12 @@ public class myPageServiceImpl implements myPageService{
 	@Override
 	public void sellCharge(int gdnum) {
 		mpdao.sellCharge(gdnum);
+		
+	}
+
+	@Override
+	public List<gameVO> subComp(String writer) {
+		return mpdao.subComp(writer);
 		
 	}
 
