@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+html, body {
+	background: linear-gradient(60deg, orange, black,#5D5D5D,gray,black,orange);
+	margin: 0;
+	max-height: auto;
+	min-height: 650px;
+}
+
+.bodymain {
+	position: relative;
+	margin: auto;
+	max-height: auto;
+	min-height: 650px;
+	width: 1070px;
+}

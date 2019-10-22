@@ -25,67 +25,9 @@
 <!-- Latest compiled and minified JavaScript -->
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/resources/css/body.css">
 <style type="text/css">
-.bodymain {
-	position: relative;
-	margin: auto;
-	height: 900px;
-	width: auto;
-}
 
-.main {
-	position: relative;
-	left: 0%;
-	width: auto;
-	height: 850px;
-	margin: 0;
-}
-
-
-.img2 {
-	position: relative;
-	left: 15px;
-	width: 1070px;
-	height: 409px;
-}
-
-.table0 {
-	width: 300px;
-	position: relative;
-	right: 10px;
-}
-.table0 a,.table1 a, .table2 a{
-	color: white;
-}
-.table1 {
-	width: 300px;
-	position: relative;
-	left: 415px;
-	margin: 0px;
-	bottom: 411px;
-}
-
-.table2 {
-	width: 300px;
-	position: relative;
-	left: 830px;
-	bottom: 822px;
-	margin: 0px;
-}
-#img1,#img2,#img3{
- border-radius: 10px;
- 
-}
-#img1,#img2,#img3 {
-box-shadow: 15px 15px 20px black;
-}
-#mainimg{
-	border-radius: 20px;
-}
-.table0 th, .table0 td , .table1 th, .table1 td , .table2 th  , .table2 td{
-	color: white;
-}
 </style>
 </head>
 <body>
@@ -96,9 +38,6 @@ box-shadow: 15px 15px 20px black;
 			<div class="main">
 				<div class="row">
 					<div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-						
-
 						<div class="carousel-inner">
 							<!--슬라이드1-->
 							<div class="item active">
@@ -183,7 +122,7 @@ box-shadow: 15px 15px 20px black;
 							<tr>
 								<th>최신 순위&nbsp;&nbsp;<a href="#"><img
 										src="/resources/main/icon_more.gif"
-										style="position: relative; left: 215px;"></a></th>
+										style="position: relative; left: 205px;"></a></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -212,7 +151,7 @@ box-shadow: 15px 15px 20px black;
 							<tr>
 								<th>무료 순위&nbsp;&nbsp;<a href="#"><img
 										src="/resources/main/icon_more.gif"
-										style="position: relative; left: 215px;"></a></th>
+										style="position: relative; left: 205px;"></a></th>
 							</tr>
 						</thead>
 						<tbody>

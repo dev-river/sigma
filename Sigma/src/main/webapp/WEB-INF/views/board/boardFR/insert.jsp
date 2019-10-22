@@ -11,25 +11,24 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.bodymain {
-	position: relative;
-	margin: auto;
-	height: auto;
-	width: 1070px;
-}
 .insert{
 	position: relative;
 	width: 1070px;
-	height: 850px;
+	height: auto;
 	margin: 0;
 	right: 45px;
+}
+label{
+	color: white;
 }
 </style>
 </head>
 
 <body>
 	<br><br><br>
+	<div class="bodymain">
 	<div class="container">
 		<div class="insert">
 		<div class="row">
@@ -51,8 +50,17 @@
 					<input type="submit" class="btn btn-primary" value="등록">
 				</div>
 			</form>
+			<button onclick="/mainboard" value="뒤로" id="button">취소</button>
 		</div>
 	</div>
 </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 </body>
+<script>
+function button() {
+	alert("버튼1을 누르셨습니다.");
+}
+</script>
 </html>
