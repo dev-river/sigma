@@ -106,5 +106,10 @@ public class compDAOImpl implements compDAO {
 		return session.selectOne(NS+".seachcash", writer);
 	}
 
+	@Override
+	public List<gameVO> datalist(String writer) {
+		return session.selectList(NS+".datalist", writer);
+	}
+
 	
 }

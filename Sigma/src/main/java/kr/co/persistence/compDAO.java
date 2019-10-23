@@ -44,5 +44,7 @@ public interface compDAO {
 
 	int seachcash(String writer);
 
+	List<gameVO> datalist(String writer);
+
 
 }

@@ -35,7 +35,7 @@
 	</select>
 	
 	<select id="gameDetailDC" resultType="kr.co.domain.gameDetailDcVO">
-		select g.num as num, g.title as gdnum, to_char(gdc.dcstartdate, 'yyyy-mm-dd') as dcstartdate, to_char(gdc.dcenddate, 'yyyy-mm-dd') as dcenddate, to_char(gdc.rqstartdate, 'yyyy-mm-dd') as rqstartdate, to_char(gdc.rqenddate, 'yyyy-mm-dd') as rqenddate, gdc.goal, gdc.dcrate 
+		select g.num as num, g.title, to_char(gdc.dcstartdate, 'yyyy-mm-dd') as dcstartdate, to_char(gdc.dcenddate, 'yyyy-mm-dd') as dcenddate, to_char(gdc.rqstartdate, 'yyyy-mm-dd') as rqstartdate, to_char(gdc.rqenddate, 'yyyy-mm-dd') as rqenddate, gdc.goal, gdc.dcrate 
 		from gamedetail g, gamedetaildc gdc
 		where g.num = gdc.gdnum and g.writer = #{writer} order by num desc
 	</select>
@@ -77,4 +77,6 @@
 	<update id="sellermoney">
 		update userinfo set cash = cash - 1000  where id = #{writer}
 	</update>
+	
+	
 </mapper>

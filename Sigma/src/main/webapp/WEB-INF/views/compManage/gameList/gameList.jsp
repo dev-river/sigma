@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <style type="text/css">
 .head{
 	width: 500px;
@@ -35,6 +36,10 @@
 			<input type="button" value="뒤로" class="btn" onclick="location.href='/compManage/compInform/read?id=${login.id}'">
 		</div>
 		<div class="row body">
+			<div>
+				<h2>성별 및 나이</h2>
+				<div id="chart_div" style="width: 500px; height: 300px;"></div>
+			</div>
 			<div>
 				<h2>판매하는 게임</h2>
 				<input type="button" value="게임 등록" class="btn" onclick="location.href='/compManage/gameList/gameInsert?writer=${login.id}'">
@@ -66,24 +71,47 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						
 						<c:if test="${empty gameDetailDC}">
+						<tr>
 							<td colspan="5" align="center">할인 요청이 활성화 된 게임이 없습니다.</td>
+						</tr>
 						</c:if>
 						<c:if test="${!empty gameDetailDC}">
-							<c:forEach items="${gameDetailDC}" var="gameDetailDC">
-								<td><a href="/gameDetail/inform/read?num=${gameDetailDC.num}">${gameDetailDC.gdnum}</a></td>
-								<td>${gameDetailDC.dcstartdate} - ${gameDetailDC.dcenddate}</td>
-								<td>${gameDetailDC.rqstartdate} - ${gameDetailDC.rqenddate}</td>
-								<td>${gameDetailDC.dcrate}</td>
-								<td>${gameDetailDC.goal}</td>
+							<c:forEach items="${gameDetailDC}" var="DC">
+							<tr>
+								<td><a href="/maincategoryread?num=${DC.num}">${DC.gdnum}</a></td>
+								<td>${DC.dcstartdate} - ${DC.dcenddate}</td>
+								<td>${DC.rqstartdate} - ${DC.rqenddate}</td>
+								<td>${DC.dcrate}</td>
+								<td>${DC.goal}</td>
+							</tr>
 							</c:forEach>
 						</c:if>
-						</tr>
+						
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
+<!-- <script type="text/javascript">
+	google.load('visualization', '1', {'packages' : ['corechart']});
+	google.setOnLoadCallback(drawChart);
+	function drawChart(){
+		var writer = '<c:out value="${login.id}"/>';
+		var jsonData = $.ajax({
+			url : "/chart",
+			data : {
+				writer : writer
+			},
+			dataType : "json",
+			async : false
+		}).responseText;
+		console.log(jsonData);
+		var data = new google.visualization.DataTable(jsonData);
+		var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+		chart.draw(data, {width: 400, height: 240});
+	}
+</script> -->
 </body>
 </html>

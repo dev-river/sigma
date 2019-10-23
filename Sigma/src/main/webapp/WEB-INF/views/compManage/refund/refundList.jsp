@@ -30,19 +30,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				
 				<c:if test="${empty list}">
+				<tr>
 					<td colspan="4"><p>신청한 리스트가 없습니다.</p></td>
+				</tr>
 				</c:if>
 				<c:if test="${!empty list}">
 					<c:forEach items="${list}" var="refundlist">
+					<tr>
 						<td>${refundlist.id}</td>
-						<td><a href="/compManage/refund/refundRead?id=${login.id}">${refundlist.title}</a></td>
+						<%-- <td><a href="/compManage/refund/refundRead?id=${login.id}&num=${refundlist.num}">${refundlist.title}</a></td> --%>
 						<td>${refundlist.updatedate}</td>
 						<td>${refundlist.status}</td>
+					</tr>
 					</c:forEach>
 				</c:if>
-				</tr>
+				
 			</tbody>
 		</table>
 	</div>

@@ -7,13 +7,15 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
@@ -27,6 +29,29 @@ public class compController {
 	@Inject
 	private compService compservice;
 	
+//	@RequestMapping(value = "/chart", method = RequestMethod.GET)
+//	public ResponseEntity<JsonObject> chart(String writer){
+//		ResponseEntity<JsonObject> entity = null;
+//		JSONObject data = new JSONObject();
+//		JSONObject ajaxobjCols1 = new JSONObject();
+//		JSONObject ajaxobjCols2 = new JSONObject();
+//		JSONArray ajaxArrayCols = new JSONArray();
+//		
+//		ajaxobjCols1.put("label", "성별");
+//		ajaxobjCols1.put("type", "string");
+//		
+//		ajaxobjCols2.put("label", "value");
+//		ajaxobjCols2.put("type", "number");
+//		
+//		ajaxArrayCols.add(ajaxobjCols1);
+//		ajaxArrayCols.add(ajaxobjCols2);
+//		data.put("cols", ajaxArrayCols);
+//		
+//		List<gameVO> list = compservice.datalist(writer);
+//		
+//		return entity;
+//	}
+	//판매자 페이지
 	@RequestMapping(value = "/compInform/read")
 	public void read(@RequestParam String id, Model model) {
 		memberVO vo = compservice.read(id);
@@ -35,22 +60,18 @@ public class compController {
 		model.addAttribute("count", count);
 	}
 	
+	//판매자 정보 수정 UI
 	@RequestMapping(value = "/compInform/update")
 	public void updateUI(@RequestParam String id, Model model) {
 		memberVO vo = compservice.read(id);
 		System.out.println(vo.getId());
 		model.addAttribute("vo", vo);
 	}
-	
+	//판매자 정보 수정	
 	@RequestMapping(value = "/compInform/update", method = RequestMethod.POST)
 	public String update(memberVO vo) {
 		compservice.update(vo);
 		return "redirect:/compManage/compInform/read?id="+vo.getId();
-	}
-	
-	@RequestMapping(value = "/compInform/delete", method = RequestMethod.POST)
-	public void delete(String id) {
-		compservice.delete(id);
 	}
 	
 	//판매자가 등록한 게임 리스트
@@ -89,7 +110,7 @@ public class compController {
 	
 	//환불 상세보기
 	@RequestMapping(value = "/refund/refundRead")
-	public void refundRead(String id, Model model) {
+	public void refundRead(@RequestParam String id, Model model) {
 		refundVO rvo = compservice.refundRead(id);
 		model.addAttribute("vo", rvo);
 	}
