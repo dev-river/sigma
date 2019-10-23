@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.adminSetVO;
+import kr.co.domain.adminSlideVO;
 import kr.co.domain.boardVO;
 import kr.co.domain.memberVO;
 import kr.co.persistence.adminDAO;
@@ -101,6 +102,18 @@ public class adminServiceImpl implements adminService{
 	public adminSetVO getLogoimg() {
 		
 		return addao.getLogoimg();
+	}
+
+	@Override
+	public List<adminSlideVO> slideList() {
+
+		return addao.slideList();
+	}
+
+	@Override
+	public void slideDelete(int num) {
+
+		addao.slideDelete(num);
 	}
 
 

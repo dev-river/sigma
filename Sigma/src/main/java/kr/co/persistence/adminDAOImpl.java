@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.domain.adminSetVO;
+import kr.co.domain.adminSlideVO;
 import kr.co.domain.memberVO;
 
 @Repository
@@ -106,6 +107,18 @@ public class adminDAOImpl implements adminDAO{
 	public adminSetVO getLogoimg() {
 		
 		return session.selectOne(NSsetting+".getLogoimg");
+	}
+
+	@Override
+	public List<adminSlideVO> slideList() {
+
+		return session.selectList(NSsetting+".slideList");
+	}
+
+	@Override
+	public void slideDelete(int num) {
+
+		session.delete(NSsetting+".slideDelete", num);
 	}
 	
 

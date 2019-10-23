@@ -28,4 +28,14 @@
 	<select id="getLogoimg" resultType="kr.co.domain.adminSetVO">
 		select logofilepath from adminSetting
 	</select>
+	
+	<select id="slideList" resultType="kr.co.domain.adminSlideVO">
+		select * from adminBanner order by regidate desc
+	</select>
+	
+	<delete id="slideDelete">
+		delete from adminBanner where num = #{num}
+	</delete>
+	
+	
 </mapper>

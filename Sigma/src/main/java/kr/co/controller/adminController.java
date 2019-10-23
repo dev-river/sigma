@@ -1,6 +1,5 @@
 package kr.co.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,8 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import kr.co.domain.PageTO;
 import kr.co.domain.adminSetVO;
+import kr.co.domain.adminSlideVO;
 import kr.co.domain.memberVO;
 import kr.co.service.adminService;
 import kr.co.utils.UploadFileUtils;
@@ -82,13 +81,6 @@ public class adminController {
 		return "redirect:/admin/userManage/userlist";
 	}
 	
-/*	@RequestMapping(value = "/boardManage/boardFRlist")
-	public void boardManageFRlist(PageTO to, Model model) {
-		
-		PageTO dbTO = adservice.pageList(to);
-		model.addAttribute("dbTO", dbTO);
-	} */
-
 	@RequestMapping(value = "/adminSetting/imgManage")
 	public void imgManage(Model model) {
 		adminSetVO LogoVo = adservice.getLogoimg();
@@ -154,13 +146,6 @@ public class adminController {
 		return new ResponseEntity<String>(savedBGName, HttpStatus.OK);
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value="/adminSetting/imgManage/getBGimg")
-//	public String getBGimg(String bgfilepath){
-//		
-//		return adservice.getBGimg();
-//	}
-	
 	
 	@RequestMapping(value = "/adminSetting/chargeManage")
 	public void changeChargeUI(Model model) {
@@ -172,5 +157,18 @@ public class adminController {
 	public String changeCharge(adminSetVO vo) {
 		adservice.changeCharge(vo);
 		return "redirect:/admin/adminSetting/chargeManage/";
+	}
+	
+	@RequestMapping(value = "/adminSetting/slideManage", method = RequestMethod.GET)
+	public void slideManage(Model model) {
+
+		List<adminSlideVO> vo = adservice.slideList();
+		model.addAttribute("vo", vo);
+	}
+	
+	@RequestMapping(value = "/adminSetting/slideDelete", method = RequestMethod.GET)
+	public String slideDelete(int num) {
+		adservice.slideDelete(num);
+		return "redirect:/admin/adminSetting/slideManage";
 	}
 }

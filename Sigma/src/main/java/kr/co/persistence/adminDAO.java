@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.domain.adminSetVO;
+import kr.co.domain.adminSlideVO;
 import kr.co.domain.memberVO;
 
 public interface adminDAO {
@@ -33,4 +34,8 @@ public interface adminDAO {
 	public adminSetVO getBGimg();
 
 	public adminSetVO getLogoimg();
+
+	public List<adminSlideVO> slideList();
+
+	public void slideDelete(int num);
 }
