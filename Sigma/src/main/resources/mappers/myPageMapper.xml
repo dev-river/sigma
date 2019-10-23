@@ -106,7 +106,15 @@
 	</update>
 	
 	<select id="subComp" resultType="kr.co.domain.gameVO">
-		select g.num, g.title, g.content, g.writer, g.filepath gamefilepath, u.filepath from gamedetail g, userinfo u where u.id=#{writer} and g.writer=#{writer} order by g.regidate desc
+		select u.compnum, g.num, g.title, u.compdetail content, g.writer, g.filepath gamefilepath, u.filepath from gamedetail g, userinfo u where u.id=#{writer} and g.writer=#{writer} order by g.regidate desc
 	</select>
+	
+	<insert id="sellInfo">
+		insert into sellinfo (num, gdnum, price, usersex, userage) values ((select nvl2(max(num), max(num)+1, 1) from sellinfo), #{gdnum}, #{price}, #{usersex}, #{userage})
+	</insert>
+	
+	<insert id="subCompInsert">
+		insert into FavoriteStore values ((select nvl2(max(num), max(num)+1, 1) from FavoriteStore), #{id}, #{compnum})
+	</insert>
 	
 </mapper>

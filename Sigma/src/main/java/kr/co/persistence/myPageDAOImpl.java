@@ -211,5 +211,20 @@ public class myPageDAOImpl implements myPageDAO{
 		session.delete(NS+".refundDelete", map);
 		
 	}
+
+	@Override
+	public void sellInfo(Map<String, Object> map) {
+		session.insert(NS+".sellInfo", map);
+		
+	}
+
+	@Override
+	public void subCompInsert(int compnum, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("compnum", compnum);
+		map.put("id", id);
+		session.insert(NS+".subCompInsert", map);
+		
+	}
 	
 }

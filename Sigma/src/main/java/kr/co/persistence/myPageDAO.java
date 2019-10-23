@@ -1,6 +1,7 @@
 package kr.co.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.domain.basketVO;
 import kr.co.domain.buyListVO;
@@ -61,5 +62,9 @@ public interface myPageDAO {
 	List<gameVO> subComp(String writer);
 
 	void refundDelete(int num, String id);
+
+	void sellInfo(Map<String, Object> map);
+
+	void subCompInsert(int compnum, String id);
 
 }
