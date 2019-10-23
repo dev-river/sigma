@@ -50,7 +50,7 @@
       </div> 
 	
 	
-	<a href="/mainboardinsert" class="btn btn-primary">글쓰기</a>
+	
 <!-- 	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a> -->
 	<table class="table table-hover" style="color: white">
 		<thead>
@@ -75,16 +75,17 @@
 		</tbody>
 	</table>
 	
-		<div class="row text-center" style="text-align: center">
+	<a href="/NewGameInsert" class="btn btn-primary" style="float: right;">글쓰기</a>
+<%-- 		<div class="row text-center" style="text-align: center">
 				<ul class="pagination"> <!-- ul에 pagination 클래스를 주면 예쁘다 -->
 				
 					<c:if test="${dbTO.curPage>1}">
 						<li><a
 							href="/mainboard?curPage=${dbTO.curPage-1}&perPage=${dbTO.perPage}">&laquo;</a></li>
-					</c:if>
+					</c:if> --%>
 					<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
 
-				<a href="/mainboardinsert" class="btn btn-primary">글쓰기</a>
+<%-- 				<a href="/mainboardinsert" class="btn btn-primary">글쓰기</a>
 				<!-- 	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a> -->
 				<table class="table table-hover" style="color: white">
 					<thead>
@@ -108,7 +109,7 @@
 							</tr>
 						</c:forEach>
 					</tbody>
-				</table>
+				</table> --%>
 
 				<div class="row text-center" style="text-align: center">
 					<ul class="pagination">
@@ -133,6 +134,7 @@
 
 					</ul>
 				</div>
+				
 				<div class="row ">
 					<div class="input-group" style="padding-right: 10px;">
 						<span class="input-group-addon"> <select id="searchSel">

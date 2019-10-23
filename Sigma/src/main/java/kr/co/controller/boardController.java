@@ -87,5 +87,4 @@ public class boardController {
 		model.addAttribute("dbTO", dbTO);
 		
 	}
-
 }

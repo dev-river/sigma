@@ -47,9 +47,10 @@ label{
 				</div>
 				<div class="form-group">
 					<button id="submitBoardBtn" class="btn btn-info">등록</button>
+					<input type="button" class="btn btn-danger" id="cancle" value="취소" onclick="location.href='/mainboard'">
 				</div>
 			</form>
-			<button onclick="/mainboard" value="뒤로" id="button">취소</button>
+			
 		</div>
 	</div>
 </div>
@@ -88,9 +89,5 @@ label{
       
    </script> -->
 </body>
-<script>
-function button() {
-	alert("버튼1을 누르셨습니다.");
-}
-</script>
+ 
 </html>

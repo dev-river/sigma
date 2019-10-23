@@ -39,7 +39,7 @@
 			<div class="head"><!-- 전체 -->
 				<div class="menu"> <!-- 로그인 로고 검색 -->
 					<div class="img">
-						<a href="/"><img alt="..." src="/resources/main/로고2.png"></a>
+						<a href="/home/"><img alt="..." src="/resources/main/로고2.png"></a>
 					</div>
 					<div class="login">
 					
@@ -50,7 +50,7 @@
               		 <c:if test="${!empty login}">
               		 	 <div id="user">
              		     <c:if test="${login.author eq 'user'}">
-                		     <a class="glyphicon glyphicon-user" href="/myPage/myPage/mypage">마이페이지</a>
+                		     <a class="glyphicon glyphicon-user" href="/mainmypage">마이페이지</a>
                   			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
                 		 </c:if>
                 		 </div>
@@ -83,7 +83,7 @@
 							<li><a href="#" id="me1">새소식</a>
 								<ul>
 									<li><a href="/event">이벤트</a></li>
-									<li><a href="/mainboardNG/mainboardNG">새 게임 소식</a></li>
+									<li><a href="/NewGame">새 게임 소식</a></li>
 								</ul></li>
 
 							<li><a href="#" id="current">게임 추천</a>
@@ -93,7 +93,7 @@
 									<li><a href="#">이벤트게임</a></li>
 									<li><a href="#">할인게임</a></li>
 								</ul>
-							<li><a href="/gameDetail/inform/list?category=all">카테고리</a>
+							<li><a href="/maincategory?category=all&curPage=1&perPage=6">카테고리</a>
 								<ul>
 									<li><a href="/maincategory?category=rpg">RPG</a></li>
 									<li><a href="/maincategory?category=sportsracing">스포츠/레이싱</a></li>

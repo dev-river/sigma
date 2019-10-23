@@ -11,8 +11,11 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 </head>
+
 <body>
+	<div class="bodymain">
 	<input type="hidden" name="num" id="num" value="${vo.num}">
 	<input name="writer" id="writer" value="${vo.writer}" readonly="readonly">
 	<input name="content" id="content" value="${vo.content}">
@@ -24,7 +27,7 @@
  	</select> -->
  	<button class="btn btn-warning">수정</button>
  	<a href="javascript:window.close()" class="btn btn-danger">취소</a>
- 	
+ 	</div>
  	<script type="text/javascript">
  		$("select").val("${vo.recommend}").attr("selected", "selected");
 

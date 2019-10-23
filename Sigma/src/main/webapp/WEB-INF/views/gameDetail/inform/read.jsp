@@ -82,10 +82,17 @@
 		<hr>
 
 		<div class="row pull-right" style="width: 30%;">
-			<input class="pull-left shopBasket" style="width: 45%; margin: 5px;"
-				type="button" value="장바구니에 추가"> <input
-				class="pull-left zzim_list" style="width: 45%; margin: 5px;"
-				type="button" value="찜목록에 추가">
+			<c:choose>
+				<c:when test="${vo.status eq 'o'}">
+					<input class="pull-left shopBasket" style="width: 45%; margin: 5px;"
+					type="button" value="장바구니에 추가"> <input
+					class="pull-left zzim_list" style="width: 45%; margin: 5px;"
+					type="button" value="찜목록에 추가">
+				</c:when>
+				<c:otherwise>
+					<input type="button" value="비활성화된 게임입니다">
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 		<hr>
@@ -118,8 +125,10 @@
 		
 		<!-- 판매자만 보이게 할 버튼 -->
 		<c:if test="${author eq 'seller'}">
-			<a class="btn btn-primary" href="/gameDetail/inform/update?num=${vo.num}">게임정보수정</a>
+			<a class="btn btn-primary" href="/maincategoryupdate?num=${vo.num}">게임정보수정</a>
 	      	<a class="btn btn-primary" href="/gameDetail/inform/DCRqSet?num=${vo.num}&title=${vo.title}" target="_blank">할인 요청 등록</a>
+	      	<br><label for="status">게임등록상태: </label><input id="status" name="status" value="${vo.status}" readonly="readonly">
+	      	<a class="btn btn-danger" href="/gameDetail/inform/gameStatus?num=${vo.num}&status=${vo.status}" onclick="return confirm('변경하시겠습니까?');">게임등록상태변경</a>
       		<hr>
       	</c:if>
       	
@@ -141,8 +150,8 @@
 		      		<p>싫어요: ${maxYesReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxYesReview.num}">싫어요</button></p>
 		      		
 		      		<c:if test="${id eq maxYesReview.writer}">
-		      		<a href="/gameDetail/inform/reviewupdate?num=${maxYesReview.num}" target="_blank" class="btn btn-warning">수정</a>
-		      		<button class="reviewdelete btn btn-danger" value="${maxYesReview.num}">삭제</button>
+		      			<a href="/maincategoryreviewupdate?num=${maxYesReview.num}" target="_blank" class="btn btn-warning">수정</a>
+		      			<button class="reviewdelete btn btn-danger" value="${maxYesReview.num}">삭제</button>
 		      			<%-- <button class="reviewupdate btn btn-warning" value="${maxYesReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxYesReview.num}">삭제</button> --%>
 		      		</c:if>
       			</c:otherwise>
@@ -163,7 +172,7 @@
 		      		<p>좋아요: ${maxNoReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxNoReview.num}">좋아요</button></p>
 		      		<p>싫어요: ${maxNoReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxNoReview.num}">싫어요</button></p>
 		      		<c:if test="${id eq maxNoReview.writer}">
-		      			<a href="/gameDetail/inform/reviewupdate?num=${maxNoReview.num}" target="_blank" class="btn btn-warning">수정</a>
+		      			<a href="/maincategoryreviewupdate?num=${maxNoReview.num}" target="_blank" class="btn btn-warning">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button>
 		      			<%-- <button class="reviewupdate btn btn-warning" value="${maxNoReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button> --%>
 		      		</c:if>
@@ -197,7 +206,7 @@
 		      		<p>좋아요: ${review.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${review.num}">좋아요</button></p>
 		      		<p>싫어요: ${review.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${review.num}">싫어요</button></p>
 		      		<c:if test="${id eq review.writer}">
-		      			<a href="/gameDetail/inform/reviewupdate?num=${review.num}" target="_blank" class="btn btn-warning">수정</a>
+		      			<a href="/maincategoryreviewupdate?num=${review.num}" target="_blank" class="btn btn-warning">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button>
 		      			<%-- <button class="reviewupdate btn btn-warning" value="${review.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button> --%>
 		      		</c:if>
@@ -208,25 +217,6 @@
    <br>
    <script type="text/javascript">
    	$(document).ready(function(){
-   		$(".yesorno").on("click", function(){
-   			var reviewnum = $(this).val();
-   			var assist = $(this).attr("id");
-   			
-   			$.ajax({
-   				type: 'get',
-   				url: '/gameDetail/inform/reviewadd',
-   				data: {
-   					'num': reviewnum,
-   					'assist': assist
-   				},
-   				datatype: 'text',
-   				success: function(result){
-   					alert('적용 되었습니다!');
-   					window.location.reload();
-   				}
-   			});
-   		});
-   		
    		$(".reviewInsert").on("click", function(){
 			var reviewContent = $("#reviewContent").val();
 			var obj = document.getElementById("likeselect");
@@ -256,7 +246,7 @@
 			
    			$.ajax({
    				type: 'get',
-   				url: '/gameDetail/inform/reviewupdate',
+   				url: '/maincategoryreviewupdate',
    				data: {
    					'num': num,
    				},
@@ -344,7 +334,6 @@
 				}
 			});
 		});
-		
    	});
    </script>
 </body>

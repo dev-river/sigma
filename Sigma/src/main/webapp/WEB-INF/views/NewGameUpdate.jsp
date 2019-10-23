@@ -34,15 +34,13 @@ html, body {
 	height: auto;
 }
 
-
-
 </style>
 </head>
 <body>
 	<!-- 헤더 -->
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<!-- 바디 -->
-	<jsp:include page="/WEB-INF/views/board/boardEV/list.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/board/boardNG/update.jsp"></jsp:include>
 	<!-- 풋터 -->
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 </body>

@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.reviewVO;
@@ -21,10 +22,6 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 	private SqlSession session;
 	private final String NS = "kr.co.mapper.gameInform";
 	
-	@Override
-	public List<gameVO> list(String category) {
-		return session.selectList(NS+".list", category);
-	}
 
 	@Override
 	public gameVO read(int num) {
@@ -109,4 +106,30 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 	public void DCRqSet(gameDetailDcVO vo) {
 		session.insert(NS+".DCRqSet", vo);
 	}
+
+	@Override
+	public void gameStatus(int num, String status) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("status", status);
+		session.update(NS+".gameStatus", map);
+	}
+
+	@Override
+	public List<gameVO> list(gPageTO<gameVO> to, String category) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("startNum", to.getStartNum());
+		map.put("endNum", to.getEndNum());
+		if (category.equalsIgnoreCase("all")) {
+  			category = "%";
+  		}
+		map.put("category", category);
+		return session.selectList(NS+".list", map);
+	}
+	
+	@Override
+	public int getAmount() {
+		return session.selectOne(NS+".getAmount");
+	}
+
 }
