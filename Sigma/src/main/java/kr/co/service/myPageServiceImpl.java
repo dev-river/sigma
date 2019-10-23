@@ -169,4 +169,10 @@ public class myPageServiceImpl implements myPageService{
 		
 	}
 
+	@Override
+	public void refundDelete(int num, String id) {
+		mpdao.refundDelete(num, id);
+		
+	}
+
 }

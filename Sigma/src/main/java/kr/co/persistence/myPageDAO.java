@@ -60,4 +60,6 @@ public interface myPageDAO {
 
 	List<gameVO> subComp(String writer);
 
+	void refundDelete(int num, String id);
+
 }

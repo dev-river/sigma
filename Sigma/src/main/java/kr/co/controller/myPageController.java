@@ -54,8 +54,6 @@ public class myPageController {
 		model.addAttribute("buyList", list);
 		model.addAttribute("refund", refundList);
 		model.addAttribute("myinfo", obj);
-		
-		
 	}
 	
 	
@@ -322,17 +320,21 @@ public class myPageController {
 		for(int i=0; i<refundList.size(); i++) {
 			int buynum = refundList.get(i).getNum();
 			int gdnum = mpService.getrefundgdnum(buynum, id);
-
-			List<String> filepath = gservice.filepath(gdnum);
-			if(filepath.size() == 0) {
-				model.addAttribute("img", "noimage.png");
-			} else if(filepath.size() != 0){
-				String firstfilepath = filepath.get(0);
-				model.addAttribute("img", firstfilepath);
-			}
 		}
 		model.addAttribute("refund", refundList);
 	}
+	
+	//환불 신청/내역 삭제
+	@ResponseBody
+	@RequestMapping(value = "/buyList/refundDelete", method = RequestMethod.POST)
+	public void refundDelete(int num, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		memberVO obj = (memberVO)session.getValue("login");
+
+		String id = obj.getId();
+		mpService.refundDelete(num, id);
+	}
+	
 	
 	//환불 신청 UI
 	@RequestMapping(value = "/buyList/refundInsert", method = RequestMethod.GET)
@@ -356,9 +358,11 @@ public class myPageController {
 	
 	//배급사 리스트로 이동
 	@ResponseBody
-	@RequestMapping(value = "/subscribe/subComp", method = RequestMethod.POST)
+	@RequestMapping(value = "/subscribe/subComp", method = RequestMethod.GET)
 	public String subComp(String writer, Model model) {
 		List<gameVO> comp = mpService.subComp(writer);
+		System.out.println(writer);
+		System.out.println(comp);
 		model.addAttribute("comp", comp);
 		
 		return "";

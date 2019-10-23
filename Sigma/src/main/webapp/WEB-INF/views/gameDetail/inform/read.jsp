@@ -26,7 +26,7 @@
 
 <hr>
 <div class="container">
-	<h3>게임이름: ${vo.title}</h3>
+	<h3>게임이름: <a href="/myPage/subscribe/subComp?writer=${vo.writer}" style="text-decoration:none; color: #333333;">${vo.title}</a></h3>
 	<h5>배급사: ${vo.writer}</h5>
 	<h5>가격: <c:choose>
 				<c:when test="${vo.dcrate eq 0}">

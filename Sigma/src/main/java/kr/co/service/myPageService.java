@@ -60,5 +60,7 @@ public interface myPageService {
 
 	List<gameVO> subComp(String writer);
 
+	void refundDelete(int num, String id);
+
 
 }

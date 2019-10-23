@@ -30,14 +30,21 @@
 					<c:forEach items="${buyList}" var="b">
 						<tr>
 							<td>
-								<img alt="" src="/resources/gameDetailFile/${img}" style="width:25%; padding-right: 5px;" class="pull-left">
+								<c:choose>
+									<c:when test="${b.filepath eq null}">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width:25%; padding-right: 5px;" class="pull-left">
+									</c:when>
+									<c:otherwise>
+										<img alt="" src="/resources/gameDetailFile/${b.filepath}" style="width:25%; padding-right: 5px;" class="pull-left">
+									</c:otherwise>
+								</c:choose>
 								<p style="position:relative; top:20px; width:35%" class="pull-left gn">게임 이름 : ${b.title}</p>
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">배급사 : ${b.writer}</p>
 								<p style="position:relative; top:20px; width:35%" class="pull-left">출시일 : ${b.regidate}</p>
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">구매 날짜 : ${b.buydate}</p>
 								<p style="position:relative; top:20px; width:35%" class="pull-left">가격 : ${b.buyprice}</p>
 								<button class="pull-right del">삭제</button>
-								<input type="hidden" class="hgdnum" value="${r.gdnum}">
+								<input type="hidden" class="hgdnum" value="${b.gdnum}">
 								<input type="hidden" class="hid" value="${id}">
 							</td>
 						</tr>

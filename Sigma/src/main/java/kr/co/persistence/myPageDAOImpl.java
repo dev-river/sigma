@@ -201,5 +201,15 @@ public class myPageDAOImpl implements myPageDAO{
 		return session.selectList(NS+".subComp", writer);
 		
 	}
+
+	@Override
+	public void refundDelete(int num, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("id", id);
+		System.out.println(map);
+		session.delete(NS+".refundDelete", map);
+		
+	}
 	
 }

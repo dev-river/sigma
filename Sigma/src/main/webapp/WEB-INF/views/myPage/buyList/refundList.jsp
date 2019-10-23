@@ -30,15 +30,21 @@
 					<c:forEach items="${refund}" var="r">
 						<tr>
 							<td>
-								<img alt="" src="/resources/gameDetailFile/${img}" style="width:25%; padding-right: 5px;" class="pull-left">
+								<c:choose>
+									<c:when test="${r.filepath eq null}">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width:25%; padding-right: 5px;" class="pull-left">
+									</c:when>
+									<c:otherwise>
+										<img alt="" src="/resources/gameDetailFile/${r.filepath}" style="width:25%; padding-right: 5px;" class="pull-left">
+									</c:otherwise>
+								</c:choose>
 								<p style="position:relative; top:20px; width:35%" class="pull-left gn">게임 이름 : ${r.title}</p>
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">배급사 : ${r.writer}</p> 
 								<p style="position:relative; top:20px; width:35%" class="pull-left">출시일 : ${r.regidate}</p>
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">구매 날짜 : ${r.buydate}</p>
 								<p style="position:relative; top:20px; width:35%" class="pull-left">가격 : ${r.buyprice}</p>
 								<p style="position:relative; top:20px; width:38%" class="pull-right">환불 결과 : ${r.status}</p>
-								<button class="pull-right del">삭제</button>
-								<input type="hidden" class="hiddengn" value="${r.title}">
+								<button class="pull-right del" value="${r.num}">환불 취소</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -46,25 +52,27 @@
 			</table>
 		</div>
 	</div>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		
+		
 		$(".del").click(function() {
-			var gdnum = $(".hgdnum").val();
-			var id = $(".hid").val();
+			var num = $(this).val();
+			var yes = confirm("환불신청을 취소하시겠습니까?");
+			if(yes){
 				$.ajax({
 					type : 'post',
-					url : '/myPage/buyList/delete',
+					url : '/myPage/buyList/refundDelete',
 					data : {
-						gdnum : gdnum,
-						id : id
+						num : num,
 					},
 					dataType : 'text',
 					success : function(event) {
+						alert("ㅂㅈㄷ");
 						window.location.reload();
 					}
 				}); //ajax끝
+			};
 		});
 		
 	});

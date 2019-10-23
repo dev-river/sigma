@@ -62,7 +62,7 @@
 	</delete>
 	
 	<select id="refundList" resultType="kr.co.domain.refundVO">
-		select filepath, title, writer, r.num, r.id, gdnum, buyprice, buydate, r.status, r.content, compcontent, updatedate, refunddate, regidate from buylist b, refundlist r, gamedetail g where r.num=b.num and g.num = b.gdnum and r.id=#{id} order by updatedate desc
+		select filepath, title, writer, b.num, r.id, gdnum, buyprice, buydate, r.status, r.content, compcontent, updatedate, refunddate, regidate from buylist b, refundlist r, gamedetail g where r.buynum=b.num and g.num = b.gdnum and r.id=#{id} order by updatedate desc
 	</select>
 	
 	<select id="getrefundgdnum" resultType="Integer">
@@ -76,6 +76,10 @@
 	<insert id="refundInsert">
 		insert into refundlist(num, id, buynum, content) values ((select nvl2(max(num), max(num)+1, 1) from refundlist), #{id}, #{buynum}, #{content})
 	</insert>
+	
+	<delete id="refundDelete">
+		delete from refundlist where id=#{id} and buynum=#{num}
+	</delete>
 	
 	<select id="getSex" resultType="kr.co.domain.memberVO">
 		select * from userinfo where id=#{id}
