@@ -24,7 +24,7 @@
 		<h2>gameDetail update page</h2>
 	</div>
 	<div class="row body">
-		<form action="/gameDetail/inform/update" method="post">
+		<form action="/gameDetail/main/maincategoryupdate" method="post">
 			<input name="num" type="hidden" value="${vo.num}">
 			<input type="hidden" id="writer" name="writer" value="${vo.writer}">
 			<div class="form-group">

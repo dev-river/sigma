@@ -28,7 +28,7 @@
 	</select>
 	
 	<update id="dcadd">
-		update gamedetaildc set joinclick=joinclick+1 where gdnum=#{num} and num=(select min(num) from gamedetaildc where gdnum=#{num})
+		update gamedetaildc set joinclick=joinclick+1 where num=#{num}
 	</update>
 
 	<update id="update">

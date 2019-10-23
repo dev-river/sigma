@@ -87,10 +87,14 @@ public class gameDetailController {
 		//할인정보 가져오기
 		gameDetailDcVO dcvo = null;
 		dcvo = gservice.dccheck(num);
-		dcvo.setRqstartdate(dcvo.getRqstartdate().substring(0, 10));
-		dcvo.setRqenddate(dcvo.getRqenddate().substring(0, 10));
-		dcvo.setDcstartdate(dcvo.getDcstartdate().substring(0, 10));
-		dcvo.setDcenddate(dcvo.getDcenddate().substring(0, 10));
+		if(dcvo != null) {
+			dcvo.setRqstartdate(dcvo.getRqstartdate().substring(0, 10));
+			dcvo.setRqenddate(dcvo.getRqenddate().substring(0, 10));
+			dcvo.setDcstartdate(dcvo.getDcstartdate().substring(0, 10));
+			dcvo.setDcenddate(dcvo.getDcenddate().substring(0, 10));
+			model.addAttribute("dcnum", dcvo.getNum());
+		}
+
 		
 		//최다 리뷰글 가져오기
 		reviewVO maxYesReview = gservice.maxYesReview(num);
@@ -147,6 +151,7 @@ public class gameDetailController {
 	
 	@RequestMapping(value = "/inform/gameStatus")
 	public String gameStatus(int num, String status) {
+		System.out.println(status);
 		if(status.equalsIgnoreCase("o")) {
 			status = "x";
 		}else {
@@ -154,7 +159,7 @@ public class gameDetailController {
 		}
 		gservice.gameStatus(num, status);
 		
-		return "redirect:/main/maincategoryread?num=" + num;
+		return "redirect:/gameDetail/main/maincategoryread?num=" + num;
 	}
 	
 	@RequestMapping(value = "/main/maincategoryreviewupdate", method = RequestMethod.GET)
@@ -176,9 +181,9 @@ public class gameDetailController {
 	}
 	
 	@RequestMapping(value = "/inform/dcCountAdd", method = RequestMethod.GET)
-	public String gameDetailDCcountAdd(Model model, int num) {
+	public String gameDetailDCcountAdd(Model model, int num, int gdnum) {
 		gservice.dcadd(num);
-		return "redirect:/gameDetail/main/maincategoryread?num="+num;
+		return "redirect:/gameDetail/main/maincategoryread?num="+gdnum;
 	}
 	
 	@RequestMapping(value = "/main/maincategoryupdate", method = RequestMethod.GET)
@@ -190,7 +195,7 @@ public class gameDetailController {
 	@RequestMapping(value = "/main/maincategoryupdate", method = RequestMethod.POST)
 	public String update(gameVO vo) {
 		gservice.update(vo);
-		return "redirect:/main/maincategoryread?num="+vo.getNum();
+		return "redirect:/gameDetail/main/maincategoryread?num="+vo.getNum();
 	}
 	
 	@RequestMapping(value = "/inform/reviewadd")
