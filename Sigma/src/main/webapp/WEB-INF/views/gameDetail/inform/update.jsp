@@ -17,6 +17,8 @@
 </style>
 </head>
 <body>
+<div class="bodymain">
+
 <div class="container">
 	<div class="row head">
 		<h2>gameDetail update page</h2>
@@ -57,10 +59,11 @@
 			</div>
 			<div>
 				<input type="submit" class="btn" value="수정">
-				<input type="button" class="btn" value="취소" onclick="location.href='/gameDetail/inform/read?num=${vo.num}'">
+				<input type="button" class="btn" value="취소" onclick="location.href='/maincategoryread?num=${vo.num}'">
 			</div>
 		</form>
 	</div>
+</div>
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){

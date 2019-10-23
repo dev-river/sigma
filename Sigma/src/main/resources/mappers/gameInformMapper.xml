@@ -5,7 +5,14 @@
 
 <mapper namespace="kr.co.mapper.gameInform">
 	<select id="list" resultType="kr.co.domain.gameVO">
-		select * from gamedetail where category like #{category}
+		<![CDATA[
+		select * from (select rownum rnum, num, title, content, writer, regidate, category, price, dcrate, mancount, womancount, totalage, profit, sellcharge, viewcnt, filepath, gamefilepath, status from 
+        (select * from (select * from gamedetail where category like #{category}) order by num desc)) where rnum between #{startNum} and #{endNum}
+		]]>
+	</select>
+	
+	<select id="getAmount" resultType="Integer">
+		select count(num) from gamedetail
 	</select>
 	
 	<select id="read" resultType="kr.co.domain.gameVO">
@@ -67,4 +74,8 @@
 	<insert id="DCRqSet">
 		insert into gamedetaildc values((select nvl2(max(num), max(num)+1, 1) from gamedetaildc), #{gdnum}, #{dcrate}, #{joinclick}, #{goal}, #{rqstartdate}, #{rqenddate}, #{dcstartdate}, #{dcenddate})
 	</insert>
+	
+	<update id="gameStatus">
+		update gamedetail set status=#{status} where num=#{num}
+	</update>
 </mapper>

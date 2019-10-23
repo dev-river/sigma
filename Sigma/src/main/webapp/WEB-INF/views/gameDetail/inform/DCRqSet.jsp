@@ -20,26 +20,34 @@
 	<h3>[게임: ${title}] 최근 할인 요청 리스트</h3>
 	<hr>
 	
-	<table class="table table-dark">
-		<thead>
-			<tr>
-				<th scope="col">#</th>
-				<th scope="col">할인 요청 기간</th>
-				<th scope="col">할인 실행 기간</th>
-				<th scope="col">할인율</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${list}" var="vo" varStatus="i">
-				<tr>
-					<th scope="row">${i.count}</th>
-					<td>${vo.rqstartdate} ~ ${vo.rqenddate}</td>
-					<td>${vo.dcstartdate} ~ ${vo.dcenddate}</td>
-					<td>${vo.dcrate}%</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<c:choose>
+		<c:when test="${empty list}">
+			<p>#기 등록된 할인 요청이 없습니다.</p>
+		</c:when>
+		<c:when test="${not empty list}">
+			<table class="table table-dark">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">할인 요청 기간</th>
+						<th scope="col">할인 실행 기간</th>
+						<th scope="col">할인율</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${list}" var="vo" varStatus="i">
+						<tr>
+							<th scope="row">${i.count}</th>
+							<td>${vo.rqstartdate}~ ${vo.rqenddate}</td>
+							<td>${vo.dcstartdate}~ ${vo.dcenddate}</td>
+							<td>${vo.dcrate}%</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			</c:when>
+	</c:choose>
+	
 	
 	<hr>
 	<h3>할인 요청 등록</h3>

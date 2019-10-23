@@ -3,13 +3,13 @@ package kr.co.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.reviewVO;
 
 public interface gameDetailService {
 
-	List<gameVO> list(String category);
 
 	gameVO read(int num);
 
@@ -40,6 +40,10 @@ public interface gameDetailService {
 	List<gameDetailDcVO> dcrqlist(int num);
 
 	void DCRqSet(gameDetailDcVO vo);
+
+	void gameStatus(int num, String status);
+
+	gPageTO<gameVO> list(gPageTO<gameVO> to, String category);
 
 
 }
