@@ -43,4 +43,6 @@ public interface compService {
 	void giveback2(int buynum);
 
 	int seachcash(String writer);
+
+	List<gameVO> datalist(String writer);
 }

@@ -106,5 +106,10 @@ public class compServiceImpl implements compService{
 		return dao.seachcash(writer);
 	}
 
+	@Override
+	public List<gameVO> datalist(String writer) {
+		return dao.datalist(writer);
+	}
+
 	
 }
