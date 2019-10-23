@@ -99,8 +99,6 @@
 		</div>
 	</div>
 	<input type="hidden" id="id" value="${myinfo.id}"></input>
-	
-	<button class="abc">abc</button>
 <script type="text/javascript">
 	$(document).ready(function() {
 		

@@ -2,7 +2,9 @@ package kr.co.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -54,8 +56,6 @@ public class myPageController {
 		model.addAttribute("buyList", list);
 		model.addAttribute("refund", refundList);
 		model.addAttribute("myinfo", obj);
-		
-		
 	}
 	
 	
@@ -264,8 +264,13 @@ public class myPageController {
 		mpService.profit(gdnum);
 		//수수료 구하기
 		mpService.sellCharge(gdnum);
-		
-		
+		//sellinfo 데이터 추가
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("gdnum", gdnum);
+		map.put("price", vo.getPrice());
+		map.put("usersex", sex);
+		map.put("userage", age);
+		mpService.sellInfo(map);
 	}
 	
 
@@ -319,20 +324,20 @@ public class myPageController {
 		
 		//환불 기록
 		List<refundVO> refundList = mpService.refundList(id);
-		for(int i=0; i<refundList.size(); i++) {
-			int buynum = refundList.get(i).getNum();
-			int gdnum = mpService.getrefundgdnum(buynum, id);
-
-			List<String> filepath = gservice.filepath(gdnum);
-			if(filepath.size() == 0) {
-				model.addAttribute("img", "noimage.png");
-			} else if(filepath.size() != 0){
-				String firstfilepath = filepath.get(0);
-				model.addAttribute("img", firstfilepath);
-			}
-		}
 		model.addAttribute("refund", refundList);
 	}
+	
+	//환불 신청/내역 삭제
+	@ResponseBody
+	@RequestMapping(value = "/buyList/refundDelete", method = RequestMethod.POST)
+	public void refundDelete(int num, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		memberVO obj = (memberVO)session.getValue("login");
+
+		String id = obj.getId();
+		mpService.refundDelete(num, id);
+	}
+	
 	
 	//환불 신청 UI
 	@RequestMapping(value = "/buyList/refundInsert", method = RequestMethod.GET)
@@ -355,12 +360,25 @@ public class myPageController {
 	}
 	
 	//배급사 리스트로 이동
-	@ResponseBody
-	@RequestMapping(value = "/subscribe/subComp", method = RequestMethod.POST)
-	public String subComp(String writer, Model model) {
+	@RequestMapping(value = "/subscribe/subComp", method = RequestMethod.GET)
+	public void subComp(String writer, Model model) {
 		List<gameVO> comp = mpService.subComp(writer);
+		String cwriter = comp.get(0).getWriter();
+		String filepath = comp.get(0).getFilepath();
+		String content = comp.get(0).getContent();
 		model.addAttribute("comp", comp);
-		
+		model.addAttribute("content", content);
+		model.addAttribute("writer", cwriter);
+		model.addAttribute("filepath", filepath);
+	}
+	
+	//단골 스토어 지정
+	@ResponseBody
+	@RequestMapping(value = "/subscribe/insert", method=RequestMethod.POST)
+	public String subCompInsert(String writer, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		memberVO obj = (memberVO)session.getValue("login");
+		mpService.subCompInsert(writer, obj.getId());
 		return "";
 	}
 

@@ -1,6 +1,7 @@
 package kr.co.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -166,6 +167,26 @@ public class myPageServiceImpl implements myPageService{
 	@Override
 	public List<gameVO> subComp(String writer) {
 		return mpdao.subComp(writer);
+		
+	}
+
+	@Override
+	public void refundDelete(int num, String id) {
+		mpdao.refundDelete(num, id);
+		
+	}
+
+	@Override
+	public void sellInfo(Map<String, Object> map) {
+		mpdao.sellInfo(map);
+		
+	}
+
+	@Override
+	public void subCompInsert(String writer, String id) {
+		List<gameVO> list = mpdao.subComp(writer);
+		int compnum = list.get(0).getCompnum();
+		mpdao.subCompInsert(compnum, id);
 		
 	}
 

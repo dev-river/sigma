@@ -16,31 +16,66 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div>
-				<h4>${comp.title}</h4>
+			<div style="width: 100%; height: 250px; margin-top: 20px;">
+				<div class="pull-left">
+					<c:choose>
+						<c:when test="${filepath eq null}">
+							<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 100%; height: 100%; border: 1px; solid; black;">
+						</c:when>
+						<c:otherwise>
+							<img alt="" src="/resources/gameDetailFile/${filepath}" style="width: 100%; height: 100%; border: 1px; solid; black;">
+						</c:otherwise>
+					</c:choose>
+				</div>
+				<div class="pull-left" style="width: 20%;">
+					<h2>${writer}</h2>
+					<br>
+					<h4>${content}</h4>
+				</div>
 				<c:choose>
-					<c:when test="${comp.filepath eq null}">
-						<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 80%; height: 80%; border: 1px; solid; black;">
+					<c:when test="">
+						<input type="button" value="단골 스토어 지정" style="width: 30%; margin-right: 50px;" class="pull-right btn in">
 					</c:when>
 					<c:otherwise>
-						<img alt="" src="/resources/gameDetailFile/${comp.filepath}" style="width: 80%; height: 80%; border: 1px; solid; black;">
+						<input type="button" value="단골 스토어에서 제거" style="width: 30%; margin-right: 50px;" class="pull-right btn del">
 					</c:otherwise>
 				</c:choose>
 			</div>
 			<br>
-			<div>
-				<c:forEach items="${comp}" var="comp">
+			<c:forEach items="${comp}" var="com">
+				<a href="/maincategoryread?num=${com.num}">
+				<div  style="width: 120px; height: 120px; margin: 5px; padding: 5px; border: 10px; solid; black;" class="pull-left">
 					<c:choose>
-						<c:when test="${comp.gamefilepath eq null}">
-							<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 80%; height: 80%; border: 1px; solid; black;">
+						<c:when test="${com.gamefilepath eq null}">
+							<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 100px; height: 100px">
 						</c:when>
 						<c:otherwise>
-							<img alt="" src="/resources/gameDetailFile/${comp.gamefilepath}" style="width: 80%; height: 80%; border: 1px; solid; black;">
+							<img alt="" src="/resources/gameDetailFile/${com.gamefilepath}" style="width: 100px; height: 100px">
 						</c:otherwise>
 					</c:choose>
-				</c:forEach>
-			</div>
+					${com.title}
+				</div>
+				</a>
+			</c:forEach>
 		</div>
 	</div>
+	<input type="hidden" value="${writer}" class="gamewriter">
+<script type="text/javascript">
+	$(document).ready(function() {
+		var gamewriter = $(".gamewriter").val();
+		$(".in").click(function() {
+			$.ajax({
+				type : 'post',
+				url : '/myPage/subscribe/insert',
+				data : {
+					writer : gamewriter
+				},
+				success : function() {
+					alert("성공");
+				}
+			})
+		});
+	});
+</script>
 </body>
 </html>

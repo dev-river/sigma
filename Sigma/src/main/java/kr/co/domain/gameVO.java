@@ -29,6 +29,7 @@ public class gameVO implements Serializable{
 	private String filepath;
 	private String gamefilepath;
 	private String status;
+	private int compnum;
 	
 	public gameVO() {
 		// TODO Auto-generated constructor stub
@@ -55,6 +56,18 @@ public class gameVO implements Serializable{
 		this.filepath = filepath;
 		this.gamefilepath = gamefilepath;
 		this.status = status;
+	}
+	
+	
+
+	
+
+	public int getCompnum() {
+		return compnum;
+	}
+
+	public void setCompnum(int compnum) {
+		this.compnum = compnum;
 	}
 
 	public int getNum() {
