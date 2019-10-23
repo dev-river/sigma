@@ -39,7 +39,7 @@
 			<div class="head"><!-- 전체 -->
 				<div class="menu"> <!-- 로그인 로고 검색 -->
 					<div class="img">
-						<a href="/"><img alt="..." src="/resources/main/로고2.png"></a>
+						<a href="/home/"><img alt="..." src="/resources/main/로고2.png"></a>
 					</div>
 					<div class="login">
 					
@@ -50,7 +50,7 @@
               		 <c:if test="${!empty login}">
               		 	 <div id="user">
              		     <c:if test="${login.author eq 'user'}">
-                		     <a class="glyphicon glyphicon-user" href="/myPage/myPage/mypage">마이페이지</a>
+                		     <a class="glyphicon glyphicon-user" href="/mainmypage">마이페이지</a>
                   			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
                 		 </c:if>
                 		 </div>
