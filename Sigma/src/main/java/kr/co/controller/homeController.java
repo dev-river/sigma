@@ -1,10 +1,14 @@
 package kr.co.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +22,10 @@ import kr.co.domain.PageTO;
 import kr.co.domain.SPageTO;
 import kr.co.domain.boardNGVO;
 import kr.co.domain.boardVO;
+import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
+import kr.co.domain.memberVO;
 import kr.co.domain.reviewVO;
 import kr.co.service.boardNGService;
 import kr.co.service.boardService;
@@ -30,14 +36,14 @@ import kr.co.service.sboardService;
 @Controller
 @RequestMapping("/")
 public class homeController {
-	
-	@Autowired
-	private replyService rservice;
-	@Inject
-	private boardService bservice;
+   
+   @Autowired
+   private replyService rservice;
+   @Inject
+   private boardService bservice;
 
   @Inject
-	private gameDetailService gservice;
+   private gameDetailService gservice;
 
   @Autowired
 	private sboardService sbService;
@@ -206,17 +212,16 @@ public class homeController {
 	//======================================boardNG END============================================
 	
 	//======================================gameDetail============================================
-	@RequestMapping(value = "/maincategory", method = RequestMethod.GET)
-	public void gameDetaillist(Model model, String category) {
-		//list 페이지 파라미터로 category
-		if(category.equalsIgnoreCase("all")) {
-			category = "%";
-		}
-		List<gameVO> vo = new ArrayList<gameVO>();
-		vo = gservice.list(category);
-		
-		model.addAttribute("vo", vo);
-	}
+
+  @RequestMapping(value = "/maincategory", method = RequestMethod.GET)
+      public void gameDetaillist(Model model, String category, HttpServletRequest request, gPageTO<gameVO> to) {
+  		List<gameVO> vo = new ArrayList<gameVO>();
+  		to = gservice.list(to, category);
+  		
+  		model.addAttribute("vo", to);
+  		model.addAttribute("category", category);
+  }
+
 	@RequestMapping(value = "/maincategoryread", method = RequestMethod.GET)
 	public void gameDetailread(Model model, int num) {
 		//num으로 gameVO 상세정보 부르기 from gameDetail

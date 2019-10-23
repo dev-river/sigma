@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.reviewVO;
@@ -53,15 +54,8 @@ public class gameDetailController {
 	}
 	
 	@RequestMapping(value = "/inform/list", method = RequestMethod.GET)
-	public void gameDetaillist(Model model, String category, HttpServletRequest request) {
-		//list 페이지 파라미터로 category
-		if(category.equalsIgnoreCase("all")) {
-			category = "%";
-		}
-		List<gameVO> vo = new ArrayList<gameVO>();
-		vo = gservice.list(category);
-		
-		model.addAttribute("vo", vo);
+	public void gameDetaillist(Model model, String category, HttpServletRequest request, gPageTO<gameVO> to) {
+		/* homeController.java의 gameDetaillist 부분 확인 */
 	}
 	
 	@RequestMapping(value = "/inform/read", method = RequestMethod.GET)
@@ -117,11 +111,14 @@ public class gameDetailController {
 	@RequestMapping(value = "/inform/DCRqSet", method = RequestMethod.GET)
 	public void DCRqSet(int num, String title, Model model) {
 		List<gameDetailDcVO> list = gservice.dcrqlist(num);
-		gameDetailDcVO lastvo = list.get(list.size()-1);
-		lastvo.setRqstartdate(lastvo.getRqstartdate().substring(0,10));
-		lastvo.setRqenddate(lastvo.getRqenddate().substring(0,10));
-		lastvo.setDcstartdate(lastvo.getDcstartdate().substring(0,10));
-		lastvo.setDcenddate(lastvo.getDcenddate().substring(0,10));
+		gameDetailDcVO lastvo = null; 
+		if(lastvo != null) {
+			lastvo = list.get(list.size()-1);
+			lastvo.setRqstartdate(lastvo.getRqstartdate().substring(0,10));
+			lastvo.setRqenddate(lastvo.getRqenddate().substring(0,10));
+			lastvo.setDcstartdate(lastvo.getDcstartdate().substring(0,10));
+			lastvo.setDcenddate(lastvo.getDcenddate().substring(0,10));
+		}
 		
 		model.addAttribute("list", list);
 		model.addAttribute("lastvo", lastvo);
@@ -143,6 +140,18 @@ public class gameDetailController {
 		id = (String) sessioninfo.get("id");
 		
 		gservice.reviewinsert(gdnum, reviewContent, likeselect, id);
+	}
+	
+	@RequestMapping(value = "/inform/gameStatus")
+	public String gameStatus(int num, String status) {
+		if(status.equalsIgnoreCase("o")) {
+			status = "x";
+		}else {
+			status = "o";
+		}
+		gservice.gameStatus(num, status);
+		
+		return "redirect:/maincategoryread?num=" + num;
 	}
 	
 	@RequestMapping(value = "/inform/reviewupdate", method = RequestMethod.GET)
