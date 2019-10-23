@@ -18,7 +18,7 @@
 	<div class="container">
 		<h3>게시글 수정</h3><br/>
 		
-		<form action="/sboard/sboardFR/update" method="post">
+		<form action="/board/main/slist/searchboardupdate" method="post">
 			<input type="hidden" name="curPage" value="${to.curPage}">
 			<input type="hidden" name="perPage" value="${to.perPage}">
 			<input type="hidden" name="searchType" value="${to.searchType}">
@@ -56,7 +56,7 @@
 			var $from = $("form");
 			
 			$(".modify").on("click", function() {
-				$form.attr("action","/searchMainboardupdate");
+				$form.attr("action","/board/main/slist/searchboardupdate");
 				$form.attr("method","post");
 				$form.submit();
 			});

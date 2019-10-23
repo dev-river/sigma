@@ -36,7 +36,7 @@ public class myPageController {
 	
 	//마이페이지로 넘어가는 컨트롤러... 세션에 저장된 id를 가져와서 들어감
 	@SuppressWarnings("deprecation")
-	@RequestMapping(value = "/myPage/mypage", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/mypage", method = RequestMethod.GET)
 	public void myPage(HttpServletRequest request, Model model) {
 		
 		//세션에 저장된 아이디를 가져오는 코드

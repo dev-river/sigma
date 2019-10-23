@@ -125,7 +125,7 @@
 		
 		<!-- 판매자만 보이게 할 버튼 -->
 		<c:if test="${author eq 'seller'}">
-			<a class="btn btn-primary" href="/maincategoryupdate?num=${vo.num}">게임정보수정</a>
+			<a class="btn btn-primary" href="/gameDetail/main/maincategoryupdate?num=${vo.num}">게임정보수정</a>
 	      	<a class="btn btn-primary" href="/gameDetail/inform/DCRqSet?num=${vo.num}&title=${vo.title}" target="_blank">할인 요청 등록</a>
 	      	<br><label for="status">게임등록상태: </label><input id="status" name="status" value="${vo.status}" readonly="readonly">
 	      	<a class="btn btn-danger" href="/gameDetail/inform/gameStatus?num=${vo.num}&status=${vo.status}" onclick="return confirm('변경하시겠습니까?');">게임등록상태변경</a>
@@ -150,7 +150,7 @@
 		      		<p>싫어요: ${maxYesReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxYesReview.num}">싫어요</button></p>
 		      		
 		      		<c:if test="${id eq maxYesReview.writer}">
-		      			<a href="/maincategoryreviewupdate?num=${maxYesReview.num}" target="_blank" class="btn btn-warning">수정</a>
+		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${maxYesReview.num}" target="_blank" class="btn btn-warning">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${maxYesReview.num}">삭제</button>
 		      			<%-- <button class="reviewupdate btn btn-warning" value="${maxYesReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxYesReview.num}">삭제</button> --%>
 		      		</c:if>
@@ -172,7 +172,7 @@
 		      		<p>좋아요: ${maxNoReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxNoReview.num}">좋아요</button></p>
 		      		<p>싫어요: ${maxNoReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxNoReview.num}">싫어요</button></p>
 		      		<c:if test="${id eq maxNoReview.writer}">
-		      			<a href="/maincategoryreviewupdate?num=${maxNoReview.num}" target="_blank" class="btn btn-warning">수정</a>
+		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${maxNoReview.num}" target="_blank" class="btn btn-warning">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button>
 		      			<%-- <button class="reviewupdate btn btn-warning" value="${maxNoReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button> --%>
 		      		</c:if>
@@ -206,7 +206,7 @@
 		      		<p>좋아요: ${review.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${review.num}">좋아요</button></p>
 		      		<p>싫어요: ${review.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${review.num}">싫어요</button></p>
 		      		<c:if test="${id eq review.writer}">
-		      			<a href="/maincategoryreviewupdate?num=${review.num}" target="_blank" class="btn btn-warning">수정</a>
+		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${review.num}" target="_blank" class="btn btn-warning">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button>
 		      			<%-- <button class="reviewupdate btn btn-warning" value="${review.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button> --%>
 		      		</c:if>
@@ -246,7 +246,7 @@
 			
    			$.ajax({
    				type: 'get',
-   				url: '/maincategoryreviewupdate',
+   				url: '/gameDetail/main/maincategoryreviewupdate',
    				data: {
    					'num': num,
    				},

@@ -33,7 +33,7 @@
 	<div class="container" id="insert_form">
 		<div class="insert">
 		<div class="row">
-			<form action="/board/boardNG/insert" method="post">
+			<form action="/board/main/newgame/NewGameInsert" method="post">
 				<div class="form-group">
 					<label for="title">제목</label>
 					<input id="title" name="title" class="form-control" placeholder="제목">

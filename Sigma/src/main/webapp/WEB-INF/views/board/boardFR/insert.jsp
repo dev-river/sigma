@@ -31,7 +31,7 @@ label{
 	<div class="container" id="insert_form">
 		<div class="insert">
 		<div class="row">
-			<form action="/board/boardFR/insert" method="post">
+			<form action="/board/main/list/boardinsert" method="post">
 				<div class="form-group">
 					<label for="title">제목</label>
 					<input id="title" name="title" class="form-control" placeholder="제목">
@@ -47,7 +47,7 @@ label{
 				</div>
 				<div class="form-group">
 					<button id="submitBoardBtn" class="btn btn-info">등록</button>
-					<input type="button" class="btn btn-danger" id="cancle" value="취소" onclick="location.href='/mainboard'">
+					<input type="button" class="btn btn-danger" id="cancle" value="취소" onclick="location.href='/board/main/list/boardlist'">
 				</div>
 			</form>
 			

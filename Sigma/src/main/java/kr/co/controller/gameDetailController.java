@@ -53,12 +53,15 @@ public class gameDetailController {
 		return map;
 	}
 	
-	@RequestMapping(value = "/inform/list", method = RequestMethod.GET)
-	public void gameDetaillist(Model model, String category, HttpServletRequest request, gPageTO<gameVO> to) {
-		/* homeController.java의 gameDetaillist 부분 확인 */
-	}
-	
-	@RequestMapping(value = "/inform/read", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/maincategory", method = RequestMethod.GET)
+    public void gameDetaillist(Model model, String category, HttpServletRequest request, gPageTO<gameVO> to) {
+		List<gameVO> vo = new ArrayList<gameVO>();
+		to = gservice.list(to, category);
+		
+		model.addAttribute("vo", to);
+		model.addAttribute("category", category);
+}
+	@RequestMapping(value = "/main/maincategoryread", method = RequestMethod.GET)
 	public void gameDetailread(Model model, int num, HttpServletRequest request) {
 		String id = null; String author = null;
 		Map<String, Object> sessioninfo = sessionInfo(request);
@@ -151,17 +154,17 @@ public class gameDetailController {
 		}
 		gservice.gameStatus(num, status);
 		
-		return "redirect:/maincategoryread?num=" + num;
+		return "redirect:/main/maincategoryread?num=" + num;
 	}
 	
-	@RequestMapping(value = "/inform/reviewupdate", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/maincategoryreviewupdate", method = RequestMethod.GET)
 	public void reviewupdate(int num, Model model) {
 		reviewVO vo = gservice.reviewselect(num);
 		model.addAttribute("vo", vo);
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/inform/reviewupdate", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/maincategoryreviewupdate", method = RequestMethod.POST)
 	public void reviewupdate(reviewVO vo) {
 		gservice.reviewupdate(vo);
 	}
@@ -175,19 +178,19 @@ public class gameDetailController {
 	@RequestMapping(value = "/inform/dcCountAdd", method = RequestMethod.GET)
 	public String gameDetailDCcountAdd(Model model, int num) {
 		gservice.dcadd(num);
-		return "redirect:/gameDetail/inform/read?num="+num;
+		return "redirect:/gameDetail/main/maincategoryread?num="+num;
 	}
 	
-	@RequestMapping(value = "/inform/update", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/maincategoryupdate", method = RequestMethod.GET)
 	public void update(Model model, int num) {
 		gameVO vo = gservice.read(num);
 		model.addAttribute("vo", vo);
 	}
 	
-	@RequestMapping(value = "/inform/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/maincategoryupdate", method = RequestMethod.POST)
 	public String update(gameVO vo) {
 		gservice.update(vo);
-		return "redirect:/gameDetail/inform/read?num="+vo.getNum();
+		return "redirect:/main/maincategoryread?num="+vo.getNum();
 	}
 	
 	@RequestMapping(value = "/inform/reviewadd")

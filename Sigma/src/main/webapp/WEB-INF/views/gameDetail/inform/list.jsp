@@ -36,7 +36,7 @@
 	<c:forEach items="${vo.list}" var="gvo">
 	<div style="width: 33%; margin: 0; float: left;">
 			
-			<a href="/gameDetail/inform/read?num=${gvo.num}">
+			<a href="/gameDetail/main/maincategoryread?num=${gvo.num}">
 			<c:choose>
 				<c:when test="${gvo.filepath eq null}">
 					<img alt="No image" src="/resources/gameDetailFile/noimage.png" width="280px" height="280px">
@@ -67,19 +67,19 @@
 
 						<c:if test="${vo.curPage>1}">
 							<li><a
-								href="/maincategory?category=${category}&curPage=${vo.curPage-1}&perPage=${vo.perPage}">&laquo;</a></li>
+								href="/gameDetail/main/maincategory?category=${category}&curPage=${vo.curPage-1}&perPage=${vo.perPage}">&laquo;</a></li>
 						</c:if>
 						<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
 
 						<c:forEach begin="${vo.bpn}" end="${vo.spn}" var="idx">
 							<li class="${vo.curPage == idx?'active':''}"><a
-								href="/maincategory?category=${category}&curPage=${idx}&perPage=${vo.perPage}">${idx}</a></li>
+								href="/gameDetail/main/maincategory?category=${category}&curPage=${idx}&perPage=${vo.perPage}">${idx}</a></li>
 							<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
 						</c:forEach>
 
 						<c:if test="${vo.curPage<vo.totalPage}">
 							<li><a
-								href="/maincategory?category=${category}&curPage=${vo.curPage+1}&perPage=${vo.perPage}">&raquo;</a></li>
+								href="/gameDetail/main/maincategory?category=${category}&curPage=${vo.curPage+1}&perPage=${vo.perPage}">&raquo;</a></li>
 						</c:if>
 
 					</ul>

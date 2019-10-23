@@ -59,7 +59,7 @@
 			</div>
 			<div>
 				<input type="submit" class="btn" value="수정">
-				<input type="button" class="btn" value="취소" onclick="location.href='/maincategoryread?num=${vo.num}'">
+				<input type="button" class="btn" value="취소" onclick="location.href='/gameDetail/main/maincategoryread?num=${vo.num}'">
 			</div>
 		</form>
 	</div>

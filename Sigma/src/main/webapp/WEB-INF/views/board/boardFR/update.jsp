@@ -32,7 +32,7 @@ label{
 		<br>
 		<h3>게시글 수정</h3><br/>
 		
-		<form action="/mainboardupdate" method="post">
+		<form action="/board/main/list/boardupdate" method="post">
 			<input type="hidden" name="curPage" value="${to.curPage}">
 			<input type="hidden" name="perPage" value="${to.perPage}">
 			
@@ -62,7 +62,5 @@ label{
 	</div>
 	</div>
 	</div>
-		<br>
-		<br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>
