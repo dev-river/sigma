@@ -41,7 +41,7 @@
 			
  			$.ajax({
    				type: 'post',
-   				url: '/gameDetail/inform/reviewupdate',
+   				url: '/gameDetail/main/maincategoryreviewupdate',
    				data: {
    					'num': num,
    					'writer': writer,

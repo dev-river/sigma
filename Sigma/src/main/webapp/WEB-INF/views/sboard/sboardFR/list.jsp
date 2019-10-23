@@ -47,7 +47,7 @@
 			<c:forEach items="${to.list}" var="vo">
 				<tr>
 					<td>${vo.num}</td>
-					<td><a href="/searchMainboardread?num=${vo.num}&searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}">${vo.title}</a></td>
+					<td><a href="/board/main/slist/searchboardread?num=${vo.num}&searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}">${vo.title}</a></td>
 					<td>${vo.writer}</td>
 					<td>${vo.updatedate}</td>
 					<td>${vo.viewcnt}</td>
@@ -60,16 +60,16 @@
 				<ul class="pagination"> <!-- ul에 pagination 클래스를 주면 예쁘다 -->
 				
 					<c:if test="${to.curPage>1}">
-						<li><a href="/searchMainboard?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage-1}&perPage=${to.perPage}">&laquo;</a></li>
+						<li><a href="/board/main/slist/searchboardlist?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage-1}&perPage=${to.perPage}">&laquo;</a></li>
 					</c:if> <!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
 					
 					<c:forEach begin="${to.bpn}" end="${to.spn}" var="idx">
-						<li class="${to.curPage == idx?'active':''}"><a href="/searchMainboard?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${idx}&perPage=${to.perPage}">${idx}</a></li>
+						<li class="${to.curPage == idx?'active':''}"><a href="/board/main/slist/searchboardlist?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${idx}&perPage=${to.perPage}">${idx}</a></li>
 						<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
 					</c:forEach>
 					
 					<c:if test="${to.curPage<dbTO.totalPage}">
-						<li><a href="/searchMainboard?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage+1}&perPage=${to.perPage}">&raquo;</a></li>
+						<li><a href="/board/main/slist/searchboardlist?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage+1}&perPage=${to.perPage}">&raquo;</a></li>
 					</c:if>
 					
 				</ul>
@@ -94,9 +94,9 @@
 				            	var curPage = ${to.curPage}
 				            	
 				               if(curPage>totalPage){
-				                  location.assign("/searchMainboard?perPage="+perPage+"&curPage="+totalPage+"&searchType=${to.searchType}&keyword=${to.keyword}");
+				                  location.assign("/board/main/slist/searchboardlist?perPage="+perPage+"&curPage="+totalPage+"&searchType=${to.searchType}&keyword=${to.keyword}");
 				               }else {
-				                  location.assign("/searchMainboard?perPage="+perPage+"&curPage=${dbTO.curPage}&searchType=${to.searchType}&keyword=${to.keyword}");
+				                  location.assign("/board/main/slist/searchboardlist?perPage="+perPage+"&curPage=${dbTO.curPage}&searchType=${to.searchType}&keyword=${to.keyword}");
 				               }
 				            }
 				         });

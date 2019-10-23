@@ -32,7 +32,7 @@ label{
 		<br>
 		<h3>게시글 수정</h3><br/>
 		
-		<form action="/NewGameUdate" method="post">
+		<form action="/board/main/newgame/NewGameUpdate" method="post">
 			<input type="hidden" name="curPage" value="${to.curPage}">
 			<input type="hidden" name="perPage" value="${to.perPage}">
 			

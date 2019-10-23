@@ -28,41 +28,41 @@ public class boardNGController {
 	@Autowired
 	private replyService rservice;
 
-	@RequestMapping(value = "boardNG/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/newgame/NewGame", method = RequestMethod.GET)
 	public void boardNGList(PageTO<boardNGVO> to, Model model) {
 		
 		PageTO<boardNGVO> dbTO = ngservice.pageList(to);
 		model.addAttribute("dbTO", dbTO);
 	}
 	
-	@RequestMapping(value = "/boardNG/insert", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/newgame/NewGameInsert", method = RequestMethod.GET)
 	public void boardNGinsertUI() {
 	}
 	
-	@RequestMapping(value = "/boardNG/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/newgame/NewGameInsert", method = RequestMethod.POST)
 	public String boardNGinsert(boardNGVO vo) {
 		ngservice.boardNGinsert(vo);
-		return "redirect:/NewGame";
+		return "redirect:/board/main/newgame/NewGame";
 	}
 	
-	@RequestMapping(value = "/boardNG/read")
+	@RequestMapping(value = "/main/newgame/NewGameRead")
 	public void boardNGread(boardNGVO vo, Model model , PageTO<boardNGVO> to) {
 		boardNGVO readvo  = ngservice.boardNGread(vo);
 		model.addAttribute("readvo", readvo);
 		model.addAttribute("to", to);
 	}
 	
-	@RequestMapping(value = "/boardNG/update")
+	@RequestMapping(value = "/main/newgame/NewGameUpdate")
 	public void boardNGupdateUI(int num,Model model,PageTO<boardNGVO> to) {
 		boardNGVO updatevo = ngservice.boardNGupdateUI(num);
 		model.addAttribute("updatevo", updatevo);
 		model.addAttribute("to", to);
 	}
 	
-	@RequestMapping(value = "/boardNG/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/newgame/NewGameUpdate", method = RequestMethod.POST)
 	public String boardNGupdate(boardNGVO vo , PageTO<boardNGVO> to) {
 		ngservice.boardNGupdate(vo);
-		return "redirect:/board/boardNG/read?num=" + vo.getNum()+"&curPage="+to.getCurPage()+"&perPage="+to.getPerPage();
+		return "redirect:/board/main/newgame/NewGameRead?num=" + vo.getNum()+"&curPage="+to.getCurPage()+"&perPage="+to.getPerPage();
 		
 	}
 	
@@ -70,7 +70,7 @@ public class boardNGController {
 	public String boardNGdelete(int num , PageTO<boardNGVO> to) throws Exception {
 		rservice.deleteAll(num);
 		ngservice.boardNGdelete(num);
-		return "redirect:/NewGame?curPage="+to.getCurPage()+"&perPage="+to.getPerPage();
+		return "redirect:/main/newgame/NewGame?curPage="+to.getCurPage()+"&perPage="+to.getPerPage();
 	}
 	
 	@ResponseBody

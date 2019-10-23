@@ -53,7 +53,7 @@
 				</div>
 				<div>
 				    <input type="button" value="수정" class="btn btn-primary update">
-					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/searchMainboard?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}'">
+					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/board/main/slist/searchboardlist?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}'">
 					<input type="button" value="삭제" class="btn btn-warning del" >
 					<%-- onclick="location.href='/board/boardFR/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}' --%>
 				</div>
@@ -185,7 +185,7 @@
 		
 		/* boardUpdate 부분 */
 		$(".update").on("click",function(){
-			location.href="/searchMainboardupdate?num=${vo.num}&searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}";
+			location.href="/board/main/slist/searchboardupdate?num=${vo.num}&searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}";
 		});
 		
 			$(".del").click(function(){
@@ -199,7 +199,7 @@
 						num : num
 					},
 					success : function(){
-				   	 location.href="/searchMainboard?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}";
+				   	 location.href="/board/main/slist/searchboardlist?searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}";
 					}
 				});
 			});

@@ -42,8 +42,8 @@
 	
 	<select id="refundRead" resultType="kr.co.domain.refundVO">
 		select refundlist.num, refundlist.id, gamedetail.title, refundlist.updatedate, refundlist.status, buylist.buyprice as buynum, refundlist.content, refundlist.refunddate, refundlist.compcontent
-		from refundlist, buylist, gamedetail 
-		where refundlist.buynum = buylist.num and buylist.gdnum = gamedetail.num and gamedetail.writer = #{id}
+      from refundlist, buylist, gamedetail 
+      where refundlist.buynum = buylist.num and buylist.gdnum = gamedetail.num and gamedetail.writer = #{id} and refundlist.num = #{num}
 	</select>
 	
 	<update id="refundOK">
