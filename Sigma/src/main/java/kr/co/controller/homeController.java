@@ -289,18 +289,6 @@ public class homeController {
 		return map;
 	}
 	
-	@RequestMapping(value = "/inform/list", method = RequestMethod.GET)
-	public void gameDetaillist(Model model, String category, HttpServletRequest request) {
-		//list 페이지 파라미터로 category
-		if(category.equalsIgnoreCase("all")) {
-			category = "%";
-		}
-		List<gameVO> vo = new ArrayList<gameVO>();
-		vo = gservice.list(category);
-		
-		model.addAttribute("vo", vo);
-	}
-	
 	@RequestMapping(value = "/inform/read", method = RequestMethod.GET)
 	public void gameDetailread(Model model, int num, HttpServletRequest request) {
 		String id = null; String author = null;
