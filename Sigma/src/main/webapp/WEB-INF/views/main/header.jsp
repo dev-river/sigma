@@ -82,8 +82,8 @@
 						<ul>
 							<li><a href="#" id="me1">새소식</a>
 								<ul>
-									<li><a href="/home/event">이벤트</a></li>
-									<li><a href="/board/boardNG/list.jsp">새 게임 소식</a></li>
+									<li><a href="/event">이벤트</a></li>
+									<li><a href="/NewGame">새 게임 소식</a></li>
 								</ul></li>
 
 							<li><a href="#" id="current">게임 추천</a>

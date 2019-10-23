@@ -70,10 +70,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${dbTO.list}" var="vo">
+			<c:forEach items="${dbevTO.list}" var="vo">
 				<tr>
 					<td>${vo.num}</td>
-					<td><a href="/NewGameRead?num=${vo.num}&curPage=${dbTO.curPage}&perPage=${dbTO.perPage}">${vo.title}</a></td>
+					<td><a href="/eventRead?num=${vo.num}&curPage=${dbevTO.curPage}&perPage=${dbevTO.perPage}">${vo.title}</a></td>
 					<td>${vo.writer}</td>
 					<td>${vo.updatedate}</td>
 					<td>${vo.viewcnt}</td>
@@ -82,26 +82,26 @@
 		</tbody>
 	</table>
 	
-		<a href="/NewGameInsert" class="btn btn-primary" style="float: right;">글쓰기</a>
+		<a href="/eventInsert" class="btn btn-primary" style="float: right;">글쓰기</a>
 		
 		<div class="row text-center" style="text-align: center">
 				<ul class="pagination"> <!-- ul에 pagination 클래스를 주면 예쁘다 -->
 				
-					<c:if test="${dbTO.curPage>1}">
+					<c:if test="${dbevTO.curPage>1}">
 						<li><a
-							href="/NewGame?curPage=${dbTO.curPage-1}&perPage=${dbTO.perPage}">&laquo;</a></li>
+							href="/event?curPage=${dbevTO.curPage-1}&perPage=${dbevTO.perPage}">&laquo;</a></li>
 					</c:if>
 						<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
 
-					<c:forEach begin="${dbTO.bpn}" end="${dbTO.spn}" var="idx">
-						<li class="${dbTO.curPage == idx?'active':''}"><a
-							href="/NewGame?curPage=${idx}&perPage=${dbTO.perPage}">${idx}</a></li>
+					<c:forEach begin="${dbevTO.bpn}" end="${dbevTO.spn}" var="idx">
+						<li class="${dbevTO.curPage == idx?'active':''}"><a
+							href="/event?curPage=${idx}&perPage=${dbevTO.perPage}">${idx}</a></li>
 						<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
 					</c:forEach>
 
-					<c:if test="${dbTO.curPage<dbTO.totalPage}">
+					<c:if test="${dbevTO.curPage<dbevTO.totalPage}">
 						<li><a
-							href="/NewGame?curPage=${dbTO.curPage+1}&perPage=${dbTO.perPage}">&raquo;</a></li>
+							href="/event?curPage=${dbevTO.curPage+1}&perPage=${dbevTO.perPage}">&raquo;</a></li>
 					</c:if>
 
 				</ul>
