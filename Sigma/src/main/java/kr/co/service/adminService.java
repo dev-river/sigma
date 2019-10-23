@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.domain.adminSetVO;
+import kr.co.domain.adminSlideVO;
 import kr.co.domain.memberVO;
 
 public interface adminService {
@@ -33,6 +34,10 @@ public interface adminService {
 	adminSetVO getBGimg();
 
 	adminSetVO getLogoimg();
+
+	List<adminSlideVO> slideList();
+
+	void slideDelete(int num);
 
 
 }

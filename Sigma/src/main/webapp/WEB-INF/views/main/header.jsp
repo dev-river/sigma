@@ -93,7 +93,7 @@
 									<li><a href="#">이벤트게임</a></li>
 									<li><a href="#">할인게임</a></li>
 								</ul>
-							<li><a href="/maincategory?category=all">카테고리</a>
+							<li><a href="/gameDetail/inform/list?category=all">카테고리</a>
 								<ul>
 									<li><a href="/maincategory?category=rpg">RPG</a></li>
 									<li><a href="/maincategory?category=sportsracing">스포츠/레이싱</a></li>
