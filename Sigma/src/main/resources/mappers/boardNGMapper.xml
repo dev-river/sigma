@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mapper.boardNG">
+	<select id="NGlist" resultType="kr.co.domain.boardNGVO">
+		select * from boardNG order by num desc
+	</select>
+	
+	<insert id="NGinsert">
+		insert into boardNG values((select nvl2(max(num), max(num)+1, 1) from boardNG), #{title}, #{content}, #{writer}, sysdate, sysdate, 0, null, 0)
+	</insert>
+	
+	<select id="NGread" resultType="kr.co.domain.boardNGVO">
+		select * from boardNG where num = #{num}
+	</select>
+	
+	<update id="addNGviewcnt">
+		update boardNG set viewcnt = viewcnt + 1 where num=#{num}
+	</update>
+	
+	<select id="NGupdateUI" resultType="kr.co.domain.boardNGVO">
+		select * from boardNG where num = #{num}
+	</select>
+	
+	<update id="NGupdate">
+		update boardNG set writer=#{writer}, title=#{title}, content=#{content} where num=#{num}
+	</update>
+	
+	<delete id="NGdelete">
+		delete from boardNG where num=#{num}
+	</delete>
+	
+	<!-- =============================================================================================================================================== -->
+	
+	<!-- 페이징처리 부분 -->
+	
+	<select id="getAmount" resultType="Integer">
+		select count(num) from boardNG
+	</select>
+	
+	<select id="pageList" resultType="kr.co.domain.boardNGVO">
+		<![CDATA[
+		select * from 
+		(select rownum rnum, num, title, writer, updatedate, viewcnt from 
+		(select * from boardNG order by num desc)) where rnum between #{startNum} and #{endNum}
+		]]>
+	</select>
+	
+	<!-- =============================================================================================================================================== -->
+	
+	<!-- 검색처리 부분 -->
+	
+	<!-- <sql id="search">
+		<if test="seachType == 'writer'.toString()">
+			where lower(writer) like '%' || lower(#{keyword}) || '%'
+		</if>
+		<if test="searchType == 'title'.toString()">
+			where lower(title) like '%' || lower(${keyword}) || '%'
+		</if>
+		<if test="searchType == 'content'.toString()">
+			where lower(content) like '%' || lower(${keyword}) || '%'
+		</if>
+	</sql>
+	
+    	
+    	<select id="searchList" resultType="kr.co.domain.boardNGVO"> search List의 페이징처리
+    		<![CDATA[
+    		select * from 
+    		(select rownum rnum, num, title, writer, updatedate, viewcnt from 
+    		(select * from boardNG]]><include refid="search"></include> 위에 작성한 search sql문(where절)이 들어감
+    		<![CDATA[order by num desc)) where rnum between #{startNum} and #{endNum}
+    		]]>
+    	</select>
+    	
+    	<select id="searchAmount" resultType="Integer"> search List의 amount 가져오기
+    		<![CDATA[select count(bno) from boardNG]]> <include refid="search"></include>
+    	</select>  -->
+	
+	
+</mapper>
