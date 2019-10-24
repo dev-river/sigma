@@ -82,7 +82,7 @@
 						<ul>
 							<li><a href="#" id="me1">새소식</a>
 								<ul>
-									<li><a href="/event">이벤트</a></li>
+									<li><a href="/board/main/event/event">이벤트</a></li>
 									<li><a href="/board/main/newgame/NewGame">새 게임 소식</a></li>
 								</ul></li>
 

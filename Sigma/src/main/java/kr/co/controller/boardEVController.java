@@ -28,41 +28,41 @@ public class boardEVController {
 	@Autowired
 	private replyService rservice;
 
-	@RequestMapping(value = "boardEV/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/event/event", method = RequestMethod.GET)
 	public void boardEVList(PageTO<boardEVVO> to, Model model) {
 		
 		PageTO<boardEVVO> dbTO = evservice.pageList(to);
 		model.addAttribute("dbevTO", dbTO);
 	}
 	
-	@RequestMapping(value = "/boardEV/insert", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/event/eventInsert", method = RequestMethod.GET)
 	public void boardEVinsertUI() {
 	}
 	
-	@RequestMapping(value = "/boardEV/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/event/eventInsert", method = RequestMethod.POST)
 	public String boardEVinsert(boardEVVO vo) {
 		evservice.boardEVinsert(vo);
-		return "redirect:/NewGame";
+		return "redirect:/board/main/event/event";
 	}
 	
-	@RequestMapping(value = "/boardEV/read")
+	@RequestMapping(value = "/main/event/eventRead")
 	public void boardEVread(boardEVVO vo, Model model , PageTO<boardEVVO> to) {
 		boardEVVO readvo  = evservice.boardEVread(vo);
 		model.addAttribute("readvo", readvo);
 		model.addAttribute("to", to);
 	}
 	
-	@RequestMapping(value = "/boardEV/update")
+	@RequestMapping(value = "/main/event/eventUpdate")
 	public void boardEVupdateUI(int num,Model model,PageTO<boardEVVO> to) {
 		boardEVVO updatevo = evservice.boardEVupdateUI(num);
 		model.addAttribute("updatevo", updatevo);
 		model.addAttribute("to", to);
 	}
 	
-	@RequestMapping(value = "/boardEV/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/event/eventUpdate", method = RequestMethod.POST)
 	public String boardEVupdate(boardEVVO vo , PageTO<boardEVVO> to) {
 		evservice.boardEVupdate(vo);
-		return "redirect:/board/boardEV/read?num=" + vo.getNum()+"&curPage="+to.getCurPage()+"&perPage="+to.getPerPage();
+		return "redirect:/board/main/event/eventRead?num=" + vo.getNum()+"&curPage="+to.getCurPage()+"&perPage="+to.getPerPage();
 		
 	}
 	
@@ -70,7 +70,7 @@ public class boardEVController {
 	public String boardEVdelete(int num , PageTO<boardEVVO> to) throws Exception {
 		rservice.deleteAll(num);
 		evservice.boardEVdelete(num);
-		return "redirect:/NewGame?curPage="+to.getCurPage()+"&perPage="+to.getPerPage();
+		return "redirect:/board/main/event/event?curPage="+to.getCurPage()+"&perPage="+to.getPerPage();
 	}
 	
 	@ResponseBody

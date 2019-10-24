@@ -1,5 +1,6 @@
 package kr.co.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.basketVO;
 import kr.co.domain.buyListVO;
+import kr.co.domain.favoriteStoreVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
@@ -30,7 +32,6 @@ public class myPageServiceImpl implements myPageService{
 
 	@Override
 	public memberVO updateUI(String id) {
-		// TODO Auto-generated method stub
 		return mpdao.updateUI(id);
 	}
 
@@ -60,7 +61,6 @@ public class myPageServiceImpl implements myPageService{
 
 	@Override
 	public List<basketVO> getBasket(String id) {
-		// TODO Auto-generated method stub
 		return mpdao.getBasket(id);
 	}
 
@@ -78,7 +78,6 @@ public class myPageServiceImpl implements myPageService{
 
 	@Override
 	public List<basketVO> zzim_list(String id) {
-		// TODO Auto-generated method stub
 		return mpdao.zzim_list(id);
 	}
 
@@ -95,7 +94,6 @@ public class myPageServiceImpl implements myPageService{
 
 	@Override
 	public List<buyListVO> buyList(String id) {
-		// TODO Auto-generated method stub
 		return mpdao.buyList(id);
 	}
 
@@ -107,7 +105,6 @@ public class myPageServiceImpl implements myPageService{
 
 	@Override
 	public List<refundVO> refundList(String id) {
-		// TODO Auto-generated method stub
 		return mpdao.refundList(id);
 	}
 
@@ -119,7 +116,6 @@ public class myPageServiceImpl implements myPageService{
 
 	@Override
 	public List<buyListVO> buyList24(String id) {
-		// TODO Auto-generated method stub
 		return mpdao.buyList24(id);
 	}
 
@@ -188,6 +184,50 @@ public class myPageServiceImpl implements myPageService{
 		int compnum = list.get(0).getCompnum();
 		mpdao.subCompInsert(compnum, id);
 		
+	}
+
+	@Override
+	public List<favoriteStoreVO> favComp(String id, String writer) {
+		List<gameVO> list = mpdao.subComp(writer);
+		int compnum = list.get(0).getCompnum();
+		return mpdao.favComp(id,compnum);
+	}
+
+	@Override
+	public void subCompDelete(String writer, String id) {
+		List<gameVO> list = mpdao.subComp(writer);
+		int compnum = list.get(0).getCompnum();
+		mpdao.subCompDelete(compnum, id);
+		
+	}
+
+	@Override
+	public List<favoriteStoreVO> favCompList(String id) {
+		return mpdao.favCompList(id);
+	}
+
+	@Override
+	public List<favoriteStoreVO> favCompList2(String id) {
+		// TODO Auto-generated method stub
+		return mpdao.favCompList2(id);
+	}
+
+	@Override
+	public int gameCount(String id) {
+		// TODO Auto-generated method stub
+		return mpdao.gameCount(id);
+	}
+
+	@Override
+	public int writercount(String id) {
+		// TODO Auto-generated method stub
+		return mpdao.writercount(id);
+	}
+
+	@Override
+	public int reviewcount(String id) {
+		// TODO Auto-generated method stub
+		return mpdao.reviewcount(id);
 	}
 
 }

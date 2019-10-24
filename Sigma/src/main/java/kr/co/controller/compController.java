@@ -1,12 +1,19 @@
 package kr.co.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +21,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
 import kr.co.service.compService;
+import kr.co.utils.UploadFileUtils;
 
 @Controller
 @RequestMapping(value = "/compManage")
@@ -27,9 +38,31 @@ public class compController {
 	@Inject
 	private compService compservice;
 	
+	@Resource(name = "uploadGamePath")
+	private String uploadGamePath;
+	
+	@ResponseBody
+	@RequestMapping(value = "/displayfile")
+	public ResponseEntity<byte[]> display(String uploadGamePath, String filename){
+		return UploadFileUtils.displayfile(uploadGamePath, filename);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/uploadajax", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	public ResponseEntity<String> uploadAjax(MultipartHttpServletRequest request) throws Exception{
+		
+		MultipartFile file = request.getFile("file");
+		String savedName = UploadFileUtils.uploadFile(uploadGamePath, file);
+		
+		return new ResponseEntity<String>(savedName, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/uploadajax", method = RequestMethod.GET)
+	public void uploadAjax() {}
+	
 //	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-//	public ResponseEntity<JsonObject> chart(String writer){
-//		ResponseEntity<JsonObject> entity = null;
+//	public ResponseEntity<JSONObject> chart(String writer){
+//		ResponseEntity<JSONObject> entity = null;
 //		JSONObject data = new JSONObject();
 //		JSONObject ajaxobjCols1 = new JSONObject();
 //		JSONObject ajaxobjCols2 = new JSONObject();
@@ -44,9 +77,35 @@ public class compController {
 //		ajaxArrayCols.add(ajaxobjCols1);
 //		ajaxArrayCols.add(ajaxobjCols2);
 //		data.put("cols", ajaxArrayCols);
+		
+//		List<gameVO> man = compservice.datalist(writer);
+		
+//		JSONArray body = new JSONArray();
+//		for(gameVO vo : man) {
+//			JSONArray ajaxArrayRows = new JSONArray();
+//			JSONObject legend = new JSONObject();
+//			legend.put("v", "남자");
+//			
+//			JSONObject value = new JSONObject();
+//			value.put("v", vo.getMancount());
+//			
+//			JSONArray ValueArray = new JSONArray();
+//			ValueArray.add(legend);
+//			ValueArray.add(value);
+//			
+//			JSONObject ValueObj = new JSONObject();
+//			ValueObj.put("c", ValueArray);
+//			ajaxArrayRows.add(ValueObj);
+//			body.add(ajaxArrayRows);
+//		}
+//		data.put("rows", body);
 //		
-//		List<gameVO> list = compservice.datalist(writer);
-//		
+//		try {
+//			entity = new ResponseEntity<JSONObject>(data, HttpStatus.OK);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			entity = new ResponseEntity<JSONObject>(HttpStatus.BAD_REQUEST);
+//		}
 //		return entity;
 //	}
 	//판매자 페이지
@@ -108,8 +167,11 @@ public class compController {
 	
 	//환불 상세보기
 	@RequestMapping(value = "/refund/refundRead")
-	public void refundRead(@RequestParam String id, Model model) {
-		refundVO rvo = compservice.refundRead(id);
+	public void refundRead(@RequestParam String id, @RequestParam int num, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("num", num);
+		refundVO rvo = compservice.refundRead(map);
 		model.addAttribute("vo", rvo);
 	}
 	

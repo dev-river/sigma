@@ -82,7 +82,7 @@ p,th,td{
 							<c:if test="${!empty gameDetailDC}">
 								<c:forEach items="${gameDetailDC}" var="DC">
 									<tr>
-										<td><a href="/maincategoryread?num=${DC.num}">${DC.gdnum}</a></td>
+										<td><a href="/gameDetail/main/maincategoryread?num=${DC.num}">${DC.gdnum}</a></td>
 										<td>${DC.dcstartdate}- ${DC.dcenddate}</td>
 										<td>${DC.rqstartdate}- ${DC.rqenddate}</td>
 										<td>${DC.dcrate}</td>

@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.domain.SPageTO;
 import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
@@ -49,8 +50,12 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 	}
 
 	@Override
-	public List<reviewVO> reviewlist(int num) {
-		return session.selectList(NS+".reviewlist", num);
+	public List<reviewVO> reviewlist(int num, gPageTO<reviewVO> sto) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("startNum", sto.getStartNum());
+		map.put("endNum", sto.getEndNum());
+		map.put("num", num);
+		return session.selectList(NS+".reviewlist", map);
 	}
 
 	@Override
@@ -116,20 +121,30 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 	}
 
 	@Override
-	public List<gameVO> list(gPageTO<gameVO> to, String category) {
+	public int getAmount(SPageTO to, String category) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("category", category);
+		map.put("keyword", to.getKeyword());
+		map.put("searchType", to.getSearchType());
+		
+		return session.selectOne(NS+".getAmount", map);
+	}
+
+	@Override
+	public List<gameVO> list(SPageTO to, String category) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("startNum", to.getStartNum());
 		map.put("endNum", to.getEndNum());
-		if (category.equalsIgnoreCase("all")) {
-  			category = "%";
-  		}
+		
 		map.put("category", category);
+		map.put("keyword", to.getKeyword());
+		map.put("searchType", to.getSearchType());
 		return session.selectList(NS+".list", map);
 	}
-	
+
 	@Override
-	public int getAmount() {
-		return session.selectOne(NS+".getAmount");
+	public int getReviewAmount(int num) {
+		return session.selectOne(NS+".getReviewAmount", num);
 	}
 
 }

@@ -86,6 +86,7 @@ public class boardController {
 	}
 	
 	//==========================================slist======================================================
+	
 	@RequestMapping("/main/slist/searchboardlist")
 	public void list(SPageTO sto, Model model) {
 		SPageTO dbSTO = sbService.list(sto);

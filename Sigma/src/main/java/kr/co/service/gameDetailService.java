@@ -3,6 +3,7 @@ package kr.co.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.domain.SPageTO;
 import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
@@ -21,7 +22,7 @@ public interface gameDetailService {
 
 	void update(gameVO vo);
 
-	List<reviewVO> reviewlist(int num);
+	gPageTO<reviewVO> reviewlist(int num, gPageTO<reviewVO> pto);
 
 	reviewVO maxYesReview(int num);
 
@@ -43,7 +44,7 @@ public interface gameDetailService {
 
 	void gameStatus(int num, String status);
 
-	gPageTO<gameVO> list(gPageTO<gameVO> to, String category);
+	SPageTO list(SPageTO to, String category);
 
 
 }

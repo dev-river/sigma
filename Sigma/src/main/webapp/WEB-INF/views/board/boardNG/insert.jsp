@@ -49,6 +49,7 @@
 				</div>
 				<div class="form-group">
 					<button id="submitBoardBtn" class="btn btn-info">등록</button>
+					<input type="button" class="btn btn-danger" id="cancle" value="취소" onclick="location.href='/board/main/newgame/NewGame'">
 				</div>
 			</form>
 		</div>

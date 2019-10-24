@@ -70,7 +70,7 @@ public class boardNGController {
 	public String boardNGdelete(int num , PageTO<boardNGVO> to) throws Exception {
 		rservice.deleteAll(num);
 		ngservice.boardNGdelete(num);
-		return "redirect:/main/newgame/NewGame?curPage="+to.getCurPage()+"&perPage="+to.getPerPage();
+		return "redirect:/board/main/newgame/NewGame?curPage="+to.getCurPage()+"&perPage="+to.getPerPage();
 	}
 	
 	@ResponseBody

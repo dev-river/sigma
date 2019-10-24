@@ -4,15 +4,39 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.mapper.gameInform">
+	<sql id="search">
+      <if test="searchType == 'writer'.toString()">
+         and lower(writer) like '%'||lower(#{keyword})||'%'
+      </if>
+      <if test="searchType == 'title'.toString()">
+         and lower(title) like '%'||lower(#{keyword})||'%'
+      </if>
+      <if test="searchType == 'content'.toString()">
+         and lower(content) like '%'||lower(#{keyword})||'%'
+      </if>
+      <if test="searchType == null">
+      </if>
+ 	</sql>
+
 	<select id="list" resultType="kr.co.domain.gameVO">
 		<![CDATA[
-		select * from (select rownum rnum, num, title, content, writer, regidate, category, price, dcrate, mancount, womancount, totalage, profit, sellcharge, viewcnt, filepath, gamefilepath, status from 
-        (select * from (select * from gamedetail where category like #{category}) order by num desc)) where rnum between #{startNum} and #{endNum}
+		select * from 
+		(select rownum rnum, num, title, content, writer, regidate, category, price, dcrate, mancount, womancount, totalage, profit, sellcharge, viewcnt, filepath, gamefilepath, status from 
+        (select * from 
+        (select * from gamedetail where category like #{category} ]]><include refid="search"></include><![CDATA[)
+         order by num desc)) 
+        where rnum between #{startNum} and #{endNum}
 		]]>
 	</select>
 	
 	<select id="getAmount" resultType="Integer">
-		select count(num) from gamedetail
+		<![CDATA[
+		select count(num) from gamedetail where category like #{category} ]]><include refid="search"></include>
+		<![CDATA[]]>
+	</select>
+	
+	<select id="getReviewAmount" resultType="Integer">
+		select count(*) from gamereview where gdnum = #{num}
 	</select>
 	
 	<select id="read" resultType="kr.co.domain.gameVO">
@@ -28,7 +52,7 @@
 	</select>
 	
 	<update id="dcadd">
-		update gamedetaildc set joinclick=joinclick+1 where gdnum=#{num} and num=(select min(num) from gamedetaildc where gdnum=#{num})
+		update gamedetaildc set joinclick=joinclick+1 where num=#{num}
 	</update>
 
 	<update id="update">
@@ -36,7 +60,7 @@
 	</update>
 	
 	<select id="reviewlist" resultType="kr.co.domain.reviewVO">
-		select * from gamereview where gdnum = #{num} order by regidate desc
+		select * from (select rownum rnum, num, gdnum, writer, content, regidate, updatedate, recommend, assistyes, assistno from (select * from gamereview where gdnum = #{num} order by regidate desc)) where rnum between #{startNum} and #{endNum}
 	</select>
 	
 	<select id="maxYesReview" resultType="kr.co.domain.reviewVO">
