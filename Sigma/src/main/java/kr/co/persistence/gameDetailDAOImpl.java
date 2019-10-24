@@ -147,4 +147,20 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 		return session.selectOne(NS+".getReviewAmount", num);
 	}
 
+	@Override
+	public int dcjoincheck(int num, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("id", id);
+		return session.selectOne(NS+".dcjoincheck", map);
+	}
+
+	@Override
+	public void dcjoininsert(int num, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("id", id);
+		session.insert(NS+".dcjoininsert", map);
+	}
+
 }

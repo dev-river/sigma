@@ -115,7 +115,14 @@
 					<p>할인요청 종료: ${dcvo.rqenddate}</p>
 					<p>할인요청 목표수: ${dcvo.joinclick} / ${dcvo.goal}</p>
 					<p>달성 시 할인율: ${dcvo.dcrate}</p>
-					<a class="btn btn-primary" href="/gameDetail/inform/dcCountAdd?num=${dcnum}&gdnum=${vo.num}" onclick="return confirm('할인 요청에 동참하시겠습니까 ?');">동참하기</a>
+					<c:choose>
+						<c:when test="${dcjoincheck eq 0}">
+							<a class="btn btn-primary" href="/gameDetail/inform/dcCountAdd?num=${dcnum}&gdnum=${vo.num}" onclick="return confirm('할인 요청에 동참하시겠습니까 ?');">동참하기</a>
+						</c:when>
+						<c:otherwise>
+							<a class="btn btn-warning" href="#">동참완료</a>
+						</c:otherwise>
+					</c:choose>
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>
