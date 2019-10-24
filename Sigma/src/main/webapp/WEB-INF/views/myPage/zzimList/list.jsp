@@ -11,12 +11,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+<style type="text/css">
+	p{
+	color: white;
+	}
+</style>
 </head>
 <body>
+	<div class="bodymain">
 	<div class="container">
 		<div class="row">
-			<h3 style="position: relative; top:100px;">${myInfo.nickname}(${myInfo.id})님의 찜목록</h3>
+			<h3 style="position: relative; top:100px; color: white;">${myInfo.nickname}(${myInfo.id})님의 찜목록</h3>
 			
 			<br>
 			
@@ -34,8 +40,8 @@
 				<tbody>
 					<c:forEach items="${zzim}" var="zzim">
 						<tr>
-							<td>
-								<img alt="" src="/resources/gameDetailFile/${img}" style="width:25%; padding-right: 5px;" class="pull-left">
+							<td style="min-height: 700px; max-height: auto;">
+								<img alt="" src="/resources/gameDetailFile/${img}" style="width:25%; padding-right: 5px; position: relative; right: 10px;"  class="pull-left">
 								<p style="position:relative; top:20px; width:35%" class="pull-left">게임 이름 : ${zzim.title}</p>
 								<p style="position:relative; top:20px; width:38%" class="pull-right">배급사 : ${zzim.writer}</p> 
 								<p style="position:relative; top:20px; width:35%" class="pull-left">출시일 : ${zzim.gregidate}</p>
@@ -48,13 +54,16 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="row">
+		<div class="row" style="text-align: center;">
 			<button class="btn btn-primary buy">체크 된 상품 장바구니로 이동</button>
 			<button class="btn del">체크 된 상품 찜목록에서 제거</button>
-			<button class="btn mypage" onclick="location.href='/myPage/myPage/mypage'">마이페이지로 돌아가기</button>
+			<button class="btn mypage" onclick="location.href='/myPage/main/mypage'">마이페이지로 돌아가기</button>
 		</div>
 	</div>
+	
 	<input type="hidden" class="hiddenid" value="${myInfo.id}">
+	</div>
+	<br>
 <script type="text/javascript">
 	$(document).ready(function() {
 		//장바구니로 이동
@@ -77,7 +86,7 @@
 						
 						$.ajax({
 							type : 'post',
-							url : '/myPage/shopBasket/regiBasket',
+							url : '/myPage/main/Basket',
 							data : {
 								gdnum : gdnum,
 								id : id
@@ -87,12 +96,12 @@
 								if(event=='failed'){
 									var con = confirm("["+gamename.title+"]이(가)  이미 장바구니에 들어있습니다. 장바구니로 이동하시겠습니까?")
 									if(con){
-										location.href = "/myPage/shopBasket/regiBasket";
+										location.href = "/myPage/main/Basket";
 									}
 								} else{
 									var con = confirm("["+gamename.title+"]이(가)  장바구니에 집어넣었습니다. 장바구니로 이동하시겠습니까?")
 									if(con){
-										location.href = "/myPage/shopBasket/regiBasket";
+										location.href = "/myPage/main/Basket";
 									}
 								}
 							}

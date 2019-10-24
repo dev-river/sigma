@@ -11,12 +11,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+<style type="text/css">
+	p{
+	color: white;
+	}
+</style>
 </head>
 <body>
+	<div class="bodymain">
 	<div class="container">
 		<div class="row">
-			<h3 style="position: relative; top:100px;">${myInfo.nickname}(${myInfo.id})님의 장바구니</h3>
+			<h3 style="position: relative; top:100px; color: white;">${myInfo.nickname}(${myInfo.id})님의 장바구니</h3>
 			
 			<br>
 			
@@ -35,7 +41,7 @@
 					<c:forEach items="${basket}" var="basket">
 						<tr>
 							<td>
-								<img alt="" src="/resources/gameDetailFile/${img}" style="width:25%; padding-right: 5px;" class="pull-left">
+								<img alt="" src="/resources/gameDetailFile/${img}" style="width:25%; padding-right: 5px; position: relative; right: 10px;" class="pull-left">
 								<p style="position:relative; top:20px; width:35%" class="pull-left gn">게임 이름 : ${basket.title}</p>
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">배급사 : ${basket.writer}</p> 
 								<p style="position:relative; top:20px; width:35%" class="pull-left">출시일 : ${basket.gregidate}</p>
@@ -51,13 +57,14 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="row">
+		<div class="row" style="position: relative; left: 30%">
 			<button class="btn btn-primary buy">체크 된 상품 구매</button>
 			<button class="btn del">체크 된 상품 장바구니에서 제거</button>
-			<button class="btn mypage" onclick="location.href='/myPage/myPage/mypage'">마이페이지로 돌아가기</button>
+			<button class="btn mypage" onclick="location.href='/myPage/main/mypage'">마이페이지로 돌아가기</button>
 		</div>
 	</div>
 	<input type="hidden" class="hiddenid" value="${myInfo.id}">
+	</div>
 <script type="text/javascript">
 	$(document).ready(function() {
 		

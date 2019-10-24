@@ -288,7 +288,7 @@
 			var gdnum = ${vo.num};
 			$.ajax({
 				type : 'post',
-				url : '/myPage/shopBasket/regiBasket',
+				url : '/myPage/main/Basket',
 				data : {
 					gdnum : gdnum
 				},
@@ -297,12 +297,12 @@
 					if(event=='failed'){
 						var con = confirm("해당 상품이 이미 장바구니에 들어있습니다. 장바구니로 이동하시겠습니까?")
 						if(con){
-							location.href = "/myPage/shopBasket/regiBasket";
+							location.href = "/myPage/main/Basket";
 						}
 					} else{
 						var con = confirm("해당 상품을 장바구니에 집어넣었습니다. 장바구니로 이동하시겠습니까?")
 						if(con){
-							location.href = "/myPage/shopBasket/regiBasket";
+							location.href = "/myPage/main/Basket";
 						}
 					}
 				}
@@ -314,7 +314,7 @@
 			var gdnum = ${vo.num};
 			$.ajax({
 				type : 'post',
-				url : '/myPage/zzimList/list',
+				url : '/myPage/main/zzim',
 				data : {
 					gdnum : gdnum
 				},
@@ -323,12 +323,12 @@
 					if(event=='failed'){
 						var con = confirm("해당 상품이 이미 찜목록에 들어있습니다. 찜목록으로 이동하시겠습니까?")
 						if(con){
-							location.href = "/myPage/zzimList/list";
+							location.href = "/myPage/main/zzim";
 						}
 					} else{
 						var con = confirm("해당 상품을 찜목록에 집어넣었습니다. 찜목록으로 이동하시겠습니까?")
 						if(con){
-							location.href = "/myPage/zzimList/list";
+							location.href = "/myPage/main/zzim";
 						}
 					}
 				}

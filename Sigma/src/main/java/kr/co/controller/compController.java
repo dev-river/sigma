@@ -50,7 +50,7 @@ public class compController {
 //		return entity;
 //	}
 	//판매자 페이지
-	@RequestMapping(value = "/compInform/read")
+	@RequestMapping(value = "/main/manageread")
 	public void read(@RequestParam String id, Model model) {
 		memberVO vo = compservice.read(id);
 		int count = compservice.count(id);
@@ -59,21 +59,21 @@ public class compController {
 	}
 	
 	//판매자 정보 수정 UI
-	@RequestMapping(value = "/compInform/update")
+	@RequestMapping(value = "/main/manageupdate")
 	public void updateUI(@RequestParam String id, Model model) {
 		memberVO vo = compservice.read(id);
-		System.out.println(vo.getId());
+		
 		model.addAttribute("vo", vo);
 	}
 	//판매자 정보 수정	
-	@RequestMapping(value = "/compInform/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/manageupdate", method = RequestMethod.POST)
 	public String update(memberVO vo) {
 		compservice.update(vo);
-		return "redirect:/compManage/compInform/read?id="+vo.getId();
+		return "redirect:/compManage/main/manageread?id="+vo.getId();
 	}
 	
 	//판매자가 등록한 게임 리스트
-	@RequestMapping(value = "/gameList/gameList")
+	@RequestMapping(value = "/main/gamelist")
 	public void gamelist(String writer, Model model) {
 		List<gameVO> gamelist = compservice.gamelist(writer);
 		List<gameDetailDcVO> gameDetailDC =  compservice.gameDetailDC(writer);
@@ -82,25 +82,25 @@ public class compController {
 	}
 	
 	//게임 등록 UI
-	@RequestMapping(value = "/gameList/gameInsert")
+	@RequestMapping(value = "/main/gameinsert")
 	public void gameinsertUI(@RequestParam String writer, Model model) {
 		int cash = compservice.seachcash(writer);
 		model.addAttribute("cash", cash);
 	}
 	
 	//게임 등록
-	@RequestMapping(value = "/gameList/gameInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/gameinsert", method = RequestMethod.POST)
 	public String gameinsert(gameVO vo) {
 		//판매자의 캐시 1000원을 관리자에게 준다
 		compservice.sellermoney(vo);
 		compservice.givemoney();
 		//게임 등록
 		compservice.gameinsert(vo);
-		return "redirect:/compManage/gameList/gameList?writer="+vo.getWriter();
+		return "redirect:/compManage/main/gamelist?writer="+vo.getWriter();
 	}
 	
 	//환불 리스트
-	@RequestMapping(value = "/refund/refundList")
+	@RequestMapping(value = "/main/refundlist")
 	public void refundList(@RequestParam String id, Model model) {
 		List<refundVO> list = compservice.refundList(id);
 		model.addAttribute("list", list);

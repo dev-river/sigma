@@ -11,24 +11,19 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.head{
-	width: 400px;
-	margin: 10px auto;
-}
-.body{
-	width: 400px;
-	margin: 10px auto;
-}
+
 </style>
 </head>
 <body>
-<div class="">
-	<div class="row head">
-		<h2>판매자 페이지(${vo.id})</h2>
-		<input type="button" value="정보 수정" class="btn update">
-	</div>
-	<div class="row body">
+<div class="bodymain">
+<div class="container">
+	<div class="row">
+		<h2 style="color: white;">판매자 페이지(${vo.id})</h2>
+		<input type="button" value="정보 수정" class="btn update" style=" text-align: center;">
+	</div><br>
+	<div class="row" style="color: white; text-align: center;">
 		ID : ${vo.id}
 		대표자명 : ${vo.name}<br>
 		업체명 : ${vo.compname}
@@ -37,24 +32,25 @@
 		메일 주소 : ${vo.email}<br>
 		업체번호 : ${vo.compphone}
 		대표자번호 : ${vo.phone}<br>
-	</div>
-	<div class="">
+	</div><br>
+	<div class="" style=" text-align: center;">
 		<input type="button" value="판매 관리" class="btn gamelist">
 		<input type="button" value="환불 관리" class="btn refund">
 	</div>
 </div>
+</div>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".update").on("click",function(){
-			location.href="/compManage/compInform/update?id=${vo.id}";
+			location.href="/compManage/main/manageupdate?id=${vo.id}";
 		});
 		
 		$(".gamelist").on("click", function(){
-			location.href="/compManage/gameList/gameList?writer=${vo.id}";
+			location.href="/compManage/main/gamelist?writer=${vo.id}";
 		});
 		
 		$(".refund").on("click", function(){
-			location.href="/compManage/refund/refundList?id=${vo.id}";
+			location.href="/compManage/main/refundlist?id=${vo.id}";
 		});
 	});
 </script>

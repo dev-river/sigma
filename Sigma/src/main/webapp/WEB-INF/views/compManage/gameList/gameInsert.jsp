@@ -11,24 +11,22 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.head{
-	width: 400px;
-	margin: 10px auto;
-}
-.body{
-	width: 400px;
-	margin: 10px auto;
-}
+	label{
+	color: white;
+	
+	}
 </style>
 </head>
 <body>
-<div>
-	<div class="row head">
-		<h2>게임 등록</h2>
+<div class="bodymain">
+	<div class="container">
+	<div class="row">
+		<h2 style="color: white;">게임 등록</h2>
 	</div>
 	<div class="row body">
-		<form action="/compManage/gameList/gameInsert" method="post">
+		<form action="/compManage/main/gameinsert" method="post">
 			<input type="hidden" id="writer" name="writer" value="${login.id}">
 			<input type="hidden" id="cash" name="cash" value="${cash}">
 			<!-- 이름 -> 회사명으로 -->
@@ -64,10 +62,11 @@
 			</div>
 			<div>
 				<button class="btn insert">등록</button>
-				<input type="button" class="btn" value="취소" onclick="location.href='/compManage/gameList/gameList?writer=${login.id}'">
+				<input type="button" class="btn" value="취소" onclick="location.href='/compManage/main/gamelist?writer=${login.id}'">
 			</div>
 		</form>
 	</div>
+</div>
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -86,15 +85,15 @@
 			if(cash < 1000){
 				var check = confirm("캐시 충전하시겠습니까?");
 				if(check==true){
-					location.href="/myPage/cash/charge?id="+writer;
+					location.href="/myPage/main/cash?id="+writer;
 					return false;
 				}else{
 					alert("리스트로 돌아갑니다.");
-					location.href="/compManage/gameList/gameList?writer="+writer;
+					location.href="/compManage/main/gamelist?writer="+writer;
 					return false;
 				}
 			}else{
-				location.href="/compManage/gameList/gameInsert";
+				location.href="/compManage/main/gameinsert";
 			}	
 		});
 	});
