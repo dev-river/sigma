@@ -21,6 +21,7 @@
 <hr>
 
 <div class="container">
+	
 	<c:forEach items="${vo}" var="vo" begin="0" end="4">
 		<div style="width: 50%; margin: 0; float: left;">
 			
@@ -39,6 +40,7 @@
 			<p style="text-align: center; margin-bottom: 10px;">생성일: ${vo.regidate}</p>
 			
 			<div class="form-group">
+				<a href="/admin/adminSetting/slideUpdate?num=${vo.num}"><input type="button" value="수정" class="btn updatebtn"></a>
 				<a href="/admin/adminSetting/slideDelete?num=${vo.num}"><input type="button" value="삭제" class="btn deletebtn"></a>
 			</div>
 			
@@ -46,9 +48,19 @@
 			
 		</div>
 	</c:forEach>
-</div>	
+	<div class="row">
+			<div class="pull-right">
+			<input type="submit" class="btn btn-primary form-submit Insertbtn"
+				value="배너등록">
+			</div>
+		</div>
+	</div>	
 	<script type="text/javascript">
+
 	
+	$(".Insertbtn").on("click",function(){
+		location.href="/admin/adminSetting/slideInsert";
+	});
 	
 	</script>
 </body>

@@ -120,6 +120,35 @@ public class adminDAOImpl implements adminDAO{
 
 		session.delete(NSsetting+".slideDelete", num);
 	}
+
+	@Override
+	public void slideInsert(String bnfilepath, adminSlideVO vo) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("filepath", bnfilepath);
+		map.put("urlpath", vo.geturlpath());
+		
+		session.insert(NSsetting+".slideInsert", map);
+	}
+
+	@Override
+	public adminSlideVO getSlide(int num) {
+
+		return session.selectOne(NSsetting+".getSlide", num);
+	}
+
+	@Override
+	public void slideUpdate(String bnfilepath, adminSlideVO vo) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("filepath", bnfilepath);
+		map.put("urlpath", vo.geturlpath());
+		map.put("num", vo.getNum());
+		
+		session.update(NSsetting+".slideUpdate", map);
+	}
 	
 
 }
