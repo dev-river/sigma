@@ -11,13 +11,21 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<style type="text/css">
+	label{
+	font-size : 1em;
+	font : bold;
+	color: black;
+	}
+	#ba{
+	background-color: white;
+	}
+</style>
 </head>
 <body>
-	<div class="container" style="padding-top: 50px;">
+	<div class="container" style="padding-top: 50px;" id="ba">
 		<div class="row col-xs-push-1 col-xs-11" >
 		
-			<h2>일반 회원 가입</h2>
 			<!-- 회원가입 창 -->
 			<form name="info" method="post" action="/myPage/myProfile/update">
 				<div class="form-group">
@@ -28,7 +36,7 @@
 				<br>
 					
 				<label>성별</label> <br>
-				<p>${updateUIInfo.sex}</p>
+				<p style="color: red; font-size: large; font: bolder;">${updateUIInfo.sex}</p>
 				
 				<br>
 				
@@ -81,11 +89,11 @@
 				<!-- 정보수정 버튼 -->
 				<input class="form-control btn btn-primary update" value="수정완료" type="submit">
 				<input class="form-control btn btn-primary back" value="마이페이지로 돌아가기">
-				<input class="form-control btn delete" value="회원탈퇴" style="width:20%; background-color: rgba(200,200,200,0.5);">
+				<input class="form-control btn delete" value="회원탈퇴" style="width:20%; background-color: rgba(200,200,200,0.5); color: black; float: right;">
 			</form>
 		</div>
 	</div>
-	
+	<br>
 	
 	
 <script type="text/javascript">
@@ -96,7 +104,7 @@
 		//마이페이지로 돌아가기
 		$(".back").on("click", function(event) {
 			event.preventDefault();
-			location.href = "/myPage/myPage/mypage";
+			location.href = "/myPage/main/mypage";
 		});
 		
 		//회원 탈퇴
@@ -152,7 +160,7 @@
 
 			$.ajax({
 				type : 'post',
-				url : '/myPage/myProfile/update',
+				url : '/myPage/main/myprofile',
 				data : {
 					id : id,
 					pw : pw,
@@ -167,7 +175,7 @@
 				dataType : 'text',
 				success : function() {
 					alert("수정 완료 되었습니다.");
-					location.href = "/myPage/myPage/mypage";
+					location.href = "/myPage/main/mypage";
 				}
 			});
 		});

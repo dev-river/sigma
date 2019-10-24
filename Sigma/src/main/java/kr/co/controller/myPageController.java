@@ -70,7 +70,7 @@ public class myPageController {
 	
 	
 	//프로필 수정UI
-	@RequestMapping(value = "/myProfile/update", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/myprofile", method = RequestMethod.GET)
 	public void updateUI(@RequestParam String id, Model model) {
 		memberVO vo = mpService.updateUI(id);
 		model.addAttribute("updateUIInfo", vo);
@@ -78,11 +78,11 @@ public class myPageController {
 	
 	
 	//프로필 수정
-	@RequestMapping(value = "/myProfile/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/myprofile", method = RequestMethod.POST)
 	public String update(memberVO vo) {
 		mpService.update(vo);
 		
-		return "redirect:/myPage/myPage/mypage";
+		return "redirect:/myPage/main/mypage";
 	}
 	
 	
@@ -95,14 +95,14 @@ public class myPageController {
 	}
 	
 	//캐쉬충전UI
-	@RequestMapping(value = "/cash/charge", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/cash", method = RequestMethod.GET)
 	public void chargeUI(String id, Model model) {
 		memberVO vo = mpService.getMemberVO(id);
 		model.addAttribute("usercash", vo);
 	}
 	
-	//캐쉬충전UI
-	@RequestMapping(value = "/cash/charge", method = RequestMethod.POST)
+	//캐쉬충전
+	@RequestMapping(value = "/main/cash", method = RequestMethod.POST)
 	public String charge(int cash, String id) {
 		
 		mpService.updateCash(cash, id);
@@ -112,7 +112,7 @@ public class myPageController {
 	
 	//장바구니로 이동
 	@SuppressWarnings("deprecation")
-	@RequestMapping(value = "/shopBasket/regiBasket", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/Basket", method = RequestMethod.GET)
 	public void regiBasget(HttpServletRequest request, Model model) {
 		
 		//세션에 저장된 아이디를 가져오는 코드
@@ -141,7 +141,7 @@ public class myPageController {
 	//게임 장바구니에 집어넣기
 	@SuppressWarnings("deprecation")
 	@ResponseBody
-	@RequestMapping(value = "/shopBasket/regiBasket", method = RequestMethod.POST, produces = "application/text;charset=utf-8")
+	@RequestMapping(value = "/main/Basket", method = RequestMethod.POST, produces = "application/text;charset=utf-8")
 	public String regiBasget(HttpServletRequest request, int gdnum) {
 		
 		//세션에 저장된 아이디를 가져오는 코드
@@ -169,7 +169,7 @@ public class myPageController {
 	
 	//찜목록으로 이동
 	@SuppressWarnings("deprecation")
-	@RequestMapping(value = "/zzimList/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/zzim", method = RequestMethod.GET)
 	public void zzim_list(HttpServletRequest request, Model model) {
 		
 		//세션에 저장된 아이디를 가져오는 코드
@@ -194,7 +194,7 @@ public class myPageController {
 	//찜목록에 게임 저장
 	@SuppressWarnings("deprecation")
 	@ResponseBody
-	@RequestMapping(value="/zzimList/list", method = RequestMethod.POST)
+	@RequestMapping(value="/main/zzim", method = RequestMethod.POST)
 	public String zzim_insert(HttpServletRequest request, int gdnum) {
 		//세션에 저장된 아이디를 가져오는 코드
 		HttpSession session = request.getSession(false);
@@ -298,7 +298,7 @@ public class myPageController {
 	}
 	
 	//게임 구매 리스트
-	@RequestMapping(value = "/buyList/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/buylist", method = RequestMethod.GET)
 	public void buyList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		memberVO obj = (memberVO)session.getValue("login");

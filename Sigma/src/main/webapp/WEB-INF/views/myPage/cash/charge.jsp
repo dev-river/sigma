@@ -11,11 +11,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 </head>
 <body>
+	<div class="bodymain">
 	<div class="container">
-		<div class="row">
+		<div class="row" style="">
 			<h3>${usercash.nickname}(${usercash.id})님의 캐쉬 충전</h3>
 			<br>
 			<div style="position: relative; left:5%; width:85%;" class="cash">
@@ -26,7 +27,7 @@
 				<button style="position: relative; left: 5%; height:50px; width: 20%;" class="btn num" value="50000" onclick="plus(thie)">50,000</button>
 			</div>
 			<hr>
-			<form action="/myPage/cash/charge" method="post">
+			<form action="/myPage/main/cash" method="post">
 				<div style="position: relative; width: 40%;" class="pull-right">
 					<h3>현재 잔액 : ${usercash.cash}원</h3>
 					<br>
@@ -44,6 +45,7 @@
 				<input type="hidden" id="id" name="id" value="${usercash.id}"></input>
 			</form>
 		</div>
+	</div>
 	</div>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -66,7 +68,7 @@
 			var cash = $(this).val();
 			$.ajax({
 				type : 'post',
-				url : '/myPage/cash/charge',
+				url : '/myPage/main/cash',
 				data : {
 					cash : cash
 				}, 
