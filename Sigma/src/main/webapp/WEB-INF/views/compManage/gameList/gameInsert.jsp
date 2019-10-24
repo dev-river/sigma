@@ -11,24 +11,22 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.head{
-	width: 400px;
-	margin: 10px auto;
-}
-.body{
-	width: 400px;
-	margin: 10px auto;
-}
+	label{
+	color: white;
+	
+	}
 </style>
 </head>
 <body>
-<div>
-	<div class="row head">
-		<h2>게임 등록</h2>
+<div class="bodymain">
+	<div class="container">
+	<div class="row">
+		<h2 style="color: white;">게임 등록</h2>
 	</div>
 	<div class="row body">
-		<form action="/compManage/gameList/gameInsert" method="post">
+		<form action="/compManage/main/gameinsert" method="post">
 			<input type="hidden" id="writer" name="writer" value="${login.id}">
 			<input type="hidden" id="cash" name="cash" value="${cash}">
 			<!-- 이름 -> 회사명으로 -->
@@ -60,24 +58,24 @@
 			</div>
 			<div class="form-group">
 				<label for="gamefilepath">게임 파일 경로</label>
-				<input id="gamefilepath" name="gamefilepath" class="form-contorl" placeholder="파일경로" style="width: 80px;">
+				<input type="text" id="gamefilepath" name="gamefilepath" class="form-contorl" placeholder="파일경로" style="width: 80px;">
 			</div>
+			
+			<div class="Drop"></div>
+			<div class="uploadedList"></div>
+							
 			<div>
 				<button class="btn insert">등록</button>
-				<input type="button" class="btn" value="취소" onclick="location.href='/compManage/gameList/gameList?writer=${login.id}'">
+				<input type="button" class="btn" value="취소" onclick="location.href='/compManage/main/gamelist?writer=${login.id}'">
 			</div>
 		</form>
 	</div>
 </div>
+</div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(".select").change(function(){
-			var select = $(".select option:selected").val();
-			if(select == 4){
-				$(".test").css("display", "block");
-			}else{
-				$(".test").css("display", "none");
-			}
+		$(".Drop").on("dragenter dragover", function(event){
+			event.preventDefault();
 		});
 		
 		$(".insert").on("click",function(){
@@ -86,18 +84,73 @@
 			if(cash < 1000){
 				var check = confirm("캐시 충전하시겠습니까?");
 				if(check==true){
-					location.href="/myPage/cash/charge?id="+writer;
+					location.href="/myPage/main/cash?id="+writer;
 					return false;
 				}else{
 					alert("리스트로 돌아갑니다.");
-					location.href="/compManage/gameList/gameList?writer="+writer;
+					location.href="/compManage/main/gamelist?writer="+writer;
 					return false;
 				}
 			}else{
-				location.href="/compManage/gameList/gameInsert";
+				location.href="/compManage/main/gameinsert";
 			}	
+		$(".Drop").on("drop", function(event){
+			event.preventDefault();
+			
+			var arr = event.originalEvent.dataTransfer.files;
+			
+			for(var idx=0; idx<arr.length; idx++){
+				var file = arr[idx];
+				
+				var formData = new FormData();
+				formData.append("file", file);
+				
+				$.ajax({
+					type : 'post',
+					url : '/compManage/uploadajax',
+					data : formData,
+					dataType : 'text',
+					contentType : false,
+					processData : false,
+					success : function(data){
+						var str = '';
+						
+						if(checkImageType(data)){
+							str += "<div><img src='displayfile?filename="+data+"' alt='게임파일 그림'/><p>"+data+"</p></div>";
+						}else{
+							str += "<div><img src='/resouces/gameDetailFile/noimage.png' alt='일반파일 그림'/><p>"+data+"</p></div>";
+						}
+						
+						$(".uploadedList").append(str);
+					}
+				});
+			}
+			
 		});
 	});
+	
+	function checkImageType(data){
+		var pattern = /jpg|png|jpeg|gif/i;
+		return data.match(pattern);
+	}
+	function check(form){
+		var cash = $("input[id='cash']").val();
+		var writer = $("input[id='writer']").val();
+		alert(cash);
+		if(cash >= 0  && cash < 1000){
+			var check = confirm("캐시 충전하시겠습니까?");
+			if(check==true){
+				location.href="/myPage/cash/charge?id="+writer;
+				return false;
+			}else{
+				alert("리스트로 돌아갑니다.");
+				location.href="/compManage/gameList/gameList?writer="+writer;
+				return false;
+			}
+		}else{
+			return true;
+		}
+	}
 </script>
 </body>
 </html>

@@ -62,11 +62,6 @@ public class compDAOImpl implements compDAO {
 	}
 
 	@Override
-	public refundVO refundRead(String id) {
-		return session.selectOne(NS+".refundRead", id);
-	}
-
-	@Override
 	public void refundOK(int num) {
 		session.update(NS+".refundOK", num);
 	}
@@ -107,8 +102,8 @@ public class compDAOImpl implements compDAO {
 	}
 
 	@Override
-	public List<gameVO> datalist(String writer) {
-		return session.selectList(NS+".datalist", writer);
+	public refundVO refundRead(Map<String, Object> map) {
+		return session.selectOne(NS+".refundRead", map);
 	}
 
 	

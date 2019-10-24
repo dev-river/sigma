@@ -117,4 +117,33 @@
 		insert into FavoriteStore values ((select nvl2(max(num), max(num)+1, 1) from FavoriteStore), #{id}, #{compnum})
 	</insert>
 	
+	<select id="favComp" resultType="kr.co.domain.favoriteStoreVO">
+		select compnum from FavoriteStore where id=#{id} and compnum=#{compnum}
+	</select>
+	
+	<delete id="subCompDelete">
+		delete from FavoriteStore where id=#{id} and compnum=#{compnum}
+	</delete>
+	
+	<select id="favCompList" resultType="kr.co.domain.favoriteStoreVO">
+		select u.id, u.filepath, g.title, g.filepath, g.num gdnum, f.num from favoriteStore f, userinfo u, gamedetail g where u.compnum=f.compnum and f.id = #{id} and g.writer=u.id
+	</select>
+	
+	<select id="favCompList2" resultType="kr.co.domain.favoriteStoreVO">
+		select u.id, u.filepath from favoriteStore f, userinfo u where u.compnum=f.compnum and f.id=#{id}
+	</select>
+	
+	<select id="gamecount" resultType="Integer">
+		select count(*) from buyList where id=#{id}
+	</select>
+	
+	<select id="writercount" resultType="Integer">
+		select count(*) from boardfr where writer = #{id}
+	</select>
+	
+	<select id="reviewcount" resultType="Integer">
+		select count(*) from gamereview where writer = #{id}
+	</select>
+	
+	
 </mapper>

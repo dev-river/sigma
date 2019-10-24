@@ -1,0 +1,7 @@
+@charset "UTF-8";
+.container{
+	padding: 0;
+	max-height: auto;
+	min-height: 750px;
+	width: 1070px;
+}

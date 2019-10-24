@@ -11,15 +11,25 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+<style type="text/css">
+th,td,p{
+	color: white;
+}
+.btn{
+	float: right;
+	position: relative;
+	top: 500px;
+}
+</style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
+
+<div class="bodymain">
 <div class="container">
-	<div class="head">
-		<h2>환불 신청 리스트</h2>
-		<input type="button" value="뒤로" class="btn" onclick="location.href='/compManage/compInform/read?id=${login.id}'">
-	</div>
-	<div class="body">
+	<br>
+	<h2 style="color: white;">환불 리스트</h2>
+	<div class="row">
 		<table class="table">
 			<thead>
 				<tr>
@@ -50,6 +60,11 @@
 			</tbody>
 		</table>
 	</div>
+	<div class="roe">
+
+		<input type="button" value="뒤로" class="btn" onclick="location.href='/compManage/main/manageread?id=${login.id}'">
+	</div>
+</div>
 </div>
 </body>
 </html>

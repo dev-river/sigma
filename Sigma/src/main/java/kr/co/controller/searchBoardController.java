@@ -22,12 +22,35 @@ public class searchBoardController {
 	@Autowired
 	private replyService rservice;
 
+	
+	/* ====================== 새게임소식 SEARCH부분 ===================================================*/
+	
+	@RequestMapping("/sboardNG/list")
+	public void NGlist(SPageTO sto, Model model) {
+		SPageTO dbSTO = sbService.list(sto);
+		model.addAttribute("to", dbSTO); 
+	}
+	
+	@RequestMapping(value = "/sboardNG/read")
+	public void NGread(Model model, int num, SPageTO sto) {
+		boardVO svo = sbService.read(num);
+		
+		model.addAttribute("vo", svo);
+		model.addAttribute("to", sto);
+	}
+	
+	
+	/* ====================== 자유게시판 SEARCH부분 ===================================================*/	
 	@RequestMapping("/sboardFR/list")
 	public void list(SPageTO sto, Model model) {
 		SPageTO dbSTO = sbService.list(sto);
 		model.addAttribute("to", dbSTO); 
 	}
-
+	@RequestMapping("/sboardNG/list")
+	public void list2(SPageTO sto, Model model) {
+		SPageTO dbSTO = sbService.list(sto);
+		model.addAttribute("to", dbSTO); 
+	}
 	@RequestMapping(value = "/sboardFR/read")
 	public void read(Model model, int num, SPageTO sto) {
 		boardVO svo = sbService.read(num);

@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id="refundList" resultType="kr.co.domain.refundVO">
-		select refundlist.id, gamedetail.title, refundlist.updatedate, refundlist.status 
+		select refundlist.num, refundlist.id, gamedetail.title, refundlist.updatedate, refundlist.status 
 		from refundlist, buylist, gamedetail 
 		where refundlist.buynum = buylist.num and buylist.gdnum = gamedetail.num and gamedetail.writer = #{id} order by refundlist.status
 	</select>
@@ -71,12 +71,15 @@
 	</select>
 	
 	<update id="givemoney">
-		update userinfo set cash = cash + 1000  where id = 'cashadmin'
+		update userinfo set cash = cash + (select regicharge from adminsetting) where id = 'cashadmin'
 	</update>
 	
 	<update id="sellermoney">
-		update userinfo set cash = cash - 1000  where id = #{writer}
+		update userinfo set cash = cash - (select regicharge from adminsetting)  where id = #{writer}
 	</update>
 	
+<!-- 	<select id="datalist" resultType="Integer">
+		select sum(mancount) from gamedetail where writer = #{}
+	</select> -->
 	
 </mapper>

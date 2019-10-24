@@ -26,7 +26,7 @@ public interface compDAO {
 
 	List<gameDetailDcVO> gameDetailDC(String writer);
 
-	refundVO refundRead(String id);
+	refundVO refundRead(Map<String, Object> map);
 
 	void refundReject(Map<String, Object> map);
 
@@ -43,8 +43,5 @@ public interface compDAO {
 	void giveback2(int buynum);
 
 	int seachcash(String writer);
-
-	List<gameVO> datalist(String writer);
-
 
 }

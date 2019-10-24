@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.co.domain.basketVO;
 import kr.co.domain.buyListVO;
+import kr.co.domain.favoriteStoreVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
@@ -66,6 +67,20 @@ public interface myPageService {
 	void sellInfo(Map<String, Object> map);
 
 	void subCompInsert(String writer, String id);
+
+	List<favoriteStoreVO> favComp(String id, String writer);
+
+	void subCompDelete(String writer, String id);
+
+	List<favoriteStoreVO> favCompList(String id);
+
+	List<favoriteStoreVO> favCompList2(String id);
+
+	int gameCount(String id);
+
+	int writercount(String id);
+
+	int reviewcount(String id);
 
 
 }

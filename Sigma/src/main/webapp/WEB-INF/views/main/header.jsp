@@ -57,7 +57,7 @@
                 		 </div>
                 		 <div id="seller">
                		 	 <c:if test="${login.author eq 'seller'}">
-                    		 <a class="glyphicon glyphicon-user" href="/compManage/compInform/read?id=${login.id}">판매자페이지</a>
+                    		 <a class="glyphicon glyphicon-user" href="/compManage/main/manageread?id=${login.id}">판매자페이지</a>
                    			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
                 		 </c:if>
                 		 </div>
@@ -83,7 +83,7 @@
 						<ul>
 							<li><a href="#" id="me1">새소식</a>
 								<ul>
-									<li><a href="/event">이벤트</a></li>
+									<li><a href="/board/main/event/event">이벤트</a></li>
 									<li><a href="/board/main/newgame/NewGame">새 게임 소식</a></li>
 								</ul></li>
 
@@ -116,6 +116,7 @@
               </li>
 						</ul>
 					</div>
+					
 			</div> <!--head -->
 		</div><!-- container -->
 		<hr style="border: solid 3px #F6F6F6; position: relative; top: 33px; ">

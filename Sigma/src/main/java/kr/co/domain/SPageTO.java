@@ -8,7 +8,7 @@ public class SPageTO extends PageTO{
 	public SPageTO() {
 		super();
 	}
-
+	
 	public SPageTO(int curPage , String searchType, String keyword) {
 		super(curPage);
 		this.searchType = searchType;

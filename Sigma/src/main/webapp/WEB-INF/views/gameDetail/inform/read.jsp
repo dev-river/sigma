@@ -115,8 +115,7 @@
 					<p>할인요청 종료: ${dcvo.rqenddate}</p>
 					<p>할인요청 목표수: ${dcvo.joinclick} / ${dcvo.goal}</p>
 					<p>달성 시 할인율: ${dcvo.dcrate}</p>
-					<a class="btn btn-primary" href="/gameDetail/inform/dcCountAdd?num=${vo.num}"
-					onclick="return confirm('할인 요청에 동참하시겠습니까 ?');">동참하기</a>
+					<a class="btn btn-primary" href="/gameDetail/inform/dcCountAdd?num=${dcnum}&gdnum=${vo.num}" onclick="return confirm('할인 요청에 동참하시겠습니까 ?');">동참하기</a>
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>
@@ -124,7 +123,7 @@
 		</div>
 		
 		<!-- 판매자만 보이게 할 버튼 -->
-		<c:if test="${author eq 'seller'}">
+		<c:if test="${author eq 'seller' && id eq vo.writer}">
 			<a class="btn btn-primary" href="/gameDetail/main/maincategoryupdate?num=${vo.num}">게임정보수정</a>
 	      	<a class="btn btn-primary" href="/gameDetail/inform/DCRqSet?num=${vo.num}&title=${vo.title}" target="_blank">할인 요청 등록</a>
 	      	<br><label for="status">게임등록상태: </label><input id="status" name="status" value="${vo.status}" readonly="readonly">
@@ -212,11 +211,57 @@
 		      		</c:if>
       			</div>
       		</c:forEach>
+      		
+      		<!-- 리뷰 페이징 파트 -->
+			<div>
+				<div class="row text-center" style="text-align: center">
+					<ul class="pagination">
+						<!-- ul에 pagination 클래스를 주면 예쁘다 -->
+
+						<c:if test="${sto.curPage>1}">
+							<li><a
+								href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage-1}&perPage=${sto.perPage}">&laquo;</a></li>
+						</c:if>
+						<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
+
+						<c:forEach begin="${sto.bpn}" end="${sto.spn}" var="idx">
+							<li class="${sto.curPage == idx?'active':''}"><a
+								href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${idx}&perPage=${sto.perPage}">${idx}</a></li>
+							<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
+						</c:forEach>
+
+						<c:if test="${sto.curPage<sto.totalPage}">
+							<li><a
+								href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage+1}&perPage=${sto.perPage}">&raquo;</a></li>
+						</c:if>
+
+					</ul>
+				</div>
+			</div>
       	</div>
    </div>
    <br>
    <script type="text/javascript">
    	$(document).ready(function(){
+   		$(".yesorno").on("click", function(){
+   			var reviewnum = $(this).val();
+   			var assist = $(this).attr("id");
+   			
+   			$.ajax({
+   				type: 'get',
+   				url: '/gameDetail/inform/reviewadd',
+   				data: {
+   					'num': reviewnum,
+   					'assist': assist
+   				},
+   				datatype: 'text',
+   				success: function(result){
+   					alert('적용 되었습니다!');
+   					window.location.reload();
+   				}
+   			});
+   		});
+   		
    		$(".reviewInsert").on("click", function(){
 			var reviewContent = $("#reviewContent").val();
 			var obj = document.getElementById("likeselect");
@@ -288,7 +333,7 @@
 			var gdnum = ${vo.num};
 			$.ajax({
 				type : 'post',
-				url : '/myPage/shopBasket/regiBasket',
+				url : '/myPage/main/Basket',
 				data : {
 					gdnum : gdnum
 				},
@@ -297,12 +342,12 @@
 					if(event=='failed'){
 						var con = confirm("해당 상품이 이미 장바구니에 들어있습니다. 장바구니로 이동하시겠습니까?")
 						if(con){
-							location.href = "/myPage/shopBasket/regiBasket";
+							location.href = "/myPage/main/Basket";
 						}
 					} else{
 						var con = confirm("해당 상품을 장바구니에 집어넣었습니다. 장바구니로 이동하시겠습니까?")
 						if(con){
-							location.href = "/myPage/shopBasket/regiBasket";
+							location.href = "/myPage/main/Basket";
 						}
 					}
 				}
@@ -314,7 +359,7 @@
 			var gdnum = ${vo.num};
 			$.ajax({
 				type : 'post',
-				url : '/myPage/zzimList/list',
+				url : '/myPage/main/zzim',
 				data : {
 					gdnum : gdnum
 				},
@@ -323,12 +368,12 @@
 					if(event=='failed'){
 						var con = confirm("해당 상품이 이미 찜목록에 들어있습니다. 찜목록으로 이동하시겠습니까?")
 						if(con){
-							location.href = "/myPage/zzimList/list";
+							location.href = "/myPage/main/zzim";
 						}
 					} else{
 						var con = confirm("해당 상품을 찜목록에 집어넣었습니다. 찜목록으로 이동하시겠습니까?")
 						if(con){
-							location.href = "/myPage/zzimList/list";
+							location.href = "/myPage/main/zzim";
 						}
 					}
 				}

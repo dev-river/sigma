@@ -1,12 +1,19 @@
 package kr.co.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +21,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
 import kr.co.service.compService;
+import kr.co.utils.UploadFileUtils;
 
 @Controller
 @RequestMapping(value = "/compManage")
@@ -27,9 +38,31 @@ public class compController {
 	@Inject
 	private compService compservice;
 	
+	@Resource(name = "uploadGamePath")
+	private String uploadGamePath;
+	
+	@ResponseBody
+	@RequestMapping(value = "/displayfile")
+	public ResponseEntity<byte[]> display(String uploadGamePath, String filename){
+		return UploadFileUtils.displayfile(uploadGamePath, filename);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/uploadajax", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	public ResponseEntity<String> uploadAjax(MultipartHttpServletRequest request) throws Exception{
+		
+		MultipartFile file = request.getFile("file");
+		String savedName = UploadFileUtils.uploadFile(uploadGamePath, file);
+		
+		return new ResponseEntity<String>(savedName, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/uploadajax", method = RequestMethod.GET)
+	public void uploadAjax() {}
+	
 //	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-//	public ResponseEntity<JsonObject> chart(String writer){
-//		ResponseEntity<JsonObject> entity = null;
+//	public ResponseEntity<JSONObject> chart(String writer){
+//		ResponseEntity<JSONObject> entity = null;
 //		JSONObject data = new JSONObject();
 //		JSONObject ajaxobjCols1 = new JSONObject();
 //		JSONObject ajaxobjCols2 = new JSONObject();
@@ -44,13 +77,39 @@ public class compController {
 //		ajaxArrayCols.add(ajaxobjCols1);
 //		ajaxArrayCols.add(ajaxobjCols2);
 //		data.put("cols", ajaxArrayCols);
+		
+//		List<gameVO> man = compservice.datalist(writer);
+		
+//		JSONArray body = new JSONArray();
+//		for(gameVO vo : man) {
+//			JSONArray ajaxArrayRows = new JSONArray();
+//			JSONObject legend = new JSONObject();
+//			legend.put("v", "남자");
+//			
+//			JSONObject value = new JSONObject();
+//			value.put("v", vo.getMancount());
+//			
+//			JSONArray ValueArray = new JSONArray();
+//			ValueArray.add(legend);
+//			ValueArray.add(value);
+//			
+//			JSONObject ValueObj = new JSONObject();
+//			ValueObj.put("c", ValueArray);
+//			ajaxArrayRows.add(ValueObj);
+//			body.add(ajaxArrayRows);
+//		}
+//		data.put("rows", body);
 //		
-//		List<gameVO> list = compservice.datalist(writer);
-//		
+//		try {
+//			entity = new ResponseEntity<JSONObject>(data, HttpStatus.OK);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			entity = new ResponseEntity<JSONObject>(HttpStatus.BAD_REQUEST);
+//		}
 //		return entity;
 //	}
 	//판매자 페이지
-	@RequestMapping(value = "/compInform/read")
+	@RequestMapping(value = "/main/manageread")
 	public void read(@RequestParam String id, Model model) {
 		memberVO vo = compservice.read(id);
 		int count = compservice.count(id);
@@ -59,21 +118,21 @@ public class compController {
 	}
 	
 	//판매자 정보 수정 UI
-	@RequestMapping(value = "/compInform/update")
+	@RequestMapping(value = "/main/manageupdate")
 	public void updateUI(@RequestParam String id, Model model) {
 		memberVO vo = compservice.read(id);
-		System.out.println(vo.getId());
+		
 		model.addAttribute("vo", vo);
 	}
 	//판매자 정보 수정	
-	@RequestMapping(value = "/compInform/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/manageupdate", method = RequestMethod.POST)
 	public String update(memberVO vo) {
 		compservice.update(vo);
-		return "redirect:/compManage/compInform/read?id="+vo.getId();
+		return "redirect:/compManage/main/manageread?id="+vo.getId();
 	}
 	
 	//판매자가 등록한 게임 리스트
-	@RequestMapping(value = "/gameList/gameList")
+	@RequestMapping(value = "/main/gamelist")
 	public void gamelist(String writer, Model model) {
 		List<gameVO> gamelist = compservice.gamelist(writer);
 		List<gameDetailDcVO> gameDetailDC =  compservice.gameDetailDC(writer);
@@ -82,25 +141,25 @@ public class compController {
 	}
 	
 	//게임 등록 UI
-	@RequestMapping(value = "/gameList/gameInsert")
+	@RequestMapping(value = "/main/gameinsert")
 	public void gameinsertUI(@RequestParam String writer, Model model) {
 		int cash = compservice.seachcash(writer);
 		model.addAttribute("cash", cash);
 	}
 	
 	//게임 등록
-	@RequestMapping(value = "/gameList/gameInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/gameinsert", method = RequestMethod.POST)
 	public String gameinsert(gameVO vo) {
 		//판매자의 캐시 1000원을 관리자에게 준다
 		compservice.sellermoney(vo);
 		compservice.givemoney();
 		//게임 등록
 		compservice.gameinsert(vo);
-		return "redirect:/compManage/gameList/gameList?writer="+vo.getWriter();
+		return "redirect:/compManage/main/gamelist?writer="+vo.getWriter();
 	}
 	
 	//환불 리스트
-	@RequestMapping(value = "/refund/refundList")
+	@RequestMapping(value = "/main/refundlist")
 	public void refundList(@RequestParam String id, Model model) {
 		List<refundVO> list = compservice.refundList(id);
 		model.addAttribute("list", list);
@@ -108,8 +167,11 @@ public class compController {
 	
 	//환불 상세보기
 	@RequestMapping(value = "/refund/refundRead")
-	public void refundRead(@RequestParam String id, Model model) {
-		refundVO rvo = compservice.refundRead(id);
+	public void refundRead(@RequestParam String id, @RequestParam int num, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("num", num);
+		refundVO rvo = compservice.refundRead(map);
 		model.addAttribute("vo", rvo);
 	}
 	

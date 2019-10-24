@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.domain.basketVO;
 import kr.co.domain.buyListVO;
+import kr.co.domain.favoriteStoreVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
@@ -42,17 +43,26 @@ public class myPageController {
 		//세션에 저장된 아이디를 가져오는 코드
 		HttpSession session = request.getSession(false);
 		memberVO obj = (memberVO)session.getValue("login");
-		
 		//세션에 저장된 id가져와서 정보 가져옴
 		String id = obj.getId();
 		obj = mpService.getMemberVO(id);
-
 		//구매 기록
 		List<buyListVO> list = mpService.buyList(id);
-		
 		//환불 기록
 		List<refundVO> refundList = mpService.refundList(id);
+		//단골 스토어
+		List<favoriteStoreVO> favCompList = mpService.favCompList2(id);
+		//보유 게임 수
+		int gamecount = mpService.gameCount(id);
+		//작성 글 수
+		int writecount = mpService.writercount(id);
+		//작성 리뷰 수
+		int reviewcount = mpService.reviewcount(id);
 
+		model.addAttribute("reviewcount", reviewcount);
+		model.addAttribute("writecount", writecount);
+		model.addAttribute("gamecount", gamecount);
+		model.addAttribute("favComp", favCompList);
 		model.addAttribute("buyList", list);
 		model.addAttribute("refund", refundList);
 		model.addAttribute("myinfo", obj);
@@ -60,7 +70,7 @@ public class myPageController {
 	
 	
 	//프로필 수정UI
-	@RequestMapping(value = "/myProfile/update", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/myprofile", method = RequestMethod.GET)
 	public void updateUI(@RequestParam String id, Model model) {
 		memberVO vo = mpService.updateUI(id);
 		model.addAttribute("updateUIInfo", vo);
@@ -68,11 +78,11 @@ public class myPageController {
 	
 	
 	//프로필 수정
-	@RequestMapping(value = "/myProfile/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/myprofile", method = RequestMethod.POST)
 	public String update(memberVO vo) {
 		mpService.update(vo);
 		
-		return "redirect:/myPage/myPage/mypage";
+		return "redirect:/myPage/main/mypage";
 	}
 	
 	
@@ -85,24 +95,24 @@ public class myPageController {
 	}
 	
 	//캐쉬충전UI
-	@RequestMapping(value = "/cash/charge", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/cash", method = RequestMethod.GET)
 	public void chargeUI(String id, Model model) {
 		memberVO vo = mpService.getMemberVO(id);
 		model.addAttribute("usercash", vo);
 	}
 	
-	//캐쉬충전UI
-	@RequestMapping(value = "/cash/charge", method = RequestMethod.POST)
+	//캐쉬충전
+	@RequestMapping(value = "/main/cash", method = RequestMethod.POST)
 	public String charge(int cash, String id) {
 		
 		mpService.updateCash(cash, id);
 		
-		return "redirect:/myPage/myPage/mypage";
+		return "redirect:/myPage/main/mypage";
 	}
 	
 	//장바구니로 이동
 	@SuppressWarnings("deprecation")
-	@RequestMapping(value = "/shopBasket/regiBasket", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/Basket", method = RequestMethod.GET)
 	public void regiBasget(HttpServletRequest request, Model model) {
 		
 		//세션에 저장된 아이디를 가져오는 코드
@@ -131,7 +141,7 @@ public class myPageController {
 	//게임 장바구니에 집어넣기
 	@SuppressWarnings("deprecation")
 	@ResponseBody
-	@RequestMapping(value = "/shopBasket/regiBasket", method = RequestMethod.POST, produces = "application/text;charset=utf-8")
+	@RequestMapping(value = "/main/Basket", method = RequestMethod.POST, produces = "application/text;charset=utf-8")
 	public String regiBasget(HttpServletRequest request, int gdnum) {
 		
 		//세션에 저장된 아이디를 가져오는 코드
@@ -159,7 +169,7 @@ public class myPageController {
 	
 	//찜목록으로 이동
 	@SuppressWarnings("deprecation")
-	@RequestMapping(value = "/zzimList/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/zzim", method = RequestMethod.GET)
 	public void zzim_list(HttpServletRequest request, Model model) {
 		
 		//세션에 저장된 아이디를 가져오는 코드
@@ -171,17 +181,12 @@ public class myPageController {
 		String id = obj.getId();
 		List<basketVO> list = mpService.zzim_list(id);
 		
-
 		for(int i=0; i<list.size(); i++) {
 			int gdnum = list.get(i).getGdnum();
-			
 			List<String> filepath = gservice.filepath(gdnum);
 			String firstfilepath = filepath.get(1);
-			
 			model.addAttribute("img", firstfilepath);
 		}
-		
-		
 		model.addAttribute("zzim", list);
 	}
 	
@@ -189,7 +194,7 @@ public class myPageController {
 	//찜목록에 게임 저장
 	@SuppressWarnings("deprecation")
 	@ResponseBody
-	@RequestMapping(value="/zzimList/list", method = RequestMethod.POST)
+	@RequestMapping(value="/main/zzim", method = RequestMethod.POST)
 	public String zzim_insert(HttpServletRequest request, int gdnum) {
 		//세션에 저장된 아이디를 가져오는 코드
 		HttpSession session = request.getSession(false);
@@ -216,9 +221,16 @@ public class myPageController {
 	//게임 구매
 	@ResponseBody
 	@RequestMapping(value = "/shopBasket/buyGame", method = RequestMethod.POST)
-	public void insertBuyList(int gdnum, String id) {
+	public String insertBuyList(int gdnum, String id) {
 		//장바구니에서 삭제
 		mpService.deleteBasketList(gdnum, id);
+		//이미 구매한 상품인지 체크
+		List<buyListVO> buylist = mpService.buyList(id);
+		for(int i=0; i<buylist.size(); i++) {
+			if(buylist.get(i).getGdnum() == gdnum) {
+				return "failed";
+			}
+		}
 		//게임 정보 가져오기
 		gameVO vo = gservice.read(gdnum);
 		//구매 리스트에 추가
@@ -271,6 +283,8 @@ public class myPageController {
 		map.put("usersex", sex);
 		map.put("userage", age);
 		mpService.sellInfo(map);
+		
+		return "success";
 	}
 	
 
@@ -284,7 +298,7 @@ public class myPageController {
 	}
 	
 	//게임 구매 리스트
-	@RequestMapping(value = "/buyList/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/buylist", method = RequestMethod.GET)
 	public void buyList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		memberVO obj = (memberVO)session.getValue("login");
@@ -361,11 +375,25 @@ public class myPageController {
 	
 	//배급사 리스트로 이동
 	@RequestMapping(value = "/subscribe/subComp", method = RequestMethod.GET)
-	public void subComp(String writer, Model model) {
+	public void subComp(String writer, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		memberVO obj = (memberVO)session.getValue("login");
+		
 		List<gameVO> comp = mpService.subComp(writer);
+		List<favoriteStoreVO> compnum = mpService.favComp(obj.getId(), writer);
+		int num = 0;
+		if(compnum.size()!=0) {
+			num = compnum.get(0).getCompnum();
+		}
 		String cwriter = comp.get(0).getWriter();
 		String filepath = comp.get(0).getFilepath();
 		String content = comp.get(0).getContent();
+
+		for(int i=0; i<comp.size(); i++) {
+			if(comp.get(i).getCompnum() == num) {
+				model.addAttribute("ok", "ok");
+			}
+		}
 		model.addAttribute("comp", comp);
 		model.addAttribute("content", content);
 		model.addAttribute("writer", cwriter);
@@ -380,6 +408,30 @@ public class myPageController {
 		memberVO obj = (memberVO)session.getValue("login");
 		mpService.subCompInsert(writer, obj.getId());
 		return "";
+	}
+	
+	//단골 스토어 삭제
+	@ResponseBody
+	@RequestMapping(value = "/subscribe/delete", method=RequestMethod.POST)
+	public String subCompDelete(String writer, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		memberVO obj = (memberVO)session.getValue("login");
+		mpService.subCompDelete(writer, obj.getId());
+		return "";
+	}
+	
+	//단골스토어 조회
+	@RequestMapping(value = "/subscribe/ssubComp", method = RequestMethod.GET)
+	public void ssubComp(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		memberVO obj = (memberVO)session.getValue("login");
+
+		String id = obj.getId();
+		
+		//단골스토어
+		List<favoriteStoreVO> favCompList = mpService.favCompList(id);
+		
+		model.addAttribute("favCompList", favCompList);
 	}
 
 }
