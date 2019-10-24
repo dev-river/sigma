@@ -13,6 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 <div class="container">
 	<div class="row">
 		<h2>환불 신청 자세히 보기</h2>
@@ -127,7 +128,6 @@
 			var buynum = $("input[id='buynum']").val();
 			var id = $("input[id='id']").val();
 			var userid = $("input[id='userid']").val();
-			alert(cash);
 			$.ajax({
 				type : 'post',
 				url : '/compManage/refund/refundOK',

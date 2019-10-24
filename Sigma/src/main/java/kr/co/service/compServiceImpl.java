@@ -60,11 +60,6 @@ public class compServiceImpl implements compService{
 	public List<gameDetailDcVO> gameDetailDC(String writer) {
 		return dao.gameDetailDC(writer);
 	}
-
-	@Override
-	public refundVO refundRead(String id) {
-		return dao.refundRead(id);
-	}
 	
 	@Override
 	public void refundOK(int num) {
@@ -105,10 +100,10 @@ public class compServiceImpl implements compService{
 	public int seachcash(String writer) {
 		return dao.seachcash(writer);
 	}
-
+	
 	@Override
-	public List<gameVO> datalist(String writer) {
-		return dao.datalist(writer);
+	public refundVO refundRead(Map<String, Object> map) {
+		return dao.refundRead(map);
 	}
 
 	

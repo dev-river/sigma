@@ -36,15 +36,15 @@
 			<input type="button" value="뒤로" class="btn" onclick="location.href='/compManage/compInform/read?id=${login.id}'">
 		</div>
 		<div class="row body">
-			<div>
+			<!-- <div class="form-group">
 				<h2>성별 및 나이</h2>
 				<div id="chart_div" style="width: 500px; height: 300px;"></div>
-			</div>
-			<div>
+			</div> -->
+			<div class="form-group ">
 				<h2>판매하는 게임</h2>
 				<input type="button" value="게임 등록" class="btn" onclick="location.href='/compManage/gameList/gameInsert?writer=${login.id}'">
 			</div>
-			<div>
+			<div class="form-group">
 				<c:if test="${empty gamelist}">
 					<h4>등록한 게임이 없습니다.</h4>
 				</c:if>
@@ -56,10 +56,10 @@
 			</div>
 		</div>
 		<div class="row footer">
-			<div>
+			<div class="form-group">
 				<h2>할인 요청 버튼 활성화 된 게임</h2>
 			</div>
-			<div>
+			<div class="form-group">
 				<table class="table">
 					<thead>
 						<tr>
@@ -80,7 +80,7 @@
 						<c:if test="${!empty gameDetailDC}">
 							<c:forEach items="${gameDetailDC}" var="DC">
 							<tr>
-								<td><a href="/maincategoryread?num=${DC.num}">${DC.gdnum}</a></td>
+								<td><a href="/gameDetail/main/maincategoryread?num=${DC.num}">${DC.gdnum}</a></td>
 								<td>${DC.dcstartdate} - ${DC.dcenddate}</td>
 								<td>${DC.rqstartdate} - ${DC.rqenddate}</td>
 								<td>${DC.dcrate}</td>
