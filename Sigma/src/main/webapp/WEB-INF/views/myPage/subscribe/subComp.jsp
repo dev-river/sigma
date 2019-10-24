@@ -33,17 +33,17 @@
 					<h4>${content}</h4>
 				</div>
 				<c:choose>
-					<c:when test="">
-						<input type="button" value="단골 스토어 지정" style="width: 30%; margin-right: 50px;" class="pull-right btn in">
+					<c:when test="${ok eq 'ok'}">
+						<input type="button" value="단골 스토어에서 제거" style="width: 30%; margin-right: 50px;" class="pull-right btn del">
 					</c:when>
 					<c:otherwise>
-						<input type="button" value="단골 스토어에서 제거" style="width: 30%; margin-right: 50px;" class="pull-right btn del">
+						<input type="button" value="단골 스토어 지정" style="width: 30%; margin-right: 50px;" class="pull-right btn in">
 					</c:otherwise>
 				</c:choose>
 			</div>
 			<br>
 			<c:forEach items="${comp}" var="com">
-				<a href="/maincategoryread?num=${com.num}">
+				<a href="/gameDetail/main/maincategoryread?num=${com.num}">
 				<div  style="width: 120px; height: 120px; margin: 5px; padding: 5px; border: 10px; solid; black;" class="pull-left">
 					<c:choose>
 						<c:when test="${com.gamefilepath eq null}">
@@ -71,7 +71,20 @@
 					writer : gamewriter
 				},
 				success : function() {
-					alert("성공");
+					window.location.reload();
+				}
+			})
+		});
+		
+		$(".del").click(function() {
+			$.ajax({
+				type : 'post',
+				url : '/myPage/subscribe/delete',
+				data : {
+					writer : gamewriter
+				},
+				success : function() {
+					window.location.reload();
 				}
 			})
 		});
