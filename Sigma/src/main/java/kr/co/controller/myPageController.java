@@ -107,7 +107,7 @@ public class myPageController {
 		
 		mpService.updateCash(cash, id);
 		
-		return "redirect:/myPage/myPage/mypage";
+		return "redirect:/myPage/main/mypage";
 	}
 	
 	//장바구니로 이동

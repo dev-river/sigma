@@ -23,7 +23,8 @@
 </style>
 </head>
 <body>
-<div class="">
+<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
+<div class="container">
 	<div class="row head">
 		<h2>판매자 페이지(${vo.id})</h2>
 		<input type="button" value="정보 수정" class="btn update">

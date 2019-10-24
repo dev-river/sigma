@@ -34,6 +34,10 @@
 		<beans:constructor-arg value="C:\\Users\\user\\git\\sigma\\Sigma\\src\\main\\webapp\\resources\\main"></beans:constructor-arg>
 	</beans:bean>
 	
+	<beans:bean class="java.lang.String" id="uploadGamePath">
+		<beans:constructor-arg value="C:\\Users\\user\\git\\sigma\\Sigma\\src\\main\\webapp\\resources\\gameDetailFile"></beans:constructor-arg>
+	</beans:bean>
+	
 	<beans:bean class="kr.co.in.LoginIn" id="loginIn"></beans:bean>
 	<beans:bean class="kr.co.in.AuthIn" id="AuthIn"></beans:bean>
 	<beans:bean class="kr.co.in.AutoLoginIn" id="AutoLoginIn"></beans:bean>
