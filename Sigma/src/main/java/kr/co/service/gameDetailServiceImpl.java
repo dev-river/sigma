@@ -47,8 +47,13 @@ public class gameDetailServiceImpl implements gameDetailService{
 	}
 
 	@Override
-	public List<reviewVO> reviewlist(int num) {
-		return gdao.reviewlist(num);
+	public gPageTO<reviewVO> reviewlist(int num, gPageTO<reviewVO> sto) {
+		int amount = gdao.getReviewAmount(num);
+		sto.setAmount(amount);
+		
+		List<reviewVO> list = gdao.reviewlist(num, sto);
+		sto.setList(list);
+		return sto;
 	}
 
 	@Override

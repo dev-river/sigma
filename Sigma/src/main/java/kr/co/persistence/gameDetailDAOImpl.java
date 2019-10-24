@@ -50,8 +50,12 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 	}
 
 	@Override
-	public List<reviewVO> reviewlist(int num) {
-		return session.selectList(NS+".reviewlist", num);
+	public List<reviewVO> reviewlist(int num, gPageTO<reviewVO> sto) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("startNum", sto.getStartNum());
+		map.put("endNum", sto.getEndNum());
+		map.put("num", num);
+		return session.selectList(NS+".reviewlist", map);
 	}
 
 	@Override
@@ -136,6 +140,11 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 		map.put("keyword", to.getKeyword());
 		map.put("searchType", to.getSearchType());
 		return session.selectList(NS+".list", map);
+	}
+
+	@Override
+	public int getReviewAmount(int num) {
+		return session.selectOne(NS+".getReviewAmount", num);
 	}
 
 }

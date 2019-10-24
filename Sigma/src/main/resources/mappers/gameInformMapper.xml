@@ -35,6 +35,10 @@
 		<![CDATA[]]>
 	</select>
 	
+	<select id="getReviewAmount" resultType="Integer">
+		select count(*) from gamereview where gdnum = #{num}
+	</select>
+	
 	<select id="read" resultType="kr.co.domain.gameVO">
 		select * from gamedetail where num = #{num}
 	</select>
@@ -56,7 +60,7 @@
 	</update>
 	
 	<select id="reviewlist" resultType="kr.co.domain.reviewVO">
-		select * from gamereview where gdnum = #{num} order by regidate desc
+		select * from (select rownum rnum, num, gdnum, writer, content, regidate, updatedate, recommend, assistyes, assistno from (select * from gamereview where gdnum = #{num} order by regidate desc)) where rnum between #{startNum} and #{endNum}
 	</select>
 	
 	<select id="maxYesReview" resultType="kr.co.domain.reviewVO">

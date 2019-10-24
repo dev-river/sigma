@@ -22,7 +22,7 @@ public interface gameDetailService {
 
 	void update(gameVO vo);
 
-	List<reviewVO> reviewlist(int num);
+	gPageTO<reviewVO> reviewlist(int num, gPageTO<reviewVO> pto);
 
 	reviewVO maxYesReview(int num);
 

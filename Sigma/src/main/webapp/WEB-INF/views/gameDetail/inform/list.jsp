@@ -59,7 +59,7 @@
 	<c:forEach items="${vo.list}" var="gvo">
 	<div style="width: 33%; margin: 0; float: left;">
 			
-			<a href="/gameDetail/main/maincategoryread?num=${gvo.num}">
+			<a href="/gameDetail/main/maincategoryread?num=${gvo.num}&curPage=1&perPage=5">
 			<c:choose>
 				<c:when test="${gvo.filepath eq null}">
 					<img alt="No image" src="/resources/gameDetailFile/noimage.png" width="280px" height="280px">

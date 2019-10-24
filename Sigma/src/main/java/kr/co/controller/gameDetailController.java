@@ -61,7 +61,7 @@ public class gameDetailController {
 		model.addAttribute("category", category);
 }
 	@RequestMapping(value = "/main/maincategoryread", method = RequestMethod.GET)
-	public void gameDetailread(Model model, int num, HttpServletRequest request) {
+	public void gameDetailread(Model model, int num, HttpServletRequest request, gPageTO<reviewVO> pto) {
 		String id = null; String author = null;
 		Map<String, Object> sessioninfo = sessionInfo(request);
 		id = (String) sessioninfo.get("id");
@@ -100,7 +100,8 @@ public class gameDetailController {
 		reviewVO maxNoReview= gservice.maxNoReview(num);
 		
 		//전체 리뷰글 가져오기
-		List<reviewVO> reviewlist = gservice.reviewlist(num);
+		pto = gservice.reviewlist(num, pto);
+		/* List<reviewVO> reviewlist = gservice.reviewlist(num); */
 		
 		
 		model.addAttribute("vo", vo);
@@ -109,7 +110,8 @@ public class gameDetailController {
 		model.addAttribute("dcvo", dcvo);
 		model.addAttribute("maxYesReview", maxYesReview);
 		model.addAttribute("maxNoReview", maxNoReview);
-		model.addAttribute("reviewlist", reviewlist);
+		model.addAttribute("reviewlist", pto.getList());
+		model.addAttribute("sto", pto);
 		model.addAttribute("id", id);
 		model.addAttribute("author", author);
 	}

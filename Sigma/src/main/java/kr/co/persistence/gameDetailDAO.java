@@ -22,7 +22,7 @@ public interface gameDetailDAO {
 
 	void update(gameVO vo);
 
-	List<reviewVO> reviewlist(int num);
+	List<reviewVO> reviewlist(int num, gPageTO<reviewVO> sto);
 
 	reviewVO maxYesReview(int num);
 
@@ -47,5 +47,7 @@ public interface gameDetailDAO {
 	int getAmount(SPageTO to, String category);
 
 	List<gameVO> list(SPageTO to, String category);
+
+	int getReviewAmount(int num);
 
 }
