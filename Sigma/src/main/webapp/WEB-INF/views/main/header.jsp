@@ -39,7 +39,8 @@
 			<div class="head"><!-- 전체 -->
 				<div class="menu"> <!-- 로그인 로고 검색 -->
 					<div class="img">
-						<a href="/"><img alt="..." src="/resources/main/로고2.png"></a>
+						<!-- <a href="/"><img alt="..." src="/resources/main/로고2.png"></a> -->
+						<a href="/"><img alt="..." src="/resources/main/SIGMA로고.png" id="logo"></a>
 					</div>
 					<div class="login">
 					

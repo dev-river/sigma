@@ -38,4 +38,10 @@ public interface adminDAO {
 	public List<adminSlideVO> slideList();
 
 	public void slideDelete(int num);
+
+	public void slideInsert(String bnfilepath, adminSlideVO vo);
+
+	public adminSlideVO getSlide(int num);
+
+	public void slideUpdate(String bnfilepath, adminSlideVO vo);
 }

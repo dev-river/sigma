@@ -116,5 +116,27 @@ public class adminServiceImpl implements adminService{
 		addao.slideDelete(num);
 	}
 
+	@Override
+	public void slideInsert(adminSlideVO vo, String savedName) {
+
+		String bnfilepath = savedName.substring(3);
+		
+		addao.slideInsert(bnfilepath, vo);
+	}
+
+	@Override
+	public adminSlideVO getSlide(int num) {
+
+		return addao.getSlide(num);
+	}
+
+	@Override
+	public void slideUpdate(adminSlideVO vo, String savedName) {
+		String bnfilepath = savedName.substring(3);
+		System.out.println(bnfilepath);
+		
+		addao.slideUpdate(bnfilepath, vo);
+	}
+
 
 }

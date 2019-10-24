@@ -37,5 +37,15 @@
 		delete from adminBanner where num = #{num}
 	</delete>
 	
+	<insert id="slideInsert">
+		insert into adminBanner(num, filepath, urlpath, regidate) values ((select nvl2(max(num), max(num)+1, 1) from adminBanner), #{filepath}, #{urlpath}, sysdate)
+	</insert>
 	
+	<select id="getSlide" resultType="kr.co.domain.adminSlideVO">
+		select * from adminBanner where num = #{num}
+	</select>
+	
+	<update id="slideUpdate">
+		update adminBanner set filepath=#{filepath}, urlpath=#{urlpath} where num=#{num}
+	</update>
 </mapper>

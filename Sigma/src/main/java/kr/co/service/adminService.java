@@ -39,5 +39,11 @@ public interface adminService {
 
 	void slideDelete(int num);
 
+	void slideInsert(adminSlideVO vo, String savedName);
+
+	adminSlideVO getSlide(int num);
+
+	void slideUpdate(adminSlideVO vo, String savedName);
+
 
 }
