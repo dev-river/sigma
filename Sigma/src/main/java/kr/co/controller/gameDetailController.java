@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.domain.SPageTO;
 import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
@@ -54,10 +55,8 @@ public class gameDetailController {
 	}
 	
 	@RequestMapping(value = "/main/maincategory", method = RequestMethod.GET)
-    public void gameDetaillist(Model model, String category, HttpServletRequest request, gPageTO<gameVO> to) {
-		List<gameVO> vo = new ArrayList<gameVO>();
+    public void gameDetaillist(Model model, String category, HttpServletRequest request, SPageTO to) {
 		to = gservice.list(to, category);
-		
 		model.addAttribute("vo", to);
 		model.addAttribute("category", category);
 }
@@ -151,7 +150,6 @@ public class gameDetailController {
 	
 	@RequestMapping(value = "/inform/gameStatus")
 	public String gameStatus(int num, String status) {
-		System.out.println(status);
 		if(status.equalsIgnoreCase("o")) {
 			status = "x";
 		}else {

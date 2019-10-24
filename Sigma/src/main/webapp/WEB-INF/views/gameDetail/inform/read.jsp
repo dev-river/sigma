@@ -123,7 +123,7 @@
 		</div>
 		
 		<!-- 판매자만 보이게 할 버튼 -->
-		<c:if test="${author eq 'seller'}">
+		<c:if test="${author eq 'seller' && id eq vo.writer}">
 			<a class="btn btn-primary" href="/gameDetail/main/maincategoryupdate?num=${vo.num}">게임정보수정</a>
 	      	<a class="btn btn-primary" href="/gameDetail/inform/DCRqSet?num=${vo.num}&title=${vo.title}" target="_blank">할인 요청 등록</a>
 	      	<br><label for="status">게임등록상태: </label><input id="status" name="status" value="${vo.status}" readonly="readonly">

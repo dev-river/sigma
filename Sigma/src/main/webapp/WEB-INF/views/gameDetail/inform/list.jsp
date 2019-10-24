@@ -40,10 +40,7 @@
 					<select id="searchSel">
 							<option disabled>검색 기준</option>
 							<option value="writer">배급사</option>
-							<!-- value : 서버로 넘어가는거, 작성자 : JSP에 보이는거 -->
 							<option value="title">게임이름</option>
-							<option value="price">이하 가격</option>
-							<option value="regidate">이하 출시일</option>
 					</select>
 					</span>
 
@@ -95,19 +92,19 @@
 
 						<c:if test="${vo.curPage>1}">
 							<li><a
-								href="/gameDetail/main/maincategory?category=${category}&curPage=${vo.curPage-1}&perPage=${vo.perPage}">&laquo;</a></li>
+								href="/gameDetail/main/maincategory?category=${category}&curPage=${vo.curPage-1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&laquo;</a></li>
 						</c:if>
 						<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
 
 						<c:forEach begin="${vo.bpn}" end="${vo.spn}" var="idx">
 							<li class="${vo.curPage == idx?'active':''}"><a
-								href="/gameDetail/main/maincategory?category=${category}&curPage=${idx}&perPage=${vo.perPage}">${idx}</a></li>
+								href="/gameDetail/main/maincategory?category=${category}&curPage=${idx}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">${idx}</a></li>
 							<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
 						</c:forEach>
 
 						<c:if test="${vo.curPage<vo.totalPage}">
 							<li><a
-								href="/gameDetail/main/maincategory?category=${category}&curPage=${vo.curPage+1}&perPage=${vo.perPage}">&raquo;</a></li>
+								href="/gameDetail/main/maincategory?category=${category}&curPage=${vo.curPage+1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&raquo;</a></li>
 						</c:if>
 
 					</ul>
@@ -120,7 +117,7 @@ $(document).ready(function() {
    $("#searchBtn").on("click", function() {
 		var searchType = $("#searchSel option:selected").val();
 		var keyword = $("#keyword").val();
-		var url = "/board/main/slist/searchboardlist?searchType="+searchType+"&keyword="+keyword;
+		var url = "/gameDetail/main/maincategory?category=${category}&curPage=1&perPage=${vo.perPage}&searchType="+searchType+"&keyword="+keyword;
 		window.open(url);
 	});
 });

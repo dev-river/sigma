@@ -3,6 +3,7 @@ package kr.co.persistence;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.domain.SPageTO;
 import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
@@ -43,8 +44,8 @@ public interface gameDetailDAO {
 
 	void gameStatus(int num, String status);
 
-	List<gameVO> list(gPageTO<gameVO> to, String category);
+	int getAmount(SPageTO to, String category);
 
-	int getAmount();
+	List<gameVO> list(SPageTO to, String category);
 
 }
