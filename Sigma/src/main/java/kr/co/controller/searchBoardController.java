@@ -25,19 +25,19 @@ public class searchBoardController {
 	
 	/* ====================== 새게임소식 SEARCH부분 ===================================================*/
 	
-	@RequestMapping("/sboardNG/list")
-	public void NGlist(SPageTO sto, Model model) {
-		SPageTO dbSTO = sbService.list(sto);
-		model.addAttribute("to", dbSTO); 
-	}
-	
-	@RequestMapping(value = "/sboardNG/read")
-	public void NGread(Model model, int num, SPageTO sto) {
-		boardVO svo = sbService.read(num);
-		
-		model.addAttribute("vo", svo);
-		model.addAttribute("to", sto);
-	}
+//	@RequestMapping("/sboardNG/list")
+//	public void NGlist(SPageTO sto, Model model) {
+//		SPageTO dbSTO = sbService.list(sto);
+//		model.addAttribute("to", dbSTO); 
+//	}
+//	
+//	@RequestMapping(value = "/sboardNG/read")
+//	public void NGread(Model model, int num, SPageTO sto) {
+//		boardVO svo = sbService.read(num);
+//		
+//		model.addAttribute("vo", svo);
+//		model.addAttribute("to", sto);
+//	}
 	
 	
 	/* ====================== 자유게시판 SEARCH부분 ===================================================*/	
