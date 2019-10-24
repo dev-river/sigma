@@ -67,8 +67,8 @@
 				</div>
 				<div>
 				    <input type="button" value="수정" class="btn update btn-primary" id="update">
-					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/NewGame?curPage=${to.curPage}&perPage=${to.perPage}'">
-					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/board/boardNG/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
+					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/board/main/event/event?curPage=${to.curPage}&perPage=${to.perPage}'">
+					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/board/boardEV/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
 				</div>
 			</div>
 		
@@ -86,7 +86,7 @@
 		
 		/* boardUpdate 부분 */
 		$("#update").on("click",function(){
-			location.href="/board/boardNG/update?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}";
+			location.href="/board/main/event/eventUpdate?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}";
 		});
 	});
 </script>

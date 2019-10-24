@@ -73,7 +73,7 @@
 			<c:forEach items="${dbTO.list}" var="vo">
 				<tr>
 					<td>${vo.num}</td>
-					<td><a href="/board/main/newgame/NewGameRead?num=${vo.num}&curPage=${dbTO.curPage}&perPage=${dbTO.perPage}">${vo.title}</a></td>
+					<td><a href="/sboard/sboardNG/read?num=${vo.num}&curPage=${dbTO.curPage}&perPage=${dbTO.perPage}">${vo.title}</a></td>
 					<td>${vo.writer}</td>
 					<td>${vo.updatedate}</td>
 					<td>${vo.viewcnt}</td>
@@ -154,7 +154,7 @@
 					   $("#searchBtn").on("click", function() {
 							var searchType = $("#searchSel option:selected").val();
 							var keyword = $("#keyword").val();
-							var url = "/searchMainboard?searchType="+searchType+"&keyword="+keyword;
+							var url = "/sboard/sboardNG/list?searchType="+searchType+"&keyword="+keyword;
 							window.open(url);
 						});
 				   }); 
