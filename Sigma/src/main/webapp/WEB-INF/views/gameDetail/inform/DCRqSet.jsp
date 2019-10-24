@@ -53,10 +53,10 @@
 	<h3>할인 요청 등록</h3>
 	<label for="dcrate">달성 시 할인율: </label> <input id="dcrate" required="required"><br/>
 	<label for="goal">목표 동참수: </label> <input id="goal" required="required"><br/>
-	<label for="rqstartdate">할인 요청 시작일: </label> <input id="rqstartdate" name="rqstartdate" type="date" min="${lastvo.dcenddate}" max="9999-12-31"><br/>
-	<label for="rqenddate">할인 요청 종료일: </label> <input id="rqenddate" name="rqenddate" type="date" min="${lastvo.dcenddate}" max="9999-12-31"><br/>
-	<label for="dcstartdate">할인 실행 시작일: </label> <input id="dcstartdate" name="dcstartdate" type="date" min="${lastvo.dcenddate}" max="9999-12-31"><br/>
-	<label for="dcenddate">할인 실행 종료일: </label> <input id="dcenddate" name="dcenddate" type="date" min="${lastvo.dcenddate}" max="9999-12-31"><br/>
+	<label for="rqstartdate">할인 요청 시작일: </label> <input id="rqstartdate" name="rqstartdate" type="date"><br/>
+	<label for="rqenddate">할인 요청 종료일: </label> <input id="rqenddate" name="rqenddate" type="date"><br/>
+	<label for="dcstartdate">할인 실행 시작일: </label> <input id="dcstartdate" name="dcstartdate" type="date"><br/>
+	<label for="dcenddate">할인 실행 종료일: </label> <input id="dcenddate" name="dcenddate" type="date"><br/>
 	<p>날짜 지정은 할인 요청 리스트의 마지막 할인이 끝난 날짜부터 가능합니다.</p>
 	<button class="btn btn-primary">등록</button>
 </div>
@@ -67,6 +67,23 @@ document.getElementById('rqenddate').value = new Date().toISOString().substring(
 document.getElementById('dcstartdate').value = new Date().toISOString().substring(0, 10);;
 document.getElementById('dcenddate').value = new Date().toISOString().substring(0, 10);;
 </script>
+
+<script type="text/javascript">
+document.getElementById("rqstartdate").onchange = function () {
+    var input = document.getElementById("rqenddate");
+    
+    input.setAttribute("min", this.value);
+    input.setAttribute("max", "9999-12-31");
+}
+/* 	$(document).ready(function(){
+		$(".rqstartdate").change(function(){
+			alert($(".rqstartdate").val());
+			$(".rqenddate").attr("min", $(".rqstartdate").val());
+			$(".rqenddate").attr("max", "9999-12-31");
+		});
+	}); */
+</script>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	$("button").on("click", function(){
