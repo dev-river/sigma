@@ -59,7 +59,7 @@
 		
 		$(".return").click(function(event) {
 			event.preventDefault();
-			location.href = "/myPage/myPage/mypage";
+			location.href = "/myPage/main/mypage";
 		});
 		
 		$(".cash").children("button").click(function() {

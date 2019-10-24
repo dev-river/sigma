@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.domain.basketVO;
 import kr.co.domain.buyListVO;
+import kr.co.domain.favoriteStoreVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
@@ -161,7 +162,6 @@ public class myPageDAOImpl implements myPageDAO{
 
 	@Override
 	public memberVO getSex(String id) {
-		System.out.println(id);
 		return session.selectOne(NS+".getSex", id);
 	}
 
@@ -207,7 +207,6 @@ public class myPageDAOImpl implements myPageDAO{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("num", num);
 		map.put("id", id);
-		System.out.println(map);
 		session.delete(NS+".refundDelete", map);
 		
 	}
@@ -226,5 +225,54 @@ public class myPageDAOImpl implements myPageDAO{
 		session.insert(NS+".subCompInsert", map);
 		
 	}
+
+	@Override
+	public List<favoriteStoreVO> favComp(String id, int compnum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("compnum", compnum);
+		map.put("id", id);
+		return session.selectList(NS+".favComp", map);
+	}
+
+	@Override
+	public void subCompDelete(int compnum, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("compnum", compnum);
+		map.put("id", id);
+		session.delete(NS+".subCompDelete", map);
+		
+	}
+
+	@Override
+	public List<favoriteStoreVO> favCompList(String id) {
+		// TODO Auto-generated method stub
+		return session.selectList(NS+".favCompList", id);
+	}
+
+	@Override
+	public List<favoriteStoreVO> favCompList2(String id) {
+		// TODO Auto-generated method stub
+		return session.selectList(NS+".favCompList2", id);
+	}
+
+	@Override
+	public int gameCount(String id) {
+		// TODO Auto-generated method stub
+		return session.selectOne(NS+".gamecount", id);
+	}
+
+	@Override
+	public int writercount(String id) {
+		// TODO Auto-generated method stub
+		return session.selectOne(NS+".writercount", id);
+	}
+
+	@Override
+	public int reviewcount(String id) {
+		// TODO Auto-generated method stub
+		return session.selectOne(NS+".reviewcount", id);
+	}
+	
+	
 	
 }

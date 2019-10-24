@@ -88,10 +88,14 @@
 							},
 							dataType : 'text',
 							success : function(event) {
-								alert("["+gamename.title+"]를 구매 완료 했습니다.");
-								window.location.reload();
+								if(event=='failed'){
+									alert("["+gamename.title+"]는 이미 구매하신 게임입니다.")
+								} else{
+									alert("["+gamename.title+"]를 구매 완료 했습니다.");
+									window.location.reload();
+								}
 							}
-						});	
+						})
 					}
 				});
 		    });
