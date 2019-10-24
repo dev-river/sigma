@@ -33,10 +33,33 @@
 		<div class=bodymain>
 			
 <div class=container>
+	<!-- 검색 파트 -->
+			<div class="row ">
+				<div class="input-group" style="padding-right: 10px;">
+					<span class="input-group-addon">
+					<select id="searchSel">
+							<option disabled>검색 기준</option>
+							<option value="writer">배급사</option>
+							<option value="title">게임이름</option>
+					</select>
+					</span>
+
+					<div class="w300" style="padding-right: 10px;">
+						<input type="text" class="form-control from-control-sm"
+							id="keyword">
+					</div>
+
+					<span class="input-group-btn" style="padding-right: 10px;">
+						<button id="searchBtn" class="btn btn-sm btn-primary">검색</button>
+					</span>
+				</div>
+			</div>
+
+			<!-- 게임 리스트 파트 -->
 	<c:forEach items="${vo.list}" var="gvo">
 	<div style="width: 33%; margin: 0; float: left;">
 			
-			<a href="/gameDetail/main/maincategoryread?num=${gvo.num}">
+			<a href="/gameDetail/main/maincategoryread?num=${gvo.num}&curPage=1&perPage=5">
 			<c:choose>
 				<c:when test="${gvo.filepath eq null}">
 					<img alt="No image" src="/resources/gameDetailFile/noimage.png" width="280px" height="280px">
@@ -60,6 +83,8 @@
 			<hr>
 	</div>
 	</c:forEach>
+	
+	<!-- 게임 리스트 페이징 파트 -->
 			<div>
 				<div class="row text-center" style="text-align: center">
 					<ul class="pagination">
@@ -67,19 +92,19 @@
 
 						<c:if test="${vo.curPage>1}">
 							<li><a
-								href="/gameDetail/main/maincategory?category=${category}&curPage=${vo.curPage-1}&perPage=${vo.perPage}">&laquo;</a></li>
+								href="/gameDetail/main/maincategory?category=${category}&curPage=${vo.curPage-1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&laquo;</a></li>
 						</c:if>
 						<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
 
 						<c:forEach begin="${vo.bpn}" end="${vo.spn}" var="idx">
 							<li class="${vo.curPage == idx?'active':''}"><a
-								href="/gameDetail/main/maincategory?category=${category}&curPage=${idx}&perPage=${vo.perPage}">${idx}</a></li>
+								href="/gameDetail/main/maincategory?category=${category}&curPage=${idx}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">${idx}</a></li>
 							<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
 						</c:forEach>
 
 						<c:if test="${vo.curPage<vo.totalPage}">
 							<li><a
-								href="/gameDetail/main/maincategory?category=${category}&curPage=${vo.curPage+1}&perPage=${vo.perPage}">&raquo;</a></li>
+								href="/gameDetail/main/maincategory?category=${category}&curPage=${vo.curPage+1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&raquo;</a></li>
 						</c:if>
 
 					</ul>
@@ -88,6 +113,15 @@
 		</div>
 </div>
 <script type="text/javascript">
+$(document).ready(function() {
+   $("#searchBtn").on("click", function() {
+		var searchType = $("#searchSel option:selected").val();
+		var keyword = $("#keyword").val();
+		var url = "/gameDetail/main/maincategory?category=${category}&curPage=1&perPage=${vo.perPage}&searchType="+searchType+"&keyword="+keyword;
+		window.open(url);
+	});
+});
+
 function movepage(page)
 {
 window.document.location.href=page;

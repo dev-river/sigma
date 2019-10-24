@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.domain.SPageTO;
 import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
 import kr.co.domain.gameVO;
@@ -46,8 +47,13 @@ public class gameDetailServiceImpl implements gameDetailService{
 	}
 
 	@Override
-	public List<reviewVO> reviewlist(int num) {
-		return gdao.reviewlist(num);
+	public gPageTO<reviewVO> reviewlist(int num, gPageTO<reviewVO> sto) {
+		int amount = gdao.getReviewAmount(num);
+		sto.setAmount(amount);
+		
+		List<reviewVO> list = gdao.reviewlist(num, sto);
+		sto.setList(list);
+		return sto;
 	}
 
 	@Override
@@ -101,8 +107,11 @@ public class gameDetailServiceImpl implements gameDetailService{
 	}
 
 	@Override
-	public gPageTO<gameVO> list(gPageTO<gameVO> to, String category) {
-		int amount = gdao.getAmount();
+	public SPageTO list(SPageTO to, String category) {
+		if (category.equalsIgnoreCase("all")) {
+  			category = "%";
+  		}
+		int amount = gdao.getAmount(to, category);
 		to.setAmount(amount);
 		
 		List<gameVO> list = gdao.list(to, category);
