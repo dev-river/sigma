@@ -33,7 +33,7 @@
 	<div class="container" id="insert_form">
 		<div class="insert">
 		<div class="row">
-			<form action="/board/boardNG/insert" method="post">
+			<form action="/board/main/event/eventInsert" method="post">
 				<div class="form-group">
 					<label for="title">제목</label>
 					<input id="title" name="title" class="form-control" placeholder="제목">
@@ -49,11 +49,14 @@
 				</div>
 				<div class="form-group">
 					<button id="submitBoardBtn" class="btn btn-info">등록</button>
+					<input type="button" class="btn btn-danger" id="cancle" value="취소" onclick="location.href='/board/main/event/event'">
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+
+
 <!-- <script type="text/javascript">
       var oEditors = [];
       nhn.husky.EZCreator.createInIFrame({
