@@ -155,7 +155,7 @@
 		      		<p>좋아요: ${maxYesReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxYesReview.num}">좋아요</button></p>
 		      		<p>싫어요: ${maxYesReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxYesReview.num}">싫어요</button></p>
 		      		
-		      		<c:if test="${id eq maxYesReview.writer}">
+		      		<c:if test="${id eq maxYesReview.writer || author eq 'admin'}">
 		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${maxYesReview.num}" target="_blank" class="btn btn-warning"
 		      			onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${maxYesReview.num}">삭제</button>
@@ -178,7 +178,7 @@
 		      		<p>수정일: ${maxNoReview.updatedate}</p>
 		      		<p>좋아요: ${maxNoReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxNoReview.num}">좋아요</button></p>
 		      		<p>싫어요: ${maxNoReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxNoReview.num}">싫어요</button></p>
-		      		<c:if test="${id eq maxNoReview.writer}">
+		      		<c:if test="${id eq maxNoReview.writer || author eq 'admin'}">
 		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${maxNoReview.num}" target="_blank" class="btn btn-warning"
 		      			onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button>
@@ -213,7 +213,7 @@
 		      		<p>수정일: ${review.updatedate}</p>
 		      		<p>좋아요: ${review.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${review.num}">좋아요</button></p>
 		      		<p>싫어요: ${review.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${review.num}">싫어요</button></p>
-		      		<c:if test="${id eq review.writer}">
+		      		<c:if test="${id eq review.writer || author eq 'admin'}">
 		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${review.num}" target="_blank" class="btn btn-warning"
 		      			onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button>
