@@ -39,7 +39,7 @@
 	</select>
 	
 	<select id="getReviewAmount" resultType="Integer">
-		select count(*) from gamereview
+		select count(*) from gamereview <include refid="search"></include>
 	</select>
 	
 	<select id="reviewAllList" resultType="kr.co.domain.reviewVO">
@@ -50,7 +50,9 @@
 	from
 	(select
 	gamereview.num,gamereview.gdnum,gamereview.writer,gamereview.content,gamereview.regidate,gamereview.updatedate,gamereview.recommend,gamereview.assistyes,gamereview.assistno,gamedetail.title
-	from gamereview,gamedetail where gamereview.gdnum=gamedetail.num order by gamereview.num desc)
+	from (
+    select * from gamereview ]]><include refid="search"></include><![CDATA[
+    ) gamereview,gamedetail where gamereview.gdnum=gamedetail.num order by gamereview.num desc)
 	) where rnum between #{startNum} and #{endNum}
 	]]>
 	</select>

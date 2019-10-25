@@ -140,8 +140,6 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public void slideUpdate(adminSlideVO vo, String savedName) {
 		String bnfilepath = savedName.substring(3);
-		System.out.println(bnfilepath);
-		
 		addao.slideUpdate(bnfilepath, vo);
 	}
 

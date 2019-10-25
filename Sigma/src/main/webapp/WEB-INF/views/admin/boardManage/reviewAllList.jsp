@@ -160,7 +160,7 @@
 							$("#searchBtn").on("click", function() {
 												var searchType = $("#searchSel option:selected").val();
 												var keyword = $("#keyword").val();
-												var url = "/admin/boardManage/boardAllList?searchType="
+												var url = "/admin/boardManage/reviewAllList?searchType="
 														+ searchType
 														+ "&keyword=" + keyword;
 												window.open(url);
