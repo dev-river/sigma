@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mapper.adminBoard">
+	<sql id="search">
+      <if test="searchType == 'writer'.toString()">
+         where lower(writer) like '%'||lower(#{keyword})||'%'
+      </if>
+      <if test="searchType == 'title'.toString()">
+         where lower(title) like '%'||lower(#{keyword})||'%'
+      </if>
+      <if test="searchType == 'content'.toString()">
+         where lower(content) like '%'||lower(#{keyword})||'%'
+      </if>
+      <if test="searchType == null">
+      </if>
+ 	</sql>
+
+	<select id="boardAllList" resultType="kr.co.domain.boardVO">
+	<![CDATA[
+		select * from (
+		select rownum rnum, board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from (
+		select 'event/eventRead' board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardEV ]]><include refid="search"></include><![CDATA[
+		union
+		select 'list/boardread' board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardFR ]]><include refid="search"></include><![CDATA[)
+		) where rnum between #{startNum} and #{endNum}
+	]]>
+	</select>
+	
+	<select id="getAmount" resultType="Integer">
+	select count(*) from (
+	select 'event/eventRead'
+	board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardEV
+	union
+	select 'list/boardread' board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardFR
+	) <include refid="search"></include>
+	</select>
+	
+	<select id="getReviewAmount" resultType="Integer">
+		select count(*) from gamereview
+	</select>
+	
+	<select id="reviewAllList" resultType="kr.co.domain.reviewVO">
+	<![CDATA[
+	select * from (
+	select rownum
+	rnum,num,gdnum,writer,content,regidate,updatedate,recommend,assistyes,assistno,title
+	from
+	(select
+	gamereview.num,gamereview.gdnum,gamereview.writer,gamereview.content,gamereview.regidate,gamereview.updatedate,gamereview.recommend,gamereview.assistyes,gamereview.assistno,gamedetail.title
+	from gamereview,gamedetail where gamereview.gdnum=gamedetail.num order by gamereview.num desc)
+	) where rnum between #{startNum} and #{endNum}
+	]]>
+	</select>
+</mapper>

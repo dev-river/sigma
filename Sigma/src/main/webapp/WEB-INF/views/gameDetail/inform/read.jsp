@@ -220,31 +220,36 @@
       		</c:forEach>
       		
       		<!-- 리뷰 페이징 파트 -->
-			<div>
-				<div class="row text-center" style="text-align: center">
-					<ul class="pagination">
-						<!-- ul에 pagination 클래스를 주면 예쁘다 -->
+      		<c:choose>
+      			<c:when test="${sto.amount eq 0}">
+      			</c:when>
+      			<c:otherwise>
+					<div>
+						<div class="row text-center" style="text-align: center">
+							<ul class="pagination">
+								<!-- ul에 pagination 클래스를 주면 예쁘다 -->
 
-						<c:if test="${sto.curPage>1}">
-							<li><a
-								href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage-1}&perPage=${sto.perPage}">&laquo;</a></li>
-						</c:if>
-						<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
+								<c:if test="${sto.curPage>1}">
+									<li><a
+										href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage-1}&perPage=${sto.perPage}">&laquo;</a></li>
+								</c:if>
+								<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
 
-						<c:forEach begin="${sto.bpn}" end="${sto.spn}" var="idx">
-							<li class="${sto.curPage == idx?'active':''}"><a
-								href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${idx}&perPage=${sto.perPage}">${idx}</a></li>
-							<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
-						</c:forEach>
+								<c:forEach begin="${sto.bpn}" end="${sto.spn}" var="idx">
+									<li class="${sto.curPage == idx?'active':''}"><a
+										href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${idx}&perPage=${sto.perPage}">${idx}</a></li>
+									<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
+								</c:forEach>
 
-						<c:if test="${sto.curPage<sto.totalPage}">
-							<li><a
-								href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage+1}&perPage=${sto.perPage}">&raquo;</a></li>
-						</c:if>
-
-					</ul>
-				</div>
-			</div>
+								<c:if test="${sto.curPage<sto.totalPage}">
+									<li><a
+										href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage+1}&perPage=${sto.perPage}">&raquo;</a></li>
+								</c:if>
+							</ul>
+						</div>
+					</div>
+				</c:otherwise>
+      		</c:choose>
       	</div>
    </div>
    <br>
