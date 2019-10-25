@@ -76,7 +76,10 @@
 								<tr>
 									<td>${vo.num}</td>
 									<td>${vo.title}</td>
-									<td>${vo.writer}</td>
+									<td>
+										<a href="/gameDetail/main/maincategoryreviewupdate?num=${vo.num}" target="_blank"
+		      							onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">${vo.writer}</a>
+		      						</td>
 									<td>${vo.regidate}</td>
 									<td>${vo.recommend}</td>
 									<td>${vo.assistyes}</td>

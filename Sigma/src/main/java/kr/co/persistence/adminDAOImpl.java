@@ -172,4 +172,9 @@ public class adminDAOImpl implements adminDAO{
 	public List<reviewVO> reviewAllList(SPageTO to) {
 		return session.selectList(NSboard+".reviewAllList", to);
 	}
+
+	@Override
+	public reviewVO reviewRead(int num) {
+		return session.selectOne(NSboard+".reviewRead", num);
+	}
 }

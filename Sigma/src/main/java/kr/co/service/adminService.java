@@ -8,6 +8,7 @@ import kr.co.domain.adminSetVO;
 import kr.co.domain.adminSlideVO;
 import kr.co.domain.boardVO;
 import kr.co.domain.memberVO;
+import kr.co.domain.reviewVO;
 
 public interface adminService {
 
@@ -50,4 +51,6 @@ public interface adminService {
 	SPageTO boardAllList(SPageTO to);
 
 	SPageTO reviewAllList(SPageTO to);
+
+	reviewVO reviewRead(int num);
 }

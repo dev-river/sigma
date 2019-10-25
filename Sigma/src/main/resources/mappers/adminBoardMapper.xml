@@ -56,4 +56,8 @@
 	) where rnum between #{startNum} and #{endNum}
 	]]>
 	</select>
+	
+	<select id="reviewRead" resultType="kr.co.domain.reviewVO">
+		select * from gamereview,gameDetail where gamereview.gdnum = gameDetail.num and gamereview.num = #{num}
+	</select>
 </mapper>

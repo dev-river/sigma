@@ -56,4 +56,6 @@ public interface adminDAO {
 
 	public List<reviewVO> reviewAllList(SPageTO to);
 
+	public reviewVO reviewRead(int num);
+
 }

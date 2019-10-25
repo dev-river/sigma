@@ -170,4 +170,9 @@ public class adminServiceImpl implements adminService{
 		to.setList(finalList);
 		return to;
 	}
+
+	@Override
+	public reviewVO reviewRead(int num) {
+		return addao.reviewRead(num);
+	}
 }

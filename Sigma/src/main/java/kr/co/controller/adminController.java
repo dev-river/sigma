@@ -20,6 +20,7 @@ import kr.co.domain.adminSetVO;
 import kr.co.domain.adminSlideVO;
 import kr.co.domain.boardVO;
 import kr.co.domain.memberVO;
+import kr.co.domain.reviewVO;
 import kr.co.service.adminService;
 import kr.co.utils.UploadFileUtils;
 
@@ -263,5 +264,11 @@ public class adminController {
 	public void reviewAllList(Model model, SPageTO to) {
 		to = adservice.reviewAllList(to);
 		model.addAttribute("to", to);
+	}
+	
+	@RequestMapping(value = "/boardManage/reviewRead", method = RequestMethod.GET)
+	public void reviewRead(Model model, int num) {
+		reviewVO vo = adservice.reviewRead(num);
+		model.addAttribute("vo", vo);
 	}
 }
