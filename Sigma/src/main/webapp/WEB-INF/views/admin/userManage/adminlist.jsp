@@ -23,35 +23,37 @@
 	<div class="bodymain">
 		<div class="container">
 
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>닉네임</th>
-						<th>이름</th>
-						<th>권한</th>
-						<th>전화번호</th>
-						<th>이메일</th>
-						<th>가입일</th>
-						<th>잔여캐시</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${vo}" var="vo">
-						<tr>
-							<td><a href="/admin/userManage/read?id=${vo.id}">${vo.id}</a></td>
-							<td><a href="/admin/userManage/read?id=${vo.id}">${vo.nickname}</a></td>
-							<td><a href="/admin/userManage/read?id=${vo.id}">${vo.name}</a></td>
-							<td>${vo.author}</td>
-							<td>${vo.phone}</td>
-							<td>${vo.email}</td>
-							<td>${vo.joindate}</td>
-							<td>${vo.cash}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+	
+	<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>닉네임</th>
+				<th>이름</th>
+				<th>권한</th>
+				<th>전화번호</th>
+				<th>이메일</th>
+				<th>가입일</th>
+				<th>잔여캐시</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${vo}" var="vo">
+				<tr>
+					<td><a href="/admin/userManage/read?id=${vo.id}">${vo.id}</a></td>
+					<td><a href="/admin/userManage/read?id=${vo.id}">${vo.nickname}</a></td>
+					<td><a href="/admin/userManage/read?id=${vo.id}">${vo.name}</a></td>
+					<td>${vo.author}</td>
+					<td>${vo.phone}</td>
+					<td>${vo.email}</td>
+					<td>${vo.joindate}</td>
+					<td>${vo.cash}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+  </div>
 	</div>
 </body>
 </html>

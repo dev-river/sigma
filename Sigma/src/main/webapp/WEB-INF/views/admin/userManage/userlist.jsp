@@ -27,7 +27,7 @@
 	<c:if test="${empty login}">
 		<a href="/member/login/login">로그인</a>
 	</c:if>
-	
+		<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
 	<div class="row">
 				<div class="input-group">
 					<span class="input-group-addon">

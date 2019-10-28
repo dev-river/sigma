@@ -17,21 +17,22 @@
 <body>
 	<div class="bodymain">
 	<input type="hidden" name="num" id="num" value="${vo.num}">
-	<input name="writer" id="writer" value="${vo.writer}" readonly="readonly">
-	<input name="content" id="content" value="${vo.content}">
-	<input name="likeselect" id="likeselect" value="${vo.recommend}" readonly="readonly">
+	<label for="writer">작성자: </label><input name="writer" id="writer" value="${vo.writer}" readonly="readonly"><br/>
+	<label for="content">내용: </label><input name="content" id="content" value="${vo.content}"><br/>
+	<label for="likeselect">추천/비추천: </label><input name="likeselect" id="likeselect" value="${vo.recommend}" readonly="readonly"><br/>
 	
 	<!-- <select name="likeselect" id="likeselect">
    		<option value="추천">추천</option>
    		<option value="비추천">비추천</option>
  	</select> -->
- 	<button class="btn btn-warning">수정</button>
+ 	<button class="reviewEdit btn btn-warning">수정</button>
  	<a href="javascript:window.close()" class="btn btn-danger">취소</a>
+ 	<button class="reviewDelete btn btn-danger" value="${vo.num}">삭제</button>
  	</div>
  	<script type="text/javascript">
  		$("select").val("${vo.recommend}").attr("selected", "selected");
 
- 		$("button").on("click", function(){
+ 		$(".reviewEdit").on("click", function(){
  			var num = $("#num").val();
  			var writer = $("#writer").val();
  			var content = $("#content").val();
@@ -59,6 +60,29 @@
    	   				}
    			});
  	 	});
+
+ 		$(".reviewDelete").on("click", function(){
+			if(confirm("삭제 하시겠습니까?")){
+				var num = $(this).val();
+				
+	   			$.ajax({
+	   				type: 'get',
+	   				url: '/gameDetail/inform/reviewdelete',
+	   				data: {
+	   					'num': num,
+	   				},
+	   				datatype: 'text',
+	   				success: function(){
+	   					alert('삭제 되었습니다!');
+	   					window.opener.location.reload();
+	   					window.close()
+	   				},
+	   				error: function(){
+	   					alert('로그인 또는 리뷰 내용 입력이 필요합니다.');
+	   				}
+	   			});
+			}
+   		});
  	</script>
 </body>
 </html>

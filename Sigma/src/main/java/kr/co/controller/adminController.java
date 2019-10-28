@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.co.domain.SPageTO;
 import kr.co.domain.adminSetVO;
 import kr.co.domain.adminSlideVO;
+import kr.co.domain.boardVO;
 import kr.co.domain.memberVO;
+import kr.co.domain.reviewVO;
 import kr.co.service.adminService;
 import kr.co.utils.UploadFileUtils;
 
@@ -38,7 +41,7 @@ public class adminController {
 	private String uploadBNPath;
 
 	//회원 리스트
-	@RequestMapping(value = "/main/adminlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/userManage/userlist", method = RequestMethod.GET)
 	public void adminUserList(Model model) {
 		List<memberVO> vo = adservice.adminUserList();
 		model.addAttribute("vo", vo);
@@ -249,5 +252,31 @@ public class adminController {
 		String savedName = UploadFileUtils.uploadFile(uploadBNPath, file);
 		
 		return new ResponseEntity<String>(savedName, HttpStatus.OK);
+	}
+	
+	// 관리자 에러
+	@RequestMapping(value="/adminSetting/adminError", method=RequestMethod.GET)
+	public void adminError() {
+		
+  // -- 게시판 관리 -- //
+  //전체게시물 보기
+	@RequestMapping(value = "/boardManage/boardAllList")
+	public void boardAllList(Model model, SPageTO to) {
+		to = adservice.boardAllList(to);
+		model.addAttribute("to", to);
+	}
+	
+  //전체리뷰 보기
+	@RequestMapping(value = "/boardManage/reviewAllList")
+	public void reviewAllList(Model model, SPageTO to) {
+		to = adservice.reviewAllList(to);
+		model.addAttribute("to", to);
+	}
+	
+  //리뷰
+	@RequestMapping(value = "/boardManage/reviewRead", method = RequestMethod.GET)
+	public void reviewRead(Model model, int num) {
+		reviewVO vo = adservice.reviewRead(num);
+		model.addAttribute("vo", vo);
 	}
 }

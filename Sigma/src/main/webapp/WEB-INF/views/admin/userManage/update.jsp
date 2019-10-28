@@ -26,7 +26,7 @@
 				
 				<div class="form-group">
 					<label for="nickname">닉네임</label>
-					<input class="form-control" id="nickname" name="nickname" value="${updatevo.nickname}" readonly="readonly">
+					<input class="form-control" id="nickname" name="nickname" value="${updatevo.nickname}">
 				</div>
 				
 				<div class="form-group">
