@@ -258,6 +258,8 @@ public class adminController {
 	@RequestMapping(value="/adminSetting/adminError", method=RequestMethod.GET)
 	public void adminError() {
 		
+	}
+		
   // -- 게시판 관리 -- //
   //전체게시물 보기
 	@RequestMapping(value = "/boardManage/boardAllList")
