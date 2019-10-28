@@ -43,5 +43,4 @@ public interface compDAO {
 	void giveback2(int buynum);
 
 	int seachcash(String writer);
-
 }

@@ -101,13 +101,13 @@ p,th,td{
 			
 		</div>
 	</div>
-	<!-- <script type="text/javascript">
+<!-- <script type="text/javascript">
 	google.load('visualization', '1', {'packages' : ['corechart']});
 	google.setOnLoadCallback(drawChart);
 	function drawChart(){
 		var writer = '<c:out value="${login.id}"/>';
 		var jsonData = $.ajax({
-			url : "/chart",
+			url : "/compManage/main/chart",
 			data : {
 				writer : writer
 			},
@@ -119,6 +119,6 @@ p,th,td{
 		var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
 		chart.draw(data, {width: 400, height: 240});
 	}
-</script> -->
+</script>  -->
 </body>
 </html>

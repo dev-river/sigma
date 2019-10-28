@@ -42,9 +42,12 @@ public class compController {
 	private String uploadGamePath;
 	
 	@ResponseBody
-	@RequestMapping(value = "/displayfile")
-	public ResponseEntity<byte[]> display(String uploadGamePath, String filename){
-		return UploadFileUtils.displayfile(uploadGamePath, filename);
+	@RequestMapping(value = "/displayfile", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> display(String filename){
+		
+		String uploadPath = uploadGamePath;
+		
+		return UploadFileUtils.displayfile(uploadPath, filename);
 	}
 	
 	@ResponseBody
@@ -77,9 +80,9 @@ public class compController {
 //		ajaxArrayCols.add(ajaxobjCols1);
 //		ajaxArrayCols.add(ajaxobjCols2);
 //		data.put("cols", ajaxArrayCols);
-		
+//		
 //		List<gameVO> man = compservice.datalist(writer);
-		
+//		
 //		JSONArray body = new JSONArray();
 //		for(gameVO vo : man) {
 //			JSONArray ajaxArrayRows = new JSONArray();
@@ -93,10 +96,6 @@ public class compController {
 //			ValueArray.add(legend);
 //			ValueArray.add(value);
 //			
-//			JSONObject ValueObj = new JSONObject();
-//			ValueObj.put("c", ValueArray);
-//			ajaxArrayRows.add(ValueObj);
-//			body.add(ajaxArrayRows);
 //		}
 //		data.put("rows", body);
 //		

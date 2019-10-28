@@ -105,6 +105,4 @@ public class compServiceImpl implements compService{
 	public refundVO refundRead(Map<String, Object> map) {
 		return dao.refundRead(map);
 	}
-
-	
 }

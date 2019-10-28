@@ -25,7 +25,7 @@
 	</insert>
 	
 	<select id="count" resultType="Integer">
-		select count(num) from gamedetail where writer = #{writer}  
+		select count(num) from gamedetail where writer = #{writer}
 	</select>
 	
 	<select id="refundList" resultType="kr.co.domain.refundVO">
@@ -82,4 +82,7 @@
 		select sum(mancount) from gamedetail where writer = #{}
 	</select> -->
 	
+	<insert id="gameimg">
+		insert into gamedetailfile(num, gdnum, filename) values((select nvl2(max(num),max(num)+1, 1) from gamedetailfile), #{gdnum}, #{gameimgpath})
+	</insert>
 </mapper>

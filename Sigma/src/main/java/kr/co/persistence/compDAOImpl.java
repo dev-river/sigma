@@ -1,5 +1,6 @@
 package kr.co.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -105,6 +106,4 @@ public class compDAOImpl implements compDAO {
 	public refundVO refundRead(Map<String, Object> map) {
 		return session.selectOne(NS+".refundRead", map);
 	}
-
-	
 }

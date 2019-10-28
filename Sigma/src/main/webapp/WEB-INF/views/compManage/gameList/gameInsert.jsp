@@ -17,6 +17,11 @@
 	color: white;
 	
 	}
+	.Drop{
+		width: 100%;
+		height: 200px;
+		border: 1px dotted red;
+	}
 </style>
 </head>
 <body>
@@ -60,10 +65,8 @@
 				<label for="gamefilepath">게임 파일 경로</label>
 				<input type="text" id="gamefilepath" name="gamefilepath" class="form-contorl" placeholder="파일경로" style="width: 80px;">
 			</div>
-			
 			<div class="Drop"></div>
 			<div class="uploadedList"></div>
-							
 			<div>
 				<button class="btn insert">등록</button>
 				<input type="button" class="btn" value="취소" onclick="location.href='/compManage/main/gamelist?writer=${login.id}'">
@@ -77,23 +80,6 @@
 		$(".Drop").on("dragenter dragover", function(event){
 			event.preventDefault();
 		});
-		
-		$(".insert").on("click",function(){
-			var cash = $("input[id='cash']").val();
-			var writer = $("input[id='writer']").val();
-			if(cash < 1000){
-				var check = confirm("캐시 충전하시겠습니까?");
-				if(check==true){
-					location.href="/myPage/main/cash?id="+writer;
-					return false;
-				}else{
-					alert("리스트로 돌아갑니다.");
-					location.href="/compManage/main/gamelist?writer="+writer;
-					return false;
-				}
-			}else{
-				location.href="/compManage/main/gameinsert";
-			}	
 		$(".Drop").on("drop", function(event){
 			event.preventDefault();
 			
@@ -116,16 +102,15 @@
 						var str = '';
 						
 						if(checkImageType(data)){
-							str += "<div><img src='displayfile?filename="+data+"' alt='게임파일 그림'/><p>"+data+"</p></div>";
+							str += "<div style='display: inline-block;'><img src='/compManage/displayfile?filename="+data+"' alt='게임파일 그림'/><input type='hidden' id='filepath' name='filepath' value='"+data+"'></div>";
 						}else{
-							str += "<div><img src='/resouces/gameDetailFile/noimage.png' alt='일반파일 그림'/><p>"+data+"</p></div>";
+							str += "<div><img src='/Sigma/src/main/webapp/resources/gameDetailFile/noimage.png' alt='일반파일 그림'/><p>"+data+"</p></div>";
 						}
 						
 						$(".uploadedList").append(str);
 					}
 				});
 			}
-			
 		});
 	});
 	
@@ -133,6 +118,7 @@
 		var pattern = /jpg|png|jpeg|gif/i;
 		return data.match(pattern);
 	}
+	
 	function check(form){
 		var cash = $("input[id='cash']").val();
 		var writer = $("input[id='writer']").val();
