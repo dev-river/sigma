@@ -9,9 +9,12 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.domain.SPageTO;
 import kr.co.domain.adminSetVO;
 import kr.co.domain.adminSlideVO;
+import kr.co.domain.boardVO;
 import kr.co.domain.memberVO;
+import kr.co.domain.reviewVO;
 
 @Repository
 public class adminDAOImpl implements adminDAO{
@@ -149,6 +152,29 @@ public class adminDAOImpl implements adminDAO{
 		
 		session.update(NSsetting+".slideUpdate", map);
 	}
-	
 
+	@Override
+	public List<boardVO> boardAllList(SPageTO to) {
+		return session.selectList(NSboard+".boardAllList", to);
+	}
+
+	@Override
+	public int getAmount(SPageTO to) {
+		return session.selectOne(NSboard+".getAmount", to);
+	}
+
+	@Override
+	public int getReviewAmount(SPageTO to) {
+		return session.selectOne(NSboard+".getReviewAmount", to);
+	}
+
+	@Override
+	public List<reviewVO> reviewAllList(SPageTO to) {
+		return session.selectList(NSboard+".reviewAllList", to);
+	}
+
+	@Override
+	public reviewVO reviewRead(int num) {
+		return session.selectOne(NSboard+".reviewRead", num);
+	}
 }

@@ -14,12 +14,14 @@ public class reviewVO implements Serializable{
 	private int assistyes;
 	private int assistno;
 	
+	private String title;
+	
 	public reviewVO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public reviewVO(int num, int gdnum, String writer, String content, String regidate, String updatedate,
-			String recommend, int assistyes, int assistno) {
+			String recommend, int assistyes, int assistno, String title) {
 		super();
 		this.num = num;
 		this.gdnum = gdnum;
@@ -30,6 +32,7 @@ public class reviewVO implements Serializable{
 		this.recommend = recommend;
 		this.assistyes = assistyes;
 		this.assistno = assistno;
+		this.title = title;
 	}
 
 	public int getNum() {
@@ -104,6 +107,14 @@ public class reviewVO implements Serializable{
 		this.assistno = assistno;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -112,6 +123,6 @@ public class reviewVO implements Serializable{
 	public String toString() {
 		return "reviewVO [num=" + num + ", gdnum=" + gdnum + ", writer=" + writer + ", content=" + content
 				+ ", regidate=" + regidate + ", updatedate=" + updatedate + ", recommend=" + recommend + ", assistyes="
-				+ assistyes + ", assistno=" + assistno + "]";
+				+ assistyes + ", assistno=" + assistno + ", title=" + title + "]";
 	}
 }

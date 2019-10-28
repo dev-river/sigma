@@ -115,7 +115,14 @@
 					<p>할인요청 종료: ${dcvo.rqenddate}</p>
 					<p>할인요청 목표수: ${dcvo.joinclick} / ${dcvo.goal}</p>
 					<p>달성 시 할인율: ${dcvo.dcrate}</p>
-					<a class="btn btn-primary" href="/gameDetail/inform/dcCountAdd?num=${dcnum}&gdnum=${vo.num}" onclick="return confirm('할인 요청에 동참하시겠습니까 ?');">동참하기</a>
+					<c:choose>
+						<c:when test="${dcjoincheck eq 0}">
+							<a class="btn btn-primary" href="/gameDetail/inform/dcCountAdd?num=${dcnum}&gdnum=${vo.num}" onclick="return confirm('할인 요청에 동참하시겠습니까 ?');">동참하기</a>
+						</c:when>
+						<c:otherwise>
+							<a class="btn btn-warning" href="#">동참완료</a>
+						</c:otherwise>
+					</c:choose>
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>
@@ -148,8 +155,9 @@
 		      		<p>좋아요: ${maxYesReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxYesReview.num}">좋아요</button></p>
 		      		<p>싫어요: ${maxYesReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxYesReview.num}">싫어요</button></p>
 		      		
-		      		<c:if test="${id eq maxYesReview.writer}">
-		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${maxYesReview.num}" target="_blank" class="btn btn-warning">수정</a>
+		      		<c:if test="${id eq maxYesReview.writer || author eq 'admin'}">
+		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${maxYesReview.num}" target="_blank" class="btn btn-warning"
+		      			onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${maxYesReview.num}">삭제</button>
 		      			<%-- <button class="reviewupdate btn btn-warning" value="${maxYesReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxYesReview.num}">삭제</button> --%>
 		      		</c:if>
@@ -170,8 +178,9 @@
 		      		<p>수정일: ${maxNoReview.updatedate}</p>
 		      		<p>좋아요: ${maxNoReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxNoReview.num}">좋아요</button></p>
 		      		<p>싫어요: ${maxNoReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxNoReview.num}">싫어요</button></p>
-		      		<c:if test="${id eq maxNoReview.writer}">
-		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${maxNoReview.num}" target="_blank" class="btn btn-warning">수정</a>
+		      		<c:if test="${id eq maxNoReview.writer || author eq 'admin'}">
+		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${maxNoReview.num}" target="_blank" class="btn btn-warning"
+		      			onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button>
 		      			<%-- <button class="reviewupdate btn btn-warning" value="${maxNoReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button> --%>
 		      		</c:if>
@@ -204,8 +213,9 @@
 		      		<p>수정일: ${review.updatedate}</p>
 		      		<p>좋아요: ${review.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${review.num}">좋아요</button></p>
 		      		<p>싫어요: ${review.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${review.num}">싫어요</button></p>
-		      		<c:if test="${id eq review.writer}">
-		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${review.num}" target="_blank" class="btn btn-warning">수정</a>
+		      		<c:if test="${id eq review.writer || author eq 'admin'}">
+		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${review.num}" target="_blank" class="btn btn-warning"
+		      			onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button>
 		      			<%-- <button class="reviewupdate btn btn-warning" value="${review.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button> --%>
 		      		</c:if>
@@ -213,31 +223,36 @@
       		</c:forEach>
       		
       		<!-- 리뷰 페이징 파트 -->
-			<div>
-				<div class="row text-center" style="text-align: center">
-					<ul class="pagination">
-						<!-- ul에 pagination 클래스를 주면 예쁘다 -->
+      		<c:choose>
+      			<c:when test="${sto.amount eq 0}">
+      			</c:when>
+      			<c:otherwise>
+					<div>
+						<div class="row text-center" style="text-align: center">
+							<ul class="pagination">
+								<!-- ul에 pagination 클래스를 주면 예쁘다 -->
 
-						<c:if test="${sto.curPage>1}">
-							<li><a
-								href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage-1}&perPage=${sto.perPage}">&laquo;</a></li>
-						</c:if>
-						<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
+								<c:if test="${sto.curPage>1}">
+									<li><a
+										href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage-1}&perPage=${sto.perPage}">&laquo;</a></li>
+								</c:if>
+								<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
 
-						<c:forEach begin="${sto.bpn}" end="${sto.spn}" var="idx">
-							<li class="${sto.curPage == idx?'active':''}"><a
-								href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${idx}&perPage=${sto.perPage}">${idx}</a></li>
-							<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
-						</c:forEach>
+								<c:forEach begin="${sto.bpn}" end="${sto.spn}" var="idx">
+									<li class="${sto.curPage == idx?'active':''}"><a
+										href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${idx}&perPage=${sto.perPage}">${idx}</a></li>
+									<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
+								</c:forEach>
 
-						<c:if test="${sto.curPage<sto.totalPage}">
-							<li><a
-								href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage+1}&perPage=${sto.perPage}">&raquo;</a></li>
-						</c:if>
-
-					</ul>
-				</div>
-			</div>
+								<c:if test="${sto.curPage<sto.totalPage}">
+									<li><a
+										href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage+1}&perPage=${sto.perPage}">&raquo;</a></li>
+								</c:if>
+							</ul>
+						</div>
+					</div>
+				</c:otherwise>
+      		</c:choose>
       	</div>
    </div>
    <br>

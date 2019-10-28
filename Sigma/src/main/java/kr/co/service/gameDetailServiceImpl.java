@@ -118,4 +118,14 @@ public class gameDetailServiceImpl implements gameDetailService{
 		to.setList(list);
 		return to;
 	}
+
+	@Override
+	public int dcjoincheck(int num, String id) {
+		return gdao.dcjoincheck(num, id);
+	}
+
+	@Override
+	public void dcjoininsert(int num, String id) {
+		gdao.dcjoininsert(num, id);
+	}
 }
