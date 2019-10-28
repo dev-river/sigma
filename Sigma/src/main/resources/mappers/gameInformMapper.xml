@@ -102,4 +102,12 @@
 	<update id="gameStatus">
 		update gamedetail set status=#{status} where num=#{num}
 	</update>
+	
+	<select id="dcjoincheck" resultType="Integer">
+		select count(*) from gamedetaildcjoiner where dcnum=#{num} and id=#{id}
+	</select>
+	
+	<insert id="dcjoininsert">
+		insert into gamedetaildcjoiner values(#{num}, #{id})
+	</insert>
 </mapper>
