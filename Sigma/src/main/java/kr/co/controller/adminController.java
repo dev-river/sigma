@@ -254,18 +254,26 @@ public class adminController {
 		return new ResponseEntity<String>(savedName, HttpStatus.OK);
 	}
 	
+	// 관리자 에러
+	@RequestMapping(value="/adminSetting/adminError", method=RequestMethod.GET)
+	public void adminError() {
+		
+  // -- 게시판 관리 -- //
+  //전체게시물 보기
 	@RequestMapping(value = "/boardManage/boardAllList")
 	public void boardAllList(Model model, SPageTO to) {
 		to = adservice.boardAllList(to);
 		model.addAttribute("to", to);
 	}
 	
+  //전체리뷰 보기
 	@RequestMapping(value = "/boardManage/reviewAllList")
 	public void reviewAllList(Model model, SPageTO to) {
 		to = adservice.reviewAllList(to);
 		model.addAttribute("to", to);
 	}
 	
+  //리뷰
 	@RequestMapping(value = "/boardManage/reviewRead", method = RequestMethod.GET)
 	public void reviewRead(Model model, int num) {
 		reviewVO vo = adservice.reviewRead(num);

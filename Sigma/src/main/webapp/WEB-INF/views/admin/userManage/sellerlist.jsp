@@ -27,7 +27,7 @@
 	<c:if test="${empty login}">
 		<a href="/member/login/login">로그인</a>
 	</c:if>
-	
+		<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
 	<table class="table table-hover">
 		<thead>
 			<tr>
