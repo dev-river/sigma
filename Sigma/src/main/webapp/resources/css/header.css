@@ -25,7 +25,7 @@
 .ser {
 	position: relative;
 	left: 28%;
-	top: 10%;
+	top: 15px;
 	width: auto;
 }
 
@@ -69,7 +69,7 @@
 	font-weight: 1500;
 	width: 600px;
 	font: italic;
-		
+	
 
 }
 
@@ -83,7 +83,7 @@
 	margin: 0;
 	padding: 0;
 	width: 600px;
-	
+	border-radius: 5px 5px 5px 5px;
 }
 
 .menubar li {
@@ -92,6 +92,7 @@
 	transform-origin : 0 0;
 	float: left;
 	padding: 0px;
+	border-radius: 5px 5px 5px 5px;
 }
 
 .menubar li a { /*메뉴*/
@@ -111,7 +112,7 @@
 	text-decoration: none;
 	border-radius: 0;
 	width: auto;
-	
+	border-radius: 5px 5px 5px 5px;
 }
 
 .menubar li a:hover, .menubar ul li:hover a { /*드랍 마우스*/
@@ -121,6 +122,7 @@
 	background: linear-gradient(30deg, #FFCD12,gray);
 	color: black;
 	text-decoration: none;
+	border-radius: 5px 5px 5px 5px;
 }
 
 .menubar li ul {
@@ -135,7 +137,7 @@
 	position: absolute;
 	width: 150px;
 	z-index: 200;
-	
+	border-radius: 5px 5px 5px 5px;
 }
 
 .menubar li:hover ul {

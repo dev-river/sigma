@@ -18,6 +18,10 @@
 	a{
 		color: white;
 	}
+	#img1{
+		border-radius: 10px;
+ 		box-shadow: 15px 15px 20px black;
+	}
 </style>
 </head>
 <body>
@@ -62,10 +66,10 @@
 							<div style="width:18%; margin:2px; height:150px; text-align: center;" class="pull-left">
 								<c:choose>
 									<c:when test="${buylist.filepath eq null}">
-										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 80%; height: 70%; border: 1px solid black; position: relative; right: 30px; top: 30px;">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 80%; height: 70%; border: 1px solid black; position: relative; right: 30px; top: 30px;" id="img1">
 									</c:when>
 									<c:otherwise>
-										<img alt="" src="/resources/gameDetailFile/${buylist.filepath}" style="width: 80%; height: 70%; border: 1px; solid; black; position: relative; right: 30px; top: 30px;">
+										<img alt="" src="/resources/gameDetailFile/${buylist.filepath}" style="width: 80%; height: 70%; border: 1px; solid; black; position: relative; right: 30px; top: 30px;" id="img1">
 									</c:otherwise>
 								</c:choose>
 								<br>
@@ -88,14 +92,14 @@
 							<div style="width:18%; margin:2px; height:150px; text-align: center;" class="pull-left">
 								<c:choose>
 									<c:when test="${favComp.filepath eq null}">
-										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 80%; height: 80%; border: 1px; solid; black;">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 80%; height: 70%; border: 1px; solid; black;  position: relative; right: 30px; top: 30px;" id="img1">
 									</c:when>
 									<c:otherwise>
-										<img alt="" src="/resources/gameDetailFile/${favComp.filepath}" style="width: 80%; height: 80%; border: 1px; solid; black;">
+										<img alt="" src="/resources/gameDetailFile/${favComp.filepath}" style="width: 80%; height: 70%; border: 1px; solid; black;  position: relative; right: 30px; top: 30px;" id="img1">
 									</c:otherwise>
 								</c:choose>
 								<br>
-								${favComp.id}
+								<p style="position: relative; right: 30px; top: 35px;">${favComp.id}</p>
 							</div>
 						</a>
 					</c:if>
@@ -114,10 +118,10 @@
 							<div style="width:18%; margin:2px; height:150px; text-align: center;" class="pull-left">
 								<c:choose>
 									<c:when test="${refund.filepath eq null}">
-										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 80%; height: 70%; border: 1px; solid; black; position: relative; right: 30px; top: 30px;">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 80%; height: 70%; border: 1px; solid; black; position: relative; right: 30px; top: 30px;" id="img1">
 									</c:when>
 									<c:otherwise>
-										<img alt="" src="/resources/gameDetailFile/${refund.filepath}" style="width: 80%; height: 70%; border: 1px; solid; black; position: relative; right: 30px; top: 30px;">
+										<img alt="" src="/resources/gameDetailFile/${refund.filepath}" style="width: 80%; height: 70%; border: 1px; solid; black; position: relative; right: 30px; top: 30px;" id="img1">
 									</c:otherwise>
 								</c:choose>
 								<br>
@@ -131,6 +135,8 @@
 			
 		</div>
 	</div>
+	<br>
+	<br>
 	<input type="hidden" id="id" value="${myinfo.id}"></input>
 <script type="text/javascript">
 	$(document).ready(function() {

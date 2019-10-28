@@ -13,7 +13,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-			img { display: block; margin: 0px auto;
+			#img1 { 
+			display: block; margin: 0px auto;
 			text-align: center;
 			border-radius: 10px;
  			box-shadow: 15px 15px 20px black;
@@ -28,7 +29,9 @@
 		</style>
 </head>
 <body>
-		<div class=bodymain>
+
+<br>
+<div class=bodymain>
 			
 <div class=container>
 	<!-- 헤더 -->
@@ -65,7 +68,7 @@
 					</span>
 				</div>
 			</div>
-
+	<br>
 			<!-- 게임 리스트 파트 -->
 	<c:forEach items="${vo.list}" var="gvo">
 	<div style="width: 33%; margin: 0; float: left;">
@@ -73,10 +76,10 @@
 			<a href="/gameDetail/main/maincategoryread?num=${gvo.num}&curPage=1&perPage=5">
 			<c:choose>
 				<c:when test="${gvo.filepath eq null}">
-					<img alt="No image" src="/resources/gameDetailFile/noimage.png" width="280px" height="280px">
+					<img alt="No image" src="/resources/gameDetailFile/noimage.png" width="280px" height="280px" id="img1">
 				</c:when>
 				<c:when test="${gvo.filepath ne null}">
-					<img alt="Game image" src="/resources/gameDetailFile/${gvo.filepath}" width="280px" height="280px">
+					<img alt="Game image" src="/resources/gameDetailFile/${gvo.filepath}" width="280px" height="280px"  id="img1">
 				</c:when>
 			</c:choose>
 			<p style="text-align: center; margin-top: 5px; margin-bottom: 0px">Title: ${gvo.title}</p>
@@ -96,8 +99,12 @@
 	</c:forEach>
 	
 	<!-- 게임 리스트 페이징 파트 -->
-			<div>
-				<div class="row text-center" style="text-align: center">
+			
+		</div>
+		
+</div>
+<div>
+				<div class="row text-center" style="text-align: center; position: relative; left: 45%; width: 500px;">
 					<ul class="pagination">
 						<!-- ul에 pagination 클래스를 주면 예쁘다 -->
 
@@ -121,8 +128,6 @@
 					</ul>
 				</div>
 			</div>
-		</div>
-</div>
 <script type="text/javascript">
 $(document).ready(function() {
    $("#searchBtn").on("click", function() {
