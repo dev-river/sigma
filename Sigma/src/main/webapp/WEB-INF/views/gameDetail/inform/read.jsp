@@ -13,10 +13,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-	p{
-	color: white;
+	p,h5,.container{
+	color: yellow;
 	}
-		img {
+		#img1 {
 			border-radius: 10px;
  			box-shadow: 15px 15px 20px black;
 			}
@@ -48,12 +48,12 @@
 		</ol>
 		<div class="carousel-inner" style="width: 700px; height: 400px; margin: 0;">
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="/resources/gameDetailFile/${firstfilepath}" alt="">
+				<img class="d-block w-100" src="/resources/gameDetailFile/${firstfilepath}" alt=""  id="img1">
 			</div>
 			
 			<c:forEach items="${filepath}" var="filename">
 				<div class="carousel-item">
-					<img class="d-block w-100" src="/resources/gameDetailFile/${filename}" alt="">
+					<img class="d-block w-100" src="/resources/gameDetailFile/${filename}" alt=""  id="img1">
 				</div>
 			</c:forEach>
 		</div>
@@ -68,9 +68,9 @@
 		</a>
 		</div>
 		<div style="width: 400px; margin: 10px">
-			<img class="" src="/resources/gameDetailFile/${firstfilepath}" alt="" height="180px" width="180px" style="margin: 5px;" data-target="#carouselExampleIndicators" data-slide-to="0">
+			<img class=""  id="img1" src="/resources/gameDetailFile/${firstfilepath}" alt="" height="180px" width="180px" style="margin: 5px;" data-target="#carouselExampleIndicators" data-slide-to="0">
 			<c:forEach items="${filepath}" var="file" varStatus="i">
-				<img class="" src="/resources/gameDetailFile/${file}" alt="" height="180px" width="180px" style="margin: 5px;" data-target="#carouselExampleIndicators" data-slide-to="${i.index+1}">
+				<img class=""  id="img1" src="/resources/gameDetailFile/${file}" alt="" height="180px" width="180px" style="margin: 5px;" data-target="#carouselExampleIndicators" data-slide-to="${i.index+1}">
 			</c:forEach>
 		</div>
 		</div>
@@ -84,9 +84,9 @@
 		<div class="row pull-right" style="width: 30%;">
 			<c:choose>
 				<c:when test="${vo.status eq 'o'}">
-					<input class="pull-left shopBasket" style="width: 45%; margin: 5px;"
+					<input class="pull-left shopBasket" style="width: 45%; margin: 5px; color: black;"
 					type="button" value="장바구니에 추가"> <input
-					class="pull-left zzim_list" style="width: 45%; margin: 5px;"
+					class="pull-left zzim_list" style="width: 45%; margin: 5px;  color: black;"
 					type="button" value="찜목록에 추가">
 				</c:when>
 				<c:otherwise>
@@ -145,8 +145,9 @@
 		      		<p>작성자: ${maxYesReview.writer}</p>
 		      		<p>내용: ${maxYesReview.content}</p>
 		      		<p>수정일: ${maxYesReview.updatedate}</p>
-		      		<p>좋아요: ${maxYesReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxYesReview.num}">좋아요</button></p>
-		      		<p>싫어요: ${maxYesReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxYesReview.num}">싫어요</button></p>
+		      		
+		      		<p style="float: right;">좋아요: ${maxYesReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxYesReview.num}">좋아요</button></p>
+		      		<p style="float: right;">싫어요: ${maxYesReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxYesReview.num}">싫어요</button></p>
 		      		
 		      		<c:if test="${id eq maxYesReview.writer}">
 		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${maxYesReview.num}" target="_blank" class="btn btn-warning">수정</a>
@@ -168,8 +169,8 @@
 		      		<p>작성자: ${maxNoReview.writer}</p>
 		      		<p>내용: ${maxNoReview.content}</p>
 		      		<p>수정일: ${maxNoReview.updatedate}</p>
-		      		<p>좋아요: ${maxNoReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxNoReview.num}">좋아요</button></p>
-		      		<p>싫어요: ${maxNoReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxNoReview.num}">싫어요</button></p>
+		      		<p style="float: right;">좋아요: ${maxNoReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxNoReview.num}">좋아요</button></p>
+		      		<p style="float: right;">싫어요: ${maxNoReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxNoReview.num}">싫어요</button></p>
 		      		<c:if test="${id eq maxNoReview.writer}">
 		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${maxNoReview.num}" target="_blank" class="btn btn-warning">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button>
@@ -184,7 +185,7 @@
       	<!-- 리뷰 등록 -->
       	<div>
 	      	<label for="reviewContent">리뷰 등록: </label>
-	      	<input id="reviewContent" type="text" required="required">
+	      	<textarea rows="3" cols="150" id="reviewContent" style="color: black;"></textarea>
 	      	<select id="likeselect">
 	      		<option value="추천">추천</option>
 	      		<option value="비추천">비추천</option>
@@ -197,13 +198,13 @@
       	<!-- 리뷰글 최신순 리스트 -->
       	<div>
       		<c:forEach items="${reviewlist}" var="review">
-      			<div style="border: 1px dashed black">
+      			<div style="border: 1px dashed black; height: 200px;">
       				<p>-${review.recommend} 리뷰-</p>
 		      		<p>작성자: ${review.writer}</p>
-		      		<p>내용: ${review.content}</p>
+		      		<textarea rows="3" cols="150" style="color: black; background: #B5C1DB;">${review.content}</textarea>
 		      		<p>수정일: ${review.updatedate}</p>
-		      		<p>좋아요: ${review.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${review.num}">좋아요</button></p>
-		      		<p>싫어요: ${review.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${review.num}">싫어요</button></p>
+		      		<p style="float: right; position: relative; top:100%;">좋아요: ${review.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${review.num}">좋아요</button></p>
+		      		<p style="float: right; position: relative; bottom:100%;">싫어요: ${review.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${review.num}">싫어요</button></p>
 		      		<c:if test="${id eq review.writer}">
 		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${review.num}" target="_blank" class="btn btn-warning">수정</a>
 		      			<button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button>

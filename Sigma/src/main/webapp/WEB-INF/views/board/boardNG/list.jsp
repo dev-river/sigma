@@ -16,14 +16,6 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-.list {
-	position: relative;
-	width: 1070px;
-	height: auto;
-	margin: 0;
-	right: 45px;
-	
-}
 
 .bodymain {
 	position: relative;

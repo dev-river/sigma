@@ -38,7 +38,7 @@ public class adminController {
 	private String uploadBNPath;
 
 	//회원 리스트
-	@RequestMapping(value = "/userManage/userlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/adminlist", method = RequestMethod.GET)
 	public void adminUserList(Model model) {
 		List<memberVO> vo = adservice.adminUserList();
 		model.addAttribute("vo", vo);
