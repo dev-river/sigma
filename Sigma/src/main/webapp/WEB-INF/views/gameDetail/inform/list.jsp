@@ -28,11 +28,22 @@
 		</style>
 </head>
 <body>
-
-<hr>
 		<div class=bodymain>
 			
 <div class=container>
+	<!-- 헤더 -->
+	<h3>
+	<c:choose>
+		<c:when test="${category eq 'all'}">전체 게임 리스트</c:when>
+		<c:when test="${category eq 'rpg'}">RPG 게임 리스트</c:when>
+		<c:when test="${category eq 'sportsracing'}">스포츠/레이싱 게임 리스트</c:when>
+		<c:when test="${category eq 'strategysimulation'}">전략시뮬레이션 게임 리스트</c:when>
+		<c:when test="${category eq 'actionadventure'}">액션/어드벤쳐 게임 리스트</c:when>
+		<c:when test="${category eq 'etc'}">기타 게임 리스트</c:when>
+	</c:choose>
+	</h3>
+	<hr>
+	
 	<!-- 검색 파트 -->
 			<div class="row ">
 				<div class="input-group" style="padding-right: 10px;">

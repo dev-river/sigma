@@ -17,6 +17,20 @@
       <if test="searchType == null">
       </if>
  	</sql>
+ 	
+ 	<sql id="reviewsearch">
+      <if test="searchType == 'writer'.toString()">
+         and lower(gamereview.writer) like '%'||lower(#{keyword})||'%'
+      </if>
+      <if test="searchType == 'title'.toString()">
+         and lower(gamedetail.title) like '%'||lower(#{keyword})||'%'
+      </if>
+      <if test="searchType == 'content'.toString()">
+         and lower(gamereview.content) like '%'||lower(#{keyword})||'%'
+      </if>
+      <if test="searchType == null">
+      </if>
+ 	</sql>
 
 	<select id="boardAllList" resultType="kr.co.domain.boardVO">
 	<![CDATA[
@@ -39,21 +53,17 @@
 	</select>
 	
 	<select id="getReviewAmount" resultType="Integer">
-		select count(*) from gamereview <include refid="search"></include>
+		select count(*) from gamereview,gamedetail where gamereview.gdnum=gamedetail.num <include refid="reviewsearch"></include>
 	</select>
 	
 	<select id="reviewAllList" resultType="kr.co.domain.reviewVO">
 	<![CDATA[
-	select * from (
-	select rownum
-	rnum,num,gdnum,writer,content,regidate,updatedate,recommend,assistyes,assistno,title
-	from
-	(select
-	gamereview.num,gamereview.gdnum,gamereview.writer,gamereview.content,gamereview.regidate,gamereview.updatedate,gamereview.recommend,gamereview.assistyes,gamereview.assistno,gamedetail.title
-	from (
-    select * from gamereview ]]><include refid="search"></include><![CDATA[
-    ) gamereview,gamedetail where gamereview.gdnum=gamedetail.num order by gamereview.num desc)
-	) where rnum between #{startNum} and #{endNum}
+	select * from 
+    (select rownum rnum,num,gdnum,writer,content,regidate,updatedate,recommend,assistyes,assistno,title from 
+	    (select gamereview.num,gamereview.gdnum,gamereview.writer,gamereview.content,gamereview.regidate,gamereview.updatedate,
+	    gamereview.recommend,gamereview.assistyes,gamereview.assistno,gamedetail.title  from gamereview, gamedetail 
+	    where gamereview.gdnum=gamedetail.num ]]><include refid="reviewsearch"></include><![CDATA[ order by gamereview.num desc)
+    ) where rnum between #{startNum} and #{endNum}
 	]]>
 	</select>
 	
