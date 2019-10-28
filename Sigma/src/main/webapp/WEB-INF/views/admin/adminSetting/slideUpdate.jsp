@@ -26,7 +26,7 @@
 </h3>
 
 <hr>
-
+	<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
 <div class="container">
 	<div class="row">
 			<div class="insert">

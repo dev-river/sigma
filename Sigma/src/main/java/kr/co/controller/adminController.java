@@ -250,4 +250,10 @@ public class adminController {
 		
 		return new ResponseEntity<String>(savedName, HttpStatus.OK);
 	}
+	
+	// 관리자 에러
+	@RequestMapping(value="/adminSetting/adminError", method=RequestMethod.GET)
+	public void adminError() {
+		
+	}
 }
