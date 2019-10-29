@@ -20,9 +20,17 @@
 		select * from gameDetail where writer = #{writer} order by num desc
 	</select>
 	
+	<select id="titlecheck" resultType="kr.co.domain.gameVO">
+		select title from gamedetail where title = #{title}
+	</select>
+	
 	<insert id="gameinsert">
-		insert into gamedetail (num, title, content, writer, category, price, dcrate, gamefilepath) values((select nvl2(max(num), max(num)+1, 1) from gamedetail), #{title}, #{content}, #{writer}, #{category}, #{price}, #{dcrate}, #{gamefilepath})
+		insert into gamedetail (num, title, content, writer, category, price, dcrate, gamefilepath, filepath) values((select nvl2(max(num), max(num)+1, 1) from gamedetail), #{title}, #{content}, #{writer}, #{category}, #{price}, #{dcrate}, #{gamefilepath}, #{filepath})
 	</insert>
+	
+	<select id="checknum" resultType="Integer">
+		select num from gamedetail where writer = #{writer} and title = #{title}
+	</select>
 	
 	<select id="count" resultType="Integer">
 		select count(num) from gamedetail where writer = #{writer}
@@ -78,11 +86,15 @@
 		update userinfo set cash = cash - (select regicharge from adminsetting)  where id = #{writer}
 	</update>
 	
-<!-- 	<select id="datalist" resultType="Integer">
-		select sum(mancount) from gamedetail where writer = #{}
-	</select> -->
+	<select id="datalist1" resultType="Integer">
+		select count(usersex) as usersex from sellinfo s, gamedetail g where s.usersex='남자' and s.gdnum=g.num and g.writer = #{writer}
+	</select>
+	
+	<select id="datalist2" resultType="Integer">
+		select count(usersex) as usersex from sellinfo s, gamedetail g where s.usersex='여자' and s.gdnum=g.num and g.writer = #{writer}
+	</select>
 	
 	<insert id="gameimg">
-		insert into gamedetailfile(num, gdnum, filename) values((select nvl2(max(num),max(num)+1, 1) from gamedetailfile), #{gdnum}, #{gameimgpath})
+		insert into gamedetailfile(num, gdnum, filename) values((select nvl2(max(num),max(num)+1, 1) from gamedetailfile), #{gdnum}, #{filename})
 	</insert>
 </mapper>

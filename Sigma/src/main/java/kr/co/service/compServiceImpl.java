@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.domain.gameDetailDcVO;
+import kr.co.domain.gameDetailFileVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
@@ -44,6 +45,7 @@ public class compServiceImpl implements compService{
 	@Override
 	public void gameinsert(gameVO vo) {
 		dao.gameinsert(vo);
+		
 	}
 
 	@Override
@@ -104,5 +106,30 @@ public class compServiceImpl implements compService{
 	@Override
 	public refundVO refundRead(Map<String, Object> map) {
 		return dao.refundRead(map);
+	}
+
+	@Override
+	public int datalist(String writer) {
+		return dao.datalist(writer);
+	}
+
+	@Override
+	public int datalist1(String writer) {
+		return dao.datalist1(writer);
+	}
+
+	@Override
+	public gameVO titlecheck(String title) {
+		return dao.titlecheck(title);
+	}
+
+	@Override
+	public int checknum(gameVO vo) {
+		return dao.checknum(vo);
+	}
+
+	@Override
+	public void gameimg(List list, int gdnum) {
+		dao.gameimg(list, gdnum);
 	}
 }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +26,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.domain.gameDetailDcVO;
+import kr.co.domain.gameDetailFileVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
+import kr.co.domain.sellinfoVO;
 import kr.co.service.compService;
 import kr.co.utils.UploadFileUtils;
 
@@ -41,18 +44,82 @@ public class compController {
 	@Resource(name = "uploadGamePath")
 	private String uploadGamePath;
 	
+	@Resource(name = "GameFile")
+	private String gamefile;
+	
 	@ResponseBody
-	@RequestMapping(value = "/displayfile", method = RequestMethod.GET)
-	public ResponseEntity<byte[]> display(String filename){
+	@RequestMapping(value = "/titlecheck", method = RequestMethod.POST)
+	public String titlecheck(String title) {
+		gameVO titlecheck = compservice.titlecheck(title);
+		if(titlecheck!=null) {
+			return "ok";
+		}else {
+			return "no";
+		}
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/gamefile", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> gamedisplay(String filename){
+		String uploadPath = gamefile;
+		
+		return UploadFileUtils.displayfile(uploadPath, filename);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/imgfile", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> imgdisplay(String filename){
 		String uploadPath = uploadGamePath;
 		
 		return UploadFileUtils.displayfile(uploadPath, filename);
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/uploadajax", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
-	public ResponseEntity<String> uploadAjax(MultipartHttpServletRequest request) throws Exception{
+	@RequestMapping(value = "/imgsrcfile1", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> imgsrcdisplay1(String filename){
+		String uploadPath = uploadGamePath;
+		
+		return UploadFileUtils.displayfile(uploadPath, filename);
+	}
+	@ResponseBody
+	@RequestMapping(value = "/imgsrcfile2", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> imgsrcdisplay2(String filename){
+		String uploadPath = uploadGamePath;
+		
+		return UploadFileUtils.displayfile(uploadPath, filename);
+	}
+	@ResponseBody
+	@RequestMapping(value = "/imgsrcfile3", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> imgsrcdisplay3(String filename){
+		String uploadPath = uploadGamePath;
+		
+		return UploadFileUtils.displayfile(uploadPath, filename);
+	}
+	@ResponseBody
+	@RequestMapping(value = "/imgsrcfile4", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> imgsrcdisplay4(String filename){
+		String uploadPath = uploadGamePath;
+		
+		return UploadFileUtils.displayfile(uploadPath, filename);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/gameajax", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	public ResponseEntity<String> GameAjax(MultipartHttpServletRequest request) throws Exception{
+		
+		MultipartFile file = request.getFile("file");
+		String savedName = UploadFileUtils.uploadFile(gamefile, file);
+		
+		return new ResponseEntity<String>(savedName, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/gameajax", method = RequestMethod.GET)
+	public void GameAjax() {}
+	
+	@ResponseBody
+	@RequestMapping(value = "/imgajax", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	public ResponseEntity<String> ImgAjax(MultipartHttpServletRequest request) throws Exception{
 		
 		MultipartFile file = request.getFile("file");
 		String savedName = UploadFileUtils.uploadFile(uploadGamePath, file);
@@ -60,9 +127,22 @@ public class compController {
 		return new ResponseEntity<String>(savedName, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/uploadajax", method = RequestMethod.GET)
-	public void uploadAjax() {}
+	@RequestMapping(value = "/imgajax", method = RequestMethod.GET)
+	public void ImgAjax() {}
 	
+	@ResponseBody
+	@RequestMapping(value = "/imgsrcajax", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	public ResponseEntity<String> ImgsrcAjax(MultipartHttpServletRequest request) throws Exception{
+		
+		MultipartFile file = request.getFile("file");
+		String savedName = UploadFileUtils.uploadFile(uploadGamePath, file);
+		
+		return new ResponseEntity<String>(savedName, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/imgsrcajax", method = RequestMethod.GET)
+	public void ImgsrcAjax() {}
+//	@SuppressWarnings("unchecked")
 //	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 //	public ResponseEntity<JSONObject> chart(String writer){
 //		ResponseEntity<JSONObject> entity = null;
@@ -73,7 +153,11 @@ public class compController {
 //		
 //		ajaxobjCols1.put("label", "성별");
 //		ajaxobjCols1.put("type", "string");
+//		ajaxobjCols1.put("label", "성별");
+//		ajaxobjCols1.put("type", "string");
 //		
+//		ajaxobjCols2.put("label", "value");
+//		ajaxobjCols2.put("type", "number");
 //		ajaxobjCols2.put("label", "value");
 //		ajaxobjCols2.put("type", "number");
 //		
@@ -81,24 +165,31 @@ public class compController {
 //		ajaxArrayCols.add(ajaxobjCols2);
 //		data.put("cols", ajaxArrayCols);
 //		
-//		List<gameVO> man = compservice.datalist(writer);
+//		int man = compservice.datalist(writer);
+//		int woman = compservice.datalist1(writer);
 //		
 //		JSONArray body = new JSONArray();
-//		for(gameVO vo : man) {
-//			JSONArray ajaxArrayRows = new JSONArray();
-//			JSONObject legend = new JSONObject();
-//			legend.put("v", "남자");
-//			
-//			JSONObject value = new JSONObject();
-//			value.put("v", vo.getMancount());
-//			
-//			JSONArray ValueArray = new JSONArray();
-//			ValueArray.add(legend);
-//			ValueArray.add(value);
-//			
-//		}
-//		data.put("rows", body);
+//		JSONArray ajaxArrayRows = new JSONArray();
+//		JSONObject legend = new JSONObject();
+//		legend.put("v", "남자");
+//		JSONObject legend1 = new JSONObject();
+//		legend1.put("v", "여자");
 //		
+//		JSONObject value = new JSONObject();
+//		value.put("v", man);
+//		JSONObject value1 = new JSONObject();
+//		value1.put("v", woman);
+//		
+//		JSONArray ValueArray = new JSONArray();
+//		ValueArray.add(legend);
+//		ValueArray.add(legend1);
+//		ValueArray.add(value);
+//		ValueArray.add(value1);
+//		
+//		ajaxArrayRows.add(ValueArray);
+//		body.add(ajaxArrayRows);
+//		
+//		data.put("rows", body);
 //		try {
 //			entity = new ResponseEntity<JSONObject>(data, HttpStatus.OK);
 //		} catch (Exception e) {
@@ -148,12 +239,24 @@ public class compController {
 	
 	//게임 등록
 	@RequestMapping(value = "/main/gameinsert", method = RequestMethod.POST)
-	public String gameinsert(gameVO vo) {
+	public String gameinsert(gameVO vo, String filename1, String filename2, String filename3, String filename4) {
+		System.out.println(vo);
 		//판매자의 캐시 1000원을 관리자에게 준다
 		compservice.sellermoney(vo);
 		compservice.givemoney();
 		//게임 등록
 		compservice.gameinsert(vo);
+		
+		int gdnum = compservice.checknum(vo);
+		System.out.println("gdnum : "+gdnum);
+		//gamedetailfile에 그림 이미지 4개 등록
+		List list = new ArrayList();
+		list.add(0, filename1);
+		list.add(1, filename2);
+		list.add(2, filename3);
+		list.add(3, filename4);
+		compservice.gameimg(list, gdnum);
+		
 		return "redirect:/compManage/main/gamelist?writer="+vo.getWriter();
 	}
 	
@@ -214,3 +317,4 @@ public class compController {
 	
 	
 }
+

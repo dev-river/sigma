@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.domain.gameDetailDcVO;
+import kr.co.domain.gameDetailFileVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
@@ -105,5 +106,36 @@ public class compDAOImpl implements compDAO {
 	@Override
 	public refundVO refundRead(Map<String, Object> map) {
 		return session.selectOne(NS+".refundRead", map);
+	}
+
+	@Override
+	public int datalist(String writer) {
+		return session.selectOne(NS+".datalist1",writer);
+	}
+
+	@Override
+	public int datalist1(String writer) {
+		return session.selectOne(NS+".datalist2", writer);
+	}
+
+	@Override
+	public void gameimg(List list, int gdnum) {
+		for(int i=0;i<list.size();i++) {
+			gameDetailFileVO vo = new gameDetailFileVO();
+			String filename = (String) list.get(i);
+			vo.setFilename(filename);
+			vo.setGdnum(gdnum);
+			session.insert(NS+".gameimg", vo);
+		}
+	}
+
+	@Override
+	public gameVO titlecheck(String title) {
+		return session.selectOne(NS+".titlecheck", title);
+	}
+
+	@Override
+	public int checknum(gameVO vo) {
+		return session.selectOne(NS+".checknum", vo);
 	}
 }
