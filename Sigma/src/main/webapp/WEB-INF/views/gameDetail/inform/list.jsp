@@ -13,20 +13,21 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-			#img1 { 
-			display: block; margin: 0px auto;
-			text-align: center;
-			border-radius: 10px;
- 			box-shadow: 15px 15px 20px black;
-			}
-			checkbox{
-				position: relative;
-				left: 100%;
-			}
-			p{
-			color: white;
+	#img1 { 
+	display: block; margin: 0px auto;
+	text-align: center;
+	border-radius: 10px;
+		box-shadow: 15px 15px 20px black;
+	}
+	checkbox{
+		position: relative;
+		left: 100%;
+	}
+	p{
+		color: white;
+	}
 	
-		</style>
+</style>
 </head>
 <body>
 
@@ -35,7 +36,7 @@
 			
 <div class=container>
 	<!-- 헤더 -->
-	<h3>
+	<h3 style="color:white;">
 	<c:choose>
 		<c:when test="${category eq 'all'}">전체 게임 리스트</c:when>
 		<c:when test="${category eq 'rpg'}">RPG 게임 리스트</c:when>

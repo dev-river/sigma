@@ -128,4 +128,40 @@ public class gameDetailServiceImpl implements gameDetailService{
 	public void dcjoininsert(int num, String id) {
 		gdao.dcjoininsert(num, id);
 	}
+
+	@Override
+	public int buycheck(String id, int num) {
+		return gdao.buycheck(id, num);
+	}
+
+	@Override
+	public int manratio(int num) {
+		return gdao.manratio(num);
+	}
+
+	@Override
+	public int womanratio(int num) {
+		return gdao.womanratio(num);
+	}
+
+	@Override
+	public int ageratio1(int num) {
+		return gdao.ageratio1(num);
+	}
+
+	@Override
+	public int ageratio2(int num) {
+		return gdao.ageratio2(num);
+	}
+
+	@Override
+	public int ageratio3(int num) {
+		return gdao.ageratio3(num);
+	}
+
+	@Override
+	public int ageratio4(int num) {
+		return gdao.ageratio4(num);
+	}
+
 }

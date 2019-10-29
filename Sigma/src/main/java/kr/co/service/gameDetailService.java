@@ -50,5 +50,18 @@ public interface gameDetailService {
 
 	void dcjoininsert(int num, String id);
 
+	int buycheck(String id, int num);
+
+	int manratio(int num);
+
+	int womanratio(int num);
+
+	int ageratio1(int num);
+
+	int ageratio2(int num);
+
+	int ageratio3(int num);
+
+	int ageratio4(int num);
 
 }
