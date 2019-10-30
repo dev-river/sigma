@@ -230,4 +230,9 @@ public class myPageServiceImpl implements myPageService{
 		return mpdao.reviewcount(id);
 	}
 
+	@Override
+	public void alldelete(String id) {
+		
+	}
+
 }

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.domain.PageTO;
 import kr.co.domain.SPageTO;
 import kr.co.domain.boardVO;
+import kr.co.domain.memberVO;
 import kr.co.service.boardService;
 import kr.co.service.replyService;
 import kr.co.service.sboardService;
@@ -40,7 +43,11 @@ public class boardController {
 	}
 	
 	@RequestMapping(value = "/main/list/boardinsert", method = RequestMethod.GET)
-	public void boardFRinsertUI() {
+	public void boardFRinsertUI(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		memberVO vo = (memberVO)session.getValue("login");
+		String nickname = vo.getNickname();
+		model.addAttribute("nickname", nickname);
 	}
 	
 	@RequestMapping(value = "/main/list/boardinsert", method = RequestMethod.POST)

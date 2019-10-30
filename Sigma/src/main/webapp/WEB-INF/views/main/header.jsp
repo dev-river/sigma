@@ -87,12 +87,12 @@
 									<li><a href="/board/main/newgame/NewGame">새 게임 소식</a></li>
 								</ul></li>
 
-							<li><a href="#" id="current">게임 추천</a>
+							<li><a href="/recommand/customRec?curPage=1&perPage=6" id="current">맞춤 게임</a>
 								<ul>
-									<li><a href="#">게임추천</a></li>
-									<li><a href="#">무료게임</a></li>
-									<li><a href="#">이벤트게임</a></li>
-									<li><a href="#">할인게임</a></li>
+									<li><a href="/recommand/hotgameRec?curPage=1&perPage=9">인기게임</a></li>
+									<li><a href="/recommand/freegameRec?curPage=1&perPage=6">무료게임</a></li>
+									<li><a href="/recommand/newgameRec?curPage=1&perPage=6">신작게임</a></li>
+									<li><a href="/recommand/dcgameRec?curPage=1&perPage=6">할인게임</a></li>
 								</ul>
 							<li><a href="/gameDetail/main/maincategory?category=all&curPage=1&perPage=6">카테고리</a>
 								<ul>
