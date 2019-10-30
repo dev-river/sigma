@@ -30,7 +30,7 @@
 	</insert>
 	
 	<select id="basketList" resultType="kr.co.domain.basketVO">
-		select sb.gdnum, gd.title, gd.writer, gd.regidate gregidate, sb.regidate sregidate, gd.price from gamedetail gd, (select * from shopbasket where id=#{id}) sb where gd.num = sb.gdnum order by sregidate desc
+		select sb.gdnum, gd.title, gd.writer, gd.regidate gregidate, sb.regidate sregidate, gd.price, gd.filepath from gamedetail gd, (select * from shopbasket where id=#{id}) sb where gd.num = sb.gdnum order by sregidate desc
 	</select>
 	
 	<delete id="deleteBasketList">
@@ -42,7 +42,7 @@
 	</insert>
 	
 	<select id="zzim_list" resultType="kr.co.domain.basketVO">
-		select sb.gdnum, gd.title, gd.writer, gd.regidate gregidate, sb.updatedate sregidate, gd.price from gamedetail gd, (select * from zzimlist where id=#{id}) sb where gd.num = sb.gdnum order by sregidate desc
+		select sb.gdnum, gd.title, gd.writer, gd.regidate gregidate, sb.updatedate sregidate, gd.price, gd.filepath from gamedetail gd, (select * from zzimlist where id=#{id}) sb where gd.num = sb.gdnum order by sregidate desc
 	</select>
 	
 	<delete id="zzimDelete">
@@ -144,6 +144,10 @@
 	<select id="reviewcount" resultType="Integer">
 		select count(*) from gamereview where writer = #{id}
 	</select>
+	
+	<delete id="">
+		
+	</delete>
 	
 	
 </mapper>

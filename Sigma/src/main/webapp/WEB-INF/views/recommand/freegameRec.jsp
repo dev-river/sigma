@@ -35,6 +35,7 @@
 <div class=container>
 	<!-- 검색 파트 -->
 			<div class="row ">
+			<h1>할인중인 게임</h1>
 				<div class="input-group" style="padding-right: 10px;">
 					<span class="input-group-addon">
 					<select id="searchSel">
@@ -85,26 +86,26 @@
 	</c:forEach>
 	
 	<!-- 게임 리스트 페이징 파트 -->
-			<div>
+			<<div>
 				<div class="row text-center" style="text-align: center">
 					<ul class="pagination">
 						<!-- ul에 pagination 클래스를 주면 예쁘다 -->
 
 						<c:if test="${vo.curPage>1}">
 							<li><a
-								href="/gameDetail/main/maincategory?category=${category}&curPage=${vo.curPage-1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&laquo;</a></li>
+								href="/recommand/freegameRec?curPage=${vo.curPage-1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&laquo;</a></li>
 						</c:if>
 						<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
 
 						<c:forEach begin="${vo.bpn}" end="${vo.spn}" var="idx">
 							<li class="${vo.curPage == idx?'active':''}"><a
-								href="/gameDetail/main/maincategory?category=${category}&curPage=${idx}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">${idx}</a></li>
+								href="/recommand/freegameRec?curPage=${idx}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">${idx}</a></li>
 							<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
 						</c:forEach>
 
 						<c:if test="${vo.curPage<vo.totalPage}">
 							<li><a
-								href="/gameDetail/main/maincategory?category=${category}&curPage=${vo.curPage+1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&raquo;</a></li>
+								href="/recommand/freegameRec?curPage=${vo.curPage+1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&raquo;</a></li>
 						</c:if>
 					</ul>
 				</div>
@@ -116,7 +117,7 @@ $(document).ready(function() {
    $("#searchBtn").on("click", function() {
 		var searchType = $("#searchSel option:selected").val();
 		var keyword = $("#keyword").val();
-		var url = "/gameDetail/main/maincategory?category=${category}&curPage=1&perPage=${vo.perPage}&searchType="+searchType+"&keyword="+keyword;
+		var url = "/recommand/freegameRec?curPage=1&perPage=${vo.perPage}&searchType="+searchType+"&keyword="+keyword;
 		window.open(url);
 	});
 });

@@ -31,6 +31,7 @@ public class memberController {
 
 	
 	//일반 회원가입
+	@ResponseBody
 	@RequestMapping(value = "/sign/signNorm", method = RequestMethod.POST)
 	public String signin(memberVO vo) {
 		mservice.signin(vo);
@@ -44,6 +45,7 @@ public class memberController {
 	}
 	
 	//판매자 회원가입
+	@ResponseBody
 	@RequestMapping(value = "/sign/signComp", method = RequestMethod.POST)
 	public String signincomp(memberVO vo) {
 
