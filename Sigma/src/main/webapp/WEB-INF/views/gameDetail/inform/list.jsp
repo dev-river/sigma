@@ -61,7 +61,7 @@ p {
 					<span class="input-group-addon"> <select id="searchSel">
 							<option disabled>검색 기준</option>
 							<option value="writer">배급사</option>
-							<option value="title">게임이름</option>
+							<option value="title" selected="selected">게임명</option>
 					</select>
 					</span>
 

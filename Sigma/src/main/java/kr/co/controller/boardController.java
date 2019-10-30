@@ -43,11 +43,18 @@ public class boardController {
 	}
 	
 	@RequestMapping(value = "/main/list/boardinsert", method = RequestMethod.GET)
-	public void boardFRinsertUI(HttpServletRequest request, Model model) {
+	public String boardFRinsertUI(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		memberVO vo = (memberVO)session.getValue("login");
-		String nickname = vo.getNickname();
-		model.addAttribute("nickname", nickname);
+		
+		if(vo != null) {
+			String nickname = vo.getNickname();
+			model.addAttribute("nickname", nickname);
+			return "/board/main/list/boardinsert";
+		}else {
+			return "redirect:/member/login/login";
+		}
+		
 	}
 	
 	@RequestMapping(value = "/main/list/boardinsert", method = RequestMethod.POST)
@@ -88,7 +95,6 @@ public class boardController {
 	@RequestMapping("/boardFR/amount/{perPage}")
 	public int list(@PathVariable("perPage") int perPage) {
 		int amount = bservice.amount();
-		System.out.println(amount);
 		return (amount-1)/perPage+1;
 	}
 	

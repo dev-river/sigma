@@ -14,10 +14,15 @@
 <script src="/resources/js/uploadutils.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-
-	label{
-	color: white;
-	}
+.read{
+	position: relative;
+	width: 1070px;
+	height: auto;
+	margin: 0;
+	right: 0%;
+	
+	
+}
 .callModal{
 	float: right;
 }
@@ -25,8 +30,8 @@
 </head>
 <body>
 	<br>
-
-<div class="container"  style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; height: 100%;">	
+	<div class="bodymain">
+	<div class="container">	
 		<div class="read">
 			<div class="row">
 				<form action="">
@@ -35,32 +40,32 @@
 					<input type="hidden" name="perPage" value="${to.perPage}">
 					<input type="hidden" name="perPage" value="${vo.nickname}">
 				</form>
-				<br>
-				<div class="form-group"  style="padding-right: 20px; padding-left: 20px;">
+			
+				<div class="form-group">
 					<label for="num">글번호</label>
 					<input class="form-control" id="num" value="${readvo.num}" readonly="readonly">
 				</div>
 				
-				<div class="form-group"  style="padding-right: 20px; padding-left: 20px;">
+				<div class="form-group">
 					<label for="viewcnt">조회수</label>
 					<input class="form-control" id="viewcnt" value="${readvo.viewcnt}" readonly="readonly">
 				</div>
 				
-				<div class="form-group"  style="padding-right: 20px; padding-left: 20px;">
+				<div class="form-group">
 					<label for="title">제목</label>
 					<input class="form-control" id="title" value="${readvo.title}" readonly="readonly">
 				</div>
 				
-				<div class="form-group" style="padding-right: 20px; padding-left: 20px;">
+				<div class="form-group">
 					<label for="writer">작성자</label>
 					<input class="form-control" id="writer" value="${readvo.writer}" readonly="readonly">
 				</div>
 				
-				<div class="form-group"  style="padding-right: 20px; padding-left: 20px;">
-					<label for="writer">내용</label>
-				<textarea id="content" name="content" class="form-control" rows="15" style="resize: none;">${readvo.content}</textarea>
+				<div class="form-group">
+					<label for="content">내용</label>
+					<div id="content">${readvo.content}</div>
 				</div>
-				<div style="float: right; padding-right: 20px;">
+				<div>
 				    <input type="button" value="수정" class="btn update btn-primary">
 					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/board/main/list/boardlist?curPage=${to.curPage}&perPage=${to.perPage}'">
 					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/board/boardFR/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
@@ -69,7 +74,7 @@
 		<hr>
 			<!-- Reply Form {s} -->
 		
-			<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 20px">
+			<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 
 				<form name="form" id="form">
 
@@ -85,7 +90,7 @@
 
 					<div class="col-sm-2">
 
-						<input class="form-control" id="replyer" value="${login.id}" readonly="readonly"></input>
+						<input class="form-control" id="replyer" placeholder="댓글 작성자"></input>
 
 						<button type="button" class="btn btn-sm btn-primary" id="btnReplyInsert" style="width: 100%; margin-top: 10px"> 저 장 </button>
 						<button type="button" class="btn btn-sm btn-warning" id="btnReset" style="width: 100%; margin-top: 10px"> 취 소 </button>
@@ -137,7 +142,7 @@
 		</div>
 </div>
 </div>
-
+</div>
 <br>
 <script type="text/javascript">
 
@@ -213,6 +218,7 @@
 		/* replyReset 부분 */
 		$("#btnReset").click(function(){
 			$("#replycontent").val("");
+			$("#replyer").val("");
 		});
 		
 		getAllList(frnum);
