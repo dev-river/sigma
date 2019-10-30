@@ -13,13 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.update{
-	position: relative;
-	width: 1070px;
-	height: auto;
-	margin: 0;
-	right: 0%;
-}
+
 label{
 	color: white;
 }
@@ -27,10 +21,10 @@ label{
 </head>
 <body>
 	<div class="bodymain">
-	<div class="container">
+	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; height: 100%;">
 		<div class="update">
 		<br>
-		<h3>게시글 수정</h3><br/>
+		<h3 style="color: white;">게시글 수정</h3><br/>
 		
 		<form action="/board/main/list/boardupdate" method="post">
 			<input type="hidden" name="curPage" value="${to.curPage}">
@@ -53,12 +47,14 @@ label{
 			
 			<div class="form-group">
 				<label for="content">내용</label>
-				<textarea class="form-control" id="content" name="content" rows="3">${updatevo.content}</textarea>
+				<textarea class="form-control" id="content" name="content" rows="15" style="resize: none;">${updatevo.content}</textarea>
 			</div>
-			<div class="form-group">
+			<div class="form-group" style="float: right;">
 				<button class="btn btn-warning modify">수정</button>
+				<input type="button" class="btn btn-danger" id="cancle" value="취소" onclick="location.href='/board/main/list/boardlist'">
 			</div>
 		</form>
+		<br>
 	</div>
 	</div>
 	</div>

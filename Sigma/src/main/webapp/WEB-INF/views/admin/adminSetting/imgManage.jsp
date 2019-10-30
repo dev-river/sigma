@@ -25,25 +25,22 @@
 		height: 200px;
 		border: 1px dotted blue;
 	}
-	
+	.row{
+	color: white;
+	}
 </style>
 
 </head>
 <body>
-<h3>
-	 imgManage test.  
-</h3>
+<br>
 
-<hr>
+
+<div class="container"  style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
+	<div style="float: left;">
 	<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
-<div class="container">
-	<div class="row">
-		<div class="row">
-			<div class="pull-right">
-			<input type="submit" class="btn btn-primary form-submit submitbtn"
-				value="적용">
-			</div>
-		</div>
+	</div>
+	<div class="row"  style="float: right; width: 870px; border-left: double 1px white; height: 700px; padding-left: 30px; padding-right: 30px;">
+		<br>
 		<div class="col col-xs-6">
 				<div class="form-group">
 					<label>업로드할 로고이미지 파일을 드랍시키세요</label>
@@ -81,7 +78,14 @@
 				</div>
 
 		</div>
+	
+			<div class="pull-right" style="float: right;">
+			<input type="submit" class="btn btn-primary form-submit submitbtn"
+				value="적용">
+			</div>
+
 	</div>
+	
 </div>	
 	<script type="text/javascript">
 	

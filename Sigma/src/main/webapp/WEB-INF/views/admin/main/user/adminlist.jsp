@@ -34,9 +34,13 @@
 </style>
 </head>
 <body>
-
+	<!-- 헤더 -->
+	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<!-- 바디 -->
-	<jsp:include page="/WEB-INF/views/gameDetail/inform/reviewupdate.jsp"></jsp:include>
-
+	<jsp:include page="/WEB-INF/views/admin/userManage/userlist.jsp"></jsp:include>
+	<!-- 사이드 -->
+	<jsp:include page="/WEB-INF/views/main/side.jsp"></jsp:include>
+	<!-- 풋터 -->
+	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 </body>
 </html>

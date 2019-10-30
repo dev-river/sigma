@@ -124,7 +124,7 @@ public class gameDetailController {
 	public void DCRqSet(int num, String title, Model model) {
 		List<gameDetailDcVO> list = gservice.dcrqlist(num);
 		gameDetailDcVO lastvo = null; 
-		if(lastvo != null) {
+		if(lastvo != null){
 			lastvo = list.get(list.size()-1);
 			lastvo.setRqstartdate(lastvo.getRqstartdate().substring(0,10));
 			lastvo.setRqenddate(lastvo.getRqenddate().substring(0,10));

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
 	.row{
 	color: white;
@@ -25,13 +26,15 @@
 </style>
 </head>
 <body>
-	<div class="container">
-		
-		<div class="row">
+<div class="bodymain">
+<br>
+	<div class="container"  style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 730px; max-height: auto;">
+		<br>
+		<div class="row" style="padding-left: 30px; padding-right: 30px; padding-bottom: 30px;">
 			<h3>${myinfo.nickname}(${myinfo.id})님의 마이페이지</h3>
 			<br>
 			<div  style="position: relative; left:5%; width:50%" class="pull-left">
-					<button style="width:20%; color: black;" class="pull-right update">프로필 수정</button>
+					<button style="width:20%; color: black; float:right; position: relative; top: 120px;" class="pull-right update">프로필 수정</button>
 					<p class="pull-left" style="width:50%">닉네임 : ${myinfo.nickname}</p>
 					<p class="pull-right" style="width:30%">이름 : ${myinfo.name}</p>
 					<br>
@@ -54,10 +57,10 @@
 		
 		<hr style="border: double; 1px; black;">
 		
-		<div class="row" style="width:65%; height:500px; padding-right:40px; border-right: double; 1px; black;">
+		<div class="row" style="width:65%; height:auto; padding-right:40px; border-right: double; 1px; black;">
 			<h3 style="position: relative; left: 10%">게임</h3>
 			<div style="height: 180px;">
-				<h4 style="position: relative; left: 13%" top: -5px; class="pull-left">최근 구매 목록</h4>
+				<h4 style="position: relative; left: 13%" class="pull-left">최근 구매 목록</h4>
 				<a class="pull-right" href="/myPage/main/buylist">자세히 보기</a>
 				<br>
 				<c:forEach items="${buyList}" var="buylist" varStatus="status">
@@ -110,7 +113,7 @@
 			
 			<div style="height: 180px;">
 				<h4 style="position: relative; left: 13%; top: -10px;" class="pull-left">환불 신청 목록</h4>
-				<a class="pull-right" href="/myPage/buyList/refundList">자세히 보기</a>
+				<a class="pull-right" href="/myPage/main/buy/refundlist">자세히 보기</a>
 				<br>
 				<c:forEach items="${refund}" var="refund" varStatus="status">
 					<c:if test="${status.index < 4}">
@@ -138,6 +141,8 @@
 	<br>
 	<br>
 	<input type="hidden" id="id" value="${myinfo.id}"></input>
+	</div>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		

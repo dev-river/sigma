@@ -80,7 +80,7 @@
                 	 
                 	 
                		 	 <c:if test="${login.author eq 'admin'}">
-                    		 <a href="/admin/main/adminlist?id=${login.id}" title="관리자페이지"> <i class="far fa-address-card fa-lg"  class="ripple"></i></a>
+                    		 <a href="/admin/main/user/adminlist?id=${login.id}" title="관리자페이지"> <i class="far fa-address-card fa-lg"  class="ripple"></i></a>
                 		 </c:if>
                 	
               	 </c:if>
@@ -94,10 +94,23 @@
             </li>
             <li>
             <c:if test="${!empty login}"><!-- 충전 -->
-                <a href="/myPage/main/cash?id=${login.id}" title="충전">
-                    <i class="fas fa-dollar-sign fa-lg" style="text-align: center;"></i>
-                </a>
+            	 <c:if test="${login.author eq 'user'}">
+                  	<a href="/myPage/main/cash?id=${login.id}" title="충전">
+                  		<i class="fas fa-dollar-sign fa-lg"></i>
+                  	</a>
+                </c:if>
+                 <c:if test="${login.author eq 'seller'}">
+                    <a href="/compManage/main/gamelist?writer=${login.id}" title="게임관리"> 
+                    	<i class="fas fa-cogs fa-lg"  class="ripple"></i>
+                    </a>
+                </c:if>
+                <c:if test="${login.author eq 'admin'}">
+                    <a href="/admin/main/user/adminlist?id=${login.id}" title="그래프"> 
+                    	<i class="fas fa-chart-bar fa-lg"  class="ripple"></i>
+                    </a>
+                </c:if>
                </c:if>
+                
             </li>
         </ul>
         <div class="menu-bg"></div>

@@ -52,6 +52,11 @@
 	position: relative;
 	right: 60%;
 	width: 200px;
+}
+#admin{
+	position: relative;
+	right: 60%;
+	width: 200px;
 	margin: 0;
 }
 .menubar {
@@ -83,7 +88,6 @@
 	margin: 0;
 	padding: 0;
 	width: 600px;
-	border-radius: 5px 5px 5px 5px;
 }
 
 .menubar li {
@@ -92,7 +96,6 @@
 	transform-origin : 0 0;
 	float: left;
 	padding: 0px;
-	border-radius: 5px 5px 5px 5px;
 }
 
 .menubar li a { /*메뉴*/
@@ -112,7 +115,7 @@
 	text-decoration: none;
 	border-radius: 0;
 	width: auto;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10px 10px 0px 0px;
 }
 
 .menubar li a:hover, .menubar ul li:hover a { /*드랍 마우스*/
@@ -122,7 +125,6 @@
 	background: linear-gradient(30deg, #FFCD12,gray);
 	color: black;
 	text-decoration: none;
-	border-radius: 5px 5px 5px 5px;
 }
 
 .menubar li ul {
@@ -137,7 +139,6 @@
 	position: absolute;
 	width: 150px;
 	z-index: 200;
-	border-radius: 5px 5px 5px 5px;
 }
 
 .menubar li:hover ul {
@@ -147,7 +148,7 @@
 	display: block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
 }
 
-.menubar li li {
+.menubar li li {/*마우스 안올린 상태 드롭다운메뉴*/
 	transition : .90s ease-in-out;
 	transform : rotateX (-90deg) rotateY (0);
 	transform-origin : 0 0;
@@ -180,7 +181,7 @@
 	padding: 0px 10px 0px 15px;
 }
 
-.menubar li ul a:hover, .menubar li ul li:hover a {/*드랍 메뉴 마우스 올리면*/
+.menubar li ul a:hover, .menubar li ul li:hover  {/*드랍 메뉴 마우스 올리면*/
 	transition : .30s ease-in-out;
 	transform : rotateX (-90deg) rotateY (0);
 	transform-origin : 0 0;
@@ -213,4 +214,26 @@
 	right: 55%;
 	width: 200px;
 	margin: 0;
+}
+#st{
+	border-radius: 0px 10px 0px 0px;
+}
+#st :hover{
+	border-radius: 0px 10px 0px 0px;
+}
+#end{
+	border-radius: 0px 0px 10px 10px;
+}
+#end :hover{
+	border-radius: 0px 0px 10px 10px;
+}
+#free{
+	border-radius: 0px 10px 10px 10px;
+}
+#free :hover{
+	border-radius: 0px 10px 10px 10px;
+}
+#logo{
+	position: relative;
+	top: 17+6px;
 }

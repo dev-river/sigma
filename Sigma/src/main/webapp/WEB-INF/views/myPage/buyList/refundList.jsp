@@ -11,16 +11,22 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+<style type="text/css">
+	.row{
+	color: white;
+	}
+</style>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<h5>내 환불 신청 목록</h5>
+<div class="bodymain">
+	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;" >
+		<div class="row" style="padding-bottom: 30px;">
+			<h2>내 환불 신청 목록</h2>
 			<table class="table" style="position:relative; left: 200px; width: 60%;">
 				<thead>
 					<tr>
-						<th  style="height: 150px; ">
+						<th>
 							<div style="position: relative; left:83%; width: 15%;">
 							</div>
 						</th>
@@ -44,13 +50,15 @@
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">구매 날짜 : ${r.buydate}</p>
 								<p style="position:relative; top:20px; width:35%" class="pull-left">가격 : ${r.buyprice}</p>
 								<p style="position:relative; top:20px; width:38%" class="pull-right">환불 결과 : ${r.status}</p>
-								<button class="pull-right del" value="${r.num}">환불 취소</button>
+								<button class="pull-right del" value="${r.num}" style="color: black;">환불 취소</button>
 							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+			<button class="pull-right del" onclick="href:">취소</button>
 		</div>
+	</div>
 	</div>
 <script type="text/javascript">
 	$(document).ready(function() {

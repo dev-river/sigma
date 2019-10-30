@@ -11,25 +11,26 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+<style type="text/css">
+th ,td{
+color: white;
+}
+</style>
+
 </head>
 <body>
-<h3>
-	 userlist test.  
-</h3>
 
-<hr>
-
-	<!-- 로그인 되면 뜨는 창 -->
-	<c:if test="${not empty login}">
-		${login.nickname}(${login.id}) 님, 안녕하세요. <a href="/member/login/logout">로그아웃</a>
-	</c:if>
-	<!-- 미로그인시 뜨는 창 -->
-	<c:if test="${empty login}">
-		<a href="/member/login/login">로그인</a>
-	</c:if>
+	<br>
+	<div class="bodymain">
+	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
+		<div style="float: left;">
 		<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
+		</div>
+		<br>
 	<div class="row">
-				<div class="input-group">
+	<div  class="hr" style="float: right; width: 870px; border-left: double 1px white; height: 700px; padding-left: 30px; padding-right: 30px;">
+				<div class="input-group" style="width: 830px; float: right;" >
 					<span class="input-group-addon">
 						<select id="searchSel">
 							<option disabled>검색 기준</option>
@@ -46,9 +47,8 @@
 						<button id="searchBtn" class="btn btn-info">검색</button>
 					</span>
 				</div>
-	</div>
-	
-	<table class="table table-hover">
+	<br><br>
+	<table class="table table-hover" style="width: 830px; float: right;">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -76,6 +76,10 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	</div>
+	</div>
+	</div>
+	</div>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		

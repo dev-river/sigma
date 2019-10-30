@@ -31,6 +31,9 @@
 .table0 a,.table1 a, .table2 a{
 	color: white;
 }
+.table0 a :hover,.table1 a :hover, .table2 a :hover{
+	color: white;
+}
 .table1 {
 	width: 300px;
 	position: relative;

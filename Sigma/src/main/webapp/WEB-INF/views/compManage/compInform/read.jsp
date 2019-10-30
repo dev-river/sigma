@@ -20,20 +20,20 @@
 <div class="bodymain">
 <div class="container">
 	<div class="row">
-		<h2 style="color: white;">판매자 페이지(${vo.id})</h2>
-		<input type="button" value="정보 수정" class="btn update" style=" text-align: center;">
+		<h2 style="color: white; float: left;">판매자 페이지(${vo.id})</h2>
+		<input type="button" value="정보 수정" class="btn update" style=" float: right; padding-top: 20px;">
 	</div><br>
 	<div class="row" style="color: white; text-align: center;">
-		ID : ${vo.id}
-		대표자명 : ${vo.name}<br>
-		업체명 : ${vo.compname}
-		판매중인 게임 수 : ${count}<br>
-		업체주소 : ${vo.compaddress1} ${vo.compaddress2}
-		메일 주소 : ${vo.email}<br>
-		업체번호 : ${vo.compphone}
-		대표자번호 : ${vo.phone}<br>
+		<h2>ID : ${vo.id}</h2>
+		<h2>대표자명 : ${vo.name}</h2><br>
+		<h2>업체명 : ${vo.compname}</h2><br>
+		<h2>판매중인 게임 수 : ${count}</h2><br>
+		<h2>업체주소 : ${vo.compaddress1} ${vo.compaddress2}</h2><br>
+		<h2>메일 주소 : ${vo.email}</h2><br>
+		<h2>업체번호 : ${vo.compphone}</h2><br>
+		<h2>대표자번호 : ${vo.phone}</h2><br>
 	</div><br>
-	<div class="" style=" text-align: center;">
+	<div class="" style=" float: right;">
 		<input type="button" value="판매 관리" class="btn gamelist">
 		<input type="button" value="환불 관리" class="btn refund">
 	</div>
