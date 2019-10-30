@@ -110,4 +110,40 @@
 	<insert id="dcjoininsert">
 		insert into gamedetaildcjoiner values(#{num}, #{id})
 	</insert>
+	
+	<select id="buycheck" resultType="Integer">
+		select count(*) from buylist where id=#{id} and gdnum=#{num}
+	</select>
+	
+	<select id="manratio" resultType="Integer">
+		select count(*) from buylist,userinfo where buylist.id=userinfo.id and buylist.gdnum=#{num} and userinfo.sex='남자'
+	</select>
+	
+	<select id="womanratio" resultType="Integer">
+		select count(*) from buylist,userinfo where buylist.id=userinfo.id and buylist.gdnum=#{num} and userinfo.sex='여자'
+	</select>
+	
+	<select id="ageratio1" resultType="Integer">
+		select count(*) from (
+			select floor(months_between(sysdate, userinfo.birth) /12) age from buylist,userinfo where buylist.id=userinfo.id and buylist.gdnum=#{num}
+		) where age <![CDATA[ < ]]> 20
+	</select>
+	
+	<select id="ageratio2" resultType="Integer">
+		select count(*) from (
+			select floor(months_between(sysdate, userinfo.birth) /12) age from buylist,userinfo where buylist.id=userinfo.id and buylist.gdnum=#{num}
+		) where age between 20 and 29
+	</select>
+	
+	<select id="ageratio3" resultType="Integer">
+		select count(*) from (
+			select floor(months_between(sysdate, userinfo.birth) /12) age from buylist,userinfo where buylist.id=userinfo.id and buylist.gdnum=#{num}
+		) where age between 30 and 39
+	</select>
+	
+	<select id="ageratio4" resultType="Integer">
+		select count(*) from (
+			select floor(months_between(sysdate, userinfo.birth) /12) age from buylist,userinfo where buylist.id=userinfo.id and buylist.gdnum=#{num}
+		) where age <![CDATA[ >= ]]> 40
+	</select>
 </mapper>

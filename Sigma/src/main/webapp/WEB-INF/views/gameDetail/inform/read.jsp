@@ -8,9 +8,63 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+  
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+        //남녀성비 구글차트 
+        google.charts.load('current', {'packages':['corechart']}); 
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string','sex');
+            data.addColumn('number','비중');
+ 
+            data.addRows([ 
+                ['남',${manratio}],
+                ['여',${womanratio}]
+            ]);
+            var opt = {
+                    'title':'남녀 비율',
+                    'width':300,
+                    'height':300,
+                    pieSliceText:'label',
+                    backgroundColor: { fill:'transparent' },
+                    titleTextStyle: {color: 'white', fontSize: 15 },
+                    legend:'none'
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('sexRatio'));
+            chart.draw(data,opt);
+        }
+        
+        google.charts.setOnLoadCallback(drawageChart);
+        function drawageChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string','age');
+            data.addColumn('number','비중');
+ 
+            data.addRows([ 
+                ['10대 이하',${age1}],
+                ['20대',${age2}],
+                ['30대',${age3}],
+                ['40대 이상',${age4}]
+            ]);
+            var opt = {
+                    'title':'나이대 비율',
+                    'width':300,
+                    'height':300,
+                    pieSliceText:'label',
+                    backgroundColor: { fill:'transparent' },
+                    titleTextStyle: {color: 'white', fontSize: 15 },
+                    legend:'none'
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('ageRatio'));
+            chart.draw(data,opt);
+        }
+</script>
+
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
 	h5,.container{
@@ -53,7 +107,7 @@
 
 </style>
 </head>
-<body>
+<body style="background-color: black;">
 
 <hr>
 <div class="container" style="background-color: rgb(25,25,25,0.6); border-radius: 10px; padding-left: 20px; padding-right: 20px;">
@@ -281,171 +335,170 @@
 						<div class="row text-center" style="position: relative; left: 45%">
 							<ul class="pagination">
 								<!-- ul에 pagination 클래스를 주면 예쁘다 -->
+                        <c:if test="${sto.curPage>1}">
+                           <li><a
+                              href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage-1}&perPage=${sto.perPage}">&laquo;</a></li>
+                        </c:if>
+                        <!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
 
-								<c:if test="${sto.curPage>1}">
-									<li><a
-										href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage-1}&perPage=${sto.perPage}">&laquo;</a></li>
-								</c:if>
-								<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
+                        <c:forEach begin="${sto.bpn}" end="${sto.spn}" var="idx">
+                           <li class="${sto.curPage == idx?'active':''}"><a
+                              href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${idx}&perPage=${sto.perPage}">${idx}</a></li>
+                           <!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
+                        </c:forEach>
 
-								<c:forEach begin="${sto.bpn}" end="${sto.spn}" var="idx">
-									<li class="${sto.curPage == idx?'active':''}"><a
-										href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${idx}&perPage=${sto.perPage}">${idx}</a></li>
-									<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
-								</c:forEach>
-
-								<c:if test="${sto.curPage<sto.totalPage}">
-									<li><a
-										href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage+1}&perPage=${sto.perPage}">&raquo;</a></li>
-								</c:if>
-							</ul>
-						</div>
-					</div>
-				</c:otherwise>
-      		</c:choose>
-      	</div>
+                        <c:if test="${sto.curPage<sto.totalPage}">
+                           <li><a
+                              href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage+1}&perPage=${sto.perPage}">&raquo;</a></li>
+                        </c:if>
+                     </ul>
+                  </div>
+               </div>
+            </c:otherwise>
+            </c:choose>
+         </div>
    </div>
    </div>
    <br>
    <script type="text/javascript">
-   	$(document).ready(function(){
-   		$(".yesorno").on("click", function(){
-   			var reviewnum = $(this).val();
-   			var assist = $(this).attr("id");
-   			
-   			$.ajax({
-   				type: 'get',
-   				url: '/gameDetail/inform/reviewadd',
-   				data: {
-   					'num': reviewnum,
-   					'assist': assist
-   				},
-   				datatype: 'text',
-   				success: function(result){
-   					alert('적용 되었습니다!');
-   					window.location.reload();
-   				}
-   			});
-   		});
-   		
-   		$(".reviewInsert").on("click", function(){
-			var reviewContent = $("#reviewContent").val();
-			var obj = document.getElementById("likeselect");
-			var likeselect = obj.options[obj.selectedIndex].value;
-			
-   			$.ajax({
-   				type: 'post',
-   				url: '/gameDetail/inform/reviewinsert',
-   				data: {
-   					'gdnum': "${vo.num}",
-   					'reviewContent': reviewContent,
-   					'likeselect': likeselect
-   				},
-   				datatype: 'text',
-   				success: function(){
-   					alert('등록 되었습니다!');
-   					window.location.reload();
-   				},
-   				error: function(){
-   					alert('로그인 또는 리뷰 내용 입력이 필요합니다.');
-   				}
-   			});
-   		});
-   		
-   		$(".reviewupdate").on("click", function(){
-			var num = $(this).val();
-			
-   			$.ajax({
-   				type: 'get',
-   				url: '/gameDetail/main/maincategoryreviewupdate',
-   				data: {
-   					'num': num,
-   				},
-   				datatype: 'text',
-   				success: function(){
-   					alert('등록 되었습니다!');
-   					window.location.reload();
-   				},
-   				error: function(){
-   					alert('로그인 또는 리뷰 내용 입력이 필요합니다.');
-   				}
-   			});
-   		});
-   		
-   		$(".reviewdelete").on("click", function(){
-			var num = $(this).val();
-			
-   			$.ajax({
-   				type: 'get',
-   				url: '/gameDetail/inform/reviewdelete',
-   				data: {
-   					'num': num,
-   				},
-   				datatype: 'text',
-   				success: function(){
-   					alert('삭제 되었습니다!');
-   					window.location.reload();
-   				},
-   				error: function(){
-   					alert('로그인 또는 리뷰 내용 입력이 필요합니다.');
-   				}
-   			});
-   		});
-   		
-   		
-   		
-   	//장바구니에 추가
-		$(".shopBasket").click(function() {
-			var gdnum = ${vo.num};
-			$.ajax({
-				type : 'post',
-				url : '/myPage/main/Basket',
-				data : {
-					gdnum : gdnum
-				},
-				dataType : 'text',
-				success : function(event) {
-					if(event=='failed'){
-						var con = confirm("해당 상품이 이미 장바구니에 들어있습니다. 장바구니로 이동하시겠습니까?")
-						if(con){
-							location.href = "/myPage/main/Basket";
-						}
-					} else{
-						var con = confirm("해당 상품을 장바구니에 집어넣었습니다. 장바구니로 이동하시겠습니까?")
-						if(con){
-							location.href = "/myPage/main/Basket";
-						}
-					}
-				}
-			});
-		});
-		
-		//찜목록에 추가
-		$(".zzim_list").click(function() {
-			var gdnum = ${vo.num};
-			$.ajax({
-				type : 'post',
-				url : '/myPage/main/zzim',
-				data : {
-					gdnum : gdnum
-				},
-				dataType : 'text',
-				success : function(event) {
-					if(event=='failed'){
-						var con = confirm("해당 상품이 이미 찜목록에 들어있습니다. 찜목록으로 이동하시겠습니까?")
-						if(con){
-							location.href = "/myPage/main/zzim";
-						}
-					} else{
-						var con = confirm("해당 상품을 찜목록에 집어넣었습니다. 찜목록으로 이동하시겠습니까?")
-						if(con){
-							location.href = "/myPage/main/zzim";
-						}
-					}
-				}
-			});
-		});
-   	});
+      $(document).ready(function(){
+         $(".yesorno").on("click", function(){
+            var reviewnum = $(this).val();
+            var assist = $(this).attr("id");
+            
+            $.ajax({
+               type: 'get',
+               url: '/gameDetail/inform/reviewadd',
+               data: {
+                  'num': reviewnum,
+                  'assist': assist
+               },
+               datatype: 'text',
+               success: function(result){
+                  alert('적용 되었습니다!');
+                  window.location.reload();
+               }
+            });
+         });
+         
+         $(".reviewInsert").on("click", function(){
+         var reviewContent = $("#reviewContent").val();
+         var obj = document.getElementById("likeselect");
+         var likeselect = obj.options[obj.selectedIndex].value;
+         
+            $.ajax({
+               type: 'post',
+               url: '/gameDetail/inform/reviewinsert',
+               data: {
+                  'gdnum': "${vo.num}",
+                  'reviewContent': reviewContent,
+                  'likeselect': likeselect
+               },
+               datatype: 'text',
+               success: function(){
+                  alert('등록 되었습니다!');
+                  window.location.reload();
+               },
+               error: function(){
+                  alert('로그인 또는 리뷰 내용 입력이 필요합니다.');
+               }
+            });
+         });
+         
+         $(".reviewupdate").on("click", function(){
+         var num = $(this).val();
+         
+            $.ajax({
+               type: 'get',
+               url: '/gameDetail/main/maincategoryreviewupdate',
+               data: {
+                  'num': num,
+               },
+               datatype: 'text',
+               success: function(){
+                  alert('등록 되었습니다!');
+                  window.location.reload();
+               },
+               error: function(){
+                  alert('로그인 또는 리뷰 내용 입력이 필요합니다.');
+               }
+            });
+         });
+         
+         $(".reviewdelete").on("click", function(){
+         var num = $(this).val();
+         
+            $.ajax({
+               type: 'get',
+               url: '/gameDetail/inform/reviewdelete',
+               data: {
+                  'num': num,
+               },
+               datatype: 'text',
+               success: function(){
+                  alert('삭제 되었습니다!');
+                  window.location.reload();
+               },
+               error: function(){
+                  alert('로그인 또는 리뷰 내용 입력이 필요합니다.');
+               }
+            });
+         });
+         
+         
+         
+      //장바구니에 추가
+      $(".shopBasket").click(function() {
+         var gdnum = ${vo.num};
+         $.ajax({
+            type : 'post',
+            url : '/myPage/main/Basket',
+            data : {
+               gdnum : gdnum
+            },
+            dataType : 'text',
+            success : function(event) {
+               if(event=='failed'){
+                  var con = confirm("해당 상품이 이미 장바구니에 들어있습니다. 장바구니로 이동하시겠습니까?")
+                  if(con){
+                     location.href = "/myPage/main/Basket";
+                  }
+               } else{
+                  var con = confirm("해당 상품을 장바구니에 집어넣었습니다. 장바구니로 이동하시겠습니까?")
+                  if(con){
+                     location.href = "/myPage/main/Basket";
+                  }
+               }
+            }
+         });
+      });
+      
+      //찜목록에 추가
+      $(".zzim_list").click(function() {
+         var gdnum = ${vo.num};
+         $.ajax({
+            type : 'post',
+            url : '/myPage/main/zzim',
+            data : {
+               gdnum : gdnum
+            },
+            dataType : 'text',
+            success : function(event) {
+               if(event=='failed'){
+                  var con = confirm("해당 상품이 이미 찜목록에 들어있습니다. 찜목록으로 이동하시겠습니까?")
+                  if(con){
+                     location.href = "/myPage/main/zzim";
+                  }
+               } else{
+                  var con = confirm("해당 상품을 찜목록에 집어넣었습니다. 찜목록으로 이동하시겠습니까?")
+                  if(con){
+                     location.href = "/myPage/main/zzim";
+                  }
+               }
+            }
+         });
+      });
+      });
    </script>
 </body>
 </html>

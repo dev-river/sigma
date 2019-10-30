@@ -80,6 +80,12 @@ public class gameDetailController {
 		String firstfilepath = filepath.get(0);
 		filepath.remove(0);
 		
+		//장바구니/구매 버튼 판단을 위한 buylist 조회
+		if(id != null) {
+			int buycheck = gservice.buycheck(id, num);
+			model.addAttribute("buycheck", buycheck);
+		}
+		
 		//할인정보 가져오기
 		gameDetailDcVO dcvo = null;
 		int dcjoincheck = 0;
@@ -104,10 +110,16 @@ public class gameDetailController {
 		pto = gservice.reviewlist(num, pto);
 		/* List<reviewVO> reviewlist = gservice.reviewlist(num); */
 		
-		//리뷰 좋아요/싫어요 여부 확인
+		//구매자 남/녀 성비
+		int manratio = gservice.manratio(num);
+		int womanratio = gservice.womanratio(num);
 		
-		
-		
+		//구매자 나이대 비율
+		int age1 = gservice.ageratio1(num);
+		int age2 = gservice.ageratio2(num);
+		int age3 = gservice.ageratio3(num);
+		int age4 = gservice.ageratio4(num);
+				
 		model.addAttribute("vo", vo);
 		model.addAttribute("firstfilepath", firstfilepath);
 		model.addAttribute("filepath", filepath);
@@ -118,6 +130,12 @@ public class gameDetailController {
 		model.addAttribute("sto", pto);
 		model.addAttribute("id", id);
 		model.addAttribute("author", author);
+		model.addAttribute("manratio", manratio);
+		model.addAttribute("womanratio", womanratio);
+		model.addAttribute("age1", age1);
+		model.addAttribute("age2", age2);
+		model.addAttribute("age3", age3);
+		model.addAttribute("age4", age4);
 	}
 	
 	@RequestMapping(value = "/inform/DCRqSet", method = RequestMethod.GET)

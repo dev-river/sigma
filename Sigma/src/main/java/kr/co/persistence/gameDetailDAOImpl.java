@@ -163,4 +163,41 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 		session.insert(NS+".dcjoininsert", map);
 	}
 
+	@Override
+	public int buycheck(String id, int num) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("num", num);
+		return session.selectOne(NS+".buycheck", map);
+	}
+
+	@Override
+	public int manratio(int num) {
+		return session.selectOne(NS+".manratio", num);
+	}
+
+	@Override
+	public int womanratio(int num) {
+		return session.selectOne(NS+".womanratio", num);
+	}
+
+	@Override
+	public int ageratio1(int num) {
+		return session.selectOne(NS+".ageratio1", num);
+	}
+
+	@Override
+	public int ageratio2(int num) {
+		return session.selectOne(NS+".ageratio2", num);
+	}
+
+	@Override
+	public int ageratio3(int num) {
+		return session.selectOne(NS+".ageratio3", num);
+	}
+
+	@Override
+	public int ageratio4(int num) {
+		return session.selectOne(NS+".ageratio4", num);
+	}
 }
