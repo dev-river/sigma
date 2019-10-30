@@ -1,7 +1,6 @@
 package kr.co.persistence;
 
 import java.util.List;
-import java.util.Map;
 
 import kr.co.domain.SPageTO;
 import kr.co.domain.adminSetVO;
@@ -12,11 +11,17 @@ import kr.co.domain.reviewVO;
 
 public interface adminDAO {
 
-	public List<memberVO> adminUserList();
+	public int getUserAmount(SPageTO to);
+	
+	public List<memberVO> userList(SPageTO to);
 
-	public List<memberVO> adminSellerList();
+	public int getSellerAmount(SPageTO to);
 
-	public List<memberVO> adminAdminList();
+	public List<memberVO> sellerList(SPageTO to);
+	
+	public int getAdminAmount(SPageTO to);
+	
+	public List<memberVO> adminList(SPageTO to);
 	
 	public memberVO adminUserRead(memberVO vo);
 

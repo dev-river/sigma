@@ -39,7 +39,7 @@ main{
 	
 	}
 	.menu-bg{
-	background-image :url("/resources/main/backgroundimg.jpg");
+	background-image :url("/resources/main/backgroundimg2.jpg");
 	border : 1px solid black;
 	background-repeat:repeat-x;
 	position:absolute;

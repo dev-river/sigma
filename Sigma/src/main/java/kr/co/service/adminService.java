@@ -1,22 +1,20 @@
 package kr.co.service;
 
 import java.util.List;
-import java.util.Map;
 
 import kr.co.domain.SPageTO;
 import kr.co.domain.adminSetVO;
 import kr.co.domain.adminSlideVO;
-import kr.co.domain.boardVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.reviewVO;
 
 public interface adminService {
 
-	List<memberVO> adminUserList();
+	SPageTO userList(SPageTO to);
+	
+	SPageTO sellerList(SPageTO to);
 
-	List<memberVO> adminSellerList();
-
-	List<memberVO> adminAdminList();
+	SPageTO adminList(SPageTO to);
 	
 	memberVO adminUserRead(memberVO vo);
 
@@ -53,4 +51,5 @@ public interface adminService {
 	SPageTO reviewAllList(SPageTO to);
 
 	reviewVO reviewRead(int num);
+
 }

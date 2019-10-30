@@ -63,7 +63,7 @@
                 		 </div>
                 		 <div id="admin">
                		 	 <c:if test="${login.author eq 'admin'}">
-                    		 <a class="glyphicon glyphicon-user" href="/admin/main/adminlist?id=${login.id}">관리자페이지</a>
+                    		 <a class="glyphicon glyphicon-user" href="/admin/main/userlist?id=${login.id}">관리자페이지</a>
                    			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
                 		 </c:if>
                 		 </div>

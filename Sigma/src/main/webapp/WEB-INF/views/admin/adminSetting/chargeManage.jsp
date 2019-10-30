@@ -13,14 +13,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<div class="bodymain">
+<div class="container">
 <h3>
 	 chargeManage test.  
 </h3>
 
 <hr>
 	<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
-	<form action="/admin/adminSetting/chargeManage" method="post">
+	<form action="/admin/main/chargeManage" method="post">
 		<div class="form-group">
 			<label for="regiCharge">게임 등록수수료 설정(원)</label>
 			<input class="form-control" id="regiCharge" name="regiCharge" value="${updatevo.regiCharge}">
@@ -34,7 +35,8 @@
 			<button class="btn btn-warning modify updatebtn">수정</button>
 		</div>
 	</form>	
-	
+</div>
+</div>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		

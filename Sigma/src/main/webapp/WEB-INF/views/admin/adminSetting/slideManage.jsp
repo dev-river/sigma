@@ -14,6 +14,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<div class="bodymain">
+	<div class="container">
 <h3>
 	 slideManage test.  
 </h3>
@@ -40,8 +43,8 @@
 			<p style="text-align: center; margin-bottom: 10px;">생성일: ${vo.regidate}</p>
 			
 			<div class="form-group">
-				<a href="/admin/adminSetting/slideUpdate?num=${vo.num}"><input type="button" value="수정" class="btn updatebtn"></a>
-				<a href="/admin/adminSetting/slideDelete?num=${vo.num}"><input type="button" value="삭제" class="btn deletebtn"></a>
+				<a href="/admin/main/slideUpdate?num=${vo.num}"><input type="button" value="수정" class="btn updatebtn"></a>
+				<a href="/admin/main/slideDelete?num=${vo.num}"><input type="button" value="삭제" class="btn deletebtn"></a>
 			</div>
 			
 			<hr>
@@ -54,12 +57,14 @@
 				value="배너등록">
 			</div>
 		</div>
-	</div>	
+	</div>
+	</div>
+	</div>
 	<script type="text/javascript">
 
 	
 	$(".Insertbtn").on("click",function(){
-		location.href="/admin/adminSetting/slideInsert";
+		location.href="/admin/main/slideInsert";
 	});
 	
 	</script>

@@ -13,20 +13,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<div class="bodymain">
+	<div class="container">
 <h3>
 	 userlist test.  
 </h3>
 
 <hr>
-
-	<!-- 로그인 되면 뜨는 창 -->
-	<c:if test="${not empty login}">
-		${login.nickname}(${login.id}) 님, 안녕하세요. <a href="/member/login/logout">로그아웃</a>
-	</c:if>
-	<!-- 미로그인시 뜨는 창 -->
-	<c:if test="${empty login}">
-		<a href="/member/login/login">로그인</a>
-	</c:if>
 		<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
 	<div class="row">
 				<div class="input-group">
@@ -62,7 +56,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${vo}" var="vo">
+			<c:forEach items="${vo.list}" var="vo">
 				<tr>
 					<td><a class="userclick" href="${vo.id}">${vo.id}</a></td>
 					<td><a class="userclick" href="${vo.id}">${vo.nickname}</a></td>
@@ -76,6 +70,27 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+		<div class="row text-center" style="text-align: center">
+			<ul class="pagination">
+				<c:if test="${vo.curPage>1}">
+					<li><a
+						href="/admin/main/userlist?curPage=${vo.curPage-1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&laquo;</a></li>
+				</c:if>
+
+				<c:forEach begin="${vo.bpn}" end="${vo.spn}" var="idx">
+					<li class="${vo.curPage == idx?'active':''}"><a
+						href="/admin/main/userlist?curPage=${idx}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">${idx}</a></li>
+				</c:forEach>
+
+				<c:if test="${vo.curPage<vo.totalPage}">
+					<li><a
+						href="/admin/main/userlist?curPage=${vo.curPage+1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&raquo;</a></li>
+				</c:if>
+			</ul>
+		</div>
+	</div>
+</div>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -88,7 +103,8 @@
 		$("#searchBtn").on("click", function(){
 			var searchType = $("#searchSel option:selected").val();
 			var keyword = $("#keyword").val();
-			location.href = "/admin/sUserManage/userlist?searchType="+searchType+"&keyword="+keyword;
+			var url = "/admin/main/userlist?searchType="+searchType+"&keyword="+keyword;
+			window.open(url);
 		});
 		
 	});

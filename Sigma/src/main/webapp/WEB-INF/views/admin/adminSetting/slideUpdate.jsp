@@ -21,6 +21,9 @@
 </style>
 </head>
 <body>
+
+<div class="bodymain">
+	<div class="container">
 <h3>
 	 slideInsert test.  
 </h3>
@@ -31,7 +34,7 @@
 	<div class="row">
 			<div class="insert">
 				<div class="row">
-					<form action="/admin/adminSetting/slideUpdate" method="post">
+					<form action="/admin/main/slideUpdate" method="post">
 						<div class="form-group">
 							<label>업로드할 로고이미지 파일을 드랍시키세요</label>
 							<div class="fileDrop"></div>
@@ -51,7 +54,7 @@
 						<div class="form-group">
 							<button id="submitBoardBtn" class="btn btn-info">수정</button>
 							<input type="button" class="btn btn-danger" id="cancel"
-								value="취소" onclick="location.href='/admin/adminSetting/slideManage'">
+								value="취소" onclick="location.href='/admin/main/slideManage'">
 						</div>
 					</form>
 
@@ -59,6 +62,8 @@
 			</div>
 	</div>
 </div>	
+</div>
+</div>
 	<script type="text/javascript">
 	
 	$(".fileDrop").on("dragenter dragover", function(event){
@@ -79,7 +84,7 @@
 			
 			$.ajax({
 				type : 'post',
-				url : '/admin/adminSetting/slideUpdate/updateBNAjax',
+				url : '/admin/main/slideUpdate/updateBNAjax',
 				data : formData,
 				dataType : 'text',
 				contentType : false,
@@ -88,7 +93,7 @@
 					var str='';
 					$(".uploadfilename").val(data);
 					if(checkImageType(data)){
-						str += "<label>업로드될 이미지</label><div><img src='/admin/adminSetting/slideManage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
+						str += "<label>업로드될 이미지</label><div><img src='/admin/main/slideManage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
 					}else{
 						str += "<div><img src='/resources/test.png' alt='썸네일 안보임.'/><p>"+getOriginalName(data)+"</p></div>"
 					}

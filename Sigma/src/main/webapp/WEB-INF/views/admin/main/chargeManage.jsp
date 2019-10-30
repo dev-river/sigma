@@ -37,7 +37,7 @@
 	<!-- 헤더 -->
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<!-- 바디 -->
-	<jsp:include page="/WEB-INF/views/admin/userManage/adminlist.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/admin/adminSetting/chargeManage.jsp"></jsp:include>
 	<!-- 사이드 -->
 	<jsp:include page="/WEB-INF/views/main/side.jsp"></jsp:include>
 	<!-- 풋터 -->

@@ -37,17 +37,17 @@
 			<li>
 				<a href="#" id="boarddrop3">회원관리</a>
 				<ul id="boardsel3" style="display: none; background-color: white;">
-					<li><a href="/admin/userManage/userlist">일반회원목록</a></li>
-					<li><a href="/admin/userManage/sellerlist">판매회원목록</a></li>
-					<li><a href="/admin/userManage/adminlist">관리자 목록</a></li>
+					<li><a href="/admin/main/userlist">일반회원목록</a></li>
+					<li><a href="/admin/main/sellerlist">판매회원목록</a></li>
+					<li><a href="/admin/main/adminlist">관리자 목록</a></li>
 				</ul>	
 			</li>
 			<li>
 				<a href="#" id="boarddrop4">관리자메뉴</a>
 				<ul id="boardsel4" style="display: none; background-color: white;">
-					<li><a href="/admin/adminSetting/imgManage">배경 이미지 관리</a></li>
-					<li><a href="/admin/adminSetting/slideManage">슬라이드 관리</a></li>
-					<li><a href="/admin/adminSetting/chargeManage">수수료 관리</a></li>
+					<li><a href="/admin/main/imgManage">배경 이미지 관리</a></li>
+					<li><a href="/admin/main/slideManage">슬라이드 관리</a></li>
+					<li><a href="/admin/main/chargeManage">수수료 관리</a></li>
 				</ul>	
 			</li>
 		</ul>
@@ -55,7 +55,7 @@
 </div>
 <script type="text/javascript">
 	if('${login.author}'!='admin'){
-		window.location.href = "/admin/adminSetting/adminError";
+		window.location.href = "/admin/main/adminError";
 	}
 	$("#boarddrop1").click(function(){
 		$("#boardsel1").toggle("slow");

@@ -5,16 +5,63 @@
 
 <mapper namespace="kr.co.mapper.adminUser">
 
+	<sql id="search">
+      <if test="searchType == 'id'.toString()">
+         and lower(id) like '%'||lower(#{keyword})||'%'
+      </if>
+      <if test="searchType == 'nickname'.toString()">
+         and lower(nickname) like '%'||lower(#{keyword})||'%'
+      </if>
+      <if test="searchType == 'name'.toString()">
+         and lower(name) like '%'||lower(#{keyword})||'%'
+      </if>
+      <if test="searchType == null">
+      </if>
+ 	</sql>
+	
+	<select id="getUserAmount" resultType="Integer">
+		select count(*) from (
+		select * from userinfo where author='user'
+		<include refid="search"></include>)
+	</select>
+	
 	<select id="userList" resultType="kr.co.domain.memberVO">
-		select * from userinfo where author='user' order by id asc
+		<![CDATA[
+			select * from (
+			select rownum rnum, id, nickname, name, author, phone, email, joindate, cash from (
+			select id, nickname, name, author, phone, email, joindate, cash from userinfo where author='user' ]]><include refid="search"></include><![CDATA[ order by id)
+			) where rnum between #{startNum} and #{endNum}
+		]]>
 	</select>
 
+	<select id="getSellerAmount" resultType="Integer">
+		select count(*) from (
+		select * from userinfo where author='seller'
+		<include refid="search"></include>)
+	</select>
+	
 	<select id="sellerList" resultType="kr.co.domain.memberVO">
-		select * from userinfo where author='seller' order by id asc
+		<![CDATA[
+			select * from (
+			select rownum rnum, id, nickname, name, author, phone, email, joindate, cash from (
+			select id, nickname, name, author, phone, email, joindate, cash from userinfo where author='seller' ]]><include refid="search"></include><![CDATA[ order by id)
+			) where rnum between #{startNum} and #{endNum}
+		]]>
 	</select>
-
+	
+	<select id="getAdminAmount" resultType="Integer">
+		select count(*) from (
+		select * from userinfo where author='admin'
+		<include refid="search"></include>)
+	</select>
+	
 	<select id="adminList" resultType="kr.co.domain.memberVO">
-		select * from userinfo where author='admin' order by id asc
+		<![CDATA[
+			select * from (
+			select rownum rnum, id, nickname, name, author, phone, email, joindate, cash from (
+			select id, nickname, name, author, phone, email, joindate, cash from userinfo where author='admin' ]]><include refid="search"></include><![CDATA[ order by id)
+			) where rnum between #{startNum} and #{endNum}
+		]]>
 	</select>
 	
 	<select id="userRead" resultType="kr.co.domain.memberVO">
@@ -32,5 +79,6 @@
 	<delete id="userDelete">
 		delete from userinfo where id = #{id} 
 	</delete>
+	
 	
 </mapper>

@@ -29,22 +29,38 @@ public class adminServiceImpl implements adminService{
 	private boardDAO bdao;
 	
 	@Override
-	public List<memberVO> adminUserList() {
-
-		return addao.adminUserList();
+	public SPageTO userList(SPageTO to) {
+		int amount = addao.getUserAmount(to);
+		to.setAmount(amount);
+		
+		List<memberVO> UserList = addao.userList(to);
+		to.setList(UserList);
+		
+		return to;
+	}
+	
+	@Override
+	public SPageTO sellerList(SPageTO to) {
+		int amount = addao.getSellerAmount(to);
+		to.setAmount(amount);
+		
+		List<memberVO> SellerList = addao.sellerList(to);
+		to.setList(SellerList);
+		
+		return to;
 	}
 
 	@Override
-	public List<memberVO> adminSellerList() {
-		// TODO Auto-generated method stub
-		return addao.adminSellerList();
+	public SPageTO adminList(SPageTO to) {
+		int amount = addao.getAdminAmount(to);
+		to.setAmount(amount);
+		
+		List<memberVO> AdminList = addao.adminList(to);
+		to.setList(AdminList);
+		
+		return to;
 	}
 
-	@Override
-	public List<memberVO> adminAdminList() {
-		// TODO Auto-generated method stub
-		return addao.adminAdminList();
-	}
 	
 	@Override
 	public memberVO adminUserRead(memberVO vo) {
@@ -175,4 +191,6 @@ public class adminServiceImpl implements adminService{
 	public reviewVO reviewRead(int num) {
 		return addao.reviewRead(num);
 	}
+
+
 }

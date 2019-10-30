@@ -30,13 +30,14 @@
 
 </head>
 <body>
+<div class="bodymain">
+<div class="container">
 <h3>
 	 imgManage test.  
 </h3>
 
 <hr>
 	<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
-<div class="container">
 	<div class="row">
 		<div class="row">
 			<div class="pull-right">
@@ -54,7 +55,7 @@
 					<label>업로드되어있는 로고이미지</label>
 					<div>
 						<img alt="등록이미지"
-							src="/admin/adminSetting/imgManage/displayfile?filename=s_${LogoVo.logofilepath}">
+							src="/admin/main/imgManage/displayfile?filename=s_${LogoVo.logofilepath}">
 					</div>
 				</div>
 
@@ -72,7 +73,7 @@
 					<label>업로드되어있는 배경이미지</label>
 					<div>
 						<img alt="등록이미지"
-							src="/admin/adminSetting/imgManage/displayfile?filename=s_${BgVo.bgfilepath}">
+							src="/admin/main/imgManage/displayfile?filename=s_${BgVo.bgfilepath}">
 					</div>
 				</div>
 
@@ -82,7 +83,8 @@
 
 		</div>
 	</div>
-</div>	
+</div>
+</div>
 	<script type="text/javascript">
 	
 	$("document").ready(function(){
@@ -109,7 +111,7 @@
 				
 				$.ajax({
 					type : 'post',
-					url : '/admin/adminSetting/imgManage/uploadLogoAjax',
+					url : '/admin/main/imgManage/uploadLogoAjax',
 					data : formData,
 					dataType : 'text',
 					contentType : false,
@@ -118,7 +120,7 @@
 						var str='';
 						
 						if(checkImageType(data)){
-							str += "<label>업로드될 로고이미지</label><div><img src='/admin/adminSetting/imgManage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
+							str += "<label>업로드될 로고이미지</label><div><img src='/admin/main/imgManage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
 						}else{
 							str += "<div><img src='/resources/test.png' alt='썸네일 안보임.'/><p>"+getOriginalName(data)+"</p></div>"
 						}
@@ -143,7 +145,7 @@
 				
 				$.ajax({
 					type : 'post',
-					url : '/admin/adminSetting/imgManage/uploadBGAjax',
+					url : '/admin/main/imgManage/uploadBGAjax',
 					data : formData,
 					dataType : 'text',
 					contentType : false,
@@ -152,7 +154,7 @@
 						var str='';
 						
 						if(checkImageType(data)){
-							str += "<label>업로드될 배경이미지</label><div><img src='/admin/adminSetting/imgManage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
+							str += "<label>업로드될 배경이미지</label><div><img src='/admin/main/imgManage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
 						}else{
 							str += "<div><img src='/resources/test.png' alt='썸네일 안보임.'/><p>"+getOriginalName(data)+"</p></div>"
 						}
@@ -164,7 +166,7 @@
 		});
 		
 		$(".submitbtn").on("click",function(){
-			location.href="/admin/adminSetting/imgManage";
+			location.href="/admin/main/imgManage";
 		});
 
 	});
