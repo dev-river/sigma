@@ -40,22 +40,22 @@ public class adminController {
 	@Resource(name="uploadBNPath")
 	private String uploadBNPath;
 
-	//회원 리스트
-	@RequestMapping(value = "/userManage/userlist", method = RequestMethod.GET)
+	//회원 리스트 ,(분석으로 변경해야하는데 아직 미완성)
+	@RequestMapping(value = "/main/user/adminlist", method = RequestMethod.GET)
 	public void adminUserList(Model model) {
 		List<memberVO> vo = adservice.adminUserList();
 		model.addAttribute("vo", vo);
 	}
 	
 	//판매회원 리스트
-	@RequestMapping(value = "/userManage/sellerlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/user/adminsellerlist", method = RequestMethod.GET)
 	public void adminSellerList(Model model) {
 		List<memberVO> vo = adservice.adminSellerList();
 		model.addAttribute("vo", vo);
 	}
 
 	//관리회원 리스트
-	@RequestMapping(value = "/userManage/adminlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/user/adminadminlist", method = RequestMethod.GET)
 	public void adminAdminList(Model model) {
 		List<memberVO> vo = adservice.adminAdminList();
 		model.addAttribute("vo", vo);
@@ -92,7 +92,7 @@ public class adminController {
 	// --회원관리 끝-- //
 	// --로고, 배경 이미지 관리--//
 	// 현재 이미지 불러오기
-	@RequestMapping(value = "/adminSetting/imgManage")
+	@RequestMapping(value = "/main/setting/imgmanage")
 	public void imgManage(Model model) {
 		adminSetVO LogoVo = adservice.getLogoimg();
 		adminSetVO BgVo = adservice.getBGimg();
@@ -102,7 +102,7 @@ public class adminController {
 
 	// 로고, 배경 이미지 출력
 	@ResponseBody
-	@RequestMapping(value = "/adminSetting/imgManage/displayfile")
+	@RequestMapping(value = "/main/setting/imgmanage/displayfile")
 	public ResponseEntity<byte[]> displayfile(String filename){
 		
 		return UploadFileUtils.displayfile(uploadPath, filename);
@@ -151,17 +151,17 @@ public class adminController {
 	
 	//-- 관리자 비용관리 --//
 	//수수료 관리UI
-	@RequestMapping(value = "/adminSetting/chargeManage")
+	@RequestMapping(value = "/main/setting/chargelist")
 	public void changeChargeUI(Model model) {
 		adminSetVO updatevo = adservice.changeChargeUI();
 		model.addAttribute("updatevo", updatevo);
 	}
 	
 	//수수료 관리
-	@RequestMapping(value = "/adminSetting/chargeManage", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/setting/chargelist", method = RequestMethod.POST)
 	public String changeCharge(adminSetVO vo) {
 		adservice.changeCharge(vo);
-		return "redirect:/admin/adminSetting/chargeManage/";
+		return "redirect:/admin/main/setting/chargelist";
 	}
 	
 	//-- 관리자 비용관리 끝--//
@@ -176,7 +176,7 @@ public class adminController {
 	}
 	
 	//배너 이미지 관리
-	@RequestMapping(value = "/adminSetting/slideManage", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/setting/slidemanage", method = RequestMethod.GET)
 	public void slideManage(Model model) {
 
 		List<adminSlideVO> vo = adservice.slideList();
@@ -187,21 +187,21 @@ public class adminController {
 	@RequestMapping(value = "/adminSetting/slideDelete", method = RequestMethod.GET)
 	public String slideDelete(int num) {
 		adservice.slideDelete(num);
-		return "redirect:/admin/adminSetting/slideManage";
+		return "redirect:/admin/main/setting/slidemanage";
 	}
 	
 	//배너 이미지 생성 UI
-	@RequestMapping(value = "/adminSetting/slideInsert", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/setting/slidemanageinsert", method = RequestMethod.GET)
 	public void slideInsertUI(Model model) {
 		
 	}
 	
 	//배너 이미지 생성
-	@RequestMapping(value = "/adminSetting/slideInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/setting/slidemanageinsert", method = RequestMethod.POST)
 	public String slideInsert(adminSlideVO vo) {
 		String savedname = vo.getFilepath();
 		adservice.slideInsert(vo, savedname);
-		return "redirect:/admin/adminSetting/slideManage";
+		return "redirect:/admin/main/setting/slidemanage";
 	}
 	
 	//배너 이미지등록 Ajax
@@ -222,30 +222,30 @@ public class adminController {
 	}
 	
 	// 배너 수정 UI
-	@RequestMapping(value = "/adminSetting/slideUpdate", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/setting/slidemanageupdate", method = RequestMethod.GET)
 	public void slideUpdateUI(int num, Model model) {
 		adminSlideVO vo = adservice.getSlide(num);
 		model.addAttribute("vo", vo);
 	}
 
 	// 배너 수정
-	@RequestMapping(value = "/adminSetting/slideUpdate", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/setting/slidemanageupdate", method = RequestMethod.POST)
 	public String slideUpdate(adminSlideVO vo) {
 		String savedName = vo.getFilepath();
 		adservice.slideUpdate(vo, savedName);
-		return "redirect:/admin/adminSetting/slideManage";
+		return "redirect:/admin/main/setting/slidemanage";
 	}
 	
 		
 	// 배너 수정 Ajax
-	@RequestMapping(value="/adminSetting/slideUpdate/updateBNAjax", method = RequestMethod.GET)
+	@RequestMapping(value="/main/setting/slidemanageupdate/updateBNAjax", method = RequestMethod.GET)
 	public void updateBNAjax() {
 			
 	}
 
 	// 배너 수정 Ajax
 	@ResponseBody
-	@RequestMapping(value="/adminSetting/slideUpdate/updateBNAjax", method=RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	@RequestMapping(value="/main/setting/slidemanageupdate/updateBNAjax", method=RequestMethod.POST, produces = "application/text; charset=UTF-8")
 	public ResponseEntity<String> updateBNAjax(MultipartHttpServletRequest request, adminSlideVO vo) throws Exception{
 		
 		MultipartFile file = request.getFile("file");

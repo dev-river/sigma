@@ -18,28 +18,30 @@
 		height: 200px;
 		border: 1px dotted red;
 	}
+	.row{
+	color: white;
+	}
 </style>
 </head>
 <body>
-<h3>
-	 slideInsert test.  
-</h3>
 
-<hr>
+<br>
+<div class="container"  style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
+	<div style="float: left;">
 	<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
-<div class="container">
-	<div class="row">
+	</div>
+	<div class="row"  style="float: right; width: 870px; border-left: double 1px white; padding-left: 30px; padding-right: 30px; padding-top: 30px;  min-height: 700px; max-height: auto;">
 			<div class="insert">
 				<div class="row">
-					<form action="/admin/adminSetting/slideUpdate" method="post">
+					<form action="/admin/main/setting/slidemanageupdate" method="post">
 						<div class="form-group">
 							<label>업로드할 로고이미지 파일을 드랍시키세요</label>
 							<div class="fileDrop"></div>
 						</div>
 						
-						<input type="text" readonly="readonly" class="num" name="num" value="${vo.num}">
+						<input type="text" readonly="readonly" class="num" name="num" value="${vo.num}" style="color: black;">
 						
-						<input type="text" readonly="readonly" class="uploadfilename" name="filepath" value="${vo.filepath}">
+						<input type="text" readonly="readonly" class="uploadfilename" name="filepath" value="${vo.filepath}" style="color: black;">
 						
 						<div class="form-group">
 							<label for="urlpath">URLpath</label> 
@@ -48,10 +50,10 @@
 						<div class="form-group">
 							<div class="uploadedBNList clearfix"></div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="float: right;">
 							<button id="submitBoardBtn" class="btn btn-info">수정</button>
 							<input type="button" class="btn btn-danger" id="cancel"
-								value="취소" onclick="location.href='/admin/adminSetting/slideManage'">
+								value="취소" onclick="location.href='/admin/main/setting/slidemanage'">
 						</div>
 					</form>
 
@@ -79,7 +81,7 @@
 			
 			$.ajax({
 				type : 'post',
-				url : '/admin/adminSetting/slideUpdate/updateBNAjax',
+				url : '/admin/main/setting/slidemanageupdate/updateBNAjax',
 				data : formData,
 				dataType : 'text',
 				contentType : false,
@@ -88,7 +90,7 @@
 					var str='';
 					$(".uploadfilename").val(data);
 					if(checkImageType(data)){
-						str += "<label>업로드될 이미지</label><div><img src='/admin/adminSetting/slideManage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
+						str += "<label>업로드될 이미지</label><div><img src='/admin/main/setting/slidemanage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
 					}else{
 						str += "<div><img src='/resources/test.png' alt='썸네일 안보임.'/><p>"+getOriginalName(data)+"</p></div>"
 					}

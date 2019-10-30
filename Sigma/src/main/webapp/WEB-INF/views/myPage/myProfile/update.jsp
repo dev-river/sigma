@@ -15,16 +15,15 @@
 	label{
 	font-size : 1em;
 	font : bold;
-	color: black;
+	color: white;
 	}
-	#ba{
-	background-color: white;
-	}
+
 </style>
 </head>
 <body>
-	<div class="container" style="padding-top: 50px;" id="ba">
-		<div class="row col-xs-push-1 col-xs-11" >
+	<div class="container"  style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
+	<br>
+		<div class="row col-xs-push-1 col-xs-11" style="padding-bottom: 30px;">
 		
 			<!-- 회원가입 창 -->
 			<form name="info" method="post" action="/myPage/myProfile/update">

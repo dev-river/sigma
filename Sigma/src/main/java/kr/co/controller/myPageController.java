@@ -329,7 +329,7 @@ public class myPageController {
 	}
 	
 	//환불 신청 조회
-	@RequestMapping(value = "buyList/refundList", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/buy/refundlist", method = RequestMethod.GET)
 	public void refundList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		memberVO obj = (memberVO)session.getValue("login");
@@ -370,7 +370,7 @@ public class myPageController {
 	@RequestMapping(value = "/buyList/refundInsert", method = RequestMethod.POST)
 	public String refundInsert(int buynum, String content, String id) {
 		mpService.refundInsert(buynum, content, id);
-		return "redirect:/myPage/buyList/refundList";
+		return "redirect:/myPage/main/buy/refundlist";
 	}
 	
 	//배급사 리스트로 이동

@@ -13,15 +13,17 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-
+	label{
+	color: white;
+	}
 </style>
 </head>
 <body>
 <div class="bodymain">
 
-<div class="container">
+<div class="container" style="background-color: rgb(25,25,25,0.6); border-radius: 10px; padding-left: 20px; padding-right: 20px;">
 	<div class="row head">
-		<h2>gameDetail update page</h2>
+		<h2 style="color: white;">gameDetail update page</h2>
 	</div>
 	<div class="row body">
 		<form action="/gameDetail/main/maincategoryupdate" method="post">

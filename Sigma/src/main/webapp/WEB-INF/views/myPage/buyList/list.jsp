@@ -20,7 +20,7 @@
 </head>
 <body>
 	<div class="bodymain">
-	<div class="container">
+	<div class="container"  style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
 		<div class="row">
 			
 			<table class="table" style="position:relative; left: 200px; width: 60%;">

@@ -18,20 +18,24 @@
 		height: 200px;
 		border: 1px dotted red;
 	}
+	label{
+	color: white;
+	}
 </style>
 </head>
 <body>
-<h3>
-	 slideInsert test.  
-</h3>
 
-<hr>
+
+<br>
+	
+<div class="container"  style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
+	<div style="float: left;">
 	<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
-<div class="container">
-	<div class="row">
+	</div>
+	<div class="row" style="float: right; width: 870px; border-left: double 1px white; padding-left: 30px; padding-right: 30px; padding-top: 30px;  min-height: 700px; max-height: auto;">
 			<div class="insert">
 				<div class="row">
-					<form action="/admin/adminSetting/slideInsert" method="post">
+					<form action="/admin/main/setting/slidemanageinsert" method="post">
 						<div class="form-group">
 							<label>업로드할 로고이미지 파일을 드랍시키세요</label>
 							<div class="fileDrop"></div>
@@ -49,7 +53,7 @@
 						<div class="form-group">
 							<button id="submitBoardBtn" class="btn btn-info">등록</button>
 							<input type="button" class="btn btn-danger" id="cancel"
-								value="취소" onclick="location.href='/admin/adminSetting/slideManage'">
+								value="취소" onclick="location.href='/admin/main/setting/slidemanage'">
 						</div>
 					</form>
 

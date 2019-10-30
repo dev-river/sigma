@@ -33,9 +33,9 @@
 			<table class="table" style="position:relative; left: 200px; width: 60%;">
 				<thead>
 					<tr>
-						<th  style="height: 150px; ">
+						<th  style="height: 100px; ">
 							<div style="position: relative; left:83%; width: 15%;">
-								<h5 style="width:70%;" class="pull-left">전체 선택</h5>
+								<h5 style="width:70%; color: white;" class="pull-left">전체 선택</h5>
 								<input style="position: relative; top:6px; width:29%;" class="pull-right" type="checkbox" name="check_all">
 							</div>
 						</th>

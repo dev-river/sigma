@@ -35,7 +35,7 @@
 					<tr>
 						<th  style="height: 150px; ">
 							<div style="position: relative; left:83%; width: 15%;">
-								<h5 style="width:70%;" class="pull-left">전체 선택</h5>
+								<h5 style="width:70%; color: white;" class="pull-left">전체 선택</h5>
 								<input style="position: relative; top:6px; width:29%;" class="pull-right" type="checkbox" name="check_all">
 							</div>
 						</th>
@@ -44,7 +44,7 @@
 				<tbody>
 					<c:forEach items="${basket}" var="basket">
 						<tr>
-							<td>
+							<td style="min-height: 700xp;">
 								<img alt="" src="/resources/gameDetailFile/${img}" style="width:25%; padding-right: 5px; position: relative; right: 10px;" class="pull-left" id="img1">
 								<p style="position:relative; top:20px; width:35%" class="pull-left gn">게임 이름 : ${basket.title}</p>
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">배급사 : ${basket.writer}</p> 
