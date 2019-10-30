@@ -17,23 +17,19 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
 
+#keyword {
+	width: 800px;
+}
 
-.bodymain {
-	position: relative;
-	margin: auto;
-	height: auto;
-	width: 1070px;
-}
-#keyword{
-	width: 765px;
-}
-#searchBtn{
+#searchBtn {
 	position: relative;
 	right: 100px;
 }
 </style>
 </head>
 <body>
+	<br>
+	<br>
 	<br>
 	<br>
 <div class="bodymain">

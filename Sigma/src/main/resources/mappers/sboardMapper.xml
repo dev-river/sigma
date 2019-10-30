@@ -18,7 +18,7 @@
          where lower(content) like '%'||lower(#{keyword})||'%'
       </if>
  </sql>
-	
+ 
     	<select id="list" resultType="kr.co.domain.boardVO"> <!-- search List의 페이징처리 -->
     		<![CDATA[
     		 select * from 

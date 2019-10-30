@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.domain.PageTO;
 import kr.co.domain.boardEVVO;
+import kr.co.domain.boardVO;
 
 public interface boardEVDAO {
 	public List<boardEVVO> boardEVlist();

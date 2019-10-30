@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mapper.boardO">
+	<select id="Olist" resultType="kr.co.domain.boardOVO">
+		select * from boardOne order by num desc
+	</select>
+	
+	<insert id="Oinsert">
+		insert into boardOne values((select nvl2(max(num), max(num)+1, 1) from boardfr), #{title}, #{content}, #{writer}, sysdate, sysdate, 0, null, 0)
+	</insert>
+	
+	<select id="Oread" resultType="kr.co.domain.boardOVO">
+		select * from boardOne where num = #{num}
+	</select>
+	
+	<update id="addOviewcnt">
+		update boardOne set viewcnt = viewcnt + 1 where num=#{num}
+	</update>
+	
+	<select id="OupdateUI" resultType="kr.co.domain.boardOVO">
+		select * from boardOne where num = #{num}
+	</select>
+	
+	<update id="Oupdate">
+		update boardOne set writer=#{writer}, title=#{title}, content=#{content} where num=#{num}
+	</update>
+	
+	<delete id="Odelete">
+		delete from boardOne where num=#{num}
+	</delete>
+	
+	<!-- =============================================================================================================================================== -->
+	
+	<!-- 페이징처리 부분 -->
+	
+	<select id="getAmount" resultType="Integer">
+		select count(num) from boardOne
+	</select>
+	
+	<select id="pageList" resultType="kr.co.domain.boardOVO">
+		<![CDATA[
+		select * from 
+		(select rownum rnum, num, title, writer, updatedate, viewcnt from 
+		(select * from boardOne order by num desc)) where rnum between #{startNum} and #{endNum}
+		]]>
+	</select>
+	
+	<!-- =============================================================================================================================================== -->
+	
+	<!-- 검색처리 부분 -->
+	
+	<!-- <sql id="search">
+		<if test="seachType == 'writer'.toString()">
+			where lower(writer) like '%' || lower(#{keyword}) || '%'
+		</if>
+		<if test="searchType == 'title'.toString()">
+			where lower(title) like '%' || lower(${keyword}) || '%'
+		</if>
+		<if test="searchType == 'content'.toString()">
+			where lower(content) like '%' || lower(${keyword}) || '%'
+		</if>
+	</sql>
+	
+    	
+    	<select id="searchList" resultType="kr.co.domain.BoardVO"> search List의 페이징처리
+    		<![CDATA[
+    		select * from 
+    		(select rownum rnum, num, title, writer, updatedate, viewcnt from 
+    		(select * from boardFR]]><include refid="search"></include> 위에 작성한 search sql문(where절)이 들어감
+    		<![CDATA[order by num desc)) where rnum between #{startNum} and #{endNum}
+    		]]>
+    	</select>
+    	
+    	<select id="searchAmount" resultType="Integer"> search List의 amount 가져오기
+    		<![CDATA[select count(bno) from boardFR]]> <include refid="search"></include>
+    	</select>  -->
+	
+	
+</mapper>
