@@ -20,7 +20,6 @@ color: white;
 
 </head>
 <body>
-
 	<br>
 	<div class="bodymain">
 	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
@@ -62,7 +61,7 @@ color: white;
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${vo}" var="vo">
+			<c:forEach items="${vo.list}" var="vo">
 				<tr>
 					<td><a class="userclick" href="${vo.id}">${vo.id}</a></td>
 					<td><a class="userclick" href="${vo.id}">${vo.nickname}</a></td>
@@ -76,10 +75,29 @@ color: white;
 			</c:forEach>
 		</tbody>
 	</table>
+	
+		<div class="row text-center" style="text-align: center">
+			<ul class="pagination">
+				<c:if test="${vo.curPage>1}">
+					<li><a
+						href="/admin/main/user/adminlist?curPage=${vo.curPage-1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&laquo;</a></li>
+				</c:if>
+
+				<c:forEach begin="${vo.bpn}" end="${vo.spn}" var="idx">
+					<li class="${vo.curPage == idx?'active':''}"><a
+						href="/admin/main/user/adminlist?curPage=${idx}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">${idx}</a></li>
+				</c:forEach>
+
+				<c:if test="${vo.curPage<vo.totalPage}">
+					<li><a
+						href="/admin/main/user/adminlist?curPage=${vo.curPage+1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&raquo;</a></li>
+				</c:if>
+			</ul>
+		</div>
 	</div>
-	</div>
-	</div>
-	</div>
+</div>
+</div>
+</div>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -92,7 +110,8 @@ color: white;
 		$("#searchBtn").on("click", function(){
 			var searchType = $("#searchSel option:selected").val();
 			var keyword = $("#keyword").val();
-			location.href = "/admin/sUserManage/userlist?searchType="+searchType+"&keyword="+keyword;
+			var url = "/admin/main/user/adminlist?searchType="+searchType+"&keyword="+keyword;
+			window.open(url);
 		});
 		
 	});

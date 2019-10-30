@@ -32,15 +32,23 @@
 
 </head>
 <body>
+
 <br>
 
 
 <div class="container"  style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
 	<div style="float: left;">
-	<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
 	</div>
 	<div class="row"  style="float: right; width: 870px; border-left: double 1px white; height: 700px; padding-left: 30px; padding-right: 30px;">
 		<br>
+		<div class="row">
+			<div class="pull-right" style="float: right;">
+			<input type="submit" class="btn btn-primary form-submit submitbtn"
+				value="적용">
+			</div>
+		</div>
+		
 		<div class="col col-xs-6">
 				<div class="form-group">
 					<label>업로드할 로고이미지 파일을 드랍시키세요</label>
@@ -51,7 +59,7 @@
 					<label>업로드되어있는 로고이미지</label>
 					<div>
 						<img alt="등록이미지"
-							src="/admin/adminSetting/imgManage/displayfile?filename=s_${LogoVo.logofilepath}">
+							src="/admin/main/setting/imgmanage/displayfile?filename=s_${LogoVo.logofilepath}">
 					</div>
 				</div>
 
@@ -69,7 +77,7 @@
 					<label>업로드되어있는 배경이미지</label>
 					<div>
 						<img alt="등록이미지"
-							src="/admin/adminSetting/imgManage/displayfile?filename=s_${BgVo.bgfilepath}">
+							src="/admin/main/setting/imgmanage/displayfile?filename=s_${BgVo.bgfilepath}">
 					</div>
 				</div>
 
@@ -78,15 +86,10 @@
 				</div>
 
 		</div>
-	
-			<div class="pull-right" style="float: right;">
-			<input type="submit" class="btn btn-primary form-submit submitbtn"
-				value="적용">
-			</div>
 
 	</div>
-	
-</div>	
+</div>
+
 	<script type="text/javascript">
 	
 	$("document").ready(function(){
@@ -113,7 +116,7 @@
 				
 				$.ajax({
 					type : 'post',
-					url : '/admin/adminSetting/imgManage/uploadLogoAjax',
+					url : '/admin/main/setting/imgmanage/uploadLogoAjax',
 					data : formData,
 					dataType : 'text',
 					contentType : false,
@@ -122,7 +125,7 @@
 						var str='';
 						
 						if(checkImageType(data)){
-							str += "<label>업로드될 로고이미지</label><div><img src='/admin/adminSetting/imgManage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
+							str += "<label>업로드될 로고이미지</label><div><img src='/admin/main/setting/imgmanage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
 						}else{
 							str += "<div><img src='/resources/test.png' alt='썸네일 안보임.'/><p>"+getOriginalName(data)+"</p></div>"
 						}
@@ -147,7 +150,7 @@
 				
 				$.ajax({
 					type : 'post',
-					url : '/admin/adminSetting/imgManage/uploadBGAjax',
+					url : '/admin/main/setting/imgmanage/uploadBGAjax',
 					data : formData,
 					dataType : 'text',
 					contentType : false,
@@ -156,7 +159,7 @@
 						var str='';
 						
 						if(checkImageType(data)){
-							str += "<label>업로드될 배경이미지</label><div><img src='/admin/adminSetting/imgManage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
+							str += "<label>업로드될 배경이미지</label><div><img src='/admin/main/setting/imgmanage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
 						}else{
 							str += "<div><img src='/resources/test.png' alt='썸네일 안보임.'/><p>"+getOriginalName(data)+"</p></div>"
 						}
@@ -168,7 +171,7 @@
 		});
 		
 		$(".submitbtn").on("click",function(){
-			location.href="/admin/adminSetting/imgManage";
+			location.href="/admin/main/setting/imgmanage";
 		});
 
 	});

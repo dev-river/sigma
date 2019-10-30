@@ -25,7 +25,6 @@
 </head>
 <body>
 
-
 <br>
 	
 <div class="container"  style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
@@ -81,7 +80,7 @@
 			
 			$.ajax({
 				type : 'post',
-				url : '/admin/adminSetting/slideInsert/uploadBNAjax',
+				url : '/admin/main/setting/slidemanageinsert/uploadBNAjax',
 				data : formData,
 				dataType : 'text',
 				contentType : false,
@@ -90,7 +89,7 @@
 					var str='';
 					$(".uploadfilename").val(data);
 					if(checkImageType(data)){
-						str += "<label>업로드될 이미지</label><div><img src='/admin/adminSetting/slideManage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
+						str += "<label>업로드될 이미지</label><div><img src='/admin/main/setting/slidemanage/displayfile?filename="+data+"' alt='일반파일 썸네일입니다' /><p>"+getOriginalName(data)+"</p></div>"
 					}else{
 						str += "<div><img src='/resources/test.png' alt='썸네일 안보임.'/><p>"+getOriginalName(data)+"</p></div>"
 					}

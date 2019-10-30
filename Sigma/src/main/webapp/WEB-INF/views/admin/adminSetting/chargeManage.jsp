@@ -26,7 +26,7 @@
 	<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
 	</div>
 	<div class="row" style="float: right; width: 870px; border-left: double 1px white; height: 700px; padding-left: 30px; padding-right: 30px;">
-	<form action="/admin/adminSetting/chargeManage" method="post" style="min-height: 700px; max-height: auto; padding-top: 30px;">
+	<form action="/admin/main/setting/chargeManage" method="post" style="min-height: 700px; max-height: auto; padding-top: 30px;">
 		<div class="form-group">
 			<label for="regiCharge">게임 등록수수료 설정(원)</label>
 			<input class="form-control" id="regiCharge" name="regiCharge" value="${updatevo.regiCharge}">
@@ -39,9 +39,9 @@
 		<div class="form-group" style=" float:right;">
 			<button class="btn btn-warning modify updatebtn">수정</button>
 		</div>
-	</form>
-	</div>	
-	</div>
+	</form>	
+</div>
+</div>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		

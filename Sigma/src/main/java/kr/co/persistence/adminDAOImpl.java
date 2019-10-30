@@ -27,21 +27,39 @@ public class adminDAOImpl implements adminDAO{
 	private final String NSanalysis = "kr.co.mapper.adminAnalysis";
 
 	@Override
-	public List<memberVO> adminUserList() {
+	public int getUserAmount(SPageTO to) {
 
-		return session.selectList(NSuser+".userList");
+		return session.selectOne(NSuser+".getUserAmount", to);
 	}
 
 	@Override
-	public List<memberVO> adminSellerList() {
+	public List<memberVO> userList(SPageTO to) {
 
-		return session.selectList(NSuser+".sellerList");
+		return session.selectList(NSuser+".userList", to);
 	}
 
 	@Override
-	public List<memberVO> adminAdminList() {
+	public int getSellerAmount(SPageTO to) {
 
-		return session.selectList(NSuser+".adminList");
+		return session.selectOne(NSuser+".getSellerAmount", to);
+	}
+
+	@Override
+	public List<memberVO> sellerList(SPageTO to) {
+
+		return session.selectList(NSuser+".sellerList", to);
+	}
+
+	@Override
+	public int getAdminAmount(SPageTO to) {
+
+		return session.selectOne(NSuser+".getAdminAmount", to);
+	}
+
+	@Override
+	public List<memberVO> adminList(SPageTO to) {
+
+		return session.selectList(NSuser+".adminList", to);
 	}
 	
 	@Override
@@ -177,4 +195,6 @@ public class adminDAOImpl implements adminDAO{
 	public reviewVO reviewRead(int num) {
 		return session.selectOne(NSboard+".reviewRead", num);
 	}
+
+
 }

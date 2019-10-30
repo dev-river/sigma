@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import kr.co.domain.SPageTO;
 import kr.co.domain.adminSetVO;
 import kr.co.domain.adminSlideVO;
-import kr.co.domain.boardVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.reviewVO;
 import kr.co.service.adminService;
@@ -40,25 +39,25 @@ public class adminController {
 	@Resource(name="uploadBNPath")
 	private String uploadBNPath;
 
-	//회원 리스트 ,(분석으로 변경해야하는데 아직 미완성)
-	@RequestMapping(value = "/main/user/adminlist", method = RequestMethod.GET)
-	public void adminUserList(Model model) {
-		List<memberVO> vo = adservice.adminUserList();
-		model.addAttribute("vo", vo);
+	//회원 리스트
+	@RequestMapping(value = "/main/user/adminlist", method = RequestMethod.GET)	
+	public void adminUserList(Model model, SPageTO to) {
+		to = adservice.userList(to);
+		model.addAttribute("vo", to);
 	}
 	
 	//판매회원 리스트
 	@RequestMapping(value = "/main/user/adminsellerlist", method = RequestMethod.GET)
-	public void adminSellerList(Model model) {
-		List<memberVO> vo = adservice.adminSellerList();
-		model.addAttribute("vo", vo);
+	public void adminSellerList(Model model, SPageTO to) {
+		to = adservice.sellerList(to);
+		model.addAttribute("vo", to);
 	}
 
 	//관리회원 리스트
 	@RequestMapping(value = "/main/user/adminadminlist", method = RequestMethod.GET)
-	public void adminAdminList(Model model) {
-		List<memberVO> vo = adservice.adminAdminList();
-		model.addAttribute("vo", vo);
+	public void adminAdminList(Model model, SPageTO to) {
+		to = adservice.adminList(to);
+		model.addAttribute("vo", to);
 	}
 	
 	//회원정보 상세보기
@@ -86,7 +85,7 @@ public class adminController {
 	@RequestMapping(value = "/userManage/delete", method = RequestMethod.GET)
 	public String userDelete(String id) {
 		adservice.userDelete(id);
-		return "redirect:/admin/userManage/userlist";
+		return "redirect:/admin/main/user/adminlist";
 	}
 	
 	// --회원관리 끝-- //
@@ -109,7 +108,7 @@ public class adminController {
 	}
 	
 	//로고 Ajax
-	@RequestMapping(value="/adminSetting/imgManage/uploadLogoAjax", method = RequestMethod.GET)
+	@RequestMapping(value="/main/setting/imgmanage/uploadLogoAjax", method = RequestMethod.GET)
 	public void uploadLogoAjax() {
 		
 	}
@@ -117,7 +116,7 @@ public class adminController {
 
 	//로고 Ajax
 	@ResponseBody
-	@RequestMapping(value="/adminSetting/imgManage/uploadLogoAjax", method=RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	@RequestMapping(value="/main/setting/imgmanage/uploadLogoAjax", method=RequestMethod.POST, produces = "application/text; charset=UTF-8")
 	public ResponseEntity<String> uploadLogoAjax(MultipartHttpServletRequest request, adminSetVO vo) throws Exception{
 		
 		MultipartFile file = request.getFile("file");
@@ -129,14 +128,14 @@ public class adminController {
 	}
 	
 	//배경 Ajax
-	@RequestMapping(value="/adminSetting/imgManage/uploadBGAjax", method = RequestMethod.GET)
+	@RequestMapping(value="/main/setting/imgmanage/uploadBGAjax", method = RequestMethod.GET)
 	public void uploadBGAjax() {
 		
 	}
 	
 	//배경 Ajax
 	@ResponseBody
-	@RequestMapping(value="/adminSetting/imgManage/uploadBGAjax", method=RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	@RequestMapping(value="/main/setting/imgmanage/uploadBGAjax", method=RequestMethod.POST, produces = "application/text; charset=UTF-8")
 	public ResponseEntity<String> uploadBGAjax(MultipartHttpServletRequest request, adminSetVO vo) throws Exception{
 		
 		MultipartFile file = request.getFile("file");
@@ -151,17 +150,17 @@ public class adminController {
 	
 	//-- 관리자 비용관리 --//
 	//수수료 관리UI
-	@RequestMapping(value = "/main/setting/chargelist")
+	@RequestMapping(value = "/main/setting/chargeManage")
 	public void changeChargeUI(Model model) {
 		adminSetVO updatevo = adservice.changeChargeUI();
 		model.addAttribute("updatevo", updatevo);
 	}
 	
 	//수수료 관리
-	@RequestMapping(value = "/main/setting/chargelist", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/setting/chargeManage", method = RequestMethod.POST)
 	public String changeCharge(adminSetVO vo) {
 		adservice.changeCharge(vo);
-		return "redirect:/admin/main/setting/chargelist";
+		return "redirect:/admin/main/setting/chargeManage";
 	}
 	
 	//-- 관리자 비용관리 끝--//
@@ -169,7 +168,7 @@ public class adminController {
 	//-- 메인 슬라이드 이미지(배너) 관리 -- //
 	//배너 이미지 출력
 	@ResponseBody
-	@RequestMapping(value = "/adminSetting/slideManage/displayfile")
+	@RequestMapping(value = "/main/setting/slidemanage/displayfile")
 	public ResponseEntity<byte[]> displayBNfile(String filename){
 		String uploadPath = uploadBNPath;
 		return UploadFileUtils.displayfile(uploadPath, filename);
@@ -184,7 +183,7 @@ public class adminController {
 	}
 	
 	//배너 이미지 삭제
-	@RequestMapping(value = "/adminSetting/slideDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/setting/slideDelete", method = RequestMethod.GET)
 	public String slideDelete(int num) {
 		adservice.slideDelete(num);
 		return "redirect:/admin/main/setting/slidemanage";
@@ -205,14 +204,14 @@ public class adminController {
 	}
 	
 	//배너 이미지등록 Ajax
-	@RequestMapping(value="/adminSetting/slideInsert/uploadBNAjax", method = RequestMethod.GET)
+	@RequestMapping(value="/main/setting/slidemanageinsert/uploadBNAjax", method = RequestMethod.GET)
 	public void uploadBNAjax() {
 		
 	}
 
 	//배너 이미지등록 Ajax
 	@ResponseBody
-	@RequestMapping(value="/adminSetting/slideInsert/uploadBNAjax", method=RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	@RequestMapping(value="/main/setting/slidemanageinsert/uploadBNAjax", method=RequestMethod.POST, produces = "application/text; charset=UTF-8")
 	public ResponseEntity<String> uploadBNAjax(MultipartHttpServletRequest request, adminSlideVO vo) throws Exception{
 		
 		MultipartFile file = request.getFile("file");
@@ -255,7 +254,7 @@ public class adminController {
 	}
 	
 	// 관리자 에러
-	@RequestMapping(value="/adminSetting/adminError", method=RequestMethod.GET)
+	@RequestMapping(value="/main/adminError", method=RequestMethod.GET)
 	public void adminError() {
 		
 	}
