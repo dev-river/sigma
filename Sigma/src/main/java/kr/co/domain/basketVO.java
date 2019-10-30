@@ -17,6 +17,7 @@ public class basketVO implements Serializable{
 	private String writer;
 	private String sregidate;
 	private int price;
+	private String filepath;
 	public basketVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -31,6 +32,13 @@ public class basketVO implements Serializable{
 		this.writer = writer;
 		this.sregidate = sregidate;
 		this.price = price;
+	}
+	
+	public String getFilepath() {
+		return filepath;
+	}
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
 	}
 	public int getNum() {
 		return num;

@@ -42,8 +42,6 @@
 				</div>
 				
 				<br>
-				
-				<br>
 					
 				<label>성별</label> <br>
 				<label for="man">남성</label>
@@ -225,7 +223,7 @@
 			var id = $("input[id='id']").val();
 			var pw = $("input[id='pw']").val();
 			var name = $("input[id='name']").val();
-			var sex = $("input[name='sex']").val();
+			var sex = $("input[name='sex']:checked").val();
 			var nickname = $("input[id='nickname']").val();
 			var birth = $("input[id='birth']").val();
 			var phone= $("input[id='phone']").val();

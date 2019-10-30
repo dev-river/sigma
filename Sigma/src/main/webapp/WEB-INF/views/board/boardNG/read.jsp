@@ -33,7 +33,7 @@
 	<div class="bodymain">
 <div class="container">	
 		<div class="read">
-			<div class="row" style="color: white;">
+			<div class="row">
 				<form action="">
 					<input type="hidden" name="num" value="${readvo.num}">
 					<input type="hidden" name="curPage" value="${to.curPage}">
@@ -63,7 +63,7 @@
 				
 				<div class="form-group">
 					<label for="content">내용</label>
-					<textarea rows="5" cols="150" style="color: black;">${readvo.content}</textarea>
+					<div id="content">${readvo.content}</div>
 				</div>
 				<div>
 				    <input type="button" value="수정" class="btn update btn-primary" id="update">
@@ -71,23 +71,24 @@
 					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/board/boardNG/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
 				</div>
 			</div>
-		
-
+		<hr>
 </div>
 </div>
 </div>
 <br>
 <script type="text/javascript">
 
+ 
+
 	$(document).ready(function(){
 		var frnum = ${readvo.num}; /* 계속 사용될것이므로 전역변수로 지정 */
 		/* var replyPage = 1; */
-		
-		
+
 		/* boardUpdate 부분 */
 		$("#update").on("click",function(){
 			location.href="/board/main/newgame/NewGameUpdate?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}";
 		});
+
 	});
 </script>
 </body>

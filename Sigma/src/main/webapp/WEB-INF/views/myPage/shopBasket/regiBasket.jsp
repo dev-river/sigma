@@ -35,7 +35,7 @@
 					<tr>
 						<th  style="height: 150px; ">
 							<div style="position: relative; left:83%; width: 15%;">
-								<h5 style="width:70%; color: white;" class="pull-left">전체 선택</h5>
+								<h5 style="width:70%;" class="pull-left">전체 선택</h5>
 								<input style="position: relative; top:6px; width:29%;" class="pull-right" type="checkbox" name="check_all">
 							</div>
 						</th>
@@ -44,8 +44,15 @@
 				<tbody>
 					<c:forEach items="${basket}" var="basket">
 						<tr>
-							<td style="min-height: 700xp;">
-								<img alt="" src="/resources/gameDetailFile/${img}" style="width:25%; padding-right: 5px; position: relative; right: 10px;" class="pull-left" id="img1">
+							<td>
+								<c:choose>
+									<c:when test="${basket.filepath eq null}">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width:25%; padding-right: 5px;" class="pull-left">
+									</c:when>
+									<c:otherwise>
+										<img alt="" src="/resources/gameDetailFile/${basket.filepath}" style="width:25%; padding-right: 5px;" class="pull-left">
+									</c:otherwise>
+								</c:choose>
 								<p style="position:relative; top:20px; width:35%" class="pull-left gn">게임 이름 : ${basket.title}</p>
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">배급사 : ${basket.writer}</p> 
 								<p style="position:relative; top:20px; width:35%" class="pull-left">출시일 : ${basket.gregidate}</p>
@@ -100,7 +107,8 @@
 							dataType : 'text',
 							success : function(event) {
 								if(event=='failed'){
-									alert("["+gamename.title+"]는 이미 구매하신 게임입니다.")
+									alert("["+gamename.title+"]는 이미 구매하신 게임입니다.");
+									window.location.reload();
 								} else{
 									alert("["+gamename.title+"]를 구매 완료 했습니다.");
 									window.location.reload();

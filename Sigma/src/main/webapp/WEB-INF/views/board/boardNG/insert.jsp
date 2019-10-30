@@ -10,26 +10,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.bodymain {
-	position: relative;
-	margin: auto;
-	height: auto;
-	width: 1070px;
-}
 .insert{
 	position: relative;
 	width: 1070px;
-	height: 850px;
+	height: auto;
 	margin: 0;
 	right: 45px;
+}
+label{
+	color: white;
 }
 </style>
 </head>
 
 <body>
 	<br><br><br>
+	<div class="bodymain">
 	<div class="container" id="insert_form">
 		<div class="insert">
 		<div class="row">
@@ -52,9 +50,12 @@
 					<input type="button" class="btn btn-danger" id="cancle" value="취소" onclick="location.href='/board/main/newgame/NewGame'">
 				</div>
 			</form>
+			
 		</div>
 	</div>
 </div>
+</div>
+
 <!-- <script type="text/javascript">
       var oEditors = [];
       nhn.husky.EZCreator.createInIFrame({
@@ -88,4 +89,5 @@
       
    </script> -->
 </body>
+ 
 </html>

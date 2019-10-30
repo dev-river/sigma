@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.domain.PageTO;
 import kr.co.domain.SPageTO;
 import kr.co.domain.boardVO;
+import kr.co.domain.memberVO;
 import kr.co.service.boardService;
 import kr.co.service.replyService;
 import kr.co.service.sboardService;
@@ -40,7 +43,11 @@ public class boardController {
 	}
 	
 	@RequestMapping(value = "/main/list/boardinsert", method = RequestMethod.GET)
-	public void boardFRinsertUI() {
+	public void boardFRinsertUI(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		memberVO vo = (memberVO)session.getValue("login");
+		String nickname = vo.getNickname();
+		model.addAttribute("nickname", nickname);
 	}
 	
 	@RequestMapping(value = "/main/list/boardinsert", method = RequestMethod.POST)
@@ -88,13 +95,13 @@ public class boardController {
 	//==========================================slist======================================================
 	
 	@RequestMapping("/main/slist/searchboardlist")
-	public void list(SPageTO sto, Model model) {
-		SPageTO dbSTO = sbService.list(sto);
+	public void list(SPageTO<boardVO> sto, Model model) {
+		SPageTO<boardVO> dbSTO = sbService.list(sto);
 		model.addAttribute("to", dbSTO); 
 	}
 	
 	@RequestMapping(value = "/main/slist/searchboardread")
-	public void read(Model model, int num, SPageTO sto) {
+	public void read(Model model, int num, SPageTO<boardVO> sto) {
 		boardVO svo = sbService.read(num);
 		
 		model.addAttribute("vo", svo);
@@ -109,14 +116,14 @@ public class boardController {
 	}
 	
 	@RequestMapping(value="/main/slist/searchboardupdate", method = RequestMethod.GET) 
-	public void	updateUI(Model model, SPageTO sto, int num) {
+	public void	updateUI(Model model, SPageTO<boardVO> sto, int num) {
 		boardVO vo = sbService.updateUI(num); 
 		model.addAttribute("vo", vo);
 		model.addAttribute("to", sto); 
 	}
 
 	@RequestMapping(value="/main/slist/searchboardupdate", method = RequestMethod.POST)
-	public String update(boardVO vo, SPageTO sto) { 
+	public String update(boardVO vo, SPageTO<boardVO> sto) { 
 		
 		sbService.update(vo);
 		

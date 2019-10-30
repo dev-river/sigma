@@ -44,13 +44,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${to.list}" var="vo">
+			<c:forEach items="${to.list}" var="no">
 				<tr>
-					<td>${vo.num}</td>
-					<td><a href="/board/main/slist/searchboardNGRead?num=${vo.num}&searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}">${vo.title}</a></td>
-					<td>${vo.writer}</td>
-					<td>${vo.updatedate}</td>
-					<td>${vo.viewcnt}</td>
+					<td>${no.num}</td>
+					<td><a href="/board/main/slist/searchboardNGRead?num=${no.num}&searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}">${no.title}</a></td>
+					<td>${no.writer}</td>
+					<td>${no.updatedate}</td>
+					<td>${no.viewcnt}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -94,9 +94,9 @@
 				            	var curPage = ${to.curPage}
 				            	
 				               if(curPage>totalPage){
-				                  location.assign("/board/main/slist/searchboardNGList?perPage="+perPage+"&curPage="+totalPage+"&searchType=${to.searchType}&keyword=${to.keyword}");
+				                  location.assign("/board/main/searchboardNGList?perPage="+perPage+"&curPage="+totalPage+"&searchType=${to.searchType}&keyword=${to.keyword}");
 				               }else {
-				                  location.assign("/board/main/slist/searchboardNGList?perPage="+perPage+"&curPage=${dbTO.curPage}&searchType=${to.searchType}&keyword=${to.keyword}");
+				                  location.assign("/board/main/searchboardNGList?perPage="+perPage+"&curPage=${dbTO.curPage}&searchType=${to.searchType}&keyword=${to.keyword}");
 				               }
 				            }
 				         });

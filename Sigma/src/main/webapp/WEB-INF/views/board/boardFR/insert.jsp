@@ -31,7 +31,7 @@ label{
 				</div>
 				<div class="form-group">
 					<label for="writer">작성자</label>
-					<input id="writer" name="writer" class="form-control" placeholder="작성자">
+					<input id="writer" name="writer" class="form-control" value="${nickname}" readonly="readonly">
 				</div>
 				<br>
 				<div class="form-group">

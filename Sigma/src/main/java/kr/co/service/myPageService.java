@@ -82,5 +82,7 @@ public interface myPageService {
 
 	int reviewcount(String id);
 
+	void alldelete(String id);
+
 
 }

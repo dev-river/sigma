@@ -110,6 +110,8 @@
 				<img class=""  id="img1" src="/resources/gameDetailFile/${file}" alt="" height="190px" width="240px" style="margin: 5px;" data-target="#carouselExampleIndicators" data-slide-to="${i.index+1}">
 			</c:forEach>
 		</div>
+		<div>
+			<input type="button" class="btn btn-primary" value="이미지 수정">
 		</div>
 		<br>
 		<div style="float: left;">

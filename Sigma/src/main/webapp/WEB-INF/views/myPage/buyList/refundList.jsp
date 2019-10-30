@@ -76,7 +76,6 @@
 					},
 					dataType : 'text',
 					success : function(event) {
-						alert("ㅂㅈㄷ");
 						window.location.reload();
 					}
 				}); //ajax끝

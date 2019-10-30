@@ -72,15 +72,12 @@ public class gameDetailController {
 		
 		//해당 num에 걸려있는 이미지 파일 가져오기  from gameDetailFile
 		List<String> filepath = gservice.filepath(num);
-		if(filepath.size() == 0) {
-	         filepath.add("noimage.png");
-	         filepath.add("noimage.png");
-	      }
-	      if(filepath.size() == 1) {
-	         filepath.add("noimage.png");
-	      }
-		String firstfilepath = filepath.get(1);
-		filepath.remove(0);
+		/*
+		 * if(filepath.size() == 0) { filepath.add("noimage.png");
+		 * filepath.add("noimage.png"); } if(filepath.size() == 1) {
+		 * filepath.add("noimage.png"); }
+		 */
+		String firstfilepath = filepath.get(0);
 		filepath.remove(0);
 		
 		//할인정보 가져오기

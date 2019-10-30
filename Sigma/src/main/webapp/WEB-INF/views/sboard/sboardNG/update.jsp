@@ -18,7 +18,7 @@
 	<div class="container">
 		<h3>게시글 수정</h3><br/>
 		
-		<form action="/board/main/slist/searchboardupdate" method="post">
+		<form action="/board/main/slist/searchboardNGUpdate" method="post">
 			<input type="hidden" name="curPage" value="${to.curPage}">
 			<input type="hidden" name="perPage" value="${to.perPage}">
 			<input type="hidden" name="searchType" value="${to.searchType}">
