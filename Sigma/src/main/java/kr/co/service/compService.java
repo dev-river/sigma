@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.domain.gameDetailDcVO;
+import kr.co.domain.gameDetailFileVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.refundVO;
@@ -43,4 +44,20 @@ public interface compService {
 	void giveback2(int buynum);
 
 	int seachcash(String writer);
+
+	int datalist(String writer);
+
+	int datalist1(String writer);
+
+	void gameimg(List list, int gdnum);
+
+	gameVO titlecheck(String title);
+
+	int checknum(gameVO vo);
+
+	int mancount(String writer);
+
+	int womancount(String writer);
+	
+	
 }
