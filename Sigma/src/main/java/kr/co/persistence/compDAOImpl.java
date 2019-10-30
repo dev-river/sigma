@@ -138,4 +138,14 @@ public class compDAOImpl implements compDAO {
 	public int checknum(gameVO vo) {
 		return session.selectOne(NS+".checknum", vo);
 	}
+
+	@Override
+	public int mancount(String writer) {
+		return session.selectOne(NS+".mancount", writer);
+	}
+
+	@Override
+	public int womancount(String writer) {
+		return session.selectOne(NS+".womancount", writer);
+	}
 }

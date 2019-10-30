@@ -132,4 +132,14 @@ public class compServiceImpl implements compService{
 	public void gameimg(List list, int gdnum) {
 		dao.gameimg(list, gdnum);
 	}
+
+	@Override
+	public int mancount(String writer) {
+		return dao.mancount(writer);
+	}
+
+	@Override
+	public int womancount(String writer) {
+		return dao.womancount(writer);
+	}
 }

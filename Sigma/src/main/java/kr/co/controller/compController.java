@@ -226,8 +226,12 @@ public class compController {
 	public void gamelist(String writer, Model model) {
 		List<gameVO> gamelist = compservice.gamelist(writer);
 		List<gameDetailDcVO> gameDetailDC =  compservice.gameDetailDC(writer);
+		int man = compservice.mancount(writer);
+		int woman = compservice.womancount(writer);
 		model.addAttribute("gamelist", gamelist);
 		model.addAttribute("gameDetailDC", gameDetailDC);
+		model.addAttribute("man", man);
+		model.addAttribute("woman", woman);
 	}
 	
 	//게임 등록 UI
@@ -248,7 +252,18 @@ public class compController {
 		compservice.gameinsert(vo);
 		
 		int gdnum = compservice.checknum(vo);
-		System.out.println("gdnum : "+gdnum);
+		if(filename1 == null) {
+			filename1 = "noimage.png";
+		}
+		if(filename2 == null) {
+			filename2 = "noimage.png";
+		}
+		if(filename3 == null) {
+			filename3 = "noimage.png";
+		}
+		if(filename4 == null) {
+			filename4 = "noimage.png";
+		}
 		//gamedetailfile에 그림 이미지 4개 등록
 		List list = new ArrayList();
 		list.add(0, filename1);

@@ -54,6 +54,10 @@ public interface compService {
 	gameVO titlecheck(String title);
 
 	int checknum(gameVO vo);
+
+	int mancount(String writer);
+
+	int womancount(String writer);
 	
 	
 }

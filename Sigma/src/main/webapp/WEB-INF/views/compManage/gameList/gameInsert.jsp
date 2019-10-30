@@ -109,6 +109,7 @@
 				<div class="ImgsrcList4"></div>
 			</div>
 			<div style="float: left;">
+				<p >
 				<button class="btn insert">등록</button>
 				<input type="button" class="btn" value="취소" onclick="location.href='/compManage/main/gamelist?writer=${login.id}'">
 			</div>
@@ -162,9 +163,9 @@
 						var str = '';
 						
 						if(checkImageType(data)){
-							str += "<div><img src='/compManage/displayfile?filename="+data+"' alt='게임파일 그림'/><input type='hidden' id='filename' name='filename' value='"+data+"'></div>";
+							str += "<div><p>'"+data+"'</p><input type='hidden' id='filename' name='filename' value='"+data+"'></div>";
 						}else{
-							str += "<div><img href='/compManage/gamefile?filename="+data+"'><img src='/resources/test.png' alt='일반파일 썸네일입니다.'/><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
+							str += "<div><img href='/compManage/gamefile?filename="+data+"'><p style='color: white;'>"+getOriginalName(data)+"</p><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
 						}
 						
 						$(".GameList").append(str);
@@ -198,7 +199,7 @@
 						var str = '';
 						
 						if(checkImageType(data)){
-							str += "<div><img src='/compManage/imgfile?filename="+data+"' alt='게임파일 그림'/><input type='hidden' id='filepath' name='filepath' value='"+data+"'></div>";
+							str += "<div><img src='/compManage/imgfile?filename="+data+"' alt='게임파일 그림'/><p style='color: white;'>"+getOriginalName(data)+"</p><input type='hidden' id='filepath' name='filepath' value='"+data+"'></div>";
 						}else{
 							str += "<div><img href='/compManage/displayfile?filename="+data+"'><img src='/resources/test.png' alt='일반파일 썸네일입니다.'/><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
 						}
@@ -234,7 +235,7 @@
 						var str = '';
 						
 						if(checkImageType(data)){
-							str += "<div><img src='/compManage/imgsrcfile1?filename="+data+"' alt='게임파일 그림'/><input type='hidden' id='filename' name='filename1' value='"+data+"'></div>";
+							str += "<div><img src='/compManage/imgsrcfile1?filename="+data+"' alt='게임파일 그림'/><p style='color: white;'>"+getOriginalName(data)+"</p><input type='hidden' id='filename' name='filename1' value='"+data+"'></div>";
 						}else{
 							str += "<div><img href='/compManage/imgsrcfile?filename="+data+"'><img src='/resources/test.png' alt='일반파일 썸네일입니다.'/><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
 						}
@@ -270,7 +271,7 @@
 						var str = '';
 						
 						if(checkImageType(data)){
-							str += "<div><img src='/compManage/imgsrcfile2?filename="+data+"' alt='게임파일 그림'/><input type='hidden' id='filename' name='filename2' value='"+data+"'></div>";
+							str += "<div><img src='/compManage/imgsrcfile2?filename="+data+"' alt='게임파일 그림'/><p style='color: white;'>"+getOriginalName(data)+"</p><input type='hidden' id='filename' name='filename2' value='"+data+"'></div>";
 						}else{
 							str += "<div><img href='/compManage/imgsrcfile?filename="+data+"'><img src='/resources/test.png' alt='일반파일 썸네일입니다.'/><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
 						}
@@ -306,7 +307,7 @@
 						var str = '';
 						
 						if(checkImageType(data)){
-							str += "<div><img src='/compManage/imgsrcfile3?filename="+data+"' alt='게임파일 그림'/><input type='hidden' id='filename' name='filename3' value='"+data+"'></div>";
+							str += "<div><img src='/compManage/imgsrcfile3?filename="+data+"' alt='게임파일 그림'/><p style='color: white;'>"+getOriginalName(data)+"</p><input type='hidden' id='filename' name='filename3' value='"+data+"'></div>";
 						}else{
 							str += "<div><img href='/compManage/imgsrcfile?filename="+data+"'><img src='/resources/test.png' alt='일반파일 썸네일입니다.'/><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
 						}
@@ -342,7 +343,7 @@
 						var str = '';
 						
 						if(checkImageType(data)){
-							str += "<div><img src='/compManage/imgsrcfile4?filename="+data+"' alt='게임파일 그림'/><input type='hidden' id='filename' name='filename4' value='"+data+"'></div>";
+							str += "<div><img src='/compManage/imgsrcfile4?filename="+data+"' alt='게임파일 그림'/><p style='color: white;'>"+getOriginalName(data)+"</p><input type='hidden' id='filename' name='filename4' value='"+data+"'></div>";
 						}else{
 							str += "<div><img href='/compManage/imgsrcfile?filename="+data+"'><img src='/resources/test.png' alt='일반파일 썸네일입니다.'/><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
 						}
@@ -359,11 +360,17 @@
 		return data.match(pattern);
 	}
 	
+	function getOriginalName(data){	
+		
+		var idx = data.lastIndexOf("_")+1;
+		
+		return data.substring(idx);
+	}
+	
 	function check(){
 		var cash = $("input[id='cash']").val();
 		var writer = $("input[id='writer']").val();
 		var title = $(".titlecheck").text();
-		alert(title);
 		if(cash >= 0  && cash < 1000){
 			var check = confirm("캐시 충전하시겠습니까?");
 			if(check==true){

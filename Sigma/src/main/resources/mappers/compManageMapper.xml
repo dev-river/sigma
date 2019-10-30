@@ -97,4 +97,12 @@
 	<insert id="gameimg">
 		insert into gamedetailfile(num, gdnum, filename) values((select nvl2(max(num),max(num)+1, 1) from gamedetailfile), #{gdnum}, #{filename})
 	</insert>
+	
+	<select id="mancount" resultType="Integer">
+		select count(usersex) as usersex from sellinfo s, gamedetail g where s.gdnum=g.num and g.writer=#{writer} and s.usersex='남자'
+	</select>
+	
+	<select id="womancount" resultType="Integer">
+		select count(usersex) as usersex from sellinfo s, gamedetail g where s.gdnum=g.num and g.writer=#{writer} and s.usersex='여자'
+	</select>
 </mapper>

@@ -103,20 +103,24 @@ p,th,td{
 <script type="text/javascript">
 	google.load('visualization', '1', {'packages' : ['corechart']});
 	google.setOnLoadCallback(drawChart);
-	function drawChart(){
-		var writer = '<c:out value="${login.id}"/>';
-		var jsonData = $.ajax({
-			url : "/compManage/chart",
-			data : {
-				writer : writer
-			},
-			dataType : "json",
-			async : false
-		}).responseText;
-		console.log(jsonData);
-		var data = new google.visualization.DataTable(jsonData);
-		var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-		chart.draw(data, {width: 400, height: 240});
+	
+	function drawChart() {
+	
+	  var data = google.visualization.arrayToDataTable([
+	    ['Task', 'Hours per Day'],
+	    ['남자',     ${man}],
+	    ['여자',     ${woman}]
+	  ]);
+	
+	  var options = {
+	    title: '성별',
+	   	backgroundColor: { fill:'transparent' },
+           titleTextStyle: {color: 'white', fontSize: 15 },
+	  };
+	
+	  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+	
+	  chart.draw(data, options);
 	}
 </script>
 </body>
