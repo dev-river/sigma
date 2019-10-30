@@ -16,15 +16,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.list {
-	position: relative;
-	width: 1070px;
-	height: 100%;
-	margin: 0;
-	right: 45px;
-}
+
 #keyword {
-	width: 765px;
+	width: 800px;
 }
 
 #searchBtn {

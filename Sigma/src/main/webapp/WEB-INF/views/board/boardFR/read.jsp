@@ -218,7 +218,7 @@
 		/* replyReset 부분 */
 		$("#btnReset").click(function(){
 			$("#replycontent").val("");
-			$("#replyer").val("");
+			
 		});
 		
 		getAllList(frnum);

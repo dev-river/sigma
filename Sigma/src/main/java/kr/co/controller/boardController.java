@@ -88,13 +88,13 @@ public class boardController {
 	//==========================================slist======================================================
 	
 	@RequestMapping("/main/slist/searchboardlist")
-	public void list(SPageTO sto, Model model) {
-		SPageTO dbSTO = sbService.list(sto);
+	public void list(SPageTO<boardVO> sto, Model model) {
+		SPageTO<boardVO> dbSTO = sbService.list(sto);
 		model.addAttribute("to", dbSTO); 
 	}
 	
 	@RequestMapping(value = "/main/slist/searchboardread")
-	public void read(Model model, int num, SPageTO sto) {
+	public void read(Model model, int num, SPageTO<boardVO> sto) {
 		boardVO svo = sbService.read(num);
 		
 		model.addAttribute("vo", svo);
@@ -109,14 +109,14 @@ public class boardController {
 	}
 	
 	@RequestMapping(value="/main/slist/searchboardupdate", method = RequestMethod.GET) 
-	public void	updateUI(Model model, SPageTO sto, int num) {
+	public void	updateUI(Model model, SPageTO<boardVO> sto, int num) {
 		boardVO vo = sbService.updateUI(num); 
 		model.addAttribute("vo", vo);
 		model.addAttribute("to", sto); 
 	}
 
 	@RequestMapping(value="/main/slist/searchboardupdate", method = RequestMethod.POST)
-	public String update(boardVO vo, SPageTO sto) { 
+	public String update(boardVO vo, SPageTO<boardVO> sto) { 
 		
 		sbService.update(vo);
 		

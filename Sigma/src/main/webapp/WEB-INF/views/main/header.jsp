@@ -108,9 +108,9 @@
 								</ul></li>
 							<li><a href="#" id="me2">고객센터</a>
 								<ul>
-									<li><a href="#">공지사항</a></li>
-									<li><a href="#">1:1 문의</a></li>
-									<li><a href="#">Q and A</a></li>
+									<li><a href="/board/main/notice/boardNO">공지사항</a></li>
+									<li><a href="/board/main/One/One">1:1 문의</a></li>
+									<li><a href="/QnA">Q and A</a></li>
 									<li><a href="/myPage/buyList/refundInsert">환불신청</a></li>
 								</ul>
               </li>
@@ -119,7 +119,7 @@
 					
 			</div> <!--head -->
 		</div><!-- container -->
-		<hr style="border: solid 3px #F6F6F6; position: relative; top: 33px; ">
+		<hr style="border: solid 3px #F6F6F6; position: relative; top: 35px; ">
 	</div><!-- header -->
 
 
