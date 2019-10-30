@@ -118,7 +118,7 @@
 	border-radius: 10px 10px 0px 0px;
 }
 
-.menubar li a:hover, .menubar ul li:hover a { /*드랍 마우스*/
+.menubar li a:hover, .menubar ul li:hover a{ /*드랍 마우스*/
 	transition : .30s ease-in-out;	/*천천히 반응 하게 하는거 transition*/
 	transform : rotateX (-90deg) rotateY (0);
 	transform-origin : 0 0;

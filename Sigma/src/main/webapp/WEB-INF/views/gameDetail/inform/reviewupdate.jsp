@@ -23,10 +23,13 @@ color: white;
 	<div class="bodymain">
 		<div class="container">
 		<br>
+		<img alt="#" src="/resources/main/SIGMA로고.png">
+		<br>
 	<input type="hidden" name="num" id="num" value="${vo.num}">
-	<label for="writer">작성자: </label><input name="writer" id="writer" value="${vo.writer}" readonly="readonly" style="border-radius: 10px;"><br/>
+	<label for="writer">작성자: </label><input name="writer" id="writer" value="${vo.writer}" readonly="readonly" style="border-radius: 10px;">&nbsd;
+	<label for="likeselect">추천/비추천: </label><input name="likeselect" id="likeselect" value="${vo.recommend}" readonly="readonly" style="border-radius: 10px;"><br>
 	<textarea rows="4" cols="100" style="border-radius: 10px; resize: none;" id="content">${vo.content}</textarea><br/>
-	<label for="likeselect">추천/비추천: </label><input name="likeselect" id="likeselect" value="${vo.recommend}" readonly="readonly" style="border-radius: 10px;"><br/>
+	
 	
 	<!-- <select name="likeselect" id="likeselect">
    		<option value="추천">추천</option>

@@ -19,14 +19,15 @@
 .img2 {
 	position: relative;
 	left: 15px;
-	width: 1070px;
-	height: 400px;
+	width: 1170px;
+	height: 430px;
 }
 
 .table0 {
-	width: 300px;
+	width: 28%;
 	position: relative;
-	right: 10px;
+	left: 1%;
+
 }
 .table0 a,.table1 a, .table2 a{
 	color: white;
@@ -35,18 +36,18 @@
 	color: white;
 }
 .table1 {
-	width: 300px;
+	width: 28%;
 	position: relative;
-	left: 415px;
+	left: 36%;
 	margin: 0px;
-	bottom: 400px;
+	bottom: 412px;
 }
 
 .table2 {
-	width: 300px;
+	width: 28%;
 	position: relative;
-	left: 830px;
-	bottom: 800px;
+	left: 70%;
+	bottom: 824px;
 	margin: 0px;
 }
 
@@ -57,6 +58,8 @@
 
 #mainimg{
 	border-radius: 20px;
+	width: 1170px;
+	height: 430px;
 }
 .table0 th, .table0 td , .table1 th, .table1 td , .table2 th  , .table2 td{
 	color: white;
