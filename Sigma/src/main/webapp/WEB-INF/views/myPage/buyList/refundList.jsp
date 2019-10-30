@@ -22,11 +22,11 @@
 <div class="bodymain">
 	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;" >
 		<div class="row" style="padding-bottom: 30px;">
-			<h2>내 환불 신청 목록</h2>
 			<table class="table" style="position:relative; left: 200px; width: 60%;">
 				<thead>
 					<tr>
-						<th>
+						<th  style="height: 150px;">
+							<h2 style="color: white;">내 환불 신청 목록</h2>
 							<div style="position: relative; left:83%; width: 15%;">
 							</div>
 						</th>

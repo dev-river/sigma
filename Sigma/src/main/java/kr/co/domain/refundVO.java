@@ -23,6 +23,7 @@ public class refundVO implements Serializable{
 	private String writer;
 	private String regidate;
 	private String filepath;
+	private int dcrate;
 	
 	public refundVO() {
 		// TODO Auto-generated constructor stub
@@ -48,6 +49,17 @@ public class refundVO implements Serializable{
 		this.writer = writer;
 		this.regidate = regidate;
 		this.filepath = filepath;
+	}
+
+	
+
+	public int getDcrate() {
+		return dcrate;
+	}
+
+
+	public void setDcrate(int dcrate) {
+		this.dcrate = dcrate;
 	}
 
 

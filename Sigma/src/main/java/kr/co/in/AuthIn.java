@@ -1,5 +1,8 @@
 package kr.co.in;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,12 +22,12 @@ public class AuthIn extends HandlerInterceptorAdapter{
 				return true;
 			}else {
 				saveDest(request);
-				response.sendRedirect("/member/login/login");
+				alert(response);
 				return false;
 			}
 		}else {
 			saveDest(request);
-			response.sendRedirect("/member/login/login");
+			alert(response);
 			return false;
 		}
 	}
@@ -46,6 +49,16 @@ public class AuthIn extends HandlerInterceptorAdapter{
 			
 		}
 		
+	}
+	
+	private void alert(HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		 
+		PrintWriter out = response.getWriter();
+		 
+		out.println("<script>alert('로그인이 필요한 페이지입니다.'); location.href='/member/login/login';</script>");
+		 
+		out.flush();
 	}
 	
 	
