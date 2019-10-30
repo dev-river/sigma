@@ -31,19 +31,22 @@
 .table0 a,.table1 a, .table2 a{
 	color: white;
 }
+.table0 a :hover,.table1 a :hover, .table2 a :hover{
+	color: white;
+}
 .table1 {
 	width: 300px;
 	position: relative;
 	left: 415px;
 	margin: 0px;
-	bottom: 411px;
+	bottom: 400px;
 }
 
 .table2 {
 	width: 300px;
 	position: relative;
 	left: 830px;
-	bottom: 822px;
+	bottom: 800px;
 	margin: 0px;
 }
 

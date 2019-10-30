@@ -67,10 +67,13 @@
 	$(document).ready(function(){
 		var frnum = ${vo.num};  /* 계속 사용될것이므로 전역변수로 지정 */
 		
-		/* boardUpdate 부분 */
+		/* boardNGUpdate 부분 */
+		
 		$(".update").on("click",function(){
 			location.href="/board/main/slist/searchboardNGUpdate?num=${vo.num}&searchType=${to.searchType}&keyword=${to.keyword}&curPage=${to.curPage}&perPage=${to.perPage}";
 		});
+		
+		/* boardNGDelete부분 */
 		
 			$(".del").click(function(){
 				
@@ -78,7 +81,7 @@
 				
 				$.ajax({
 					type : 'post',
-					url : '/searchMainboardDel',
+					url : '/board/searchMainboardNGDel',
 					data : {
 						num : num
 					},
@@ -87,6 +90,7 @@
 					}
 				});
 			});
+	});
 	
 </script>
 </body>

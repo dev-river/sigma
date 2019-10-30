@@ -63,7 +63,7 @@
                 		 </div>
                 		 <div id="admin">
                		 	 <c:if test="${login.author eq 'admin'}">
-                    		 <a class="glyphicon glyphicon-user" href="/admin/main/adminlist?id=${login.id}">관리자페이지</a>
+                    		 <a class="glyphicon glyphicon-user" href="/admin/main/user/adminlist?id=${login.id}">관리자페이지</a>
                    			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
                 		 </c:if>
                 		 </div>
@@ -88,35 +88,35 @@
 						<ul>
 							<li><a href="#" id="me1">새소식</a>
 								<ul>
-									<li><a href="/board/main/event/event">이벤트</a></li>
-									<li><a href="/board/main/newgame/NewGame">새 게임 소식</a></li>
+									<li id="st"><a href="/board/main/event/event">이벤트</a></li>
+									<li id="end"><a href="/board/main/newgame/NewGame">새 게임 소식</a></li>
 								</ul></li>
 
-							<li><a href="#" id="current">게임 추천</a>
+							<li><a href="/recommand/customRec?curPage=1&perPage=6" id="current">맞춤 게임</a>
 								<ul>
-									<li><a href="#">게임추천</a></li>
-									<li><a href="#">무료게임</a></li>
-									<li><a href="#">이벤트게임</a></li>
-									<li><a href="#">할인게임</a></li>
+									<li><a href="/recommand/hotgameRec?curPage=1&perPage=9">인기게임</a></li>
+									<li><a href="/recommand/freegameRec?curPage=1&perPage=6">무료게임</a></li>
+									<li><a href="/recommand/newgameRec?curPage=1&perPage=6">신작게임</a></li>
+									<li><a href="/recommand/dcgameRec?curPage=1&perPage=6">할인게임</a></li>
 								</ul>
 							<li><a href="/gameDetail/main/maincategory?category=all&curPage=1&perPage=6">카테고리</a>
 								<ul>
-									<li><a href="/gameDetail/main/maincategory?category=rpg">RPG</a></li>
+									<li id="st"><a href="/gameDetail/main/maincategory?category=rpg">RPG</a></li>
 									<li><a href="/gameDetail/main/maincategory?category=sportsracing">스포츠/레이싱</a></li>
 									<li><a href="/gameDetail/main/maincategory?category=strategysimulation">전략/시뮬레이션</a></li>
 									<li><a href="/gameDetail/main/maincategory?category=actionadventure">액션/어드벤쳐</a></li>
-									<li><a href="/gameDetail/main/maincategory?category=etc">기타</a></li>
+									<li id="end"><a href="/gameDetail/main/maincategory?category=etc">기타</a></li>
 								</ul></li>
 							<li><a href="/board/main/list/boardlist">커뮤니티</a>
 								<ul>
-									<li><a href="/board/main/list/boardlist">자유게시판</a></li>
+									<li id="free"><a href="/board/main/list/boardlist">자유게시판</a></li>
 								</ul></li>
 							<li><a href="#" id="me2">고객센터</a>
 								<ul>
-									<li><a href="#">공지사항</a></li>
-									<li><a href="#">1:1 문의</a></li>
-									<li><a href="#">Q and A</a></li>
-									<li><a href="/myPage/buyList/refundInsert">환불신청</a></li>
+									<li><a href="/board/main/notice/boardNO">공지사항</a></li>
+									<li><a href="/board/main/One/One">1:1 문의</a></li>
+									<li><a href="/QnA">Q and A</a></li>
+									<li id="end"><a href="/myPage/buyList/refundInsert">환불신청</a></li>
 								</ul>
               </li>
 						</ul>

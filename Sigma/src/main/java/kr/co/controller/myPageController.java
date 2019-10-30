@@ -89,8 +89,13 @@ public class myPageController {
 	//회원 탈퇴
 	@RequestMapping(value = "/myProfile/delete", method = RequestMethod.GET)
 	public String delete(String id, String pw) {
-		mpService.delete(id, pw);
+		//구매목록 삭제
+		//환불목록 삭제
+		//찜리스트 삭제
+		//단골리스트 삭제
+		mpService.alldelete(id);
 		
+		mpService.delete(id, pw);
 		return "redirect:/member/login/logout";
 	}
 	
@@ -134,7 +139,6 @@ public class myPageController {
 				model.addAttribute("img", firstfilepath);
 			}
 		}
-		
 		model.addAttribute("basket", list);
 	}
 	
@@ -184,8 +188,12 @@ public class myPageController {
 		for(int i=0; i<list.size(); i++) {
 			int gdnum = list.get(i).getGdnum();
 			List<String> filepath = gservice.filepath(gdnum);
-			String firstfilepath = filepath.get(1);
-			model.addAttribute("img", firstfilepath);
+			if(filepath.size() == 0) {
+				model.addAttribute("img", "noimage.png");
+			} else if(filepath.size() != 0){
+				String firstfilepath = filepath.get(0);
+				model.addAttribute("img", firstfilepath);
+			}
 		}
 		model.addAttribute("zzim", list);
 	}
@@ -224,6 +232,16 @@ public class myPageController {
 	public String insertBuyList(int gdnum, String id) {
 		//장바구니에서 삭제
 		mpService.deleteBasketList(gdnum, id);
+		//찜목록에서 삭제
+		List<basketVO> list = mpService.zzim_list(id);
+		if(list != null) {
+			for(int i=0; i<list.size(); i++) {
+				int gnum = list.get(i).getGdnum();
+				if(gdnum==gnum) {
+					mpService.zzimDelete(gdnum, id);
+				}
+			}
+		}
 		//이미 구매한 상품인지 체크
 		List<buyListVO> buylist = mpService.buyList(id);
 		for(int i=0; i<buylist.size(); i++) {
@@ -235,16 +253,6 @@ public class myPageController {
 		gameVO vo = gservice.read(gdnum);
 		//구매 리스트에 추가
 		mpService.insertBuyList(gdnum, id, vo.getPrice());
-		//찜목록에서 삭제
-		List<basketVO> list = mpService.zzim_list(id);
-		if(list != null) {
-			for(int i=0; i<list.size(); i++) {
-				int gnum = list.get(i).getGdnum();
-				if(gdnum==gnum) {
-					mpService.zzimDelete(gdnum, id);
-				}
-			}
-		}
 		//캐쉬 차감
 		int gamePrice = vo.getPrice();
 		memberVO myinfo = mpService.getMemberVO(id);
@@ -329,7 +337,7 @@ public class myPageController {
 	}
 	
 	//환불 신청 조회
-	@RequestMapping(value = "buyList/refundList", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/buy/refundlist", method = RequestMethod.GET)
 	public void refundList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		memberVO obj = (memberVO)session.getValue("login");
@@ -370,7 +378,7 @@ public class myPageController {
 	@RequestMapping(value = "/buyList/refundInsert", method = RequestMethod.POST)
 	public String refundInsert(int buynum, String content, String id) {
 		mpService.refundInsert(buynum, content, id);
-		return "redirect:/myPage/buyList/refundList";
+		return "redirect:/myPage/main/buy/refundlist";
 	}
 	
 	//배급사 리스트로 이동
@@ -382,16 +390,22 @@ public class myPageController {
 		List<gameVO> comp = mpService.subComp(writer);
 		List<favoriteStoreVO> compnum = mpService.favComp(obj.getId(), writer);
 		int num = 0;
-		if(compnum.size()!=0) {
-			num = compnum.get(0).getCompnum();
-		}
-		String cwriter = comp.get(0).getWriter();
-		String filepath = comp.get(0).getFilepath();
-		String content = comp.get(0).getContent();
-
-		for(int i=0; i<comp.size(); i++) {
-			if(comp.get(i).getCompnum() == num) {
-				model.addAttribute("ok", "ok");
+		String cwriter = null;
+		String filepath = null;
+		String content = null;
+		
+		if(comp.size()!=0) {
+			cwriter = comp.get(0).getWriter();
+			filepath = comp.get(0).getFilepath();
+			content = comp.get(0).getContent();
+			
+			if(compnum.size()!=0) {
+				num = compnum.get(0).getCompnum();
+				for(int i=0; i<comp.size(); i++) {
+					if(comp.get(i).getCompnum() == num) {
+						model.addAttribute("ok", "ok");
+					}
+				}
 			}
 		}
 		model.addAttribute("comp", comp);

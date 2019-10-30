@@ -14,8 +14,9 @@
 </head>
 <body>
 	<div class="container" style="padding-top: 200px;">
+	
 		<div class="row col-xs-push-4 col-xs-4" >
-			<h2>로그인</h2>
+			<h2 style="position: relative; right: 30px;"><a href="/"><img alt="..." src="/resources/main/SIGMA로고.png" id="logo"></a>로그인</h2>
 			<c:if test="${not empty login_failed}">
 				<p style="color: red">${login_failed}</p>
 			</c:if>

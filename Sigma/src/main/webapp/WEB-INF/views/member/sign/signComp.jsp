@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	<div class="container">
+	<div class="container" >
 		<div class="row col-xs-push-1 col-xs-11">
 		
 		
@@ -40,8 +40,6 @@
 					*<label for="name">이름</label>
 					<input required name="name" id="name" class="form-control" placeholder="이름을 입력해주세요.">
 				</div>
-				
-				<br>
 				
 				<br>
 					
@@ -225,7 +223,7 @@
 			var id = $("input[id='id']").val();
 			var pw = $("input[id='pw']").val();
 			var name = $("input[id='name']").val();
-			var sex = $("input[name='sex']").val();
+			var sex = $("input[name='sex']:checked").val();
 			var nickname = $("input[id='nickname']").val();
 			var birth = $("input[id='birth']").val();
 			var phone= $("input[id='phone']").val();

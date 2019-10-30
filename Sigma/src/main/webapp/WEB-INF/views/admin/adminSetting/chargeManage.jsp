@@ -11,16 +11,22 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+	label{
+	color: white;
+	}
+
+</style>
 </head>
 <body>
 
-<h3>
-	 chargeManage test.  
-</h3>
-
-<hr>
+<br>
+	<div class="container"  style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
+	<div style="float: left;">
 	<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
-	<form action="/admin/adminSetting/chargeManage" method="post">
+	</div>
+	<div class="row" style="float: right; width: 870px; border-left: double 1px white; height: 700px; padding-left: 30px; padding-right: 30px;">
+	<form action="/admin/adminSetting/chargeManage" method="post" style="min-height: 700px; max-height: auto; padding-top: 30px;">
 		<div class="form-group">
 			<label for="regiCharge">게임 등록수수료 설정(원)</label>
 			<input class="form-control" id="regiCharge" name="regiCharge" value="${updatevo.regiCharge}">
@@ -30,11 +36,12 @@
 			<input class="form-control" id="buyCharge" name="buyCharge" value="${updatevo.buyCharge}">
 		</div>
 		
-		<div class="form-group">
+		<div class="form-group" style=" float:right;">
 			<button class="btn btn-warning modify updatebtn">수정</button>
 		</div>
-	</form>	
-	
+	</form>
+	</div>	
+	</div>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		

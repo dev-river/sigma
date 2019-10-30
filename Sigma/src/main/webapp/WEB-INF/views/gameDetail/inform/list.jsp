@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
@@ -8,51 +8,57 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-	#img1 { 
-	display: block; margin: 0px auto;
+#img1 {
+	display: block;
+	margin: 0px auto;
 	text-align: center;
 	border-radius: 10px;
-		box-shadow: 15px 15px 20px black;
-	}
-	checkbox{
-		position: relative;
-		left: 100%;
-	}
-	p{
-		color: white;
-	}
-	
+	box-shadow: 15px 15px 20px black;
+}
+
+checkbox {
+	position: relative;
+	left: 100%;
+}
+
+p {
+	color: white;
+}
 </style>
 </head>
 <body>
 
-<br>
-<div class=bodymain>
-			
-<div class=container>
-	<!-- 헤더 -->
-	<h3 style="color:white;">
-	<c:choose>
-		<c:when test="${category eq 'all'}">전체 게임 리스트</c:when>
-		<c:when test="${category eq 'rpg'}">RPG 게임 리스트</c:when>
-		<c:when test="${category eq 'sportsracing'}">스포츠/레이싱 게임 리스트</c:when>
-		<c:when test="${category eq 'strategysimulation'}">전략시뮬레이션 게임 리스트</c:when>
-		<c:when test="${category eq 'actionadventure'}">액션/어드벤쳐 게임 리스트</c:when>
-		<c:when test="${category eq 'etc'}">기타 게임 리스트</c:when>
-	</c:choose>
-	</h3>
-	<hr>
-	
-	<!-- 검색 파트 -->
-			<div class="row ">
+	<br>
+	<div class=bodymain>
+
+		<div class=container style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
+		
+			<!-- 헤더 -->
+			<h3 style="color: white;">
+				<c:choose>
+					<c:when test="${category eq 'all'}">전체 게임 리스트</c:when>
+					<c:when test="${category eq 'rpg'}">RPG 게임 리스트</c:when>
+					<c:when test="${category eq 'sportsracing'}">스포츠/레이싱 게임 리스트</c:when>
+					<c:when test="${category eq 'strategysimulation'}">전략시뮬레이션 게임 리스트</c:when>
+					<c:when test="${category eq 'actionadventure'}">액션/어드벤쳐 게임 리스트</c:when>
+					<c:when test="${category eq 'etc'}">기타 게임 리스트</c:when>
+				</c:choose>
+			</h3>
+			<hr>
+
+			<!-- 검색 파트 -->
+			<div class="row "
+				style="padding-left: 30px; padding-right: 30px; padding-bottom: 30px;">
 				<div class="input-group" style="padding-right: 10px;">
-					<span class="input-group-addon">
-					<select id="searchSel">
+					<span class="input-group-addon"> <select id="searchSel">
 							<option disabled>검색 기준</option>
 							<option value="writer">배급사</option>
 							<option value="title">게임이름</option>
@@ -69,42 +75,43 @@
 					</span>
 				</div>
 			</div>
-	<br>
+			<br>
 			<!-- 게임 리스트 파트 -->
-	<c:forEach items="${vo.list}" var="gvo">
-	<div style="width: 33%; margin: 0; float: left;">
-			
-			<a href="/gameDetail/main/maincategoryread?num=${gvo.num}&curPage=1&perPage=5">
-			<c:choose>
-				<c:when test="${gvo.filepath eq null}">
-					<img alt="No image" src="/resources/gameDetailFile/noimage.png" width="280px" height="280px" id="img1">
-				</c:when>
-				<c:when test="${gvo.filepath ne null}">
-					<img alt="Game image" src="/resources/gameDetailFile/${gvo.filepath}" width="280px" height="280px"  id="img1">
-				</c:when>
-			</c:choose>
-			<p style="text-align: center; margin-top: 5px; margin-bottom: 0px">Title: ${gvo.title}</p>
-			<p style="text-align: center; margin-bottom: 10px;">Price: 
-			<c:choose>
-				<c:when test="${gvo.dcrate eq 0}">
+			<c:forEach items="${vo.list}" var="gvo">
+				<div style="width: 33%; margin: 0; float: left;">
+
+					<a
+						href="/gameDetail/main/maincategoryread?num=${gvo.num}&curPage=1&perPage=5">
+						<c:choose>
+							<c:when test="${gvo.filepath eq null}">
+								<img alt="No image" src="/resources/gameDetailFile/noimage.png"
+									width="280px" height="280px" id="img1">
+							</c:when>
+							<c:when test="${gvo.filepath ne null}">
+								<img alt="Game image"
+									src="/resources/gameDetailFile/${gvo.filepath}" width="280px"
+									height="280px" id="img1">
+							</c:when>
+						</c:choose>
+						<p style="text-align: center; margin-top: 5px; margin-bottom: 0px">Title:
+							${gvo.title}</p>
+						<p style="text-align: center; margin-bottom: 10px;">
+							Price:
+							<c:choose>
+								<c:when test="${gvo.dcrate eq 0}">
 					${gvo.price}
 				</c:when>
-				<c:when test="${gvo.dcrate ne 0}">
-					${gvo.price * (1 - gvo.dcrate / 100)} <span style="color:red">(${gvo.dcrate}%off)</span>
-				</c:when>
-			</c:choose>
-			</p>
-			</a>
-			<hr>
-	</div>
-	</c:forEach>
-	
-	<!-- 게임 리스트 페이징 파트 -->
-			
+								<c:when test="${gvo.dcrate ne 0}">
+					${gvo.price * (1 - gvo.dcrate / 100)} <span style="color: red">(${gvo.dcrate}%off)</span>
+								</c:when>
+							</c:choose>
+						</p>
+					</a>
+					<hr>
+				</div>
+			</c:forEach>
 		</div>
-		
-</div>
-<div>
+			<!-- 게임 리스트 페이징 파트 -->
 				<div class="row text-center" style="text-align: center; position: relative; left: 45%; width: 500px;">
 					<ul class="pagination">
 						<!-- ul에 pagination 클래스를 주면 예쁘다 -->
@@ -128,22 +135,33 @@
 
 					</ul>
 				</div>
-			</div>
-<script type="text/javascript">
-$(document).ready(function() {
-   $("#searchBtn").on("click", function() {
-		var searchType = $("#searchSel option:selected").val();
-		var keyword = $("#keyword").val();
-		var url = "/gameDetail/main/maincategory?category=${category}&curPage=1&perPage=${vo.perPage}&searchType="+searchType+"&keyword="+keyword;
-		window.open(url);
-	});
-});
+	</div>
+	<div>
+</div>
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$("#searchBtn")
+									.on(
+											"click",
+											function() {
+												var searchType = $(
+														"#searchSel option:selected")
+														.val();
+												var keyword = $("#keyword")
+														.val();
+												var url = "/gameDetail/main/maincategory?category=${category}&curPage=1&perPage=${vo.perPage}&searchType="
+														+ searchType
+														+ "&keyword=" + keyword;
+												window.open(url);
+											});
+						});
 
-function movepage(page)
-{
-window.document.location.href=page;
-return;
-}
-</script>
+		function movepage(page) {
+			window.document.location.href = page;
+			return;
+		}
+	</script>
 </body>
 </html>

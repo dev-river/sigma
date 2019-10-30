@@ -72,15 +72,12 @@ public class gameDetailController {
 		
 		//해당 num에 걸려있는 이미지 파일 가져오기  from gameDetailFile
 		List<String> filepath = gservice.filepath(num);
-		if(filepath.size() == 0) {
-	         filepath.add("noimage.png");
-	         filepath.add("noimage.png");
-	      }
-	      if(filepath.size() == 1) {
-	         filepath.add("noimage.png");
-	      }
-		String firstfilepath = filepath.get(1);
-		filepath.remove(0);
+		/*
+		 * if(filepath.size() == 0) { filepath.add("noimage.png");
+		 * filepath.add("noimage.png"); } if(filepath.size() == 1) {
+		 * filepath.add("noimage.png"); }
+		 */
+		String firstfilepath = filepath.get(0);
 		filepath.remove(0);
 		
 		//장바구니/구매 버튼 판단을 위한 buylist 조회
@@ -145,7 +142,7 @@ public class gameDetailController {
 	public void DCRqSet(int num, String title, Model model) {
 		List<gameDetailDcVO> list = gservice.dcrqlist(num);
 		gameDetailDcVO lastvo = null; 
-		if(lastvo != null) {
+		if(lastvo != null){
 			lastvo = list.get(list.size()-1);
 			lastvo.setRqstartdate(lastvo.getRqstartdate().substring(0,10));
 			lastvo.setRqenddate(lastvo.getRqenddate().substring(0,10));

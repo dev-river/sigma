@@ -32,5 +32,6 @@
 	<jsp:include page="/WEB-INF/views/main/side.jsp"></jsp:include>
 	<!-- 풋터 -->
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+	
 </body>
 </html>

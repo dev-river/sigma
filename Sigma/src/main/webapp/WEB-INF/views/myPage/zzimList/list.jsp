@@ -45,7 +45,14 @@
 					<c:forEach items="${zzim}" var="zzim">
 						<tr>
 							<td style="min-height: 700px; max-height: auto;">
-								<img alt="" src="/resources/gameDetailFile/${img}" style="width:25%; padding-right: 5px; position: relative; right: 10px;"  class="pull-left" id="img1">
+								<c:choose>
+									<c:when test="${zzim.filepath eq null}">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width:25%; padding-right: 5px; position: relative; right: 10px;"  class="pull-left">
+									</c:when>
+									<c:otherwise>
+										<img alt="" src="/resources/gameDetailFile/${zzim.filepath}" style="width:25%; padding-right: 5px; position: relative; right: 10px;"  class="pull-left">
+									</c:otherwise>
+								</c:choose>
 								<p style="position:relative; top:20px; width:35%" class="pull-left">게임 이름 : ${zzim.title}</p>
 								<p style="position:relative; top:20px; width:38%" class="pull-right">배급사 : ${zzim.writer}</p> 
 								<p style="position:relative; top:20px; width:35%" class="pull-left">출시일 : ${zzim.gregidate}</p>
