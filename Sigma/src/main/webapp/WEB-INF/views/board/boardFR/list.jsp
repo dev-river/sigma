@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -46,7 +47,7 @@
 	
 	
 <!-- 	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a> -->
-	<table class="table table-hover" style="color: white">
+	<table class="table table-striped" style="color: white">
 		<thead>
 			<tr>
 				<th>글번호</th>

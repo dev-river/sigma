@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 html, body {
-	background: linear-gradient(60deg, orange, black,#5D5D5D,gray,black,orange);
+	
+	background-image :url("/resources/main/backgroundimg2.jpg");
 	margin: 0;
 	max-height: auto;
 	min-height: 650px;

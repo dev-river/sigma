@@ -17,7 +17,6 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
 
-
 #keyword {
 	width: 800px;
 }

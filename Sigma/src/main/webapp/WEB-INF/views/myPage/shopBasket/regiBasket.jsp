@@ -16,6 +16,10 @@
 	p{
 	color: white;
 	}
+	#img1{
+	border-radius: 10px;
+ 	box-shadow: 15px 15px 20px black;
+	}
 </style>
 </head>
 <body>
@@ -41,7 +45,14 @@
 					<c:forEach items="${basket}" var="basket">
 						<tr>
 							<td>
-								<img alt="" src="/resources/gameDetailFile/${img}" style="width:25%; padding-right: 5px; position: relative; right: 10px;" class="pull-left">
+								<c:choose>
+									<c:when test="${basket.filepath eq null}">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width:25%; padding-right: 5px;" class="pull-left">
+									</c:when>
+									<c:otherwise>
+										<img alt="" src="/resources/gameDetailFile/${basket.filepath}" style="width:25%; padding-right: 5px;" class="pull-left">
+									</c:otherwise>
+								</c:choose>
 								<p style="position:relative; top:20px; width:35%" class="pull-left gn">게임 이름 : ${basket.title}</p>
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">배급사 : ${basket.writer}</p> 
 								<p style="position:relative; top:20px; width:35%" class="pull-left">출시일 : ${basket.gregidate}</p>
@@ -96,7 +107,8 @@
 							dataType : 'text',
 							success : function(event) {
 								if(event=='failed'){
-									alert("["+gamename.title+"]는 이미 구매하신 게임입니다.")
+									alert("["+gamename.title+"]는 이미 구매하신 게임입니다.");
+									window.location.reload();
 								} else{
 									alert("["+gamename.title+"]를 구매 완료 했습니다.");
 									window.location.reload();

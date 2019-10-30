@@ -76,7 +76,7 @@ public class searchBoardController {
 		model.addAttribute("to", dbSTO); 
 	}
 
-	@RequestMapping(value = "/sboardFR/read")
+  @RequestMapping(value = "/sboardFR/read")
 	public void read(Model model, int num, SPageTO sto) {
 		boardVO svo = sbService.read(num);
 		
