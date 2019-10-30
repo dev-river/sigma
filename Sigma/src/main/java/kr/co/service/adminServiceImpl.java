@@ -100,7 +100,7 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public void LogoUpdate(adminSetVO vo, String savedName) {
 
-		String logofilepath = savedName.substring(3);
+		String logofilepath = savedName;
 		
 		addao.logoupdate(logofilepath, vo);
 		
@@ -109,7 +109,7 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public void BGUpdate(adminSetVO vo, String savedName) {
 		
-		String bgfilepath = savedName.substring(3);
+		String bgfilepath = savedName;
 		
 		addao.bgupdate(bgfilepath, vo);
 		

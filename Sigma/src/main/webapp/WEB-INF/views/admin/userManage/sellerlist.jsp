@@ -46,6 +46,8 @@ td, th {
 						</span>
 					</div>
 
+					<br>
+					
 					<table class="table table-hover">
 					<thead>
 						<tr>

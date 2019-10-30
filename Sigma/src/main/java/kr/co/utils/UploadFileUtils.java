@@ -91,7 +91,58 @@ public class UploadFileUtils {
 		}
 		
 	}
+	
+	public static String uploadFileLogo(String uploadPath, MultipartFile file) throws Exception {
+		
+		String ori_name = "SIGMA로고.png";
+		String savedName = ori_name;
+		
+		
+		File target = new File(uploadPath, savedName);
+		if(ori_name==null||ori_name.equals("")) {
+			return "";
+		}
+		FileCopyUtils.copy(file.getBytes(), target);
+		
+		String formatName = ori_name.substring(ori_name.lastIndexOf(".")+1);
+		
+		if(checkFormat(formatName)) {
+			String ap = makeIcon(uploadPath, savedName);
+			return ap;
+		}else {
+			String bp = File.separator + savedName;
+			String ap = bp.replace(File.separatorChar, '/');
+			
+			return ap;
+		}
+		
+	}
 
+	public static String uploadFileBG(String uploadPath, MultipartFile file) throws Exception {
+		
+		String ori_name = "backgroundimg2.jpg";
+		String savedName = ori_name;
+		
+		
+		File target = new File(uploadPath, savedName);
+		if(ori_name==null||ori_name.equals("")) {
+			return "";
+		}
+		FileCopyUtils.copy(file.getBytes(), target);
+		
+		String formatName = ori_name.substring(ori_name.lastIndexOf(".")+1);
+		
+		if(checkFormat(formatName)) {
+			String ap = makeIcon(uploadPath, savedName);
+			return ap;
+		}else {
+			String bp = File.separator + savedName;
+			String ap = bp.replace(File.separatorChar, '/');
+			
+			return ap;
+		}
+		
+	}
 
 	public static String makeIcon(String uploadPath, String savedName) throws Exception {
 		
