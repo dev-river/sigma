@@ -26,7 +26,7 @@
 	</select>
 	
 	<update id="userAuthor">
-		update userinfo set author = #{author} where id = #{id}
+		update userinfo set author = #{author}, nickname = #{nickname} where id = #{id}
 	</update>
 	
 	<delete id="userDelete">

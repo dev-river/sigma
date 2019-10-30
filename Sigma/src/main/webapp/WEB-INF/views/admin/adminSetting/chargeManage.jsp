@@ -19,7 +19,7 @@
 </h3>
 
 <hr>
-
+	<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
 	<form action="/admin/adminSetting/chargeManage" method="post">
 		<div class="form-group">
 			<label for="regiCharge">게임 등록수수료 설정(원)</label>

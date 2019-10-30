@@ -85,6 +85,7 @@ public class gameDetailController {
 		
 		//할인정보 가져오기
 		gameDetailDcVO dcvo = null;
+		int dcjoincheck = 0;
 		dcvo = gservice.dccheck(num);
 		if(dcvo != null) {
 			dcvo.setRqstartdate(dcvo.getRqstartdate().substring(0, 10));
@@ -92,8 +93,11 @@ public class gameDetailController {
 			dcvo.setDcstartdate(dcvo.getDcstartdate().substring(0, 10));
 			dcvo.setDcenddate(dcvo.getDcenddate().substring(0, 10));
 			model.addAttribute("dcnum", dcvo.getNum());
+			
+			//할인정보 동참 여부 확인
+			dcjoincheck = gservice.dcjoincheck(dcvo.getNum(), id);
+			model.addAttribute("dcjoincheck", dcjoincheck);
 		}
-
 		
 		//최다 리뷰글 가져오기
 		reviewVO maxYesReview = gservice.maxYesReview(num);
@@ -102,6 +106,9 @@ public class gameDetailController {
 		//전체 리뷰글 가져오기
 		pto = gservice.reviewlist(num, pto);
 		/* List<reviewVO> reviewlist = gservice.reviewlist(num); */
+		
+		//리뷰 좋아요/싫어요 여부 확인
+		
 		
 		
 		model.addAttribute("vo", vo);
@@ -181,8 +188,14 @@ public class gameDetailController {
 	}
 	
 	@RequestMapping(value = "/inform/dcCountAdd", method = RequestMethod.GET)
-	public String gameDetailDCcountAdd(Model model, int num, int gdnum) {
+	public String gameDetailDCcountAdd(Model model, int num, int gdnum, HttpServletRequest request) {
+		String id = null; String author = null;
+		Map<String, Object> sessioninfo = sessionInfo(request);
+		id = (String) sessioninfo.get("id");
+		author = (String) sessioninfo.get("author");
+		
 		gservice.dcadd(num);
+		gservice.dcjoininsert(num, id);
 		return "redirect:/gameDetail/main/maincategoryread?num="+gdnum;
 	}
 	

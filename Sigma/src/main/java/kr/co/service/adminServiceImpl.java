@@ -1,5 +1,6 @@
 package kr.co.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,19 +9,25 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.domain.SPageTO;
 import kr.co.domain.adminSetVO;
 import kr.co.domain.adminSlideVO;
 import kr.co.domain.boardVO;
 import kr.co.domain.memberVO;
+import kr.co.domain.reviewVO;
 import kr.co.persistence.adminDAO;
 import kr.co.persistence.boardDAO;
+import kr.co.persistence.boardEVDAO;
 
 @Service
 @Transactional
 public class adminServiceImpl implements adminService{
 	@Inject
 	private adminDAO addao;
-
+	
+	@Inject
+	private boardDAO bdao;
+	
 	@Override
 	public List<memberVO> adminUserList() {
 
@@ -133,10 +140,39 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public void slideUpdate(adminSlideVO vo, String savedName) {
 		String bnfilepath = savedName.substring(3);
-		System.out.println(bnfilepath);
-		
 		addao.slideUpdate(bnfilepath, vo);
 	}
 
+	@Override
+	public SPageTO boardAllList(SPageTO to) {
+		int amount = addao.getAmount(to);
+		to.setAmount(amount);
+		
+		List<boardVO> finalList = addao.boardAllList(to);
+		to.setList(finalList);
+		
+		return to;
+	}
+	
+	public void setListBoard(List<boardVO> list, String board, List<boardVO> finalList){
+		for(boardVO vo : list) {
+			vo.setBoard(board);
+			finalList.add(vo);
+		}
+	}
 
+	@Override
+	public SPageTO reviewAllList(SPageTO to) {
+		int amount = addao.getReviewAmount(to);
+		to.setAmount(amount);
+		
+		List<reviewVO> finalList = addao.reviewAllList(to);
+		to.setList(finalList);
+		return to;
+	}
+
+	@Override
+	public reviewVO reviewRead(int num) {
+		return addao.reviewRead(num);
+	}
 }

@@ -33,7 +33,7 @@
 <body>
 
 	<div class="header">
-
+		
 		<!-- 메뉴 상단 -->
 		<div class="container">
 			<div class="head"><!-- 전체 -->
@@ -63,7 +63,7 @@
                 		 </div>
                 		 <div id="admin">
                		 	 <c:if test="${login.author eq 'admin'}">
-                    		 <a class="glyphicon glyphicon-user" href="/admin/userManage/userlist?id=${login.id}">관리자페이지</a>
+                    		 <a class="glyphicon glyphicon-user" href="/admin/main/adminlist?id=${login.id}">관리자페이지</a>
                    			 <a class="glyphicon glyphicon-user" href="/member/login/logout">로그아웃</a>
                 		 </c:if>
                 		 </div>
@@ -119,7 +119,7 @@
 					
 			</div> <!--head -->
 		</div><!-- container -->
-		<hr style="border: solid 3px #F6F6F6; position: relative; top: 33px; ">
+		<hr style="border: solid 3px rgba(244,244,244,.3); position: relative; top: 33px; ">
 	</div><!-- header -->
 
 

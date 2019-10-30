@@ -19,7 +19,7 @@
 </h3>
 
 <hr>
-
+	<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
 <div class="container">
 	
 	<c:forEach items="${vo}" var="vo" begin="0" end="4">

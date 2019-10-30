@@ -50,4 +50,8 @@ public interface gameDetailDAO {
 
 	int getReviewAmount(int num);
 
+	int dcjoincheck(int num, String id);
+
+	void dcjoininsert(int num, String id);
+
 }

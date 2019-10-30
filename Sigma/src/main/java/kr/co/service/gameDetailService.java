@@ -46,5 +46,9 @@ public interface gameDetailService {
 
 	SPageTO list(SPageTO to, String category);
 
+	int dcjoincheck(int num, String id);
+
+	void dcjoininsert(int num, String id);
+
 
 }

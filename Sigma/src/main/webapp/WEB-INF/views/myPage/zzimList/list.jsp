@@ -16,6 +16,10 @@
 	p{
 	color: white;
 	}
+	#img1{
+	border-radius: 10px;
+ 	box-shadow: 15px 15px 20px black;
+	}
 </style>
 </head>
 <body>
