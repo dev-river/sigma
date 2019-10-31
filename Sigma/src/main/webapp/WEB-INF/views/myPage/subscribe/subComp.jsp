@@ -28,9 +28,9 @@
 					</c:choose>
 				</div>
 				<div class="pull-left" style="width: 20%;">
-					<h2>${writer}</h2>
+					<h2 style="color: white;">${writer}</h2>
 					<br>
-					<h4>${content}</h4>
+					<h4 style="color: white;">${content}</h4>
 				</div>
 				<c:choose>
 					<c:when test="${ok eq 'ok'}">
@@ -43,7 +43,7 @@
 			</div>
 			<br>
 			<c:forEach items="${comp}" var="com">
-				<a href="/gameDetail/main/maincategoryread?num=${com.num}">
+				<a href="/gameDetail/main/maincategoryread?num=${com.num}"  style="color: white;">
 				<div  style="width: 120px; height: 120px; margin: 5px; padding: 5px; border: 10px; solid; black;" class="pull-left">
 					<c:choose>
 						<c:when test="${com.gamefilepath eq null}">

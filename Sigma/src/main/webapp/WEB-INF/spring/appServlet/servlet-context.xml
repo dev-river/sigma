@@ -60,7 +60,7 @@
 			<mapping path="/board/main/notice/boardNOinsert"/>
 			<mapping path="/board/main/One/OneInsert"/>
 			<mapping path="/board/main/One/OneRead"/>
-			<mapping path="/myPage/main/refundInsert"/>
+			<mapping path="/myPage/main/buy/refundinsert"/>
 			<mapping path="/myPage/main/Basket"/>
 			<mapping path="/myPage/main/zzim"/>
 			<mapping path="/myPage/main/subComp"/>
