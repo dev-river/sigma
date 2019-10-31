@@ -17,12 +17,12 @@
 <br><br><br>
 	<div class="container">
 		<div class="insert">
-		<div class="row">
-			<h3>${id}님의 환불 요청</h3>
+		<div class="row" style="text-align: center;">
+			<h3 style="color: white;">${id}님의 환불 요청</h3>
 			<h4 style="color: red;">환불 신청은 구매한지 24시간 이내의 게임만 가능합니다.</h4>
 			<form action="/myPage/buyList/refundInsert" method="post">
 				<div class="form-group">
-					<label for="game">환불 게임</label>
+					<label for="game" style="color: white;">환불 게임</label>
 					<select name="buynum">
 						<option value="" selected disabled hidden>게임 목록</option>
 						<c:forEach items="${gamelist}" var="gamelist">
@@ -31,7 +31,7 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="content">환불사유</label>
+					<label for="content" style="color: white;">환불사유</label>
 					<select name="content">
 						<option value="" selected disabled hidden>사유 선택</option>
 						<option value="잘못 구매해서">잘못 구매해서</option>

@@ -92,30 +92,38 @@ a :hover{
 
 				<!-- 순위 -->
 				<div class="table0">
-					<table class="table table-dark">
+					<table class="table">
 						<thead>
 							<tr>
-								<th>게임순위<a href="#" style="position: relative; left: 205px;">
-								<img src="/resources/main/icon_more.gif"></a></th>
+								<th>인기 순위&nbsp;&nbsp;<a href="/recommand/main/hotgameRec" style="position: relative; left: 205px;"><img
+										src="/resources/main/icon_more.gif"></a></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1.&nbsp;&nbsp;<a href="#">배틀오브<img src="/resources/main/TOP.jpg"
-										alt="#" id="img1"></a></td>
-							</tr>
-							<tr>
-								<td>2.&nbsp;&nbsp;<a href="#">메이플 스토리</a></td>
-							</tr>
-							<tr>
-								<td>3.&nbsp;&nbsp;<a href="#">던전 앤 파이터</a></td>
-							</tr>
-							<tr>
-								<td>4.&nbsp;&nbsp;<a href="#">하스 스톤</a></td>
-							</tr>
-							<tr>
-								<td>5.&nbsp;&nbsp;<a href="#">리그 오브 레전드</a></td>
-							</tr>
+							<c:forEach items="${hgame}" var="h" begin="0" end="0">
+								<tr>
+									<td>1.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}
+									<c:choose>
+										<c:when test="${h.filepath eq null}">
+											<img alt="No image" src="/resources/gameDetailFile/noimage.png"
+												width="280px" height="140px" id="img1">
+										</c:when>
+										<c:when test="${h.filepath ne null}">
+											<img alt="Game image"
+												src="/resources/gameDetailFile/${h.filepath}" width="280px"
+												height="180px" id="img1">
+										</c:when>
+									</c:choose></a>
+									</td>
+								</tr>
+							</c:forEach>
+							<c:forEach items="${hgame}" var="h" begin="1" end="4" varStatus="status">
+								<tr>
+									<td>
+										${status.index + 1}.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -123,27 +131,35 @@ a :hover{
 					<table class="table">
 						<thead>
 							<tr>
-								<th>최신 순위&nbsp;&nbsp;<a href="#" style="position: relative; left: 205px;"><img
+								<th>최신 순위&nbsp;&nbsp;<a href="/recommand/main/newgameRec" style="position: relative; left: 205px;"><img
 										src="/resources/main/icon_more.gif"></a></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1.&nbsp;&nbsp;<a href="#">배틀오브<img src="/resources/main/TOP.jpg"
-										alt="#" id="img2"></a></td>
-							</tr>
-							<tr>
-								<td>2.&nbsp;&nbsp;<a href="#">메이플 스토리</a></td>
-							</tr>
-							<tr>
-								<td>3.&nbsp;&nbsp;<a href="#">던전 앤 파이터</a></td>
-							</tr>
-							<tr>
-								<td>4.&nbsp;&nbsp;<a href="#">하스 스톤</a></td>
-							</tr>
-							<tr>
-								<td>5.&nbsp;&nbsp;<a href="#">리그 오브 레전드</a></td>
-							</tr>
+							<c:forEach items="${ngame}" var="h" begin="0" end="0">
+								<tr>
+									<td>1.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}
+									<c:choose>
+										<c:when test="${h.filepath eq null}">
+											<img alt="No image" src="/resources/gameDetailFile/noimage.png"
+												width="280px" height="180px" id="img1">
+										</c:when>
+										<c:when test="${h.filepath ne null}">
+											<img alt="Game image"
+												src="/resources/gameDetailFile/${h.filepath}" width="280px"
+												height="180px" id="img1">
+										</c:when>
+									</c:choose></a>
+									</td>
+								</tr>
+							</c:forEach>
+							<c:forEach items="${ngame}" var="h" begin="1" end="4" varStatus="status">
+								<tr>
+									<td>
+										${status.index + 1}.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -151,26 +167,35 @@ a :hover{
 					<table class="table">
 						<thead>
 							<tr>
-								<th>무료 순위&nbsp;&nbsp;<a href="#" style="position: relative; left: 205px;"><img
+								<th>할인 순위&nbsp;&nbsp;<a href="/recommand/main/dcgameRec" style="position: relative; left: 205px;"><img
 										src="/resources/main/icon_more.gif"></a></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1.&nbsp;&nbsp;<a href="#">배틀오브<img src="/resources/main/TOP.jpg" alt="#" id="img3"></a></td>
-							</tr>
-							<tr>
-								<td>2.&nbsp;&nbsp;<a href="#">메이플 스토리</a></td>
-							</tr>
-							<tr>
-								<td>3.&nbsp;&nbsp;<a href="#">던전 앤 파이터</a></td>
-							</tr>
-							<tr>
-								<td>4.&nbsp;&nbsp;<a href="#">하스 스톤</a></td>
-							</tr>
-							<tr>
-								<td>5.&nbsp;&nbsp;<a href="#">리그 오브 레전드</a></td>
-							</tr>
+							<c:forEach items="${dcgame}" var="h" begin="0" end="0">
+								<tr>
+									<td>1.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}
+									<c:choose>
+										<c:when test="${h.filepath eq null}">
+											<img alt="No image" src="/resources/gameDetailFile/noimage.png"
+												width="280px" height="180px" id="img1">
+										</c:when>
+										<c:when test="${h.filepath ne null}">
+											<img alt="Game image"
+												src="/resources/gameDetailFile/${h.filepath}" width="280px"
+												height="180px" id="img1">
+										</c:when>
+									</c:choose></a>
+									</td>
+								</tr>
+							</c:forEach>
+							<c:forEach items="${dcgame}" var="h" begin="1" end="4" varStatus="status">
+								<tr>
+									<td>
+										${status.index + 1}.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div><!-- table2 -->

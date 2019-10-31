@@ -70,8 +70,8 @@
 	$(document).ready(function() {
 		
 		$(".del").click(function() {
-			var gdnum = $(".hgdnum").val();
-			var id = $(".hid").val();
+			var gdnum = $(this).next().val();
+			var id = $(this).next().next().val();
 			var yes = confirm("구매 기록을 삭제하시면 환불이 불가능 해지는 등의 불이익이 있을 수 있습니다. 삭제하시겠습니까?");
 			if(yes){
 				$.ajax({

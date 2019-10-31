@@ -111,9 +111,9 @@
 
 <hr>
 <div class="container" style="background-color: rgb(25,25,25,0.6); border-radius: 10px; padding-left: 20px; padding-right: 20px;">
-	<h1>게임이름: <a href="/myPage/subscribe/subComp?writer=${vo.writer}" style="text-decoration:none; color: #008299;">${vo.title}</a></h1>
+	<h1>게임이름: ${vo.title}</h1>
 	<div>
-	<h3 style="float: left;">배급사: ${vo.writer}</h3>
+	<h3 style="float: left;">배급사: <a href="/myPage/main/subComp?writer=${vo.writer}" style="text-decoration:none; color: #008299;">${vo.writer}</a></h3>
 	<h5 style="float: right;">출시일: ${vo.regidate}</h5>
 	</div>
 	<br>

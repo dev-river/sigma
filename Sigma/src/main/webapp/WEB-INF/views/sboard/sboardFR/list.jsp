@@ -30,10 +30,11 @@
 
 <div class="container">
 	
-	<div class="row" style="padding-top: 20px;">
+<!--  	<div class="row" style="padding-top: 20px;">
 	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a>
-	</div>
-	<table class="table table-hover">
+	</div>  -->
+	
+	<table class="table table-hover" style="margin-top: 30px;">
 		<thead>
 			<tr>
 				<th>글번호</th>
