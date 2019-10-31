@@ -42,8 +42,6 @@ public class gameDetailController {
 	
 	@Resource(name = "GameFile")
 	private String gamefile;
-
-	private int[] num1;
 	
 	@ResponseBody
 	@RequestMapping(value = "/gamefile", method = RequestMethod.GET)
@@ -323,6 +321,7 @@ public class gameDetailController {
 		String str2 = filevo.get(1).getFilename();
 		String str3 = filevo.get(2).getFilename();
 		String str4 = filevo.get(3).getFilename();
+		System.out.println(str1+" : "+str2+" : "+str3+" : "+str4);
 		model.addAttribute("vo", vo);
 		model.addAttribute("str1", str1);
 		model.addAttribute("str2", str2);
@@ -332,8 +331,7 @@ public class gameDetailController {
 	
 	@RequestMapping(value = "/main/maincategoryupdate", method = RequestMethod.POST)
 	public String update(gameVO vo, String filename1, String filename2, String filename3, String filename4) {
-		System.out.println(vo);
-		System.out.println("start : "+filename1+":"+filename2+":"+filename3+":"+filename4);
+		System.out.println("start "+vo);
 		gameVO gvo = gservice.read(vo.getNum());
 		if(vo.getGamefilepath()==null) {
 			vo.setGamefilepath(gvo.getGamefilepath());
@@ -341,12 +339,22 @@ public class gameDetailController {
 		
 		if(vo.getFilepath()==null) {
 			vo.setFilepath(gvo.getFilepath());
+			System.out.println("0 : "+vo);
+		}else {
+			if(vo.getFilepath().equals(gvo.getFilepath())) {
+				System.out.println("1 : " +vo);
+			}else {
+				vo.setFilepath(vo.getFilepath().substring(3));
+				System.out.println("2 : "+vo);
+				gservice.update(vo);
+			}
 		}
-		gservice.update(vo);
-		List<gameDetailFileVO> filevo = gservice.filename(vo.getNum());
-		num1 = null;
-		num1[0] = filevo.get(0).getNum();
 		
+		List<gameDetailFileVO> filevo = gservice.filename(vo.getNum());
+		int num1 = filevo.get(0).getNum();
+		int num2 = filevo.get(1).getNum();
+		int num3 = filevo.get(2).getNum();
+		int num4 = filevo.get(3).getNum();
 		if(filename1 == null) {
 			filename1 = filevo.get(0).getFilename();
 		}else {
@@ -367,13 +375,22 @@ public class gameDetailController {
 		}else {
 			filename4 = filename4;
 		}
-//		List list = new ArrayList();
-//		list.add(0, filename1);
-//		list.add(1, filename2);
-//		list.add(2, filename3);
-//		list.add(3, filename4);
-		System.out.println("end : "+filename1+":"+filename2+":"+filename3+":"+filename4);
-//		gservice.imgupdate1(filename1,num1);
+		if(filename1.equals(filevo.get(0).toString())) {
+		}else {
+			gservice.imgupdate1(filename1,num1);
+		}
+		if(filename2.equals(filevo.get(1).toString())) {
+		}else {
+			gservice.imgupdate2(filename2,num2);
+		}
+		if(filename3.equals(filevo.get(2).toString())) {
+		}else {
+			gservice.imgupdate3(filename3,num3);
+		}
+		if(filename4.equals(filevo.get(3).toString())) {
+		}else {
+			gservice.imgupdate4(filename4,num4);
+		}
 		
 		return "redirect:/gameDetail/main/maincategoryread?num="+vo.getNum();
 	}
