@@ -6,6 +6,7 @@ import java.util.Map;
 import kr.co.domain.SPageTO;
 import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
+import kr.co.domain.gameDetailFileVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.reviewVO;
 
@@ -68,4 +69,7 @@ public interface gameDetailDAO {
 
 	int ageratio4(int num);
 
+	List<gameDetailFileVO> filename(int num);
+
+	void imgupdate(List list, int[] num);
 }

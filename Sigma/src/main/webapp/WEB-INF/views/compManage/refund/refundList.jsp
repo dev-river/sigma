@@ -16,7 +16,7 @@
 th,td,p{
 	color: white;
 }
-.btn{
+.btn1{
 	float: right;
 	position: relative;
 	top: 500px;
@@ -24,9 +24,9 @@ th,td,p{
 </style>
 </head>
 <body>
-
 <div class="bodymain">
-<div class="container">
+	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; height: 100%;">
+	<div class="col-xs-10 col-xs-offset-1">
 	<br>
 	<h2 style="color: white;">환불 리스트</h2>
 	<div class="row">
@@ -50,7 +50,7 @@ th,td,p{
 					<c:forEach items="${list}" var="refundlist">
 					<tr>
 						<td>${refundlist.id}</td>		
-						<td><a href="/compManage/refund/refundRead?id=${login.id}&num=${refundlist.num}">${refundlist.title}</a></td>
+						<td><a href="/compManage/main/refundread?id=${login.id}&num=${refundlist.num}">${refundlist.title}</a></td>
 						<td>${refundlist.updatedate}</td>
 						<td>${refundlist.status}</td>
 					</tr>
@@ -61,9 +61,9 @@ th,td,p{
 		</table>
 	</div>
 	<div class="roe">
-
-		<input type="button" value="뒤로" class="btn" onclick="location.href='/compManage/main/manageread?id=${login.id}'">
+		<input type="button" value="뒤로" class="btn1" onclick="location.href='/compManage/main/manageread?id=${login.id}'">
 	</div>
+</div>
 </div>
 </div>
 </body>

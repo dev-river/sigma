@@ -142,4 +142,24 @@ public class compServiceImpl implements compService{
 	public int womancount(String writer) {
 		return dao.womancount(writer);
 	}
+
+	@Override
+	public int age10() {
+		return dao.age10();
+	}
+	
+	@Override
+	public int age20() {
+		return dao.age20();
+	}
+	
+	@Override
+	public int age30() {
+		return dao.age30();
+	}
+	
+	@Override
+	public int age40() {
+		return dao.age40();
+	}
 }

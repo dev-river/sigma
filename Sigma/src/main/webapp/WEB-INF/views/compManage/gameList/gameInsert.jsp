@@ -374,7 +374,7 @@
 		if(cash >= 0  && cash < 1000){
 			var check = confirm("캐시 충전하시겠습니까?");
 			if(check==true){
-				location.href="/myPage/cash/charge?id="+writer;
+				location.href="/myPage/main/cash?id="+writer; 
 				return false;
 			}else{
 				alert("리스트로 돌아갑니다.");

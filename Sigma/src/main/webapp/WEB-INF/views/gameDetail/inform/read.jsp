@@ -163,7 +163,6 @@
 				<img class=""  id="img1" src="/resources/gameDetailFile/${file}" alt="" height="190px" width="240px" style="margin: 5px;" data-target="#carouselExampleIndicators" data-slide-to="${i.index+1}">
 			</c:forEach>
 		</div>
-	
 		<br>
 		<div style="float: left;">
 		<h3>카테고리: ${vo.category}</h3>

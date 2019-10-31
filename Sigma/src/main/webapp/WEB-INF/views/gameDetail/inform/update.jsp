@@ -16,6 +16,36 @@
 	label{
 	color: white;
 	}
+	.GameDrop{
+		width: 100%;
+		height: 100px;
+		border: 1px dotted red;
+	}
+	.ImgDrop{
+		width: 100%;
+		height: 100px;
+		border: 1px dotted red;
+	}
+	.ImgsrcDrop1{
+		width: 20%;
+		height: 100px;
+		border: 1px dotted red;
+	}
+	.ImgsrcDrop2{
+		width: 20%;
+		height: 100px;
+		border: 1px dotted red;
+	}
+	.ImgsrcDrop3{
+		width: 20%;
+		height: 100px;
+		border: 1px dotted red;
+	}
+	.ImgsrcDrop4{
+		width: 20%;
+		height: 100px;
+		border: 1px dotted red;
+	}
 </style>
 </head>
 <body>
@@ -57,7 +87,31 @@
 			</div>
 			<div class="form-group">
 				<label for="gamefilepath">게임 파일 경로</label>
-				<input id="gamefilepath" name="gamefilepath" class="form-contorl" placeholder="파일경로" style="width: 80px;" value="${vo.gamefilepath}">
+				<p style="color: white;">${vo.gamefilepath}</p>
+				<div class="GameDrop"></div>
+				<div class="GameList"></div>
+			</div>
+			<div class="form-group">
+				<label>메인 그림파일 업로드</label>
+				<p><img src="/gameDetail/imgfile?filename=${vo.filepath}"></p>
+				<div class="ImgDrop"></div>
+				<div class="ImgList"></div>
+			</div>
+			<div class="form-group">
+				<label style="float: left;">그림파일 4개 업로드</label>
+				<div class="ImgsrcDrop1"></div>
+				<p><img src="/gameDetail/imgsrcfile1?filename=${str1}"></p>
+				<div class="ImgsrcList1"></div>
+				
+				<div class="ImgsrcDrop2"></div>
+				<div class="ImgsrcList2"></div>
+				<p><img src="/gameDetail/imgsrcfile1?filename=${str2}"></p>
+				<div class="ImgsrcDrop3"></div>
+				<div class="ImgsrcList3"></div>
+				<p><img src="/gameDetail/imgsrcfile1?filename=${str3}"></p>
+				<div class="ImgsrcDrop4"></div>
+				<div class="ImgsrcList4"></div>
+				<p><img src="/gameDetail/imgsrcfile1?filename=${str4}"></p>
 			</div>
 			<div>
 				<input type="submit" class="btn" value="수정">
@@ -74,7 +128,258 @@
 		      $(this).attr("selected","selected"); // attr적용안될경우 prop으로 
 		    }
 		});
+		$(".GameDrop").on("dragenter dragover", function(event){
+			event.preventDefault();
+		});
+		$(".GameDrop").on("drop", function(event){
+			event.preventDefault();
+			
+			var arr = event.originalEvent.dataTransfer.files;
+			
+			for(var idx=0; idx<arr.length; idx++){
+				var file = arr[idx];
+				
+				var formData = new FormData();
+				formData.append("file", file);
+				
+				$.ajax({
+					type : 'post',
+					url : '/gameDetail/gameajax',
+					data : formData,
+					dataType : 'text',
+					contentType : false,
+					processData : false,
+					success : function(data){
+						var str = '';
+						
+						if(checkImageType(data)){
+							str += "<div><p>'"+data+"'</p><input type='hidden' id='filename' name='filename' value='"+data+"'></div>";
+						}else{
+							if(data != null){
+								str += "<div><img href='/gameDetail/gamefile?filename="+data+"'><p style='color: white;'>"+getOriginalName(data)+"</p><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
+							}else{
+								str += "<input type='hidden' id='gamefilepath' name='gamefilepath' value='${vo.gamefilepath}'>"
+							}
+						}
+						
+						$(".GameList").append(str);
+					}
+				});
+			}
+		});
+		
+		$(".ImgDrop").on("dragenter dragover", function(event){
+			event.preventDefault();
+		});
+		$(".ImgDrop").on("drop", function(event){
+			event.preventDefault();
+			
+			var arr = event.originalEvent.dataTransfer.files;
+			
+			for(var idx=0; idx<arr.length; idx++){
+				var file = arr[idx];
+				
+				var formData = new FormData();
+				formData.append("file", file);
+				
+				$.ajax({
+					type : 'post',
+					url : '/gameDetail/imgajax',
+					data : formData,
+					dataType : 'text',
+					contentType : false,
+					processData : false,
+					success : function(data){
+						var str = '';
+						
+						if(checkImageType(data)){
+							if(data != null){
+								str += "<div><img src='/gameDetail/imgfile?filename="+data+"' alt='게임파일 그림'/><p style='color: white;'>"+getOriginalName(data)+"</p><input type='hidden' id='filepath' name='filepath' value='"+data+"'></div>";
+							}else{
+								str += "<div><input type='hidden' id='filepath' name='filepath' value='${vo.filepath}'></div>";
+							}
+						}else{
+								str += "<div><img href='/gameDetail/displayfile?filename="+data+"'><img src='/resources/test.png' alt='일반파일 썸네일입니다.'/><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
+						}
+						
+						$(".ImgList").append(str);
+					}
+				});
+			}
+		});
+		
+		$(".ImgsrcDrop1").on("dragenter dragover", function(event){
+			event.preventDefault();
+		});
+		$(".ImgsrcDrop1").on("drop", function(event){
+			event.preventDefault();
+			
+			var arr = event.originalEvent.dataTransfer.files;
+			
+			for(var idx=0; idx<arr.length; idx++){
+				var file = arr[idx];
+				
+				var formData = new FormData();
+				formData.append("file", file);
+				
+				$.ajax({
+					type : 'post',
+					url : '/gameDetail/imgsrcajax',
+					data : formData,
+					dataType : 'text',
+					contentType : false,
+					processData : false,
+					success : function(data){
+						var str = '';
+						
+						if(checkImageType(data)){
+							if(data != null){
+								str += "<div><img src='/gameDetail/imgsrcfile1?filename="+data+"' alt='게임파일 그림'/><p style='color: white;'>"+getOriginalName(data)+"</p><input type='hidden' id='filename' name='filename1' value='"+data+"'></div>";
+							}else{
+								str += "<div><input type='hidden' id='filename' name='filename1' value='${str1}'></div>";
+							}
+						}else{
+							str += "<div><img href='/gameDetail/imgsrcfile?filename="+data+"'><img src='/resources/test.png' alt='일반파일 썸네일입니다.'/><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
+						}
+						
+						$(".ImgsrcList1").append(str);
+					}
+				});
+			}
+		});
+		
+		$(".ImgsrcDrop2").on("dragenter dragover", function(event){
+			event.preventDefault();
+		});
+		$(".ImgsrcDrop2").on("drop", function(event){
+			event.preventDefault();
+			
+			var arr = event.originalEvent.dataTransfer.files;
+			
+			for(var idx=0; idx<arr.length; idx++){
+				var file = arr[idx];
+				
+				var formData = new FormData();
+				formData.append("file", file);
+				
+				$.ajax({
+					type : 'post',
+					url : '/gameDetail/imgsrcajax',
+					data : formData,
+					dataType : 'text',
+					contentType : false,
+					processData : false,
+					success : function(data){
+						var str = '';
+						
+						if(checkImageType(data)){
+							if(data != null){
+								str += "<div><img src='/gameDetail/imgsrcfile2?filename="+data+"' alt='게임파일 그림'/><p style='color: white;'>"+getOriginalName(data)+"</p><input type='hidden' id='filename' name='filename2' value='"+data+"'></div>";
+							}else{
+								str += "<div><input type='hidden' id='filename' name='filename2' value='${str2}'></div>";
+							}
+						}else{
+							str += "<div><img href='/gameDetail/imgsrcfile?filename="+data+"'><img src='/resources/test.png' alt='일반파일 썸네일입니다.'/><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
+						}
+						
+						$(".ImgsrcList2").append(str);
+					}
+				});
+			}
+		});
+		
+		$(".ImgsrcDrop3").on("dragenter dragover", function(event){
+			event.preventDefault();
+		});
+		$(".ImgsrcDrop3").on("drop", function(event){
+			event.preventDefault();
+			
+			var arr = event.originalEvent.dataTransfer.files;
+			
+			for(var idx=0; idx<arr.length; idx++){
+				var file = arr[idx];
+				
+				var formData = new FormData();
+				formData.append("file", file);
+				
+				$.ajax({
+					type : 'post',
+					url : '/gameDetail/imgsrcajax',
+					data : formData,
+					dataType : 'text',
+					contentType : false,
+					processData : false,
+					success : function(data){
+						var str = '';
+						
+						if(checkImageType(data)){
+							if(data != null){
+								str += "<div><img src='/gameDetail/imgsrcfile3?filename="+data+"' alt='게임파일 그림'/><p style='color: white;'>"+getOriginalName(data)+"</p><input type='hidden' id='filename' name='filename3' value='"+data+"'></div>";
+							}else{
+								str += "<div><input type='hidden' id='filename' name='filename3' value='${str3}'></div>";
+							}
+						}else{
+							str += "<div><img href='/gameDetail/imgsrcfile?filename="+data+"'><img src='/resources/test.png' alt='일반파일 썸네일입니다.'/><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
+						}
+						
+						$(".ImgsrcList3").append(str);
+					}
+				});
+			}
+		});
+		
+		$(".ImgsrcDrop4").on("dragenter dragover", function(event){
+			event.preventDefault();
+		});
+		$(".ImgsrcDrop4").on("drop", function(event){
+			event.preventDefault();
+			
+			var arr = event.originalEvent.dataTransfer.files;
+			
+			for(var idx=0; idx<arr.length; idx++){
+				var file = arr[idx];
+				
+				var formData = new FormData();
+				formData.append("file", file);
+				
+				$.ajax({
+					type : 'post',
+					url : '/gameDetail/imgsrcajax',
+					data : formData,
+					dataType : 'text',
+					contentType : false,
+					processData : false,
+					success : function(data){
+						var str = '';
+						
+						if(checkImageType(data)){
+							if(data != null){
+								str += "<div><img src='/gameDetail/imgsrcfile4?filename="+data+"' alt='게임파일 그림'/><p style='color: white;'>"+getOriginalName(data)+"</p><input type='hidden' id='filename' name='filename4' value='"+data+"'></div>";
+							}else{
+								str += "<div><input type='hidden' id='filename' name='filename4' value='${str4}'></div>";
+							}
+						}else{
+							str += "<div><img href='/gameDetail/imgsrcfile?filename="+data+"'><img src='/resources/test.png' alt='일반파일 썸네일입니다.'/><input type='hidden' id='gamefilepath' name='gamefilepath' value='"+data+"'></div>"
+						}
+						
+						$(".ImgsrcList4").append(str);
+					}
+				});
+			}
+		});
 	});
+	
+	function checkImageType(data){
+		var pattern = /jpg|png|jpeg|gif/i;
+		return data.match(pattern);
+	}
+	
+	function getOriginalName(data){
+		
+		var idx = data.lastIndexOf("_")+1;
+		
+		return data.substring(idx);
+	}
 </script>
 </body>
 </html>

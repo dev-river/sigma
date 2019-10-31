@@ -43,13 +43,13 @@
 	</select>
 	
 	<select id="gameDetailDC" resultType="kr.co.domain.gameDetailDcVO">
-		select g.num as num, g.title, to_char(gdc.dcstartdate, 'yyyy-mm-dd') as dcstartdate, to_char(gdc.dcenddate, 'yyyy-mm-dd') as dcenddate, to_char(gdc.rqstartdate, 'yyyy-mm-dd') as rqstartdate, to_char(gdc.rqenddate, 'yyyy-mm-dd') as rqenddate, gdc.goal, gdc.dcrate 
+		select g.num as num, g.title as title, to_char(gdc.dcstartdate, 'yyyy-mm-dd') as dcstartdate, to_char(gdc.dcenddate, 'yyyy-mm-dd') as dcenddate, to_char(gdc.rqstartdate, 'yyyy-mm-dd') as rqstartdate, to_char(gdc.rqenddate, 'yyyy-mm-dd') as rqenddate, gdc.goal, gdc.dcrate 
 		from gamedetail g, gamedetaildc gdc
 		where g.num = gdc.gdnum and g.writer = #{writer} order by num desc
 	</select>
 	
 	<select id="refundRead" resultType="kr.co.domain.refundVO">
-		select refundlist.num, refundlist.id, gamedetail.title, refundlist.updatedate, refundlist.status, buylist.buyprice as buynum, refundlist.content, refundlist.refunddate, refundlist.compcontent
+	  select refundlist.num, refundlist.id, gamedetail.title, refundlist.updatedate, refundlist.status, buylist.buyprice as buynum, refundlist.content, refundlist.refunddate, refundlist.compcontent
       from refundlist, buylist, gamedetail 
       where refundlist.buynum = buylist.num and buylist.gdnum = gamedetail.num and gamedetail.writer = #{id} and refundlist.num = #{num}
 	</select>
@@ -104,5 +104,21 @@
 	
 	<select id="womancount" resultType="Integer">
 		select count(usersex) as usersex from sellinfo s, gamedetail g where s.gdnum=g.num and g.writer=#{writer} and s.usersex='여자'
+	</select>
+	
+	<select id="age10" resultType="Integer">
+		select count(userage) as userage from sellinfo where userage between 1 and 19
+	</select>
+	
+	<select id="age20" resultType="Integer">
+		select count(userage) as userage from sellinfo where userage between 20 and 29
+	</select>
+	
+	<select id="age30" resultType="Integer">
+		select count(userage) as userage from sellinfo where userage between 30 and 39
+	</select>
+	
+	<select id="age40" resultType="Integer">
+		select count(userage) as userage from sellinfo where userage >= 40
 	</select>
 </mapper>

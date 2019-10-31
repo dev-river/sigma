@@ -13,8 +13,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
-<div class="container">
+<div class="bodymain">
+	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; height: 100%;">
+	
+	<div class="col-xs-10 col-xs-offset-1">
 	<div class="row">
 		<h2>환불 신청 자세히 보기</h2>
 		<input type="hidden" id="num" value="${vo.num}">
@@ -23,25 +25,43 @@
 		<input type="hidden" id="userid" value="${login.id}">
 	</div>
 	<c:if test="${vo.status eq '-'}">
-		<div>
-			<label>신청자 : </label>
-			<p>${vo.id}</p>
-			<label>신청일 : </label>
-			<p>${vo.updatedate}</p>
-			<label>게임명 : </label>
-			<p>${vo.title}</p>
-			<label>환불사유 : </label>
-			<select>
-				<option></option>
-			</select>
-			<label>가격 : </label>
-			<p>${vo.buynum}</p>
-			<label>환불 상태</label>
-			<p>${vo.status}</p>
-		</div>
-		<div>
-			<h2>환불 내용</h2>
-			<p>${vo.content}</p>
+		<div class="row">
+			<div class="panel panel-primary">
+				<label>신청자</label>
+				<div class="panel-body">
+					${vo.id}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>신청자</label>
+				<div class="panel-body">
+					${vo.updatedate}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>게임명</label>
+				<div class="panel-body">
+					${vo.title}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>가격</label>
+				<div class="panel-body">
+					${vo.buynum}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>환불상태</label>
+				<div class="panel-body">
+					${vo.status}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>환불 내용</label>
+				<div class="panel-body">
+					${vo.content}
+				</div>
+			</div>
 		</div>
 		<div>
 			<input type="button" value="환불 승인" class="btn success">
@@ -49,53 +69,103 @@
 		</div>
 	</c:if>
 	<c:if test="${vo.status eq 'o'}">
-		<div>
-			<label>신청자 : </label>
-			<p>${vo.id}</p>
-			<label>신청일 : </label>
-			<p>${vo.updatedate}</p>
-			<label>게임명 : </label>
-			<p>${vo.title}</p>
-			<label>환불사유 : </label>
-			<select>
-				<option></option>
-			</select>
-			<label>가격 : </label>
-			<p>${vo.buynum}</p>
-			<label>환불 상태</label>
-			<p>${vo.status}</p>
-			<label>환불 날짜</label>
-			<p>${vo.refunddate}</p>
-		</div>
-		<div>
-			<h2>환불 내용</h2>
-			<p>${vo.content}</p>
+		<div class="row">
+			<div class="panel panel-primary">
+				<label>신청자</label>
+				<div class="panel-body">
+					${vo.id}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>신청자</label>
+				<div class="panel-body">
+					${vo.updatedate}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>게임명</label>
+				<div class="panel-body">
+					${vo.title}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>가격</label>
+				<div class="panel-body">
+					${vo.buynum}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>환불상태</label>
+				<div class="panel-body">
+					${vo.status}
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<label>환불날짜</label>
+				<div class="panel-body">
+					${vo.refunddate}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>환불 내용</label>
+				<div class="panel-body">
+					${vo.content}
+				</div>
+			</div>
 		</div>
 	</c:if>
 	<c:if test="${vo.status eq 'x'}">
-		<div>
-			<label>신청자 : </label>
-			<p>${vo.id}</p>
-			<label>신청일 : </label>
-			<p>${vo.updatedate}</p>
-			<label>게임명 : </label>
-			<p>${vo.title}</p>
-			<label>환불사유 : </label>
-			<select>
-				<option></option>
-			</select>
-			<label>가격 : </label>
-			<p>${vo.buynum}</p>
-			<label>환불 상태</label>
-			<p>${vo.status}</p>
-			<label>환불 답변 내용</label>
-			<p>${vo.compcontent}</p>
-		</div>
-		<div>
-			<h2>환불 내용</h2>
-			<p>${vo.content}</p>
+		<div class="row">
+			<div class="panel panel-primary">
+				<label>신청자</label>
+				<div class="panel-body">
+					${vo.id}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>신청자</label>
+				<div class="panel-body">
+					${vo.updatedate}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>게임명</label>
+				<div class="panel-body">
+					${vo.title}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>가격</label>
+				<div class="panel-body">
+					${vo.buynum}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>환불상태</label>
+				<div class="panel-body">
+					${vo.status}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>환불 답변 내용</label>
+				<div class="panel-body">
+					${vo.compcontent}
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<label>환불 내용</label>
+				<div class="panel-body">
+					${vo.content}
+				</div>
+			</div>
 		</div>
 	</c:if>
+		<div class="roe" style="float: right;">
+			<input type="button" value="뒤로" class="btn" onclick="location.href='/compManage/main/refundlist?id=${login.id}'">
+		</div>
+	</div>
+	</div>
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -114,7 +184,7 @@
 						inputString : inputString,
 					},
 					success : function(){
-						location.href="/compManage/refund/refundList?id=${login.id}";
+						location.href="/compManage/main/refundlist?id=${login.id}";
 					}
 				});
 			}else{
@@ -141,10 +211,15 @@
 				success : function(result){
 					if(result == 'wait'){
 						alert("캐시가 부족합니다.");
-						location.href="/myPage/cash/charge?id=${login.id}";
+						var str = confirm("충전하시겠습니까?");
+						if(str==true){
+							location.href="/myPage/main/cash?id=${login.id}";
+						}else{
+							location.reload();
+						}
 					}else{
-						alert("환불신청이 완료 되었습니다.");
-						location.href="/compManage/refund/refundList?id=${login.id}";
+						alert("환불이 완료 되었습니다.");
+						location.href="/compManage/main/refundlist?id=${login.id}";
 					}
 					
 				}

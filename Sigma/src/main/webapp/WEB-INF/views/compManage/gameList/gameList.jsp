@@ -47,16 +47,16 @@ p, th, td {
 </style>
 </head>
 <body>
-
 	<div class="bodymain">
 		<div class="container">
 			<div class="row">
 				<h1 style="color: white;">판매 관리</h1>
 			</div>
 			<div class="row">
-				<div>
+				<div style="display: inline;">
 					<h2 style="color: white;">성별 및 나이</h2>
-					<div id="chart_div" style="width: 500px; height: 300px;"></div>
+					<div id="chart_sex" style="width: 500px; height: 300px;"></div>
+					<div id="chart_age" style="width: 500px; height: 300px;"></div>
 				</div>
 				<div>
 					<h2 style="color: white;">판매하는 게임</h2>
@@ -72,8 +72,11 @@ p, th, td {
 						<h4>등록한 게임이 없습니다.</h4>
 					</c:if>
 					<c:if test="${!empty gamelist}">
-						<c:forEach items="${gamelist}" var="gamelist">
+						<c:forEach items="${gamelist}" var="gamelist" begin="0" end="4">
+							<div style="display: inline-block;">
+							<p><a href="/gameDetail/main/maincategoryread?num=${gamelist.num}"><img src="/compManage/imgfile?filename=s_${gamelist.filepath}" width="50%;"></a></p>
 							<p>${gamelist.title}</p>
+							</div>
 						</c:forEach>
 					</c:if>
 				</div>
@@ -106,10 +109,9 @@ p, th, td {
 							<c:if test="${!empty gameDetailDC}">
 								<c:forEach items="${gameDetailDC}" var="DC">
 									<tr>
-										<td><a
-											href="/gameDetail/main/maincategoryread?num=${DC.num}">${DC.gdnum}</a></td>
-										<td>${DC.dcstartdate}-${DC.dcenddate}</td>
-										<td>${DC.rqstartdate}-${DC.rqenddate}</td>
+										<td><a href="/gameDetail/main/maincategoryread?num=${DC.num}">${DC.title}</a></td>
+										<td>${DC.dcstartdate}- ${DC.dcenddate}</td>
+										<td>${DC.rqstartdate}- ${DC.rqenddate}</td>
 										<td>${DC.dcrate}</td>
 										<td>${DC.goal}</td>
 									</tr>
@@ -122,28 +124,56 @@ p, th, td {
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-	google.load('visualization', '1', {'packages' : ['corechart']});
-	google.setOnLoadCallback(drawChart);
-	
-	function drawChart() {
-	
-	  var data = google.visualization.arrayToDataTable([
-	    ['Task', 'Hours per Day'],
-	    ['남자',     ${man}],
-	    ['여자',     ${woman}]
-	  ]);
-	
-	  var options = {
-	    title: '성별',
-	   	backgroundColor: { fill:'transparent' },
-           titleTextStyle: {color: 'white', fontSize: 15 },
-	  };
-	
-	  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-	
-	  chart.draw(data, options);
-	}
+<script type="text/javascript">
+		google.load('visualization', '1', {'packages' : ['corechart']});
+		google.setOnLoadCallback(chart_sex);
+		
+		function chart_sex() {
+		
+		  var data = google.visualization.arrayToDataTable([
+		    ['Task', 'Hours per Day'],
+		    ['남', ${man}],
+		    ['여', ${woman}]
+		  ]);
+		
+		  var options = {
+		    title: '성별',
+		   	backgroundColor: { fill:'transparent' },
+	        titleTextStyle: {color: 'white', fontSize: 15 },
+	        legend:'none',
+	        pieSliceText: 'label'
+		  };
+		
+		  var chart = new google.visualization.PieChart(document.getElementById('chart_sex'));
+		
+		  chart.draw(data, options);
+		}
+
+ 		google.load('visualization', '1', {'packages' : ['corechart']});
+		google.setOnLoadCallback(chart_age);
+		
+		function chart_age() {
+		
+		  var data = google.visualization.arrayToDataTable([
+		    ['Task', 'Hours per Day'],
+		    ['10대', ${s10}],
+		    ['20대', ${s20}],
+		    ['30대', ${s30}],
+		    ['40대이상', ${s40}]
+		  ]);
+		
+		  var options = {
+		    title: '나이',
+		   	backgroundColor: { fill:'transparent' },
+	        titleTextStyle: {color: 'white', fontSize: 15 },
+	        legend:'none',
+	        pieSliceText: 'label'
+		  };
+		
+		  var chart = new google.visualization.PieChart(document.getElementById('chart_age'));
+		
+		  chart.draw(data, options);
+		}
 </script>
 </body>
 </html>

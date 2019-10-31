@@ -58,4 +58,12 @@ public interface compDAO {
 	int mancount(String writer);
 
 	int womancount(String writer);
+
+	int age10();
+
+	int age20();
+	
+	int age30();
+	
+	int age40();
 }

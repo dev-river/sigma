@@ -5,30 +5,131 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.domain.SPageTO;
 import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
+import kr.co.domain.gameDetailFileVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.reviewVO;
 import kr.co.domain.memberVO;
 import kr.co.service.gameDetailService;
+import kr.co.utils.UploadFileUtils;
 
 @Controller
 @RequestMapping("/gameDetail")
 public class gameDetailController {
 	@Inject
 	private gameDetailService gservice;
+	
+	@Resource(name = "uploadGamePath")
+	private String uploadGamePath;
+	
+	@Resource(name = "GameFile")
+	private String gamefile;
+
+	private int[] num1;
+	
+	@ResponseBody
+	@RequestMapping(value = "/gamefile", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> gamedisplay(String filename){
+		String uploadPath = gamefile;
+		
+		return UploadFileUtils.displayfile(uploadPath, filename);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/imgfile", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> imgdisplay(String filename){
+		String uploadPath = uploadGamePath;
+		
+		return UploadFileUtils.displayfile(uploadPath, filename);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/imgsrcfile1", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> imgsrcdisplay1(String filename){
+		String uploadPath = uploadGamePath;
+		
+		return UploadFileUtils.displayfile(uploadPath, filename);
+	}
+	@ResponseBody
+	@RequestMapping(value = "/imgsrcfile2", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> imgsrcdisplay2(String filename){
+		String uploadPath = uploadGamePath;
+		
+		return UploadFileUtils.displayfile(uploadPath, filename);
+	}
+	@ResponseBody
+	@RequestMapping(value = "/imgsrcfile3", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> imgsrcdisplay3(String filename){
+		String uploadPath = uploadGamePath;
+		
+		return UploadFileUtils.displayfile(uploadPath, filename);
+	}
+	@ResponseBody
+	@RequestMapping(value = "/imgsrcfile4", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> imgsrcdisplay4(String filename){
+		String uploadPath = uploadGamePath;
+		
+		return UploadFileUtils.displayfile(uploadPath, filename);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/gameajax", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	public ResponseEntity<String> GameAjax(MultipartHttpServletRequest request) throws Exception{
+		
+		MultipartFile file = request.getFile("file");
+		String savedName = UploadFileUtils.uploadFile(gamefile, file);
+		
+		return new ResponseEntity<String>(savedName, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/gameajax", method = RequestMethod.GET)
+	public void GameAjax() {}
+	
+	@ResponseBody
+	@RequestMapping(value = "/imgajax", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	public ResponseEntity<String> ImgAjax(MultipartHttpServletRequest request) throws Exception{
+		
+		MultipartFile file = request.getFile("file");
+		String savedName = UploadFileUtils.uploadFile(uploadGamePath, file);
+		
+		return new ResponseEntity<String>(savedName, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/imgajax", method = RequestMethod.GET)
+	public void ImgAjax() {}
+	
+	@ResponseBody
+	@RequestMapping(value = "/imgsrcajax", method = RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	public ResponseEntity<String> ImgsrcAjax(MultipartHttpServletRequest request) throws Exception{
+		
+		MultipartFile file = request.getFile("file");
+		String savedName = UploadFileUtils.uploadFile(uploadGamePath, file);
+		
+		return new ResponseEntity<String>(savedName, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/imgsrcajax", method = RequestMethod.GET)
+	public void ImgsrcAjax() {}
+	
+	
 	
 	public Map<String, Object> sessionInfo(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -217,12 +318,63 @@ public class gameDetailController {
 	@RequestMapping(value = "/main/maincategoryupdate", method = RequestMethod.GET)
 	public void update(Model model, int num) {
 		gameVO vo = gservice.read(num);
+		List<gameDetailFileVO> filevo = gservice.filename(num);
+		String str1 = filevo.get(0).getFilename();
+		String str2 = filevo.get(1).getFilename();
+		String str3 = filevo.get(2).getFilename();
+		String str4 = filevo.get(3).getFilename();
 		model.addAttribute("vo", vo);
+		model.addAttribute("str1", str1);
+		model.addAttribute("str2", str2);
+		model.addAttribute("str3", str3);
+		model.addAttribute("str4", str4);
 	}
 	
 	@RequestMapping(value = "/main/maincategoryupdate", method = RequestMethod.POST)
-	public String update(gameVO vo) {
+	public String update(gameVO vo, String filename1, String filename2, String filename3, String filename4) {
+		System.out.println(vo);
+		System.out.println("start : "+filename1+":"+filename2+":"+filename3+":"+filename4);
+		gameVO gvo = gservice.read(vo.getNum());
+		if(vo.getGamefilepath()==null) {
+			vo.setGamefilepath(gvo.getGamefilepath());
+		}
+		
+		if(vo.getFilepath()==null) {
+			vo.setFilepath(gvo.getFilepath());
+		}
 		gservice.update(vo);
+		List<gameDetailFileVO> filevo = gservice.filename(vo.getNum());
+		num1 = null;
+		num1[0] = filevo.get(0).getNum();
+		
+		if(filename1 == null) {
+			filename1 = filevo.get(0).getFilename();
+		}else {
+			filename1 = filename1;
+		}
+		if(filename2 == null) {
+			filename2 = filevo.get(1).getFilename();
+		}else {
+			filename2 = filename2;
+		}
+		if(filename3 == null) {
+			filename3 = filevo.get(2).getFilename();
+		}else {
+			filename3 = filename3;
+		}
+		if(filename4 == null) {
+			filename4 = filevo.get(3).getFilename();
+		}else {
+			filename4 = filename4;
+		}
+//		List list = new ArrayList();
+//		list.add(0, filename1);
+//		list.add(1, filename2);
+//		list.add(2, filename3);
+//		list.add(3, filename4);
+		System.out.println("end : "+filename1+":"+filename2+":"+filename3+":"+filename4);
+//		gservice.imgupdate1(filename1,num1);
+		
 		return "redirect:/gameDetail/main/maincategoryread?num="+vo.getNum();
 	}
 	
