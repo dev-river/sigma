@@ -16,92 +16,93 @@
 <body>
 <div class="container">
 		<div class="row">
-			<h1>회원정보 자세히 보기</h1>
+			<div class="col-xs-10 col-xs-offset-1">
+			<h3>회원정보</h3>
 			
 				<div class="form-group">
-					<label for="id">ID</label>
+					<label class="badge badge-info"  for="id">ID</label>
 					<input class="form-control" id="ID" name="id" value="${readvo.id}" readonly="readonly">
 				</div>
 				
 				<div class="form-group">
-					<label for="nickname">닉네임</label>
+					<label class="badge badge-info"  for="nickname">닉네임</label>
 					<input class="form-control" id="nickname" name="nickname" value="${readvo.nickname}" readonly="readonly">
 				</div>
 				
 				<div class="form-group">
-					<label for="name">이름</label>
+					<label class="badge badge-info"  for="name">이름</label>
 					<input class="form-control" id="name" name="name" value="${readvo.name}" readonly="readonly">
 				</div>
 				
 				<div class="form-group">
-					<label for="writer">권한</label>
+					<label class="badge badge-info"  for="writer">권한</label>
 					<input class="form-control" id="author" name="author" value="${readvo.author}" readonly="readonly">
 				</div>
 				
 				<div class="form-group">
-					<label for="content">성별</label>
+					<label class="badge badge-info"  for="content">성별</label>
 					<textarea  class="form-control" id="sex" name="sex" readonly="readonly">${readvo.sex}</textarea>
 				</div>
 
 				<div class="form-group">
-					<label for="content">생년월일</label>
+					<label class="badge badge-info"  for="content">생년월일</label>
 					<textarea  class="form-control" id="birth" name="birth" readonly="readonly">${readvo.birth}</textarea>
 				</div>
 				
 				<div class="form-group">
-					<label for="content">연락처</label>
+					<label class="badge badge-info"  for="content">연락처</label>
 					<textarea  class="form-control" id="phone" name="phone" readonly="readonly">${readvo.phone}</textarea>
 				</div>
 				
 				<div class="form-group">
-					<label for="content">이메일</label>
+					<label class="badge badge-info"  for="content">이메일</label>
 					<textarea  class="form-control" id="email" name="email" readonly="readonly">${readvo.email}</textarea>
 				</div>
 				
 				<div class="form-group">
-					<label for="content">가입일</label>
+					<label class="badge badge-info"  for="content">가입일</label>
 					<textarea  class="form-control" id="joindate" name="joindate" readonly="readonly">${readvo.joindate}</textarea>
 				</div>
 				
 				<div class="form-group">
-					<label for="content">주소</label>
+					<label class="badge badge-info"  for="content">주소</label>
 					<textarea  class="form-control" id="address" name="address" readonly="readonly">${readvo.address1}&nbsp;${readvo.address2}</textarea>
 				</div>
 
 				<div class="form-group">
-					<label for="content">잔여캐쉬</label>
+					<label class="badge badge-info"  for="content">잔여캐쉬</label>
 					<textarea  class="form-control" id="cash" name="cash" readonly="readonly">${readvo.cash}</textarea>
 				</div>
 				
 				<c:if test="${readvo.author=='seller'}">
 					
 				<div class="form-group">
-					<label for="content">판매자명</label>
+					<label class="badge badge-info"  for="content">판매자명</label>
 					<textarea  class="form-control" id="compname" name="compname" readonly="readonly">${readvo.compname}</textarea>
 				</div>
 					
 				<div class="form-group">
-					<label for="content">판매자정보</label>
+					<label class="badge badge-info"  for="content">판매자정보</label>
 					<textarea  class="form-control" id="compdetail" name="compdetail" readonly="readonly">${readvo.compdetail}</textarea>
 				</div>
 					
 				<div class="form-group">
-					<label for="content">판매자번호</label>
+					<label class="badge badge-info"  for="content">판매자번호</label>
 					<textarea  class="form-control" id="compdetail" name="compdetail" readonly="readonly">${readvo.compdetail}</textarea>
 				</div>
 					
 				<div class="form-group">
-					<label for="content">판매자 주소</label>
+					<label class="badge badge-info"  for="content">판매자 주소</label>
 					<textarea  class="form-control" id="compaddress" name="compaddress" readonly="readonly">${readvo.compaddress1}&nbsp;${readvo.compaddress2}</textarea>
 				</div>
 					
 				<div class="form-group">
-					<label for="content">판매자 연락처</label>
+					<label class="badge badge-info"  for="content">판매자 연락처</label>
 					<textarea  class="form-control" id="compphone" name="compphone" readonly="readonly">${readvo.compphone}</textarea>
 				</div>
 					
 				<div class="form-group">
-					<label for="content">등록이미지 경로</label>
+					<label class="badge badge-info"  for="content">등록이미지 경로</label>
 					<textarea  class="form-control" id="filepath" name="filepath" readonly="readonly">${readvo.filepath}</textarea>
 				</div>
 					
@@ -121,6 +122,7 @@
 						</div>
 					</c:forEach>
 				</div>
+			</div>
 		</div>
 		
 </div>

@@ -23,6 +23,30 @@
 		border-radius: 10px;
  		box-shadow: 15px 15px 20px black;
 	}
+	#test_btn1 {
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	float: left;
+	margin: 5px; padding:5px; width:80%;
+	}
+
+
+	#btn_group button {
+		border: 1px solid white;
+		background-color: rgba(0, 0, 0, 0);
+		color: white;
+		padding: 5px;
+		position: relative;
+		left:5%;
+		width:35%;
+	}
+
+	#btn_group button:hover {
+		color: white;
+		background-color: black;
+	}
 </style>
 </head>
 <body>
@@ -34,9 +58,9 @@
 			<h3>${myinfo.nickname}(${myinfo.id})님의 마이페이지</h3>
 			<br>
 			<div  style="position: relative; left:5%; width:50%" class="pull-left">
-					<button style="width:20%; color: black; float:right; position: relative; top: 120px;" class="pull-right update">프로필 수정</button>
+
 					<p class="pull-left" style="width:50%">닉네임 : ${myinfo.nickname}</p>
-					<p class="pull-right" style="width:30%">이름 : ${myinfo.name}</p>
+					<p class="pull-right" style="width:50%">이름 : ${myinfo.name}</p>
 					<br>
 					<p class="pull-left" style="width:50%">ID : ${myinfo.id}</p>
 					<p class="pull-right" style="width:50%">메일주소 : ${myinfo.email}</p>
@@ -47,17 +71,23 @@
 					<p class="pull-left" style="width:50%">보유 게임 수 : ${gamecount}개</p>
 					<p class="pull-right" style="width:50%">작성 리뷰 수 : ${reviewcount}개</p>
 			</div>
-			<div style="position: relative; left:5%; width:40%" class="pull-right">
-				<a href="/myPage/main/zzim" style="text-decoration:none; color: #333333;"><button style="margin: 5px; padding:5px; width:80%" class="btn zzimList">찜목록</button></a>
-				<a href="/myPage/main/Basket" style="text-decoration:none; color: #333333;"><button style="margin: 5px; padding:5px; width:80%" class="btn shopBasket">장바구니</button></a>
-				<a href="/myPage/main/cash?id=${myinfo.id}" style="text-decoration:none; color: #333333;"><button style="margin: 5px; padding:5px; width:80%" class="btn cach">캐쉬 충전</button></a>
-			</div>
+				<div id="btn_group">
+					<button class="update" id="test_btn1">프로필 수정</button>
+					<button id="test_btn1" onclick="location.href='/myPage/main/zzim'">찜목록</button>
+					<button id="test_btn1" onclick="location.href='/myPage/main/Basket'" >장바구니</button>
+					<button onclick="location.href='/myPage/main/cash?id=${myinfo.id}'" style="float: right; position: relative;
+					border-radius: 5px;
+					padding-right: 10px;
+					margin-right: 162px;
+					padding:5px;
+					margin-top: 5px;">캐쉬 충천</button>
+				</div>
 		</div>
 		
 		
 		<hr style="border: double; 1px; black;">
 		
-		<div class="row" style="width:65%; height:auto; padding-right:40px; border-right: double; 1px; black;">
+		<div class="row" style="width:70%; height:auto; padding-right:40px; border-right: double; 1px; black;">
 			<h3 style="position: relative; left: 10%">게임</h3>
 			<div style="height: 180px;">
 				<h4 style="position: relative; left: 13%" class="pull-left">최근 구매 목록</h4>
@@ -87,11 +117,11 @@
 			
 			<div style="height: 180px;">
 				<h4 style="position: relative; left: 13%; top: -10px;" class="pull-left">단골 스토어 목록</h4>
-				<a class="pull-right" href="/myPage/subscribe/ssubComp">자세히 보기</a>
+				<a class="pull-right" href="/myPage/main/ssubComp">자세히 보기</a>
 				<br>
 				<c:forEach items="${favComp}" var="favComp" varStatus="status">
 					<c:if test="${status.index < 4}">
-						<a href="/myPage/subscribe/subComp?writer=${favComp.id}">
+						<a href="/myPage/main/subComp?writer=${favComp.id}">
 							<div style="width:18%; margin:2px; height:150px; text-align: center;" class="pull-left">
 								<c:choose>
 									<c:when test="${favComp.filepath eq null}">
@@ -111,7 +141,7 @@
 			
 			<hr>
 			
-			<div style="height: 180px;">
+			<div style="height: 200px;">
 				<h4 style="position: relative; left: 13%; top: -10px;" class="pull-left">환불 신청 목록</h4>
 				<a class="pull-right" href="/myPage/main/buy/refundlist">자세히 보기</a>
 				<br>
@@ -159,9 +189,6 @@
 		//});
 	});
 	
-	
-	
-
 </script>
 </body>
 </html>

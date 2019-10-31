@@ -83,7 +83,7 @@
 					
 				<div class="form-group">
 					<label for="address1">주소</label><br>
-					<input name="address1" id="address1" class="form-control pull-left" placeholder="주소를 입력해주세요." style="width: 80%;">
+					<input name="address1" id="address1" class="form-control pull-left" placeholder="주소를 입력해주세요." style="width: 80%;" readonly>
 					<input type="button" class="search1 pull-rigth" value="찾기" style="width: 20%; height: 33.99px;">
 					<input name="address2" id="address2" class="form-control" placeholder="상세주소를 입력해주세요.">
 				</div>

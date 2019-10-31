@@ -24,8 +24,9 @@
 </head>
 <body>
 	<div class="bodymain">
-	<div class="container">
-		<div class="row" style="">
+	<br>
+	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 730px; max-height: auto;">
+		<div class="row" style="padding-left: 30px; padding-right: 30px;">
 			<h3>${usercash.nickname}(${usercash.id})님의 캐쉬 충전</h3>
 			<br>
 			<div style="position: relative; left:5%; width:85%;" class="cash">
@@ -41,10 +42,9 @@
 				<div style="position: relative; width: 40%;" class="pull-right">
 					<h3>현재 잔액 : ${usercash.cash}원</h3>
 					<br>
-					<h3 class="pull-left" style="width:43%;">충전 후 잔액 : </h3>
-					<input class="pull-left after_cash"  style="width: 40%; height: 24px; margin-top: 20px; color: black;" name="cash" value="${usercash.cash}" readonly="readonly"><h3 class="pull-right">원</h3>
-					<br>
-					<button type="reset" style="position: relative; top: -70px; left:55px; color: black;" class="btn pull-right">리셋</button>
+					<h3 class="pull-left" style="width:43%;">충전 후 잔액 :</h3>
+					<input class="pull-left after_cash"  style="width: 35%; height: 24px; margin-top: 20px; color: black;" name="cash" value="${usercash.cash}" readonly="readonly"><h3 class="pull-right" style="position: relative; right: 70px;">원</h3>
+					<button type="reset" style="position: relative; top: 13px; left:20px; color: black;" class="btn pull-right">리셋</button>
 				</div>
 				<br>
 				<div style="position: relative; width:70%" class="pull-right">

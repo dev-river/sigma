@@ -54,6 +54,22 @@
 
 	<interceptors>
 		<interceptor>
+			<mapping path="/board/main/event/eventInsert"/>
+			<mapping path="/board/main/list/boardinsert"/>
+			<mapping path="/board/main/newgame/NewGameInsert"/>
+			<mapping path="/board/main/notice/boardNOinsert"/>
+			<mapping path="/board/main/One/OneInsert"/>
+			<mapping path="/board/main/One/OneRead"/>
+			<mapping path="/myPage/main/refundInsert"/>
+			<mapping path="/myPage/main/Basket"/>
+			<mapping path="/myPage/main/zzim"/>
+			<mapping path="/myPage/main/subComp"/>
+			<mapping path="/gameDetail/inform/reviewinsert"/>
+			<beans:ref bean="AuthIn"/>
+		</interceptor>
+	</interceptors>
+	<interceptors>
+		<interceptor>
 			<mapping path="/**"/>
 			<exclude-mapping path="/member/login/login"/>
 			<exclude-mapping path="/member/login/logout"/>

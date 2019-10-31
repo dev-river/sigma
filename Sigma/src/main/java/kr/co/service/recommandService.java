@@ -22,4 +22,10 @@ public interface recommandService {
 
 	SPageTO customRec(SPageTO to, String id);
 
+	List<gameVO> hotgameRec();
+
+	List<gameVO> newgameRec();
+
+	List<gameVO> dcgameRec();
+
 }

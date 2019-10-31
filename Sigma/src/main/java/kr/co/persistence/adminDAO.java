@@ -63,4 +63,8 @@ public interface adminDAO {
 
 	public reviewVO reviewRead(int num);
 
+	public List<adminSetVO> setList();
+
+
+
 }

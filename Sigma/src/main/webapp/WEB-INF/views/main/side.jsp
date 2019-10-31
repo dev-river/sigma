@@ -112,6 +112,18 @@
                </c:if>
                 
             </li>
+              <li>
+            <c:if test="${!empty login}"><!-- 충전 -->
+            
+                 <c:if test="${login.author eq 'seller'}">
+                   <a href="/myPage/main/cash?id=${login.id}" title="충전">
+                  		<i class="fas fa-dollar-sign fa-lg"></i>
+                  	</a>
+                </c:if>
+           
+               </c:if>
+                
+            </li>
         </ul>
         <div class="menu-bg"></div>
     </nav>

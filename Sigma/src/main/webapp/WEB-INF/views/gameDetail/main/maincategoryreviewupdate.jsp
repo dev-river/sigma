@@ -26,12 +26,7 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/side.css">
-<style type="text/css">
 
-
-
-</style>
 </head>
 <body>
 

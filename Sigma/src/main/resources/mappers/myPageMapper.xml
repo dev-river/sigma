@@ -30,7 +30,7 @@
 	</insert>
 	
 	<select id="basketList" resultType="kr.co.domain.basketVO">
-		select sb.gdnum, gd.title, gd.writer, gd.regidate gregidate, sb.regidate sregidate, gd.price, gd.filepath from gamedetail gd, (select * from shopbasket where id=#{id}) sb where gd.num = sb.gdnum order by sregidate desc
+		select sb.gdnum, gd.dcrate, gd.title, gd.writer, gd.regidate gregidate, sb.regidate sregidate, gd.price, gd.filepath from gamedetail gd, (select * from shopbasket where id=#{id}) sb where gd.num = sb.gdnum order by sregidate desc
 	</select>
 	
 	<delete id="deleteBasketList">
@@ -62,7 +62,7 @@
 	</delete>
 	
 	<select id="refundList" resultType="kr.co.domain.refundVO">
-		select filepath, title, writer, b.num, r.id, gdnum, buyprice, buydate, r.status, r.content, compcontent, updatedate, refunddate, regidate from buylist b, refundlist r, gamedetail g where r.buynum=b.num and g.num = b.gdnum and r.id=#{id} order by updatedate desc
+		select dcrate, filepath, title, writer, b.num, r.id, gdnum, buyprice, buydate, r.status, r.content, compcontent, updatedate, refunddate, regidate from buylist b, refundlist r, gamedetail g where r.buynum=b.num and g.num = b.gdnum and r.id=#{id} order by updatedate desc
 	</select>
 	
 	<select id="getrefundgdnum" resultType="Integer">

@@ -101,6 +101,7 @@ public class adminDAOImpl implements adminDAO{
 	@Override
 	public void logoupdate(String logofilepath, adminSetVO vo) {
 		
+		logofilepath = logofilepath.substring(3);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("logofilepath", logofilepath);
 		map.put("vo", vo);
@@ -111,6 +112,7 @@ public class adminDAOImpl implements adminDAO{
 	@Override
 	public void bgupdate(String bgfilepath, adminSetVO vo) {
 		
+		bgfilepath = bgfilepath.substring(3);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("bgfilepath", bgfilepath);
 		map.put("vo", vo);
@@ -194,6 +196,12 @@ public class adminDAOImpl implements adminDAO{
 	@Override
 	public reviewVO reviewRead(int num) {
 		return session.selectOne(NSboard+".reviewRead", num);
+	}
+
+	@Override
+	public List<adminSetVO> setList() {
+		// TODO Auto-generated method stub
+		return session.selectList(NSsetting+".setList");
 	}
 
 

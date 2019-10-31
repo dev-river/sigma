@@ -28,74 +28,73 @@ color: white;
 		</div>
 		<br>
 	<div class="row">
-	<div  class="hr" style="float: right; width: 870px; border-left: double 1px white; height: 700px; padding-left: 30px; padding-right: 30px;">
-				<div class="input-group" style="width: 830px; float: right;" >
-					<span class="input-group-addon">
-						<select id="searchSel">
-							<option disabled>검색 기준</option>
-							<option value="id">아이디</option>
+				<div class="hr"	style="float: right; width: 870px; border-left: double 1px white; height: 700px; padding-left: 30px; padding-right: 30px;">
+				
+					<div class="input-group">
+						<span class="input-group-addon"> <select id="searchSel">
+								<option disabled>검색 기준</option>
+								<option value="id">아이디</option>
 								<!-- value : 서버로 넘어가는거, 작성자 : JSP에 보이는거 -->
-							<option value="name">이름</option>
-							<option value="nickname">닉네임</option>
+								<option value="name">이름</option>
+								<option value="nickname">닉네임</option>
 						</select>
-					</span>
-					
-					<input class="form-control" id="keyword">
-					
-					<span class="input-group-btn">
-						<button id="searchBtn" class="btn btn-info">검색</button>
-					</span>
+						</span> <input class="form-control" id="keyword"> <span
+							class="input-group-btn">
+							<button id="searchBtn" class="btn btn-info">검색</button>
+						</span>
+					</div>
+
+					<br>
+
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>닉네임</th>
+								<th>이름</th>
+								<th>권한</th>
+								<th>전화번호</th>
+								<th>이메일</th>
+								<th>가입일</th>
+								<th>잔여캐시</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${vo.list}" var="vo">
+								<tr>
+									<td><a class="userclick" href="${vo.id}">${vo.id}</a></td>
+									<td><a class="userclick" href="${vo.id}">${vo.nickname}</a></td>
+									<td><a class="userclick" href="${vo.id}">${vo.name}</a></td>
+									<td>${vo.author}</td>
+									<td>${vo.phone}</td>
+									<td>${vo.email}</td>
+									<td>${vo.joindate}</td>
+									<td>${vo.cash}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+
+					<div class="row text-center" style="text-align: center">
+						<ul class="pagination">
+							<c:if test="${vo.curPage>1}">
+								<li><a
+									href="/admin/main/user/adminlist?curPage=${vo.curPage-1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&laquo;</a></li>
+							</c:if>
+
+							<c:forEach begin="${vo.bpn}" end="${vo.spn}" var="idx">
+								<li class="${vo.curPage == idx?'active':''}"><a
+									href="/admin/main/user/adminlist?curPage=${idx}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">${idx}</a></li>
+							</c:forEach>
+
+							<c:if test="${vo.curPage<vo.totalPage}">
+								<li><a
+									href="/admin/main/user/adminlist?curPage=${vo.curPage+1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&raquo;</a></li>
+							</c:if>
+						</ul>
+					</div>
 				</div>
-	<br><br>
-	<table class="table table-hover" style="width: 830px; float: right;">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>닉네임</th>
-				<th>이름</th>
-				<th>권한</th>
-				<th>전화번호</th>
-				<th>이메일</th>
-				<th>가입일</th>
-				<th>잔여캐시</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${vo.list}" var="vo">
-				<tr>
-					<td><a class="userclick" href="${vo.id}">${vo.id}</a></td>
-					<td><a class="userclick" href="${vo.id}">${vo.nickname}</a></td>
-					<td><a class="userclick" href="${vo.id}">${vo.name}</a></td>
-					<td>${vo.author}</td>
-					<td>${vo.phone}</td>
-					<td>${vo.email}</td>
-					<td>${vo.joindate}</td>
-					<td>${vo.cash}</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	
-		<div class="row text-center" style="text-align: center">
-			<ul class="pagination">
-				<c:if test="${vo.curPage>1}">
-					<li><a
-						href="/admin/main/user/adminlist?curPage=${vo.curPage-1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&laquo;</a></li>
-				</c:if>
-
-				<c:forEach begin="${vo.bpn}" end="${vo.spn}" var="idx">
-					<li class="${vo.curPage == idx?'active':''}"><a
-						href="/admin/main/user/adminlist?curPage=${idx}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">${idx}</a></li>
-				</c:forEach>
-
-				<c:if test="${vo.curPage<vo.totalPage}">
-					<li><a
-						href="/admin/main/user/adminlist?curPage=${vo.curPage+1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&raquo;</a></li>
-				</c:if>
-			</ul>
-		</div>
-	</div>
-</div>
+			</div>
 </div>
 </div>
 	<script type="text/javascript">

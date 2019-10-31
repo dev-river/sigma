@@ -28,14 +28,13 @@
 		</style>
 </head>
 <body>
-
-<hr>
-		<div class=bodymain>
-			
-<div class=container>
+<div class=bodymain>
+<br>	
+<div class=container style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
 	<!-- 검색 파트 -->
+			<h3 style="color: white;">할인중인 게임</h3>
+			<hr>
 			<div class="row ">
-			<h1>할인중인 게임</h1>
 				<div class="input-group" style="padding-right: 10px;">
 					<span class="input-group-addon">
 					<select id="searchSel">
@@ -55,6 +54,7 @@
 					</span>
 				</div>
 			</div>
+			<br>
 
 			<!-- 게임 리스트 파트 -->
 	<c:forEach items="${vo.list}" var="gvo">

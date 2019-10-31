@@ -28,7 +28,7 @@ import kr.co.service.recommandService;
 import kr.co.utils.UploadFileUtils;
 
 @Controller
-@RequestMapping("/recommand")
+@RequestMapping("/recommand/main")
 public class recommandController {
 	
 	@Inject
@@ -55,7 +55,6 @@ public class recommandController {
 	@RequestMapping(value = "/hotgameRec", method = RequestMethod.GET)
 	public void hotgameRec(Model model, SPageTO to) {
 		to = rservice.hotgameRec(to);
-		System.out.println(to.getList());
 		model.addAttribute("vo", to);
 	}
 	

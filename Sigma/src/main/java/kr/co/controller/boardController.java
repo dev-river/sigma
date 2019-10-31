@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.domain.PageTO;
 import kr.co.domain.SPageTO;
+import kr.co.domain.adminSetVO;
 import kr.co.domain.boardVO;
 import kr.co.domain.memberVO;
 import kr.co.service.boardService;
@@ -35,6 +36,9 @@ public class boardController {
 	@Autowired
 	private sboardService sbService;
 	
+
+
+	
 	@RequestMapping(value = "/main/list/boardlist", method = RequestMethod.GET)
 	public void boardFRList(PageTO<boardVO> to, Model model) {
 		
@@ -43,11 +47,18 @@ public class boardController {
 	}
 	
 	@RequestMapping(value = "/main/list/boardinsert", method = RequestMethod.GET)
-	public void boardFRinsertUI(HttpServletRequest request, Model model) {
+	public String boardFRinsertUI(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		memberVO vo = (memberVO)session.getValue("login");
-		String nickname = vo.getNickname();
-		model.addAttribute("nickname", nickname);
+		
+		if(vo != null) {
+			String nickname = vo.getNickname();
+			model.addAttribute("nickname", nickname);
+			return "/board/main/list/boardinsert";
+		}else {
+			return "redirect:/member/login/login";
+		}
+		
 	}
 	
 	@RequestMapping(value = "/main/list/boardinsert", method = RequestMethod.POST)
@@ -88,7 +99,6 @@ public class boardController {
 	@RequestMapping("/boardFR/amount/{perPage}")
 	public int list(@PathVariable("perPage") int perPage) {
 		int amount = bservice.amount();
-		System.out.println(amount);
 		return (amount-1)/perPage+1;
 	}
 	

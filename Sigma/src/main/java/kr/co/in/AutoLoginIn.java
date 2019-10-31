@@ -41,10 +41,10 @@ public class AutoLoginIn extends HandlerInterceptorAdapter{
 					
 					session.setAttribute("login", vo);
 					
-					loginCookie.setMaxAge(60*2);
+					loginCookie.setMaxAge(60*60*24);
 					response.addCookie(loginCookie);
 					
-					long validtime = curTime+1000*60*2;
+					long validtime = curTime+1000*60*60*24;
 					mService.timeUpdate(jsid, validtime);
 
 				}else {

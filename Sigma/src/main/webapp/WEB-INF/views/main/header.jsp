@@ -30,7 +30,7 @@
 
 </style>
 </head>
-<body>
+<body  background="/resources/main/backgroundimg2.jpg">
 
 	<div class="header">
 		
@@ -40,7 +40,9 @@
 				<div class="menu"> <!-- 로그인 로고 검색 -->
 					<div class="img">
 						<!-- <a href="/"><img alt="..." src="/resources/main/로고2.png"></a> -->
-						<a href="/"><img alt="..." src="/resources/main/SIGMA로고.png" id="logo"></a>
+					
+						<a href="/"><img alt="" src="/resources/main/SIGMA로고.png" id="logo"></a>
+					
 					</div>
 					<div class="login">
 					
@@ -76,9 +78,9 @@
 								<input type="hidden" name="curPage" value="1">
 								<input type="hidden" name="perPage" value="6">
 								<input type="hidden" name="searchType" value="title">
-								<input class="form-control" type="text"	placeholder="검색어를 입력하세요." aria-label="Search" id="se" name="keyword">
-								<input type="submit" value="검색" class="btn btn-warning">
-								<!-- <a class="material-icons" href="/gameDetail/main/maincategory">search</a> -->
+								<input class="form-control" type="text"
+									placeholder="검색어를 입력하세요." aria-label="Search" id="se" name="keyword">
+								<button type="submit" class="btn btn-warning" id="a"><span class="glyphicon glyphicon-search"></span></button>
 							</form>
 					</div>
 				</div><!-- menu -->
@@ -91,12 +93,12 @@
 									<li id="end"><a href="/board/main/newgame/NewGame">새 게임 소식</a></li>
 								</ul></li>
 
-							<li><a href="/recommand/customRec?curPage=1&perPage=6" id="current">맞춤 게임</a>
+							<li><a href="/recommand/main/hotgameRec?curPage=1&perPage=9" id="current">맞춤 게임</a>
 								<ul>
-									<li><a href="/recommand/hotgameRec?curPage=1&perPage=9">인기게임</a></li>
-									<li><a href="/recommand/freegameRec?curPage=1&perPage=6">무료게임</a></li>
-									<li><a href="/recommand/newgameRec?curPage=1&perPage=6">신작게임</a></li>
-									<li><a href="/recommand/dcgameRec?curPage=1&perPage=6">할인게임</a></li>
+									<li id="st"><a href="/recommand/main/hotgameRec?curPage=1&perPage=9">인기게임</a></li>
+									<li><a href="/recommand/main/freegameRec?curPage=1&perPage=6">무료게임</a></li>
+									<li><a href="/recommand/main/newgameRec?curPage=1&perPage=6">신작게임</a></li>
+									<li id="end"><a href="/recommand/main/dcgameRec?curPage=1&perPage=6">할인게임</a></li>
 								</ul>
 							<li><a href="/gameDetail/main/maincategory?category=all&curPage=1&perPage=6">카테고리</a>
 								<ul>
@@ -112,10 +114,10 @@
 								</ul></li>
 							<li><a href="#" id="me2">고객센터</a>
 								<ul>
-									<li><a href="/board/main/notice/boardNO">공지사항</a></li>
+									<li id="st"><a href="/board/main/notice/boardNO">공지사항</a></li>
 									<li><a href="/board/main/One/One">1:1 문의</a></li>
 									<li><a href="/QnA">Q and A</a></li>
-									<li id="end"><a href="/myPage/buyList/refundInsert">환불신청</a></li>
+									<li id="end"><a href="/myPage/main/buy/refundinsert">환불신청</a></li>
 								</ul>
               </li>
 						</ul>

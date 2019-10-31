@@ -1,6 +1,7 @@
 package kr.co.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -15,12 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.co.domain.PageTO;
 import kr.co.domain.SPageTO;
 import kr.co.domain.adminSetVO;
 import kr.co.domain.adminSlideVO;
+import kr.co.domain.boardOVO;
 import kr.co.domain.memberVO;
 import kr.co.domain.reviewVO;
 import kr.co.service.adminService;
+import kr.co.service.boardOService;
 import kr.co.utils.UploadFileUtils;
 
 @Controller
@@ -29,6 +33,9 @@ public class adminController {
 	
 	@Inject
 	private adminService adservice;
+	
+	@Inject
+	private boardOService oservice;
 	
 	// ---회원관리 -- //
 	//로고, 배경이미지 패스
@@ -120,7 +127,7 @@ public class adminController {
 	public ResponseEntity<String> uploadLogoAjax(MultipartHttpServletRequest request, adminSetVO vo) throws Exception{
 		
 		MultipartFile file = request.getFile("file");
-		String savedLogoName = UploadFileUtils.uploadFile(uploadPath, file);
+		String savedLogoName = UploadFileUtils.uploadFileLogo(uploadPath, file);
 		
 		adservice.LogoUpdate(vo, savedLogoName);
 		
@@ -139,7 +146,7 @@ public class adminController {
 	public ResponseEntity<String> uploadBGAjax(MultipartHttpServletRequest request, adminSetVO vo) throws Exception{
 		
 		MultipartFile file = request.getFile("file");
-		String savedBGName = UploadFileUtils.uploadFile(uploadPath, file);
+		String savedBGName = UploadFileUtils.uploadFileBG(uploadPath, file);
 		
 		adservice.BGUpdate(vo, savedBGName);
 		
@@ -261,23 +268,35 @@ public class adminController {
 		
   // -- 게시판 관리 -- //
   //전체게시물 보기
-	@RequestMapping(value = "/boardManage/boardAllList")
+	@RequestMapping(value = "/main/board/boardManage")
 	public void boardAllList(Model model, SPageTO to) {
 		to = adservice.boardAllList(to);
 		model.addAttribute("to", to);
 	}
 	
   //전체리뷰 보기
-	@RequestMapping(value = "/boardManage/reviewAllList")
+	@RequestMapping(value = "/main/board/ReviewManage")
 	public void reviewAllList(Model model, SPageTO to) {
 		to = adservice.reviewAllList(to);
 		model.addAttribute("to", to);
 	}
 	
-  //리뷰
+  //리뷰 상세페이지
 	@RequestMapping(value = "/boardManage/reviewRead", method = RequestMethod.GET)
 	public void reviewRead(Model model, int num) {
 		reviewVO vo = adservice.reviewRead(num);
 		model.addAttribute("vo", vo);
+	}
+	
+	//1:1문의 관리
+	@RequestMapping(value = "/main/board/onebyoneManage")
+	public void oneManage(PageTO<boardOVO> to, Model model) {
+		PageTO<boardOVO> dbTO = oservice.pageList(to);
+		model.addAttribute("dboTO", dbTO);
+	}
+	
+	//QnA 관리
+	@RequestMapping(value = "/main/board/QnaManage", method = RequestMethod.GET)
+	public void homeq(Locale locale, Model model) {
 	}
 }

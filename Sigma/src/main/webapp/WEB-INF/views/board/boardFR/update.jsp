@@ -11,9 +11,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/se2/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-
+.update{
+	position: relative;
+	width: 1070px;
+	height: auto;
+	margin: 0;
+	right: 0%;
+}
 label{
 	color: white;
 }
@@ -21,10 +29,10 @@ label{
 </head>
 <body>
 	<div class="bodymain">
-	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; height: 100%;">
+	<div class="container">
 		<div class="update">
 		<br>
-		<h3 style="color: white;">게시글 수정</h3><br/>
+		<h3>게시글 수정</h3><br/>
 		
 		<form action="/board/main/list/boardupdate" method="post">
 			<input type="hidden" name="curPage" value="${to.curPage}">
@@ -37,7 +45,7 @@ label{
 			
 			<div class="form-group">
 				<label for="writer">작성자</label>
-				<input class="form-control" id="writer" name="writer" value="${updatevo.writer}">
+				<input class="form-control" id="writer" name="writer" value="${nickname}">
 			</div>
 			
 			<div class="form-group">
@@ -47,16 +55,48 @@ label{
 			
 			<div class="form-group">
 				<label for="content">내용</label>
-				<textarea class="form-control" id="content" name="content" rows="15" style="resize: none;">${updatevo.content}</textarea>
+				<textarea class="form-control" id="content" name="content" rows="3">${updatevo.content}</textarea>
 			</div>
-			<div class="form-group" style="float: right;">
+			<div class="form-group">
 				<button class="btn btn-warning modify">수정</button>
-				<input type="button" class="btn btn-danger" id="cancle" value="취소" onclick="location.href='/board/main/list/boardlist'">
 			</div>
 		</form>
-		<br>
 	</div>
 	</div>
 	</div>
+	
+	<script type="text/javascript">
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+	    oAppRef: oEditors,
+	    elPlaceHolder: "content",
+	    sSkinURI: "<%=request.getContextPath()%>/resources/se2/SmartEditor2Skin.html",
+	    fCreator: "createSEditor2"
+	});
+		
+		//‘저장’ 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
+		function submitContents(elClickedObj) {
+		    // 에디터의 내용이 textarea에 적용된다.
+		    oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", [ ]);
+		    try {
+		        elClickedObj.form.submit();
+		    } catch(e) {
+		     
+		    }
+		}
+		
+		// textArea에 이미지 첨부
+		function pasteHTML(filepath){
+		    var sHTML = '<img src="<%=request.getContextPath()%>/resources/boardFR/'+filepath+'">';
+		    oEditors.getById["content"].exec("PASTE_HTML", [sHTML]);
+		}
+		
+		$(document).ready(function(){
+			$("#submitBoardBtn").on("click", function(){
+				submitContents("#submitBoardBtn");
+			})
+		});
+	</script>
+	
 </body>
 </html>
