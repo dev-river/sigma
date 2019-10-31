@@ -23,16 +23,18 @@
 	height: 800px;
 	width: auto;
 }
+th, td{
+color: white;
+}
 
 </style>
 </head>
 <body>
+<div class="bodymain">
+<br>
+<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
+	<br>
 
-<div class="container">
-	
-	<div class="row" style="padding-top: 20px;">
-	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a>
-	</div>
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -75,7 +77,7 @@
 				</ul>
 			</div>
 			</div>
-			
+			</div>
 			<script type="text/javascript">
 			   $(document).ready(function() {
 				      $("#perPageSel").change(function() {

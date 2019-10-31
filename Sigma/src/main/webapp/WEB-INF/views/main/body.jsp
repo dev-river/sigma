@@ -47,12 +47,22 @@ a :hover{
 							<img class="d-block w-100"
 								src="/resources/slideBanner/${firstfilepath}" alt=""
 								id="mainimg">
+								<div class="container">
+									<div class="carousel-caption">
+										<a href="#"><h4>${firsturl}</h4></a>
+									</div>
+								</div>
 						</div>
 
 						<c:forEach items="${filepath}" var="filename" begin="0" end="3">
 							<div class="carousel-item">
 								<img class="d-block w-100"
 									src="/resources/slideBanner/${filename.filepath}" alt="" id="mainimg">
+									<div class="container">
+									<div class="carousel-caption">
+										<a href="#"><h4>${filename.urlpath}</h4></a>
+									</div>
+								</div>
 							</div>
 						</c:forEach>
 					</div>

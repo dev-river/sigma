@@ -29,10 +29,10 @@
 </head>
 <body>
 	<br>
-	<br>
+
 	<div class="bodymain">
-		<div class="list">
-<div class="container">
+<div class="container"  style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
+<br>
 <%--   	<div class="row">
          <div class="col-xs-push-10 col-xs-2">
             <select id="perPageSel" class="form-control">
@@ -152,7 +152,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 	<br><br>
 
 		<script type="text/javascript">

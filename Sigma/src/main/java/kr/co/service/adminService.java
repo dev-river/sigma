@@ -52,4 +52,6 @@ public interface adminService {
 
 	reviewVO reviewRead(int num);
 
+	List<adminSetVO> setList();
+
 }

@@ -18,13 +18,31 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-p,th,td{
+p, th, td {
 	color: white;
 }
-.btn1{
-	float: right;
-	position: relative;
-	bottom: 5px;
+
+
+
+#test_btn1 {
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	float: left;
+}
+
+
+#btn_group button {
+	border: 1px solid white;
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
+	padding: 5px;
+}
+
+#btn_group button:hover {
+	color: white;
+	background-color: black;
 }
 </style>
 </head>
@@ -42,9 +60,12 @@ p,th,td{
 				</div>
 				<div>
 					<h2 style="color: white;">판매하는 게임</h2>
-					<input type="button" value="게임 등록" class="btn"
-						onclick="location.href='/compManage/main/gameinsert?writer=${login.id}'">
 				</div>
+					<div id="btn_group" style="float: right; padding-bottom: 30px;">
+						<button class="update" id="test_btn1"
+							onclick="location.href='/compManage/main/gameinsert?writer=${login.id}'">등록</button>
+
+					</div>
 				<br>
 				<div>
 					<c:if test="${empty gamelist}">
@@ -56,6 +77,7 @@ p,th,td{
 						</c:forEach>
 					</c:if>
 				</div>
+			
 			</div>
 			<div class="row">
 				<div>
@@ -76,15 +98,18 @@ p,th,td{
 
 							<c:if test="${empty gameDetailDC}">
 								<tr>
-									<td colspan="5" align="center" style="color: white; height: 200px;">할인 요청이 활성화 된 게임이 없습니다.</td>
+									<td colspan="5" align="center"
+										style="color: white; height: 200px;">할인 요청이 활성화 된 게임이
+										없습니다.</td>
 								</tr>
 							</c:if>
 							<c:if test="${!empty gameDetailDC}">
 								<c:forEach items="${gameDetailDC}" var="DC">
 									<tr>
-										<td><a href="/gameDetail/main/maincategoryread?num=${DC.num}">${DC.gdnum}</a></td>
-										<td>${DC.dcstartdate}- ${DC.dcenddate}</td>
-										<td>${DC.rqstartdate}- ${DC.rqenddate}</td>
+										<td><a
+											href="/gameDetail/main/maincategoryread?num=${DC.num}">${DC.gdnum}</a></td>
+										<td>${DC.dcstartdate}-${DC.dcenddate}</td>
+										<td>${DC.rqstartdate}-${DC.rqenddate}</td>
 										<td>${DC.dcrate}</td>
 										<td>${DC.goal}</td>
 									</tr>
@@ -93,14 +118,11 @@ p,th,td{
 						</tbody>
 					</table>
 				</div>
-				<div>
-			<input type="button" value="뒤로" class="btn1"
-					onclick="location.href='/compManage/main/manageread?id=${login.id}'">
-			</div>
+				<div></div>
 			</div>
 		</div>
 	</div>
-<script type="text/javascript">
+	<script type="text/javascript">
 	google.load('visualization', '1', {'packages' : ['corechart']});
 	google.setOnLoadCallback(drawChart);
 	

@@ -26,7 +26,7 @@
 	position: relative;
 	left: 28%;
 	top: 15px;
-	width: auto;
+	width: 600px;
 }
 
 #se {
@@ -39,6 +39,7 @@
 .login{
 	position: relative;
 	left: 95%;
+	top:50px;
 	width: 200px;
 	margin: 0;
 }
@@ -118,7 +119,7 @@
 	border-radius: 10px 10px 0px 0px;
 }
 
-.menubar li a:hover, .menubar ul li:hover a{ /*드랍 마우스*/
+.menubar li a:hover, .menubar ul li:hover a{ /*드랍 마우스 기초5개 메뉴*/
 	transition : .30s ease-in-out;	/*천천히 반응 하게 하는거 transition*/
 	transform : rotateX (-90deg) rotateY (0);
 	transform-origin : 0 0;
@@ -163,9 +164,7 @@
 }
 
 .menubar li:hover li a {
-	transition : .90s ease-in-out;
-	transform : rotateX (-90deg) rotateY (0);
-	transform-origin : 0 0;
+
 	background: none;
 }
 
@@ -181,14 +180,14 @@
 	padding: 0px 10px 0px 15px;
 }
 
-.menubar li ul a:hover, .menubar li ul li:hover  {/*드랍 메뉴 마우스 올리면*/
-	transition : .30s ease-in-out;
+.menubar li ul a:hover, .menubar li ul li:hover a{/*드랍 메뉴 마우스 올리면*/
+	transition : .1500s ease-in-out;
 	transform : rotateX (-90deg) rotateY (0);
 	transform-origin : 0 0;
 	background: linear-gradient(30deg, orange,gray);
 	border: 0px;
 	color: #ffffff;
-	text-decoration: none;
+
 }
 
 .img {
@@ -235,5 +234,5 @@
 }
 #logo{
 	position: relative;
-	top: 17+6px;
+	margin-top: 15px;
 }

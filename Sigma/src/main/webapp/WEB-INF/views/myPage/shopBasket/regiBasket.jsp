@@ -24,7 +24,8 @@
 </head>
 <body>
 	<div class="bodymain">
-	<div class="container">
+	<br>
+	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 730px; max-height: auto;">
 		<div class="row">
 			<h3 style="position: relative; top:100px; color: white;">${myInfo.nickname}(${myInfo.id})님의 장바구니</h3>
 			
@@ -35,7 +36,7 @@
 					<tr>
 						<th  style="height: 150px; ">
 							<div style="position: relative; left:83%; width: 15%;">
-								<h5 style="width:70%;" class="pull-left">전체 선택</h5>
+								<h5 style="width:70%; color: white;" class="pull-left">전체 선택</h5>
 								<input style="position: relative; top:6px; width:29%;" class="pull-right" type="checkbox" name="check_all">
 							</div>
 						</th>

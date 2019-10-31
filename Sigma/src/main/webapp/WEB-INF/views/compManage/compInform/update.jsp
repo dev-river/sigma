@@ -26,7 +26,7 @@
 	<div class="row">
 		<h2 style="color: white;">판매자 정보 수정</h2>
 	</div>
-	<div class="row">
+	<div class="row"  style="padding-left: 30px; padding-right: 30px;">
 		<form action="/compManage/main/manageupdate" method="post">
 			<div class="form-group">
 				<input type="hidden" id="id" name="id" value="${vo.id}">
@@ -46,10 +46,9 @@
 			
 			<div class="form-group">
 				<label for="compaddress1">회사 주소</label>
-				<input id="compaddress1" name="compaddress1" value="${vo.compaddress1}" class="form-control" readonly="readonly">
+				<input id="compaddress1" name="compaddress1" value="${vo.compaddress1}" class="form-control" readonly="readonly" style="width: 1023px;">
+				<input type="button" class="btn compseach" value="주소 검색" style="float: right; position: relative; bottom:35px;">
 				<input id="compaddress2" name="compaddress2" value="${vo.compaddress2}" class="form-control">
-				<br>
-				<input type="button" class="btn compseach" value="주소 검색">
 			</div>
 			<div class="form-group" style="float : right;">
 				<button class="btn">변경 내용 저장</button>
