@@ -12,12 +12,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="/resources/js/uploadutils.js" type="text/javascript"></script>
+<style type="text/css">
+label {
+	color: white;
+}
+</style>
 </head>
 <body>
-<div class="container">
-		<div class="row">
+<div class="bodymain">
+<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
+		<div class="row" style="padding-left: 30px; padding-right: 30px;">
 			
-			<h1>글 자세히 보기</h1>
+			<h1 style="color: white;">글 자세히 보기</h1>
 			
 			<form action="">
 				<input type="hidden" name="num" value="${vo.num}">
@@ -59,7 +65,7 @@
 				</div>
 		</div>
 		<hr>
-
+</div></div>
 <script type="text/javascript">
 
  

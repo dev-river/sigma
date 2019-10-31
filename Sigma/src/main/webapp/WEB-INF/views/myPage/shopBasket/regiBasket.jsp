@@ -48,10 +48,10 @@
 							<td>
 								<c:choose>
 									<c:when test="${basket.filepath eq null}">
-										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width:25%; padding-right: 5px;" class="pull-left">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width:170px; height:170px; padding-right: 5px; position: relative; right: 10px; border-radius: 10px; " class="pull-left">
 									</c:when>
 									<c:otherwise>
-										<img alt="" src="/resources/gameDetailFile/${basket.filepath}" style="width:25%; padding-right: 5px;" class="pull-left">
+										<img alt="" src="/resources/gameDetailFile/${basket.filepath}" style="width:170px; height:170px; padding-right: 5px; position: relative; right: 10px; border-radius: 10px; " class="pull-left">
 									</c:otherwise>
 								</c:choose>
 								<p style="position:relative; top:20px; width:35%" class="pull-left gn">게임 이름 : ${basket.title}</p>
@@ -59,7 +59,7 @@
 								<p style="position:relative; top:20px; width:35%" class="pull-left">출시일 : ${basket.gregidate}</p>
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">등록 날짜 : ${basket.sregidate}</p>
 								<p style="position:relative; top:20px; width:35%" class="pull-left">가격 : ${basket.price * (100-basket.dcrate)/100}</p>
-								<input style="position: relative; left: 145px; bottom: 14px; width: 200px;" type="checkbox" name="input_check" value="${basket.gdnum}">
+								<input style="position: relative; left: 145px; bottom: 14px; width: 200px; top: 10px;" type="checkbox" name="input_check" value="${basket.gdnum}">
 								
 								<input type="hidden" class="hiddengn" value="${basket.title}">
 								<input type="hidden" class="hiddenpr" value="${basket.price}">

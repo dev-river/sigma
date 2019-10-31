@@ -29,9 +29,7 @@
 </head>
 <body>
 	<br>
-	<br>
 	<div class="bodymain">
-		
 <div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
 <%--   	<div class="row">
          <div class="col-xs-push-10 col-xs-2">
@@ -43,8 +41,8 @@
          </div>
       </div>  --%>
 	
-	
-	
+	<div class="row" style="padding-left: 30px; padding-right: 30px;">
+	<br>
 <!-- 	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a> -->
 	<table class="table table-hover" style="color: white">
 		<thead>
@@ -68,7 +66,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	
+	</div>
 	<a href="/board/main/One/OneInsert" class="btn btn-primary" style="float: right;">글쓰기</a>
 <%-- 		<div class="row text-center" style="text-align: center">
 				<ul class="pagination"> <!-- ul에 pagination 클래스를 주면 예쁘다 -->

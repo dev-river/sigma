@@ -48,83 +48,93 @@ p, th, td {
 </head>
 <body>
 	<div class="bodymain">
-		<div class="container">
-			<div class="row">
+		<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
+			<div class="row" style="padding-left: 30px; padding-right: 30px;">
 				<h1 style="color: white;">판매 관리</h1>
+				<hr>
 			</div>
-			<div class="row">
-				<div style="display: inline;">
+			<div class="row" style="padding-left: 30px; padding-right: 30px;">
+				<div>
 					<h2 style="color: white;">성별 및 나이</h2>
-					<div id="chart_sex" style="width: 500px; height: 300px;"></div>
-					<div id="chart_age" style="width: 500px; height: 300px;"></div>
+					<div id="chart_sex"
+						style="width: 500px; height: 300px; float: left; padding-left: 200px;"></div>
+					<div id="chart_age"
+						style="width: 500px; height: 300px; float: right; padding-right: 200px;"></div>
 				</div>
-				<div>
-					<h2 style="color: white;">판매하는 게임</h2>
-				</div>
-					<div id="btn_group" style="float: right; padding-bottom: 30px;">
-						<button class="update" id="test_btn1"
-							onclick="location.href='/compManage/main/gameinsert?writer=${login.id}'">등록</button>
+			</div>
+			<hr>
+			<div style="padding-left: 15px; padding-right: 30px;">
+				<h2 style="color: white;">판매하는 게임</h2>
+			</div>
+			<div id="btn_group" style="float: right; padding-bottom: 30px; padding-left: 30px; padding-right: 30px;">
+				<button class="update" id="test_btn1"
+					onclick="location.href='/compManage/main/gameinsert?writer=${login.id}'">등록</button>
 
-					</div>
-				<br>
-				<div>
-					<c:if test="${empty gamelist}">
-						<h4>등록한 게임이 없습니다.</h4>
-					</c:if>
-					<c:if test="${!empty gamelist}">
-						<c:forEach items="${gamelist}" var="gamelist" begin="0" end="4">
-							<div style="display: inline-block;">
-							<p><a href="/gameDetail/main/maincategoryread?num=${gamelist.num}"><img src="/compManage/imgfile?filename=s_${gamelist.filepath}" width="50%;"></a></p>
+			</div>
+			<br>
+			<div style="padding-left: 30px; padding-right: 30px;">
+				<c:if test="${empty gamelist}">
+					<h4>등록한 게임이 없습니다.</h4>
+				</c:if>
+				<c:if test="${!empty gamelist}">
+					<c:forEach items="${gamelist}" var="gamelist" begin="0" end="4">
+						<div style="display: inline-block;">
+							<p>
+								<a href="/gameDetail/main/maincategoryread?num=${gamelist.num}"><img
+									src="/compManage/imgfile?filename=s_${gamelist.filepath}"
+									width="50%;"></a>
+							</p>
 							<p>${gamelist.title}</p>
-							</div>
+						</div>
+					</c:forEach>
+				</c:if>
+			</div>
+
+		
+
+		<div style="padding-left: 15px; padding-right: 30px;">
+			<h2 style="color: white;">할인 요청 버튼 활성화 된 게임</h2>
+		</div>
+		<div style="padding-left: 15px; padding-right: 30px;">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>게임이름</th>
+						<th>할인 날짜</th>
+						<th>할인 요청 날짜</th>
+						<th>할인율</th>
+						<th>목표 요청 수</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<c:if test="${empty gameDetailDC}">
+						<tr>
+							<td colspan="5" align="center"
+								style="color: white; height: 200px;">할인 요청이 활성화 된 게임이 없습니다.</td>
+						</tr>
+					</c:if>
+					<c:if test="${!empty gameDetailDC}">
+						<c:forEach items="${gameDetailDC}" var="DC">
+							<tr>
+								<td><a
+									href="/gameDetail/main/maincategoryread?num=${DC.num}">${DC.title}</a></td>
+								<td>${DC.dcstartdate}-${DC.dcenddate}</td>
+								<td>${DC.rqstartdate}-${DC.rqenddate}</td>
+								<td>${DC.dcrate}</td>
+								<td>${DC.goal}</td>
+							</tr>
 						</c:forEach>
 					</c:if>
-				</div>
-			
-			</div>
-			<div class="row">
-				<div>
-					<h2 style="color: white;">할인 요청 버튼 활성화 된 게임</h2>
-				</div>
-				<div>
-					<table class="table">
-						<thead>
-							<tr>
-								<th>게임이름</th>
-								<th>할인 날짜</th>
-								<th>할인 요청 날짜</th>
-								<th>할인율</th>
-								<th>목표 요청 수</th>
-							</tr>
-						</thead>
-						<tbody>
-
-							<c:if test="${empty gameDetailDC}">
-								<tr>
-									<td colspan="5" align="center"
-										style="color: white; height: 200px;">할인 요청이 활성화 된 게임이
-										없습니다.</td>
-								</tr>
-							</c:if>
-							<c:if test="${!empty gameDetailDC}">
-								<c:forEach items="${gameDetailDC}" var="DC">
-									<tr>
-										<td><a href="/gameDetail/main/maincategoryread?num=${DC.num}">${DC.title}</a></td>
-										<td>${DC.dcstartdate}- ${DC.dcenddate}</td>
-										<td>${DC.rqstartdate}- ${DC.rqenddate}</td>
-										<td>${DC.dcrate}</td>
-										<td>${DC.goal}</td>
-									</tr>
-								</c:forEach>
-							</c:if>
-						</tbody>
-					</table>
-				</div>
-				<div></div>
-			</div>
+				</tbody>
+			</table>
 		</div>
+		<div>
 	</div>
-<script type="text/javascript">
+</div>
+</div>
+
+	<script type="text/javascript">
 		google.load('visualization', '1', {'packages' : ['corechart']});
 		google.setOnLoadCallback(chart_sex);
 		

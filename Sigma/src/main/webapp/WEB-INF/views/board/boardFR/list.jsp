@@ -26,6 +26,31 @@
 	position: relative;
 	right: 100px;
 }
+	 #test_btn1 {
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	float: left;
+	margin: 5px; padding:5px; width:80%;
+	}
+
+
+	#btn_group button {
+		border: 1px solid white;
+		background-color: rgba(0, 0, 0, 0);
+		color: white;
+		padding: 5px;
+		position: relative;
+		width:7%;
+		float: right;
+	}
+
+	#btn_group button:hover {
+		color: white;
+		background-color: black;
+	}
+ 
 </style>
 </head>
 <body>
@@ -71,9 +96,10 @@
 			
 			
  			
-			<a href="/board/main/list/boardinsert" class="btn btn-primary"
-				style="float: right;">글쓰기</a>
-
+		
+				<div id="btn_group">
+					<button id="test_btn1" onclick="location.href='/board/main/list/boardinsert'" >글쓰기</button>
+				</div>
 				<div class="row text-center" style="text-align: center">
 					<ul class="pagination">
 						<!-- ul에 pagination 클래스를 주면 예쁘다 -->

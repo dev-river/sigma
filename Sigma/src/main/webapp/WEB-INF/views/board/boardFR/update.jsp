@@ -29,10 +29,11 @@ label{
 </head>
 <body>
 	<div class="bodymain">
-	<div class="container">
-		<div class="update">
+	<br>
+	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
+		<div class="update" style="padding-left: 30px; padding-right: 30px;">
 		<br>
-		<h3>게시글 수정</h3><br/>
+		<h3 style="color: white;">게시글 수정</h3><br/>
 		
 		<form action="/board/main/list/boardupdate" method="post">
 			<input type="hidden" name="curPage" value="${to.curPage}">
@@ -58,7 +59,7 @@ label{
 				<textarea class="form-control" id="content" name="content" rows="3">${updatevo.content}</textarea>
 			</div>
 			<div class="form-group">
-				<button class="btn btn-warning modify">수정</button>
+				<button class="btn btn-warning modify" style="float: right;">수정</button>
 			</div>
 		</form>
 	</div>

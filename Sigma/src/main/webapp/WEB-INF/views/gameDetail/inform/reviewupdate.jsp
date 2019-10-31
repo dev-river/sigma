@@ -16,6 +16,16 @@
 label{
 color: white;
 }
+
+
+.bodymain {
+	position: relative;
+	margin: auto;
+	max-height: auto;
+	min-height: 300px;
+	width: auto;
+}
+
 </style>
 </head>
 

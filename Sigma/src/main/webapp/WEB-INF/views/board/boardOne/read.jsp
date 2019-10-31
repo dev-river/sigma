@@ -14,25 +14,16 @@
 <script src="/resources/js/uploadutils.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.read{
-	position: relative;
-	width: 1070px;
-	height: auto;
-	margin: 0;
-	right: 0%;
-	
-	
-}
-.callModal{
-	float: right;
+label {
+	color: white;
 }
 </style>
 </head>
 <body>
 	<br>
 	<div class="bodymain">
-<div class="container">	
-		<div class="read">
+<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">	
+		<div class="read" style="padding-left: 30px; padding-right: 30px;">
 			<div class="row">
 				<form action="">
 					<input type="hidden" name="num" value="${readvo.num}">
@@ -40,7 +31,7 @@
 					<input type="hidden" name="perPage" value="${to.perPage}">
 					<input type="hidden" name="perPage" value="${vo.nickname}">
 				</form>
-			
+				<br>
 				<div class="form-group">
 					<label for="num">글번호</label>
 					<input class="form-control" id="num" value="${readvo.num}" readonly="readonly">
@@ -61,10 +52,11 @@
 					<input class="form-control" id="writer" value="${readvo.writer}" readonly="readonly">
 				</div>
 				
+				
 				<div class="form-group">
-					<label for="content">내용</label>
-					<div id="content">${readvo.content}</div>
-				</div>
+				<label for="content">내용</label>
+				<textarea class="form-control" id="content" name="content" rows="13">${readvo.content}</textarea>
+			</div>
 				<div>
 				    <input type="button" value="수정" class="btn update btn-primary">
 					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/board/main/One/One?curPage=${to.curPage}&perPage=${to.perPage}'">

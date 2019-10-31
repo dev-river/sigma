@@ -12,13 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.insert{
-	position: relative;
-	width: 1070px;
-	height: auto;
-	margin: 0;
-	right: 45px;
-}
+
 label{
 	color: white;
 }
@@ -26,12 +20,14 @@ label{
 </head>
 
 <body>
-	<br><br><br>
+	<br>
 	<div class="bodymain">
-	<div class="container" id="insert_form">
-		<div class="insert">
+	<div class="container" id="insert_form" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
+		<div class="insert" style="padding-left: 30px;padding-right: 30px;">
 		<div class="row">
+		<br>
 			<form action="/board/main/One/OneInsert" method="post">
+			
 				<div class="form-group">
 					<label for="title">제목</label>
 					<input id="title" name="title" class="form-control" placeholder="제목">
@@ -41,10 +37,11 @@ label{
 					<input id="writer" name="writer" class="form-control" placeholder="작성자">
 				</div>
 				<br><br>
+				
 				<div class="form-group">
-					<label for="content">내용</label>
-					<textarea id="content" name="content" class="form-control" rows="3" placeholder="내용" ></textarea>
-				</div>
+				<label for="content">내용</label>
+				<textarea class="form-control" id="content" name="content" rows="13" placeholder="내용을 입력하세요"></textarea>
+			</div>
 				<div class="form-group">
 					<button id="submitBoardBtn" class="btn btn-info">등록</button>
 					<input type="button" class="btn btn-danger" id="cancle" value="취소" onclick="location.href='/board/main/One/One'">
