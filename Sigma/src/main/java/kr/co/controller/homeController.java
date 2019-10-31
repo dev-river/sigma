@@ -34,9 +34,10 @@ public class homeController {
 		model.addAttribute("hgame", hgame);
 		return "main";
 	}
-	@RequestMapping(value = "/board/qand", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/QnA", method = RequestMethod.GET)
 	public String homeq(Locale locale, Model model) {
-		return "main";
+		return "QnA";
 	}
 	
 }

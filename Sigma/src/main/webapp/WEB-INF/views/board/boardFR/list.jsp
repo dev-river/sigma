@@ -63,7 +63,9 @@
 					</c:forEach>
 				</tbody>
 			</table>
-
+			
+			
+ 			
 			<a href="/board/main/list/boardinsert" class="btn btn-primary"
 				style="float: right;">글쓰기</a>
 			<%-- 		<div class="row text-center" style="text-align: center">
@@ -127,7 +129,7 @@
 
 			<div class="row ">
 				<div class="input-group" style="padding-right: 100px; padding-left: 100px; padding-bottom: 50px;">
-					<span class="input-group-addon"> <select id="searchSel">
+					<span class="input-group-addon"> <select id="searchSel" style="height: 23px;">
 							<option disabled>검색 기준</option>
 							<option value="writer">작성자</option>
 							<!-- value : 서버로 넘어가는거, 작성자 : JSP에 보이는거 -->
@@ -136,13 +138,13 @@
 					</select>
 					</span>
 
-					<div class="w300" style="padding-right: 10px;">
-						<input type="text" class="form-control from-control-lg"
+					<div class="w300" style="padding-right: 5px; ">
+						<input type="text" style="height:40px; " class="form-control from-control-lg"
 							id="keyword">
 					</div>
 
-					<span class="input-group-btn" style="padding-right: 10px;">
-						<button id="searchBtn" class="btn btn-sm btn-primary">검색</button>
+					<span class="input-group-btn" >
+						<button id="searchBtn" class="btn btn-sm btn-info" style="height: 40px;">검색</button>
 					</span>
 				</div>
 			</div>
