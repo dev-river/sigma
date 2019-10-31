@@ -46,7 +46,7 @@
 	
 	
 <!-- 	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a> -->
-	<table class="table table-hover" style="color: #ffffff">
+	<table class="table" style="color: #ffffff">
 		<thead>
 			<tr>
 				<th> QnA 질문</th>

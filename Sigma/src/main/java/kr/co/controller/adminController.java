@@ -1,6 +1,7 @@
 package kr.co.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -292,5 +293,10 @@ public class adminController {
 	public void oneManage(PageTO<boardOVO> to, Model model) {
 		PageTO<boardOVO> dbTO = oservice.pageList(to);
 		model.addAttribute("dboTO", dbTO);
+	}
+	
+	//QnA 관리
+	@RequestMapping(value = "/main/board/QnaManage", method = RequestMethod.GET)
+	public void homeq(Locale locale, Model model) {
 	}
 }
