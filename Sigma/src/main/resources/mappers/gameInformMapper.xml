@@ -151,7 +151,19 @@
 		select f.num, f.filename from gamedetailfile f, gamedetail g where f.gdnum=g.num and f.gdnum=#{num} order by f.num asc 
 	</select>
 	
-	<update id="gameimg">
-		update gamedetailfile set filename = #{filename} where num = #{num}
+	<update id="imgupdate1">
+		update gamedetailfile set filename=#{filename} where num=#{num}
+	</update>
+	
+	<update id="imgupdate2">
+		update gamedetailfile set filename=#{filename} where num=#{num}
+	</update>
+	
+	<update id="imgupdate3">
+		update gamedetailfile set filename=#{filename} where num=#{num}
+	</update>
+	
+	<update id="imgupdate4">
+		update gamedetailfile set filename=#{filename} where num=#{num}
 	</update>
 </mapper>

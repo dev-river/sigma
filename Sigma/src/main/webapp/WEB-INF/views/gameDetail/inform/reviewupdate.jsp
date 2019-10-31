@@ -29,7 +29,7 @@ color: white;
 </style>
 </head>
 
-<body background="/resources/main/backgroundimg2.jpg" style="height: 300px;">
+<body background="/resources/main/backgroundimg2.jpg" style="height: 15px;">
 
 		<div class="container">
 		<br>

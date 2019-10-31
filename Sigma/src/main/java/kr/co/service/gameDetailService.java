@@ -67,5 +67,11 @@ public interface gameDetailService {
 
 	List<gameDetailFileVO> filename(int num);
 
-	void imgupdate(List list, int[] num);
+	void imgupdate1(String filename1, int num1);
+	
+	void imgupdate2(String filename2, int num2);
+	
+	void imgupdate3(String filename3, int num3);
+	
+	void imgupdate4(String filename4, int num4);
 }
