@@ -78,8 +78,7 @@
 								<input type="hidden" name="searchType" value="title">
 								<input class="form-control" type="text"
 									placeholder="검색어를 입력하세요." aria-label="Search" id="se" name="keyword">
-								<input type="submit" value="검색" class="btn btn-warning">
-								<!-- <a class="material-icons"customRecameDetail/main/maincategory">search</a> -->
+								<button type="submit" class="btn btn-warning" id="a"><span class="glyphicon glyphicon-search"></span></button>
 							</form>
 					</div>
 				</div><!-- menu -->
