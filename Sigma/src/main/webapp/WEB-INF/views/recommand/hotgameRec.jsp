@@ -13,7 +13,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-			img { display: block; margin: 0px auto;
+			.img1 { display: block; margin: 0px auto;
 			text-align: center;
 			border-radius: 10px;
  			box-shadow: 15px 15px 20px black;
@@ -35,7 +35,7 @@
 	<!-- 검색 파트 -->
 			<h3 style="color: white;">GAME TOP 9</h3>
 			<hr>
-			<div class="row ">
+			<div class="row "style="padding-left: 30px; padding-right: 30px;">
 				<div class="input-group" style="padding-right: 10px;">
 					<span class="input-group-addon">
 					<select id="searchSel">
@@ -64,10 +64,10 @@
 			<a href="/gameDetail/main/maincategoryread?num=${gvo.num}&curPage=1&perPage=5">
 			<c:choose>
 				<c:when test="${gvo.filepath eq null}">
-					<img alt="No image" src="/resources/gameDetailFile/noimage.png" width="280px" height="280px">
+					<img alt="No image" src="/resources/main/SIGMA로고.png" width="280px" height="280px" class="img1">
 				</c:when>
 				<c:when test="${gvo.filepath ne null}">
-					<img alt="Game image" src="/resources/gameDetailFile/${gvo.filepath}" width="280px" height="280px">
+					<img alt="Game image" src="/resources/gameDetailFile/${gvo.filepath}" width="280px" height="280px" class="img1">
 				</c:when>
 			</c:choose>
 			<p style="text-align: center; margin-top: 5px; margin-bottom: 0px">Title: ${gvo.title}</p>
@@ -85,6 +85,31 @@
 			<hr>
 	</div>
 	</c:forEach>
+	<!-- 게임 리스트 페이징 파트 -->
+			<div>
+				<div class="row text-center" style="text-align: center; position: relative; left: 40%; width: 500px;">
+					<ul class="pagination">
+						<!-- ul에 pagination 클래스를 주면 예쁘다 -->
+
+						<c:if test="${vo.curPage>1}">
+							<li><a
+								href="/recommand/main/hotgameRec?curPage=${vo.curPage-1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&laquo;</a></li>
+						</c:if>
+						<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
+
+						<c:forEach begin="${vo.bpn}" end="${vo.spn}" var="idx">
+							<li class="${vo.curPage == idx?'active':''}"><a
+								href="/recommand/main/hotgameRec?curPage=${idx}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">${idx}</a></li>
+							<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
+						</c:forEach>
+
+						<c:if test="${vo.curPage<vo.totalPage}">
+							<li><a
+								href="/recommand/main/hotgameRec?curPage=${vo.curPage+1}&perPage=${vo.perPage}&searchType=${vo.searchType}&keyword=${vo.keyword}">&raquo;</a></li>
+						</c:if>
+					</ul>
+				</div>
+			</div>
 		</div>
 </div>
 <script type="text/javascript">
@@ -92,7 +117,7 @@ $(document).ready(function() {
    $("#searchBtn").on("click", function() {
 		var searchType = $("#searchSel option:selected").val();
 		var keyword = $("#keyword").val();
-		var url = "/recommand/freegameRec?curPage=1&perPage=${vo.perPage}&searchType="+searchType+"&keyword="+keyword;
+		var url = "/recommand/main/hotgameRec?curPage=1&perPage=${vo.perPage}&searchType="+searchType+"&keyword="+keyword;
 		window.open(url);
 	});
 });

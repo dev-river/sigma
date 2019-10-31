@@ -16,6 +16,25 @@
 	.row{
 	color: white;
 	}
+			#test_btn1{
+			 border-radius: 5px;
+			 padding-right:10px;
+			 margin-right:10px;
+			 width: 100px;
+			 position: relative;
+			 left: 350px;
+			 top: 3px;
+			}
+			#btn_group button{
+			border: 1px solid white;
+			background-color: rgba(0,0,0,0);
+			color: white; 
+			padding: 5px; 
+			} 
+			#btn_group button:hover{
+			 color:white; 
+			 background-color: black; 
+			}
 </style>
 </head>
 <body>
@@ -50,13 +69,16 @@
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">구매 날짜 : ${r.buydate}</p>
 								<p style="position:relative; top:20px; width:35%" class="pull-left">가격 : ${r.buyprice}</p>
 								<p style="position:relative; top:20px; width:38%" class="pull-right">환불 결과 : ${r.status}</p>
-								<button class="pull-right del" value="${r.num}" style="color: black;">환불 취소</button>
+								<div id="btn_group">
+								<button class="pull-right del"  id="test_btn1" value="${r.num}">환불 취소</button>
+								</div>
+								<br>
 							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<button class="pull-right del" onclick="href:">취소</button>
+			
 		</div>
 	</div>
 	</div>

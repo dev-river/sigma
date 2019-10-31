@@ -11,12 +11,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+label{
+color: white;
+}
+</style>
 </head>
+
 <body>
-	<h1>게시물 등록</h1>
-	
-	<div class="container">
-		<h3>게시글 수정</h3><br/>
+<br>	
+	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
+		<h3 style="color: white;">게시글 수정</h3><br/>
 		
 		<form action="/board/main/slist/searchboardupdate" method="post">
 			<input type="hidden" name="curPage" value="${to.curPage}">

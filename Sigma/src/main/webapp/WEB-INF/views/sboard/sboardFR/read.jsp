@@ -12,12 +12,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="/resources/js/uploadutils.js" type="text/javascript"></script>
+<style type="text/css">
+label{
+color: white;
+}
+</style>
 </head>
 <body>
-<div class="container">
-		<div class="row">
+<br>
+<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
+		<div class="row" style="padding-left: 30px; padding-right: 30px;">
 			
-			<h1>글 자세히 보기</h1>
+			<h1 style="color: white;">글 자세히 보기</h1>
 			
 			<form action="">
 				<input type="hidden" name="num" value="${vo.num}">
@@ -49,7 +55,7 @@
 				
 				<div class="form-group">
 					<label for="content">내용</label>
-					<textarea  class="form-control" id="content" readonly="readonly">${vo.content}</textarea>
+					<textarea  class="form-control" id="content" readonly="readonly" rows="13" style="resize: none">${vo.content}</textarea>
 				</div>
 				<div>
 				    <input type="button" value="수정" class="btn btn-primary update">
@@ -77,7 +83,7 @@
 
 					<div class="col-sm-2">
 
-						<input class="form-control" id="replyer" placeholder="댓글 작성자"></input>
+						<input class="form-control" id="replyer" placeholder="댓글 작성자" value="${vo.writer }" readonly="readonly"></input>
 
 						<button type="button" class="btn btn-sm btn-primary" id="btnReplyInsert" style="width: 100%; margin-top: 10px"> 저 장 </button>
 						<button type="button" class="btn btn-sm btn-warning" id="btnReset" style="width: 100%; margin-top: 10px"> 취 소 </button>

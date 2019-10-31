@@ -21,6 +21,7 @@
 </style>
 </head>
 <body>
+<br>
 	<div class="container"  style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
 	<br>
 		<div class="row col-xs-push-1 col-xs-11" style="padding-bottom: 30px;">

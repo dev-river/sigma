@@ -49,10 +49,10 @@
 							<td style="min-height: 700px; max-height: auto;">
 								<c:choose>
 									<c:when test="${zzim.filepath eq null}">
-										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width:25%; padding-right: 5px; position: relative; right: 10px; "  class="pull-left">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width:170px; height:170px; padding-right: 5px; position: relative; right: 10px; border-radius: 10px; "  class="pull-left">
 									</c:when>
 									<c:otherwise>
-										<img alt="" src="/resources/gameDetailFile/${zzim.filepath}" style="width:25%; padding-right: 5px; position: relative; right: 10px;"  class="pull-left">
+										<img alt="" src="/resources/gameDetailFile/${zzim.filepath}" style="width:170px; height:170px; padding-right: 5px; position: relative; right: 10px; border-radius: 10px;"  class="pull-left">
 									</c:otherwise>
 								</c:choose>
 								<p style="position:relative; top:20px; width:35%" class="pull-left">게임 이름 : ${zzim.title}</p>

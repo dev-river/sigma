@@ -87,8 +87,8 @@ a :hover{
 									<td>1.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}
 									<c:choose>
 										<c:when test="${h.filepath eq null}">
-											<img alt="No image" src="/resources/gameDetailFile/noimage.png"
-												width="280px" height="140px" id="img1">
+											<img alt="No image" src="/resources/main/SIGMA로고.png"
+												width="280px" height="180px" id="img1">
 										</c:when>
 										<c:when test="${h.filepath ne null}">
 											<img alt="Game image"
@@ -123,7 +123,7 @@ a :hover{
 									<td>1.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}
 									<c:choose>
 										<c:when test="${h.filepath eq null}">
-											<img alt="No image" src="/resources/gameDetailFile/noimage.png"
+											<img alt="No image" src="/resources/main/SIGMA로고.png"
 												width="280px" height="180px" id="img1">
 										</c:when>
 										<c:when test="${h.filepath ne null}">
@@ -159,7 +159,7 @@ a :hover{
 									<td>1.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}
 									<c:choose>
 										<c:when test="${h.filepath eq null}">
-											<img alt="No image" src="/resources/gameDetailFile/noimage.png"
+											<img alt="No image" src="/resources/main/SIGMA로고.png"
 												width="280px" height="180px" id="img1">
 										</c:when>
 										<c:when test="${h.filepath ne null}">
@@ -167,6 +167,7 @@ a :hover{
 												src="/resources/gameDetailFile/${h.filepath}" width="280px"
 												height="180px" id="img1">
 										</c:when>
+									
 									</c:choose></a>
 									</td>
 								</tr>

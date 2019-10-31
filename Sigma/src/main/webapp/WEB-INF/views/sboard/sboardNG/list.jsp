@@ -14,22 +14,19 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
 
-.bodymain {
-	position: relative;
-	margin: auto;
-	height: 800px;
-	width: auto;
+th,td {
+	color: white;
 }
 
 </style>
 </head>
 <body>
+<br>
 <div class="bodymain">
-<div class="container">
+<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
 	
-	<div class="row" style="padding-top: 20px;">
-	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a>
-	</div>
+	<div class="row" style="padding-left: 30px; padding-right: 30px;">
+	<br>
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -70,6 +67,7 @@
 					</c:if>
 					
 				</ul>
+			</div>
 			</div>
 			</div>
 			</div>

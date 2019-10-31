@@ -17,16 +17,15 @@ label{
 color: white;
 }
 
-label{
-color: white;
+
+.bodymain {
+	position: relative;
+	margin: auto;
+	max-height: auto;
+	min-height: 300px;
+	width: auto;
 }
-html, body {
-   
-   background-image :url("/resources/main/backgroundimg2.jpg");
-   margin: 0;
-   max-height: auto;
-   min-height: 300px;
-}
+
 </style>
 </head>
 
