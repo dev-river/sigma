@@ -95,30 +95,29 @@
 			}
 
 			#btn_group button{
-			border: 1px solid skyblue;
+			border: 1px solid white;
 			background-color: rgba(0,0,0,0);
 			color: white; 
 			padding: 5px; 
 			} 
 			#btn_group button:hover{
 			 color:white; 
-			 background-color: skyblue; 
+			 background-color: black; 
 			}
 
 </style>
 </head>
 <body style="background-color: black;">
 
-<hr>
 <div class="container" style="background-color: rgb(25,25,25,0.6); border-radius: 10px; padding-left: 20px; padding-right: 20px;">
-	<h1>게임이름: <a href="/myPage/subscribe/subComp?writer=${vo.writer}" style="text-decoration:none; color: #008299;">${vo.title}</a></h1>
+	<h1>게임이름: ${vo.title}</h1>
 	<div>
-	<h3 style="float: left;">배급사: ${vo.writer}</h3>
+	<h3 style="float: left;">배급사: <a href="/myPage/main/subComp?writer=${vo.writer}" style="text-decoration:none; color: #008299;">${vo.writer}</a></h3>
 	<h5 style="float: right;">출시일: ${vo.regidate}</h5>
 	</div>
 	<br>
 
-	<h3 style="position: relative; right: 122px; top:10px;">가격: <c:choose>
+	<h3 style="position: relative; right: 100px; top:10px;">가격: <c:choose>
 				<c:when test="${vo.dcrate eq 0}">
 					${vo.price}원
 				</c:when>
@@ -164,20 +163,18 @@
 				<img class=""  id="img1" src="/resources/gameDetailFile/${file}" alt="" height="190px" width="240px" style="margin: 5px;" data-target="#carouselExampleIndicators" data-slide-to="${i.index+1}">
 			</c:forEach>
 		</div>
-		<div>
-			<input type="button" class="btn btn-primary" value="이미지 수정">
-		</div>
+	
 		<br>
 		<div style="float: left;">
 		<h3>카테고리: ${vo.category}</h3>
-		<h3>게임정보: ${vo.content}</h3>
+		<h3 style="width: 800px;">게임정보: ${vo.content}</h3>
 
 		</div>
 		<br><br>
 		<div class="row pull-right" style="width: 30%; float: right;" >
 			<c:choose>
 				<c:when test="${vo.status eq 'o'}">
-				<div  id="btn_group" style="position: relative; left: 100px;">
+				<div  id="btn_group" style="position: relative; left: 90px; top: 20px;">
 					<button class="pull-left shopBasket"  value="장바구니에 추가" id="test_btn1">장바구니</button>
 					<button class="pull-left zzim_list" value="찜목록에 추가" id="test_btn2">찜목록</button>
 					</div>
@@ -187,7 +184,7 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<br><br>
+		<br>
 		<hr>
 		<c:choose>
       	<c:when test="${manratio eq '0' && womanratio eq '0'}">
@@ -242,7 +239,7 @@
       		<hr>
       		
       	</c:if>
-      	
+ 
       		<!-- 리뷰 등록 -->
       	<div>
 	      	<label for="reviewContent">리뷰 등록: </label>
@@ -256,66 +253,98 @@
       	<br>
       	<hr>
       	<!-- 긍정리뷰 최다글 및 부정리뷰 최다글 -->
-      	<div style="">
-      		<c:choose>
-      			<c:when test="${empty maxYesReview.assistyes}">
-      				<p>아직 추천 공감 리스트가 없습니다!</p>
-      			</c:when>
-      			<c:when test="${maxYesReview.assistyes eq 0}">
-      				<p>아직 추천 공감 리스트가 없습니다!</p>
-      			</c:when>
-      			<c:otherwise>
-      				<h4><i class="far fa-thumbs-up fa-lg"></i>  추천 최다 리뷰</h4>
-      				<br>
-		      		<p style="float: left;">작성자: ${maxYesReview.writer}</p>
-		      		<p style="float: right;">수정일: ${maxYesReview.updatedate}</p>
-		      		<textarea rows="4" cols="154" style="color: black; background: #B5C1DB;  border-radius: 10px; resize: none;" readonly="readonly">${maxYesReview.content}</textarea>
-		      		<p style="float: right;">싫어요: ${maxYesReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxYesReview.num}">싫어요</button></p>
-		      		<p style="float: right;">좋아요: ${maxYesReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxYesReview.num}">좋아요</button></p>
+			<div>
+				<c:choose>
+					<c:when test="${empty maxYesReview.assistyes}">
+						<p>아직 추천 공감 리스트가 없습니다!</p>
+					</c:when>
+					<c:when test="${maxYesReview.assistyes eq 0}">
+						<p>아직 추천 공감 리스트가 없습니다!</p>
+					</c:when>
+					<c:otherwise>
+						<hr>
+						<h4>
+							<i class="far fa-thumbs-up fa-lg"></i> 추천 최다 리뷰
+						</h4>
+						<br>
+						<p style="float: left;">작성자: ${maxYesReview.writer}</p>
+						<p style="float: right;">수정일: ${maxYesReview.updatedate}</p>
+						<textarea rows="4" cols="154"
+							style="color: black; background: #B5C1DB; border-radius: 10px; resize: none;"
+							readonly="readonly">${maxYesReview.content}</textarea>
+						<p style="float: right;">
+							싫어요: ${maxYesReview.assistno}
+							<button class="yesorno btn btn-danger" id="assistNo"
+								value="${maxYesReview.num}">싫어요</button>
+						</p>
+						<p style="float: right;">
+							좋아요: ${maxYesReview.assistyes}
+							<button class="yesorno btn btn-success" id="assistYes"
+								value="${maxYesReview.num}">좋아요</button>
+						</p>
 
-		      		<c:if test="${id eq maxYesReview.writer || author eq 'admin'}">
-		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${maxYesReview.num}" target="_blank" class="btn btn-warning"
-		      			onclick="window.open(this.href, 'reviewUpdate', 'width=500, height=200'); return false;">수정</a>
-		      			<button class="reviewdelete btn btn-danger" value="${maxYesReview.num}">삭제</button>
-		      			<%-- <button class="reviewupdate btn btn-warning" value="${maxYesReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxYesReview.num}">삭제</button> --%>
-		      		</c:if>
-      			</c:otherwise>
-      		</c:choose>
-      		</div>
-      		<br><br>
-			<hr>
-			<div style="">
-			<c:choose>
-				<c:when test="${empty maxNoReview.assistyes}">
-					<p>아직 비추천 공감 리스트가 없습니다!</p>
-				</c:when>
-				<c:when test="${maxNoReview.assistyes eq 0}">
-					<p>아직 비추천 공감 리스트가 없습니다!</p>
-				</c:when>
-				<c:otherwise>
-					<h4><i class="far fa-thumbs-down fa-lg"></i> 비추천 최다 리뷰</h4>
-					<br>
-		      		<p style="float: left;">작성자: ${maxNoReview.writer}</p>
-		      		<p style="float: right;">수정일: ${maxNoReview.updatedate}</p>
-		      		<textarea rows="4" cols="154" style="color: black; background: #B5C1DB;  border-radius: 10px; resize: none;" readonly="readonly">${maxNoReview.content}</textarea>  
-		      		<p style="float: right;">싫어요: ${maxNoReview.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${maxNoReview.num}">싫어요</button></p>
-		      		<p style="float: right;">좋아요: ${maxNoReview.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${maxNoReview.num}">좋아요</button></p>
-		      		<c:if test="${id eq maxNoReview.writer || author eq 'admin'}">
-		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${maxNoReview.num}" target="_blank" class="btn btn-warning"
-		      			onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">수정</a>
-		      			<button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button>
-		      			<%-- <button class="reviewupdate btn btn-warning" value="${maxNoReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button> --%>
-		      		</c:if>
-				</c:otherwise>
-			</c:choose>
-      	</div>
-      	<br>
+						<c:if test="${id eq maxYesReview.writer || author eq 'admin'}">
+							<a
+								href="/gameDetail/main/maincategoryreviewupdate?num=${maxYesReview.num}"
+								target="_blank" class="btn btn-warning"
+								onclick="window.open(this.href, 'reviewUpdate', 'width=800, height=300'); return false;">수정</a>
+							<button class="reviewdelete btn btn-danger"
+								value="${maxYesReview.num}">삭제</button>
+							<%-- <button class="reviewupdate btn btn-warning" value="${maxYesReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxYesReview.num}">삭제</button> --%>
+						</c:if>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<br>
+      		<hr>
+			<div>
+				<c:choose>
+					<c:when test="${empty maxNoReview.assistyes}">
+						<p>아직 비추천 공감 리스트가 없습니다!</p>
+					</c:when>
+					<c:when test="${maxNoReview.assistyes eq 0}">
+						<p>아직 비추천 공감 리스트가 없습니다!</p>
+					</c:when>
+					<c:otherwise>
+						<hr>
+						<h4>
+							<i class="far fa-thumbs-down fa-lg"></i> 비추천 최다 리뷰
+						</h4>
+						<br>
+						<p style="float: left;">작성자: ${maxNoReview.writer}</p>
+						<p style="float: right;">수정일: ${maxNoReview.updatedate}</p>
+						<textarea rows="4" cols="154"
+							style="color: black; background: #B5C1DB; border-radius: 10px; resize: none;"
+							readonly="readonly">${maxNoReview.content}</textarea>
+						<p style="float: right;">
+							싫어요: ${maxNoReview.assistno}
+							<button class="yesorno btn btn-danger" id="assistNo"
+								value="${maxNoReview.num}">싫어요</button>
+						</p>
+						<p style="float: right;">
+							좋아요: ${maxNoReview.assistyes}
+							<button class="yesorno btn btn-success" id="assistYes"
+								value="${maxNoReview.num}">좋아요</button>
+						</p>
+						<c:if test="${id eq maxNoReview.writer || author eq 'admin'}">
+							<a
+								href="/gameDetail/main/maincategoryreviewupdate?num=${maxNoReview.num}"
+								target="_blank" class="btn btn-warning"
+								onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">수정</a>
+							<button class="reviewdelete btn btn-danger"
+								value="${maxNoReview.num}">삭제</button>
+							<%-- <button class="reviewupdate btn btn-warning" value="${maxNoReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button> --%>
+						</c:if>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<br>
       	<!-- 리뷰글 최신순 리스트 -->
-      	<hr>
-      	<h3>최신 리뷰</h3>
-	<br><br>
+		<br>
       	<div>
-      		
+      	<hr>
+      			<h3>최신 리뷰</h3>
+
       		<c:forEach items="${reviewlist}" var="review">
       			<div style=" min-height: 180px; max-height: auto;">
       				<p>-${review.recommend} 리뷰-</p>

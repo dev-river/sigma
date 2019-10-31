@@ -14,13 +14,13 @@
 
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
 		<div class="row">
-			<h5>내 단골 스토어 리스트</h5>
 			<table class="table" style="position:relative; left: 200px; width: 60%;">
 				<thead>
 					<tr>
 						<th  style="height: 150px; ">
+							<h2 style="color: white;">내 단골 스토어 리스트</h2>
 							<div style="position: relative; left:83%; width: 15%;">
 							</div>
 						</th>

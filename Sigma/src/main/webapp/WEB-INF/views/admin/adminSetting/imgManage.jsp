@@ -59,7 +59,7 @@
 					<label>업로드되어있는 로고이미지</label>
 					<div>
 						<img alt="등록이미지"
-							src="/admin/main/setting/imgmanage/displayfile?filename=s_${LogoVo.logofilepath}">
+							src="/admin/main/setting/imgmanage/displayfile?filename=${LogoVo.logofilepath}">
 					</div>
 				</div>
 

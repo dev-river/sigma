@@ -95,6 +95,21 @@ public class recommnadDAOImpl implements recommandDAO{
 		return session.selectList(NS+".getcustoRecList", map);
 	}
 
+	@Override
+	public List<gameVO> getHotGameList() {
+		return session.selectList(NS+".getHotGameList");
+	}
+
+	@Override
+	public List<gameVO> getNewGameList() {
+		return session.selectList(NS+".NewGameList");
+	}
+
+	@Override
+	public List<gameVO> getDcGameList() {
+		return session.selectList(NS+".DCGameList");
+	}
+
 	
 
 	

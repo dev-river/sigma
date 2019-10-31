@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.domain.PageTO;
 import kr.co.domain.SPageTO;
+import kr.co.domain.adminSetVO;
 import kr.co.domain.boardVO;
 import kr.co.domain.memberVO;
 import kr.co.service.boardService;
@@ -34,6 +35,9 @@ public class boardController {
 	
 	@Autowired
 	private sboardService sbService;
+	
+
+
 	
 	@RequestMapping(value = "/main/list/boardlist", method = RequestMethod.GET)
 	public void boardFRList(PageTO<boardVO> to, Model model) {

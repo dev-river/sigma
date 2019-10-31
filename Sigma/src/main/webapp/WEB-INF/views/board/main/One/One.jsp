@@ -37,6 +37,8 @@
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<!-- 바디 -->
 	<jsp:include page="/WEB-INF/views/board/boardOne/list.jsp"></jsp:include>
+	<!-- 사이드 -->
+	<jsp:include page="/WEB-INF/views/main/side.jsp"></jsp:include>
 	<!-- 풋터 -->
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 </body>

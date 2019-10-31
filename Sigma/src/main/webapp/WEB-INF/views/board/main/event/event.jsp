@@ -27,12 +27,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-html, body {
-	background: linear-gradient(60deg, orange, black ,#5D5D5D,gray,black,orange);
-	margin: auto;
-	width: auto;
-	height: auto;
-}
+
 
 </style>
 </head>
@@ -41,6 +36,8 @@ html, body {
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<!-- 바디 -->
 	<jsp:include page="/WEB-INF/views/board/boardEV/list.jsp"></jsp:include>
+	<!-- 사이드 -->
+	<jsp:include page="/WEB-INF/views/main/side.jsp"></jsp:include>
 	<!-- 풋터 -->
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 </body>

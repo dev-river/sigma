@@ -31,8 +31,7 @@
 	<br>
 	<br>
 	<div class="bodymain">
-		<div class="list">
-<div class="container">
+<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
 <%--   	<div class="row">
          <div class="col-xs-push-10 col-xs-2">
             <select id="perPageSel" class="form-control">
@@ -101,7 +100,7 @@
          <br>
          <div>
            <li style="width: 700px;list-style: none;">
-            <a href="#" id="boarddrop2" style="margin-bottom: 15px;">Q.휴대폰이 없는데, 비밀번호를 바꾸고 싶어요!</a>
+            <a href="#" id="boarddrop2" style="margin-bottom: 15px; color: white;">Q.휴대폰이 없는데, 비밀번호를 바꾸고 싶어요!</a>
             <ul id="boardsel2" style="display: none; background-color: white; color: black; margin-top: 5px; border-radius: 10px; padding-top: 15px; padding-left: 15px; padding-right: 15px; padding-bottom: 15px; ">
                <li style="list-style: none;"><p>A. 비밀번호 변경 시 반드시 본인확인이 필요하며,
 휴대폰으로만 본인인증을 할 수 있습니다.
@@ -112,7 +111,7 @@
          </div>
           <div>
            <li style="width: 700px;list-style: none;">
-            <a href="#" id="boarddrop3" style="margin-bottom: 30px;">Q.개명 후 정보 수정은 어떻게 하나요?</a>
+            <a href="#" id="boarddrop3" style="margin-bottom: 30px; color: white;">Q.개명 후 정보 수정은 어떻게 하나요?</a>
             <ul id="boardsel3" style="display: none; background-color: white; color: black; margin-top: 5px; border-radius: 10px; padding-top: 15px; padding-left: 15px; padding-right: 15px; padding-bottom: 15px; ">
                <li style="list-style: none;"><p>A. 던전앤파이터ID는 개명 여부와 관계없이
 ID와 휴대폰 가입자가 일치하다면 본인인증이 가능합니다.
@@ -131,7 +130,7 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
          </div>
      <div>
            <li style="width: 700px;list-style: none;">
-            <a href="#" id="boarddrop4">Q.네이버ID를 sigma 또는 던파ID로 변경할 수 있나요?</a>
+            <a href="#" id="boarddrop4" style="margin-bottom: 30px; color: white;">Q.네이버ID를 sigma 또는 던파ID로 변경할 수 있나요?</a>
             <ul id="boardsel4" style="display: none; background-color: white; color: black; margin-top: 5px; border-radius: 10px; padding-top: 15px; padding-left: 15px; padding-right: 15px; padding-bottom: 15px; ">
                <li style="list-style: none;"><p>A. 던전앤파이터에서는 연동된 ID를 변경하거나
 다른 ID로의 캐릭터 이동이 가능하지 않습니다.
@@ -143,7 +142,7 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
          
             <div>
            <li style="width: 700px;list-style: none;">
-            <a href="#" id="boarddrop5">Q.휴대폰이 없는데, 회원가입을 하고 싶어요!</a>
+            <a href="#" id="boarddrop5" style="margin-bottom: 30px; color: white;">Q.휴대폰이 없는데, 회원가입을 하고 싶어요!</a>
             <ul id="boardsel5" style="display: none; background-color: white; color: black; margin-top: 5px; border-radius: 10px; padding-top: 15px; padding-left: 15px; padding-right: 15px; padding-bottom: 15px; ">
                <li style="list-style: none;"><p>A. 회원가입을 위해선 반드시 본인확인이 필요하며,
 휴대폰으로만 본인인증을 할 수 있습니다.
@@ -155,7 +154,7 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
          
            <div>
            <li style="width: 700px;list-style: none;">
-            <a href="#" id="boarddrop6">Q.불법 프로그램 사용으로 이용이 제한되었는데 어떤 불법 프로그램인지 알고싶어요.</a>
+            <a href="#" id="boarddrop6" style="margin-bottom: 30px; color: white;">Q.불법 프로그램 사용으로 이용이 제한되었는데 어떤 불법 프로그램인지 알고싶어요.</a>
             <ul id="boardsel6" style="display: none; background-color: white; color: black; margin-top: 5px; border-radius: 10px; padding-top: 15px; padding-left: 15px; padding-right: 15px; padding-bottom: 15px; ">
                <li style="list-style: none;"><p>A. 불법 프로그램 사용으로 이용이 제한되었을 경우,
 어떤 프로그램을 사용하여 이용 제한이 적용되었는지 정확히 안내가 어렵습니다.
@@ -174,7 +173,7 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
          
            <div>
            <li style="width: 700px;list-style: none;">
-            <a href="#" id="boarddrop7">Q.개인정보 이용내역 메일을 왜 받은거죠?</a>
+            <a href="#" id="boarddrop7" style="margin-bottom: 30px; color: white;">Q.개인정보 이용내역 메일을 왜 받은거죠?</a>
             <ul id="boardsel7" style="display: none; background-color: white; color: black; margin-top: 5px; border-radius: 10px; padding-top: 15px; padding-left: 15px; padding-right: 15px; padding-bottom: 15px; ">
                <li style="list-style: none;"><p>A. [정보통신망 이용촉진 및 정보보호 등에 관한 법률] 제30조 2 "개인정보 이용내역의 통지" 규정에 따라
 회원님의 개인정보 이용내역을 연 1회 통지하고 있습니다. 
@@ -188,7 +187,7 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
          
           <div>
            <li style="width: 700px;list-style: none;">
-            <a href="#" id="boarddrop8">Q.보호자 동의가 필요한가요?</a>
+            <a href="#" id="boarddrop8" style="margin-bottom: 30px; color: white;">Q.보호자 동의가 필요한가요?</a>
             <ul id="boardsel8" style="display: none; background-color: white; color: black; margin-top: 5px; border-radius: 10px; padding-top: 15px; padding-left: 15px; padding-right: 15px; padding-bottom: 15px; ">
                <li style="list-style: none;"><p>A. 만 18세 미만 청소년 회원의 경우 보호자(부모님) 동의를 진행해야만 회원 가입이 완료됩니다.
 <BR>
@@ -201,7 +200,7 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
          
                    <div>
            <li style="width: 700px;list-style: none;">
-            <a href="#" id="boarddrop9">Q.알뜰폰으로는 본인인증이 불가능한가요?</a>
+            <a href="#" id="boarddrop9" style="margin-bottom: 30px; color: white;">Q.알뜰폰으로는 본인인증이 불가능한가요?</a>
             <ul id="boardsel9" style="display: none; background-color: white; color: black; margin-top: 5px; border-radius: 10px; padding-top: 15px; padding-left: 15px; padding-right: 15px; padding-bottom: 15px; ">
                <li style="list-style: none;"><p>A. 6/27(목) 점검 이후 부터 신규가입 본인인증 수단에서 알뜰폰이 제외됩니다.
 <BR>
@@ -232,30 +231,29 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
 		</tbody>
 	</table>
 			
-				<div class="row ">
-					<div class="input-group" style="padding-right: 10px;">
-						<span class="input-group-addon"> <select id="searchSel">
-								<option disabled>검색 기준</option>
-								<option value="writer">작성자</option>
-								<!-- value : 서버로 넘어가는거, 작성자 : JSP에 보이는거 -->
-								<option value="title">제목</option>
-								<option value="content">내용</option>
-						</select>
-						</span>
+			<div class="row ">
+				<div class="input-group" style="padding-right: 100px; padding-left: 100px; padding-bottom: 50px;">
+					<span class="input-group-addon"> <select id="searchSel" style="height: 23px;">
+							<option disabled>검색 기준</option>
+							<option value="writer">작성자</option>
+							<!-- value : 서버로 넘어가는거, 작성자 : JSP에 보이는거 -->
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+					</select>
+					</span>
 
-						<div class="w300" style="padding-right: 10px;">
-							<input type="text" class="form-control from-control-sm"
-								id="keyword">
-						</div>
-
-						<span class="input-group-btn" style="padding-right: 10px;">
-							<button id="searchBtn" class="btn btn-sm btn-primary">검색</button>
-						</span>
+					<div class="w300" style="padding-right: 100px; ">
+						<input type="text" style="height:40px; " class="form-control from-control-lg"
+							id="keyword">
 					</div>
+
+					<span class="input-group-btn" >
+						<button id="searchBtn" class="btn btn-sm btn-info" style="height: 40px;">검색</button>
+					</span>
 				</div>
 			</div>
+			</div>
 		</div>
-	</div>
 	<br><br>
 
 		<script type="text/javascript">

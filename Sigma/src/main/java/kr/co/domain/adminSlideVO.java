@@ -83,4 +83,12 @@ public class adminSlideVO implements Serializable{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "adminSlideVO [num=" + num + ", filepath=" + filepath + ", urlpath=" + urlpath + ", regidate=" + regidate
+				+ "]";
+	}
+	
+	
+
 }

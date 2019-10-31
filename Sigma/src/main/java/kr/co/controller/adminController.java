@@ -127,7 +127,7 @@ public class adminController {
 	public ResponseEntity<String> uploadLogoAjax(MultipartHttpServletRequest request, adminSetVO vo) throws Exception{
 		
 		MultipartFile file = request.getFile("file");
-		String savedLogoName = UploadFileUtils.uploadFile(uploadPath, file);
+		String savedLogoName = UploadFileUtils.uploadFileLogo(uploadPath, file);
 		
 		adservice.LogoUpdate(vo, savedLogoName);
 		
@@ -146,7 +146,7 @@ public class adminController {
 	public ResponseEntity<String> uploadBGAjax(MultipartHttpServletRequest request, adminSetVO vo) throws Exception{
 		
 		MultipartFile file = request.getFile("file");
-		String savedBGName = UploadFileUtils.uploadFile(uploadPath, file);
+		String savedBGName = UploadFileUtils.uploadFileBG(uploadPath, file);
 		
 		adservice.BGUpdate(vo, savedBGName);
 		

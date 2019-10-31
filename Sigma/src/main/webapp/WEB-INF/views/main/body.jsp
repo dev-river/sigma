@@ -11,7 +11,7 @@
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,7 +24,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/body.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/side.css">
 <style type="text/css">
@@ -39,83 +39,73 @@ a :hover{
 		<!-- 메인 이미지-->
 		<div class="container">
 			<div class="main">
-				<div class="row">
-					<div id="myCarousel" class="carousel slide" data-ride="carousel">
-						<div class="carousel-inner">
-							<!--슬라이드1-->
-							<div class="item active">
-								<img src="/resources/main/main.jpg"
-									style="width: 100%" alt="First slide" id="mainimg">
-								<div class="container">
-									<div class="carousel-caption">
-										<h1>Slide 1</h1>
-										<p>텍스트 1</p>
-									</div>
-								</div>
-							</div>
-							<!--슬라이드1-->
+				
 
-							<!--슬라이드2-->
-							<div class="item">
-								<img src="http://www.blueb.co.kr/SRC2/_image/w02.jpg"
-									style="width: 100%" data-src="" alt="Second slide" id="mainimg">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img class="d-block w-100"
+								src="/resources/slideBanner/${firstfilepath}" alt=""
+								id="mainimg">
 								<div class="container">
 									<div class="carousel-caption">
-										<h1>Slide 2</h1>
-										<p>텍스트 2</p>
+										<a href="#"><h4>${firsturl}</h4></a>
 									</div>
 								</div>
-							</div>
-							<!--슬라이드2-->
-
-							<!--슬라이드3-->
-							<div class="item">
-								<img src="http://www.blueb.co.kr/SRC2/_image/w03.jpg"
-									style="width: 100%" data-src="" alt="Third slide" id="mainimg">
-								<div class="container">
-									<div class="carousel-caption">
-										<h1>Slide 3</h1>
-										<p>텍스트 3</p>
-									</div>
-								</div>
-							</div>
-							<!--슬라이드3-->
 						</div>
 
-						<!--이전, 다음 버튼-->
-						<a class="left carousel-control" href="#myCarousel" data-slide="prev" id="mainimg">
-						<span class=""></span></a> 
-						<a class="right carousel-control" href="#myCarousel" data-slide="next" id="mainimg">
-						<span class=""></span></a>
+						<c:forEach items="${filepath}" var="filename" begin="0" end="3">
+							<div class="carousel-item">
+								<img class="d-block w-100"
+									src="/resources/slideBanner/${filename.filepath}" alt="" id="mainimg">
+									<div class="container">
+									<div class="carousel-caption">
+										<a href="#"><h4>${filename.urlpath}</h4></a>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
 					</div>
+					<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+						<span class=""></span></a> 
+					<a class="right carousel-control" href="#myCarousel" data-slide="next" >
+						<span class=""></span></a>
 				</div>
 
 				<!-- 순위 -->
 				<div class="table0">
-					<table class="table table-dark">
+					<table class="table">
 						<thead>
 							<tr>
-								<th>게임순위<a href="#" style="position: relative; left: 205px;">
-								<img src="/resources/main/icon_more.gif"></a></th>
+								<th>인기 순위&nbsp;&nbsp;<a href="/recommand/main/hotgameRec" style="position: relative; left: 205px;"><img
+										src="/resources/main/icon_more.gif"></a></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1.&nbsp;&nbsp;<a href="#">배틀오브<img src="/resources/main/TOP.jpg"
-										alt="#" id="img1"></a></td>
-							</tr>
-							<tr>
-								<td>2.&nbsp;&nbsp;<a href="#">메이플 스토리</a></td>
-							</tr>
-							<tr>
-								<td>3.&nbsp;&nbsp;<a href="#">던전 앤 파이터</a></td>
-							</tr>
-							<tr>
-								<td>4.&nbsp;&nbsp;<a href="#">하스 스톤</a></td>
-							</tr>
-							<tr>
-								<td>5.&nbsp;&nbsp;<a href="#">리그 오브 레전드</a></td>
-							</tr>
+							<c:forEach items="${hgame}" var="h" begin="0" end="0">
+								<tr>
+									<td>1.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}
+									<c:choose>
+										<c:when test="${h.filepath eq null}">
+											<img alt="No image" src="/resources/gameDetailFile/noimage.png"
+												width="280px" height="140px" id="img1">
+										</c:when>
+										<c:when test="${h.filepath ne null}">
+											<img alt="Game image"
+												src="/resources/gameDetailFile/${h.filepath}" width="280px"
+												height="180px" id="img1">
+										</c:when>
+									</c:choose></a>
+									</td>
+								</tr>
+							</c:forEach>
+							<c:forEach items="${hgame}" var="h" begin="1" end="4" varStatus="status">
+								<tr>
+									<td>
+										${status.index + 1}.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -123,27 +113,35 @@ a :hover{
 					<table class="table">
 						<thead>
 							<tr>
-								<th>최신 순위&nbsp;&nbsp;<a href="#" style="position: relative; left: 205px;"><img
+								<th>최신 순위&nbsp;&nbsp;<a href="/recommand/main/newgameRec" style="position: relative; left: 205px;"><img
 										src="/resources/main/icon_more.gif"></a></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1.&nbsp;&nbsp;<a href="#">배틀오브<img src="/resources/main/TOP.jpg"
-										alt="#" id="img2"></a></td>
-							</tr>
-							<tr>
-								<td>2.&nbsp;&nbsp;<a href="#">메이플 스토리</a></td>
-							</tr>
-							<tr>
-								<td>3.&nbsp;&nbsp;<a href="#">던전 앤 파이터</a></td>
-							</tr>
-							<tr>
-								<td>4.&nbsp;&nbsp;<a href="#">하스 스톤</a></td>
-							</tr>
-							<tr>
-								<td>5.&nbsp;&nbsp;<a href="#">리그 오브 레전드</a></td>
-							</tr>
+							<c:forEach items="${ngame}" var="h" begin="0" end="0">
+								<tr>
+									<td>1.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}
+									<c:choose>
+										<c:when test="${h.filepath eq null}">
+											<img alt="No image" src="/resources/gameDetailFile/noimage.png"
+												width="280px" height="180px" id="img1">
+										</c:when>
+										<c:when test="${h.filepath ne null}">
+											<img alt="Game image"
+												src="/resources/gameDetailFile/${h.filepath}" width="280px"
+												height="180px" id="img1">
+										</c:when>
+									</c:choose></a>
+									</td>
+								</tr>
+							</c:forEach>
+							<c:forEach items="${ngame}" var="h" begin="1" end="4" varStatus="status">
+								<tr>
+									<td>
+										${status.index + 1}.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -151,26 +149,35 @@ a :hover{
 					<table class="table">
 						<thead>
 							<tr>
-								<th>무료 순위&nbsp;&nbsp;<a href="#" style="position: relative; left: 205px;"><img
+								<th>할인 순위&nbsp;&nbsp;<a href="/recommand/main/dcgameRec" style="position: relative; left: 205px;"><img
 										src="/resources/main/icon_more.gif"></a></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1.&nbsp;&nbsp;<a href="#">배틀오브<img src="/resources/main/TOP.jpg" alt="#" id="img3"></a></td>
-							</tr>
-							<tr>
-								<td>2.&nbsp;&nbsp;<a href="#">메이플 스토리</a></td>
-							</tr>
-							<tr>
-								<td>3.&nbsp;&nbsp;<a href="#">던전 앤 파이터</a></td>
-							</tr>
-							<tr>
-								<td>4.&nbsp;&nbsp;<a href="#">하스 스톤</a></td>
-							</tr>
-							<tr>
-								<td>5.&nbsp;&nbsp;<a href="#">리그 오브 레전드</a></td>
-							</tr>
+							<c:forEach items="${dcgame}" var="h" begin="0" end="0">
+								<tr>
+									<td>1.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}
+									<c:choose>
+										<c:when test="${h.filepath eq null}">
+											<img alt="No image" src="/resources/gameDetailFile/noimage.png"
+												width="280px" height="180px" id="img1">
+										</c:when>
+										<c:when test="${h.filepath ne null}">
+											<img alt="Game image"
+												src="/resources/gameDetailFile/${h.filepath}" width="280px"
+												height="180px" id="img1">
+										</c:when>
+									</c:choose></a>
+									</td>
+								</tr>
+							</c:forEach>
+							<c:forEach items="${dcgame}" var="h" begin="1" end="4" varStatus="status">
+								<tr>
+									<td>
+										${status.index + 1}.&nbsp;&nbsp;<a href="/gameDetail/main/maincategoryread?num=${h.num}&curPage=1&perPage=5">${h.title}</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div><!-- table2 -->
