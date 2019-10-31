@@ -192,5 +192,11 @@ public class adminServiceImpl implements adminService{
 		return addao.reviewRead(num);
 	}
 
+	@Override
+	public List<adminSetVO> setList() {
+		// TODO Auto-generated method stub
+		return addao.setList();
+	}
+
 
 }

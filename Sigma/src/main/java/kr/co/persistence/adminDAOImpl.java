@@ -198,5 +198,11 @@ public class adminDAOImpl implements adminDAO{
 		return session.selectOne(NSboard+".reviewRead", num);
 	}
 
+	@Override
+	public List<adminSetVO> setList() {
+		// TODO Auto-generated method stub
+		return session.selectList(NSsetting+".setList");
+	}
+
 
 }

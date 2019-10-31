@@ -30,7 +30,7 @@
 
 </style>
 </head>
-<body>
+<body  background="/resources/main/backgroundimg2.jpg">
 
 	<div class="header">
 		
@@ -40,7 +40,9 @@
 				<div class="menu"> <!-- 로그인 로고 검색 -->
 					<div class="img">
 						<!-- <a href="/"><img alt="..." src="/resources/main/로고2.png"></a> -->
-						<a href="/"><img alt="..." src="/resources/main/SIGMA로고.png" id="logo"></a>
+					
+						<a href="/"><img alt="" src="/resources/main/SIGMA로고.png" id="logo"></a>
+					
 					</div>
 					<div class="login">
 					
@@ -93,10 +95,10 @@
 
 							<li><a href="/recommand/main/hotgameRec?curPage=1&perPage=9" id="current">맞춤 게임</a>
 								<ul>
-									<li><a href="/recommand/main/hotgameRec?curPage=1&perPage=9">인기게임</a></li>
+									<li id="st"><a href="/recommand/main/hotgameRec?curPage=1&perPage=9">인기게임</a></li>
 									<li><a href="/recommand/main/freegameRec?curPage=1&perPage=6">무료게임</a></li>
 									<li><a href="/recommand/main/newgameRec?curPage=1&perPage=6">신작게임</a></li>
-									<li><a href="/recommand/main/dcgameRec?curPage=1&perPage=6">할인게임</a></li>
+									<li id="end"><a href="/recommand/main/dcgameRec?curPage=1&perPage=6">할인게임</a></li>
 								</ul>
 							<li><a href="/gameDetail/main/maincategory?category=all&curPage=1&perPage=6">카테고리</a>
 								<ul>
@@ -112,10 +114,10 @@
 								</ul></li>
 							<li><a href="#" id="me2">고객센터</a>
 								<ul>
-									<li><a href="/board/main/notice/boardNO">공지사항</a></li>
+									<li id="st"><a href="/board/main/notice/boardNO">공지사항</a></li>
 									<li><a href="/board/main/One/One">1:1 문의</a></li>
 									<li><a href="/QnA">Q and A</a></li>
-									<li id="end"><a href="/myPage/main/refundInsert">환불신청</a></li>
+									<li id="end"><a href="/myPage/main/buy/refundinsert">환불신청</a></li>
 								</ul>
               </li>
 						</ul>

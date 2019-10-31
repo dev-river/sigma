@@ -46,7 +46,7 @@
 
 </style>
 </head>
-<body>
+<body  background="/resources/main/backgroundimg2.jpg">
 
 
 <footer>

@@ -23,11 +23,10 @@
 </head>
 <body>
 	<br>
-
+	
 	<div class="bodymain">
 		<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
-		<br>
-			<div class="row">
+			<div class="row" style="padding-top: 30px;">
 				<div class="col-xs-push-10 col-xs-2">
 					<select id="perPageSel" class="form-control">
 						<option disabled>페이지당 글 수</option>

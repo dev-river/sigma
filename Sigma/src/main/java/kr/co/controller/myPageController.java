@@ -364,7 +364,7 @@ public class myPageController {
 	
 	
 	//환불 신청 UI
-	@RequestMapping(value = "/main/refundInsert", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/buy/refundinsert", method = RequestMethod.GET)
 	public void refundInsert(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		memberVO obj = (memberVO)session.getValue("login");
@@ -377,7 +377,7 @@ public class myPageController {
 	}
 	
 	//환불 신청
-	@RequestMapping(value = "/buyList/refundInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/buy/refundinsert", method = RequestMethod.POST)
 	public String refundInsert(int buynum, String content, String id) {
 		mpService.refundInsert(buynum, content, id);
 		return "redirect:/myPage/main/buy/refundlist";
