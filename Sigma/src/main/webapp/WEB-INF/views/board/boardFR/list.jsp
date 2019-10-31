@@ -109,7 +109,7 @@
 					</span>
 
 					<div class="w300" style="padding-right: 5px; ">
-						<input type="text" style="height:40px; " class="form-control from-control-lg"
+						<input type="text" style="height:40px; width: 715px;" class="form-control from-control-lg"
 							id="keyword">
 					</div>
 

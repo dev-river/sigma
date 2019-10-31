@@ -255,10 +255,8 @@
 			<div>
 				<c:choose>
 					<c:when test="${empty maxYesReview.assistyes}">
-						<p>아직 추천 공감 리스트가 없습니다!</p>
 					</c:when>
 					<c:when test="${maxYesReview.assistyes eq 0}">
-						<p>아직 추천 공감 리스트가 없습니다!</p>
 					</c:when>
 					<c:otherwise>
 						<hr>
@@ -299,10 +297,8 @@
 			<div>
 				<c:choose>
 					<c:when test="${empty maxNoReview.assistyes}">
-						<p>아직 비추천 공감 리스트가 없습니다!</p>
 					</c:when>
 					<c:when test="${maxNoReview.assistyes eq 0}">
-						<p>아직 비추천 공감 리스트가 없습니다!</p>
 					</c:when>
 					<c:otherwise>
 						<hr>
@@ -340,59 +336,61 @@
 			<br>
       	<!-- 리뷰글 최신순 리스트 -->
 		<br>
-      	<div>
-      	<hr>
-      			<h3>최신 리뷰</h3>
-
-      		<c:forEach items="${reviewlist}" var="review">
-      			<div style=" min-height: 180px; max-height: auto;">
-      				<p>-${review.recommend} 리뷰-</p>
-		      		<p style="float: left;">작성자: ${review.writer}</p>
-		      		<p style="float: right;">수정일: ${review.updatedate}</p>
-		      		<textarea rows="4" cols="154" style="color: black; background: #B5C1DB;  border-radius: 10px; resize: none;" readonly="readonly">${review.content}</textarea>
-		      		<p style="float: right;">싫어요: ${review.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${review.num}">싫어요</button></p>
-		      		<p style="float: right;">좋아요: ${review.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${review.num}">좋아요</button></p>
-		      		<c:if test="${id eq review.writer || author eq 'admin'}">
-		      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${review.num}" target="_blank" class="btn btn-warning"
-		      			onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">수정</a>
-		      			<button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button>
-		      			<%-- <button class="reviewupdate btn btn-warning" value="${review.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button> --%>
-		      		</c:if>
-      			</div>
-      			<hr>
-      		</c:forEach>
-      		
-      		<!-- 리뷰 페이징 파트 -->
-      		<c:choose>
-      			<c:when test="${sto.amount eq 0}">
-      			</c:when>
-      			<c:otherwise>
-					<div>
-						<div class="row text-center" style="position: relative; left: 45%">
-							<ul class="pagination">
-								<!-- ul에 pagination 클래스를 주면 예쁘다 -->
-                        <c:if test="${sto.curPage>1}">
-                           <li><a
-                              href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage-1}&perPage=${sto.perPage}">&laquo;</a></li>
-                        </c:if>
-                        <!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
-
-                        <c:forEach begin="${sto.bpn}" end="${sto.spn}" var="idx">
-                           <li class="${sto.curPage == idx?'active':''}"><a
-                              href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${idx}&perPage=${sto.perPage}">${idx}</a></li>
-                           <!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
-                        </c:forEach>
-
-                        <c:if test="${sto.curPage<sto.totalPage}">
-                           <li><a
-                              href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage+1}&perPage=${sto.perPage}">&raquo;</a></li>
-                        </c:if>
-                     </ul>
-                  </div>
-               </div>
-            </c:otherwise>
-            </c:choose>
-         </div>
+		<c:if test="${not empty reviewlist}">
+			<div>
+				<hr>
+				<h3>최신 리뷰</h3>
+	      	
+	      		<c:forEach items="${reviewlist}" var="review">
+	      			<div style=" min-height: 180px; max-height: auto;">
+	      				<p>-${review.recommend} 리뷰-</p>
+			      		<p style="float: left;">작성자: ${review.writer}</p>
+			      		<p style="float: right;">수정일: ${review.updatedate}</p>
+			      		<textarea rows="4" cols="154" style="color: black; background: #B5C1DB;  border-radius: 10px; resize: none;" readonly="readonly">${review.content}</textarea>
+			      		<p style="float: right;">싫어요: ${review.assistno} <button class="yesorno btn btn-danger" id="assistNo" value="${review.num}">싫어요</button></p>
+			      		<p style="float: right;">좋아요: ${review.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${review.num}">좋아요</button></p>
+			      		<c:if test="${id eq review.writer || author eq 'admin'}">
+			      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${review.num}" target="_blank" class="btn btn-warning"
+			      			onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">수정</a>
+			      			<button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button>
+			      			<%-- <button class="reviewupdate btn btn-warning" value="${review.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button> --%>
+			      		</c:if>
+	      			</div>
+	      			<hr>
+	      		</c:forEach>
+	      		
+	      		<!-- 리뷰 페이징 파트 -->
+	      		<c:choose>
+	      			<c:when test="${sto.amount eq 0}">
+	      			</c:when>
+	      			<c:otherwise>
+						<div>
+							<div class="row text-center" style="position: relative; left: 45%">
+								<ul class="pagination">
+									<!-- ul에 pagination 클래스를 주면 예쁘다 -->
+	                        <c:if test="${sto.curPage>1}">
+	                           <li><a
+	                              href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage-1}&perPage=${sto.perPage}">&laquo;</a></li>
+	                        </c:if>
+	                        <!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
+	
+	                        <c:forEach begin="${sto.bpn}" end="${sto.spn}" var="idx">
+	                           <li class="${sto.curPage == idx?'active':''}"><a
+	                              href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${idx}&perPage=${sto.perPage}">${idx}</a></li>
+	                           <!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
+	                        </c:forEach>
+	
+	                        <c:if test="${sto.curPage<sto.totalPage}">
+	                           <li><a
+	                              href="/gameDetail/main/maincategoryread?num=${vo.num}&curPage=${sto.curPage+1}&perPage=${sto.perPage}">&raquo;</a></li>
+	                        </c:if>
+	                     </ul>
+	                  </div>
+	               </div>
+	            </c:otherwise>
+	            </c:choose>
+	         </div>
+         </c:if>
    </div>
    </div>
    <br>

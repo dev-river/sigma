@@ -104,11 +104,7 @@
                     	<i class="fas fa-cogs fa-lg"  class="ripple"></i>
                     </a>
                 </c:if>
-                <c:if test="${login.author eq 'admin'}">
-                    <a href="/admin/main/user/adminlist?id=${login.id}" title="그래프"> 
-                    	<i class="fas fa-chart-bar fa-lg"  class="ripple"></i>
-                    </a>
-                </c:if>
+               
                </c:if>
                 
             </li>

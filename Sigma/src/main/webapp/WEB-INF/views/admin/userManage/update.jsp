@@ -13,30 +13,30 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="/resources/js/uploadutils.js" type="text/javascript"></script>
 </head>
-<body>
+<body background="/resources/main/backgroundimg2.jpg">
 <div class="container">
 		<div class="row">
 			<div class="col-xs-10 col-xs-offset-1">
-			<h1>회원정보 수정</h1>
+			<h3 style="color: white;">회원정보 수정</h3>
 			
 			<form action="/admin/userManage/update" method="post">
 				<div class="form-group">
-					<label for="id">ID</label>
+					<label class="badge badge-info" for="id">ID</label>
 					<input class="form-control" id="ID" name="id" value="${updatevo.id}" readonly="readonly">
 				</div>
 				
 				<div class="form-group">
-					<label for="nickname">닉네임</label>
+					<label class="badge badge-info" for="nickname">닉네임</label>
 					<input class="form-control" id="nickname" name="nickname" value="${updatevo.nickname}">
 				</div>
 				
 				<div class="form-group">
-					<label for="name">이름</label>
+					<label class="badge badge-info" for="name">이름</label>
 					<input class="form-control" id="name" name="name" value="${updatevo.name}" readonly="readonly">
 				</div>
 				
 				<div class="form-group">
-					<label for="writer">권한</label>
+					<label class="badge badge-info" for="writer">권한</label>
 					<select name="author" class="form-control" >
 						<option>user</option>
 						<option>seller</option>
@@ -45,22 +45,22 @@
 				</div>
 				
 				<div class="form-group">
-					<label for="content">생년월일</label>
+					<label class="badge badge-info" for="content">생년월일</label>
 					<textarea  class="form-control" id="birth" name="birth" readonly="readonly">${updatevo.birth}</textarea>
 				</div>
 				
 				<div class="form-group">
-					<label for="content">연락처</label>
+					<label class="badge badge-info" for="content">연락처</label>
 					<textarea  class="form-control" id="phone" name="phone" readonly="readonly">${updatevo.phone}</textarea>
 				</div>
 				
 				<div class="form-group">
-					<label for="content">이메일</label>
+					<label class="badge badge-info" for="content">이메일</label>
 					<textarea  class="form-control" id="email" name="email" readonly="readonly">${updatevo.email}</textarea>
 				</div>
 				
 				<div class="form-group">
-					<label for="content">가입일</label>
+					<label class="badge badge-info" for="content">가입일</label>
 					<textarea  class="form-control" id="joindate" name="joindate" readonly="readonly">${updatevo.joindate}</textarea>
 				</div>
 				

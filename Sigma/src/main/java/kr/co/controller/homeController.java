@@ -3,20 +3,13 @@ package kr.co.controller;
 import java.util.List;
 import java.util.Locale;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import kr.co.domain.SPageTO;
 import kr.co.domain.gameVO;
 import kr.co.service.recommandService;
-import kr.co.domain.adminSetVO;
 import kr.co.domain.adminSlideVO;
 import kr.co.service.adminService;
 
@@ -25,6 +18,8 @@ import kr.co.service.adminService;
 public class homeController {
 	@Inject
 	private adminService adservice;
+	@Inject
+	private recommandService rservice;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -37,14 +32,13 @@ public class homeController {
 		model.addAttribute("firstfilepath", firstfilepath);
 		model.addAttribute("firsturl", firsturl);
 		model.addAttribute("filepath", vo);
-//		
-//		List<adminSetVO> to = adservice.setList();
-//		String firstlogofile = to.get(0).getLogofilepath();
-//
-//		model.addAttribute("firstlogofile", firstlogofile);
-//		model.addAttribute("logofilepath", to);
-
 		
+		List<gameVO> ngame = rservice.newgameRec();
+		List<gameVO> hgame = rservice.hotgameRec();
+		List<gameVO> dcgame = rservice.dcgameRec();
+		model.addAttribute("ngame", ngame);
+		model.addAttribute("dcgame", dcgame);
+		model.addAttribute("hgame", hgame);
 
 		return "main";
 	}

@@ -13,11 +13,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="/resources/js/uploadutils.js" type="text/javascript"></script>
 </head>
-<body>
+<body background="/resources/main/backgroundimg2.jpg">
 <div class="container">
 		<div class="row">
 			<div class="col-xs-10 col-xs-offset-1">
-			<h3>회원정보</h3>
+			<h3 style="color: white;">회원정보</h3>
 			
 				<div class="form-group">
 					<label class="badge badge-info"  for="id">ID</label>
