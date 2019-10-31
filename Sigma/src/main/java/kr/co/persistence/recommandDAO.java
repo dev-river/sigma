@@ -30,4 +30,10 @@ public interface recommandDAO {
 	List<gameVO> customRec(SPageTO to, String category);
 
 	String getcategory(String id);
+
+	List<gameVO> getHotGameList();
+
+	List<gameVO> getNewGameList();
+
+	List<gameVO> getDcGameList();
 }
