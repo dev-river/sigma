@@ -58,7 +58,7 @@
 		(select rownum rnum, num, title, content, writer, regidate, category, price, dcrate, mancount, womancount, totalage, profit, sellcharge, viewcnt, filepath, gamefilepath, status from 
         (select * from 
         (select * from gamedetail where dcrate > 0 ]]><include refid="search"></include><![CDATA[)
-         order by num desc)) 
+         order by dcrate desc)) 
         where rnum between #{startNum} and #{endNum}
 		]]>
 	</select>
@@ -93,5 +93,22 @@
         (select * from gamedetail where category = #{category})
          order by num desc)) 
         where rnum between #{startNum} and #{endNum}
+	</select>
+	
+	<select id="NewGameList" resultType="kr.co.domain.gameVO">
+		<![CDATA[
+		select * from 
+		(select rownum rnum, num, title, content, writer, regidate, category, price, dcrate, mancount, womancount, totalage, profit, sellcharge, viewcnt, filepath, gamefilepath, status from 
+        (select * from 
+        (select * from gamedetail where regidate between (SELECT sysdate - 7 FROM DUAL) and sysdate ]]><include refid="search"></include><![CDATA[)
+         order by num desc)) order by regidate
+		]]>
+	</select>
+	
+	<select id="DCGameList" resultType="kr.co.domain.gameVO">
+		select rownum rnum, num, title, content, writer, regidate, category, price, dcrate, mancount, womancount, totalage, profit, sellcharge, viewcnt, filepath, gamefilepath, status from 
+        (select * from 
+        (select * from gamedetail where dcrate > 0)
+         order by dcrate desc)
 	</select>
 </mapper>

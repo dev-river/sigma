@@ -64,6 +64,21 @@ public class recommandServiceImpl implements recommandService{
 		to.setList(list);
 		return to;
 	}
+	@Override
+	public List<gameVO> hotgameRec() {
+		List<gameVO> list = rdao.getHotGameList();
+		return list;
+	}
+	@Override
+	public List<gameVO> newgameRec() {
+		List<gameVO> list = rdao.getNewGameList();
+		return list;
+	}
+	@Override
+	public List<gameVO> dcgameRec() {
+		List<gameVO> list = rdao.getDcGameList();
+		return list;
+	}
 
 
 
