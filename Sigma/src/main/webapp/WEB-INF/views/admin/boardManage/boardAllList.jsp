@@ -43,23 +43,45 @@
 <body>
 	<div class="bodymain">
 		<div class="list">
-			<div class="container">
-				<h2>관리자 - 글 관리 페이지</h2>
-				<hr>
-
+			<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
+			
+			<div style="float: left;">
+				<jsp:include page="/WEB-INF/views/admin/adminSetting/adminLeft.jsp"></jsp:include>
+			</div>
+			
+			<br>
+			<div class="row" >
+			<div class="d" style="float: right; width: 870px; border-left: double 1px white; height: 700px; padding-left: 30px; padding-right: 30px;">
 				<div class="secondMenu">
 					<a target="_blank" href="/board/main/event/event">이벤트</a> <a
 						target="_blank" href="/board/main/newgame/NewGame">새게임소식</a> <a
 						target="_blank" href="/board/main/list/boardlist">자유게시판</a> <a
-						target="_blank" href="#">공지사항적용예정</a>
+						target="_blank" href="/board/main/notice/boardNO">공지사항</a>
 				</div>
 
 				<hr>
+				<h3 style="color: white;">전체 게시글 목록</h3>
+				<div class="input-group" style="padding-right: 10px;">
+				<span class="input-group-addon"> <select id="searchSel">
+						<option disabled>검색 기준</option>
+						<option value="title">제목</option>
+						<!-- value : 서버로 넘어가는거, 작성자 : JSP에 보이는거 -->
+						<option value="writer">작성자</option>
+						<option value="content">내용</option>
+				</select>
+				</span>
 
+				<div class="w300" style="padding-right: 10px;">
+					<input type="text" class="form-control from-control-sm"
+						id="keyword" style="width: 85%;">
+				</div>
+
+				<span class="input-group-btn" style="padding-right: 10px;">
+					<button id="searchBtn" class="btn btn-sm btn-primary">검색</button>
+				</span>
+			</div>
 				<div class="allBoardList container">
-					<h3>전체 게시글 목록</h3>
-
-					<table class="table table-hover">
+					<table class="table table-hover" style="width: 800px; color: white;">
 						<thead>
 							<tr>
 								<th>게시판</th>
@@ -82,6 +104,14 @@
 										<c:when test="${vo.board eq 'list/boardread'}">
 											<td>자유게시판</td>
 										</c:when>
+										
+										<c:when test="${vo.board eq 'notice/boardNOread'}">
+											<td>공지사항</td>
+										</c:when>
+										
+										<c:when test="${vo.board eq 'newgame/NewGameRead'}">
+											<td>새 게임 소식</td>
+										</c:when>
 
 									</c:choose>
 									<td>${vo.num}</td>
@@ -96,52 +126,31 @@
 							</c:forEach>
 						</tbody>
 					</table>
-				</div>
-			</div>
-		</div>
-
-		<div class="row text-center" style="text-align: center">
+					<div class="row text-center" style="text-align: center">
 			<ul class="pagination">
 				<!-- ul에 pagination 클래스를 주면 예쁘다 -->
 
 				<c:if test="${to.curPage>1}">
 					<li><a
-						href="/admin/boardManage/boardAllList?curPage=${to.curPage-1}&perPage=${to.perPage}&searchType=${to.searchType}&keyword=${to.keyword}">&laquo;</a></li>
+						href="/admin/main/board/boardManage?curPage=${to.curPage-1}&perPage=${to.perPage}&searchType=${to.searchType}&keyword=${to.keyword}">&laquo;</a></li>
 				</c:if>
 				<!-- 주소창에서 perPage값을 조절하면서 확인할것 -->
 
 				<c:forEach begin="${to.bpn}" end="${to.spn}" var="idx">
 					<li class="${to.curPage == idx?'active':''}"><a
-						href="/admin/boardManage/boardAllList?curPage=${idx}&perPage=${to.perPage}&searchType=${to.searchType}&keyword=${to.keyword}">${idx}</a></li>
+						href="/admin/main/board/boardManage?curPage=${idx}&perPage=${to.perPage}&searchType=${to.searchType}&keyword=${to.keyword}">${idx}</a></li>
 					<!-- li에 클래스를 active로 주면 현재 페이지에 색이 들어간다 -->
 				</c:forEach>
 
 				<c:if test="${to.curPage<to.totalPage}">
 					<li><a
-						href="/admin/boardManage/boardAllList?curPage=${to.curPage+1}&perPage=${to.perPage}&searchType=${to.searchType}&keyword=${to.keyword}">&raquo;</a></li>
+						href="/admin/main/board/boardManage?curPage=${to.curPage+1}&perPage=${to.perPage}&searchType=${to.searchType}&keyword=${to.keyword}">&raquo;</a></li>
 				</c:if>
 			</ul>
 		</div>
-
-		<div class="row">
-			<div class="input-group" style="padding-right: 10px;">
-				<span class="input-group-addon"> <select id="searchSel">
-						<option disabled>검색 기준</option>
-						<option value="title">제목</option>
-						<!-- value : 서버로 넘어가는거, 작성자 : JSP에 보이는거 -->
-						<option value="writer">작성자</option>
-						<option value="content">내용</option>
-				</select>
-				</span>
-
-				<div class="w300" style="padding-right: 10px;">
-					<input type="text" class="form-control from-control-sm"
-						id="keyword">
 				</div>
-
-				<span class="input-group-btn" style="padding-right: 10px;">
-					<button id="searchBtn" class="btn btn-sm btn-primary">검색</button>
-				</span>
+			</div>
+		</div>
 			</div>
 		</div>
 	</div>
@@ -171,7 +180,7 @@
 							$("#searchBtn").on("click", function() {
 												var searchType = $("#searchSel option:selected").val();
 												var keyword = $("#keyword").val();
-												var url = "/admin/boardManage/boardAllList?searchType="
+												var url = "/admin/main/board/boardManage?searchType="
 														+ searchType
 														+ "&keyword=" + keyword;
 												window.open(url);

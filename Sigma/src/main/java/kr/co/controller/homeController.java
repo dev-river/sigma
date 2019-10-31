@@ -48,7 +48,6 @@ public class homeController {
 
 		return "main";
 	}
-	
 	@RequestMapping(value = "/QnA", method = RequestMethod.GET)
 	public String homeq(Locale locale, Model model) {
 		return "QnA";

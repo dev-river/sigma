@@ -122,7 +122,7 @@
 					${vo.price}원
 				</c:when>
 				<c:when test="${vo.dcrate ne 0}">
-					${vo.price * (1 - vo.dcrate / 100)} <span style="color:red">(${vo.dcrate}%off)원</span>
+					<fmt:formatNumber value="${vo.price * (1 - vo.dcrate / 100)} " pattern=".00"/> <span style="color:red">(${vo.dcrate}%off)원</span>
 				</c:when>
 	</c:choose></h3>
 
@@ -186,10 +186,18 @@
 		</div>
 		<br>
 		<hr>
-		<div class="age" style="width: 800px; min-height: 200px;">
-		나이대, 성별 그래프 적용해야함
-		
-		</div>
+		<c:choose>
+      	<c:when test="${manratio eq '0' && womanratio eq '0'}">
+      		<p>구매자가 0명입니다. 이 경우 남/녀 비율 및 나이 차트가 표시되지 않습니다.</p>
+      	</c:when>
+      	<c:otherwise>
+      	<h4>구매자 통계</h3>
+      		<div class="row">
+	      		<div id="sexRatio"></div>
+	      		<div id="ageRatio"></div>
+      		</div>
+      	</c:otherwise>
+      </c:choose>
 		<hr>
 		<div>
 			<jsp:useBean id="now" class="java.util.Date" />

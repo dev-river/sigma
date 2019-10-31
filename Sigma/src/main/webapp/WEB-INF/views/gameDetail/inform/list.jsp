@@ -61,7 +61,7 @@ p {
 					<span class="input-group-addon"> <select id="searchSel">
 							<option disabled>검색 기준</option>
 							<option value="writer">배급사</option>
-							<option value="title">게임이름</option>
+							<option value="title" selected="selected">게임명</option>
 					</select>
 					</span>
 
@@ -102,7 +102,7 @@ p {
 					${gvo.price}
 				</c:when>
 								<c:when test="${gvo.dcrate ne 0}">
-					${gvo.price * (1 - gvo.dcrate / 100)} <span style="color: red">(${gvo.dcrate}%off)</span>
+					<fmt:formatNumber value="${gvo.price * (1 - gvo.dcrate / 100)} " pattern=".00"/><span style="color: red">(${gvo.dcrate}%off)</span>
 								</c:when>
 							</c:choose>
 						</p>

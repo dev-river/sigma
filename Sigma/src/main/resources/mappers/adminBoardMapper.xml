@@ -38,8 +38,12 @@
 		select rownum rnum, board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from (
 		select 'event/eventRead' board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardEV ]]><include refid="search"></include><![CDATA[
 		union
-		select 'list/boardread' board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardFR ]]><include refid="search"></include><![CDATA[)
-		) where rnum between #{startNum} and #{endNum}
+		select 'list/boardread' board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardFR ]]><include refid="search"></include><![CDATA[
+		union
+		select 'notice/boardNOread' board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardNO ]]><include refid="search"></include><![CDATA[
+		union
+		select 'newgame/NewGameRead' board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardNG ]]><include refid="search"></include><![CDATA[
+		)) where rnum between #{startNum} and #{endNum}
 	]]>
 	</select>
 	
@@ -49,6 +53,10 @@
 	board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardEV
 	union
 	select 'list/boardread' board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardFR
+	union
+	select 'notice/boardNOread' board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardNO
+	union
+	select 'newgame/NewGameRead' board,num,title,content,writer,regidate,updatedate,viewcnt,filepath,adminselect from boardNG
 	) <include refid="search"></include>
 	</select>
 	
