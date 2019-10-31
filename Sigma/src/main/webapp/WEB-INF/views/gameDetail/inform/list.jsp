@@ -102,7 +102,7 @@ p {
 					${gvo.price}
 				</c:when>
 								<c:when test="${gvo.dcrate ne 0}">
-					${gvo.price * (1 - gvo.dcrate / 100)} <span style="color: red">(${gvo.dcrate}%off)</span>
+					<fmt:formatNumber value="${gvo.price * (1 - gvo.dcrate / 100)} " pattern=".00"/><span style="color: red">(${gvo.dcrate}%off)</span>
 								</c:when>
 							</c:choose>
 						</p>
