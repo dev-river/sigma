@@ -16,10 +16,21 @@
 label{
 color: white;
 }
+
+label{
+color: white;
+}
+html, body {
+   
+   background-image :url("/resources/main/backgroundimg2.jpg");
+   margin: 0;
+   max-height: auto;
+   min-height: 300px;
+}
 </style>
 </head>
 
-<body background="/resources/main/backgroundimg2.jpg" style="height: 300px;">
+<body background="/resources/main/backgroundimg2.jpg" style="height: 15px;">
 
 		<div class="container">
 		<br>
