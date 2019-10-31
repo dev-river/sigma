@@ -142,62 +142,7 @@ public class compController {
 	
 	@RequestMapping(value = "/imgsrcajax", method = RequestMethod.GET)
 	public void ImgsrcAjax() {}
-//	@SuppressWarnings("unchecked")
-//	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-//	public ResponseEntity<JSONObject> chart(String writer){
-//		ResponseEntity<JSONObject> entity = null;
-//		JSONObject data = new JSONObject();
-//		JSONObject ajaxobjCols1 = new JSONObject();
-//		JSONObject ajaxobjCols2 = new JSONObject();
-//		JSONArray ajaxArrayCols = new JSONArray();
-//		
-//		ajaxobjCols1.put("label", "성별");
-//		ajaxobjCols1.put("type", "string");
-//		ajaxobjCols1.put("label", "성별");
-//		ajaxobjCols1.put("type", "string");
-//		
-//		ajaxobjCols2.put("label", "value");
-//		ajaxobjCols2.put("type", "number");
-//		ajaxobjCols2.put("label", "value");
-//		ajaxobjCols2.put("type", "number");
-//		
-//		ajaxArrayCols.add(ajaxobjCols1);
-//		ajaxArrayCols.add(ajaxobjCols2);
-//		data.put("cols", ajaxArrayCols);
-//		
-//		int man = compservice.datalist(writer);
-//		int woman = compservice.datalist1(writer);
-//		
-//		JSONArray body = new JSONArray();
-//		JSONArray ajaxArrayRows = new JSONArray();
-//		JSONObject legend = new JSONObject();
-//		legend.put("v", "남자");
-//		JSONObject legend1 = new JSONObject();
-//		legend1.put("v", "여자");
-//		
-//		JSONObject value = new JSONObject();
-//		value.put("v", man);
-//		JSONObject value1 = new JSONObject();
-//		value1.put("v", woman);
-//		
-//		JSONArray ValueArray = new JSONArray();
-//		ValueArray.add(legend);
-//		ValueArray.add(legend1);
-//		ValueArray.add(value);
-//		ValueArray.add(value1);
-//		
-//		ajaxArrayRows.add(ValueArray);
-//		body.add(ajaxArrayRows);
-//		
-//		data.put("rows", body);
-//		try {
-//			entity = new ResponseEntity<JSONObject>(data, HttpStatus.OK);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			entity = new ResponseEntity<JSONObject>(HttpStatus.BAD_REQUEST);
-//		}
-//		return entity;
-//	}
+
 	//판매자 페이지
 	@RequestMapping(value = "/main/manageread")
 	public void read(@RequestParam String id, Model model) {
@@ -228,10 +173,18 @@ public class compController {
 		List<gameDetailDcVO> gameDetailDC =  compservice.gameDetailDC(writer);
 		int man = compservice.mancount(writer);
 		int woman = compservice.womancount(writer);
+		int s10 = compservice.age10();
+		int s20 = compservice.age20();
+		int s30 = compservice.age30();
+		int s40 = compservice.age40();
 		model.addAttribute("gamelist", gamelist);
 		model.addAttribute("gameDetailDC", gameDetailDC);
 		model.addAttribute("man", man);
 		model.addAttribute("woman", woman);
+		model.addAttribute("s10", s10);
+		model.addAttribute("s20", s20);
+		model.addAttribute("s30", s30);
+		model.addAttribute("s40", s40);
 	}
 	
 	//게임 등록 UI
@@ -244,7 +197,6 @@ public class compController {
 	//게임 등록
 	@RequestMapping(value = "/main/gameinsert", method = RequestMethod.POST)
 	public String gameinsert(gameVO vo, String filename1, String filename2, String filename3, String filename4) {
-		System.out.println(vo);
 		//판매자의 캐시 1000원을 관리자에게 준다
 		compservice.sellermoney(vo);
 		compservice.givemoney();
@@ -283,7 +235,7 @@ public class compController {
 	}
 	
 	//환불 상세보기
-	@RequestMapping(value = "/refund/refundRead")
+	@RequestMapping(value = "/main/refundread")
 	public void refundRead(@RequestParam String id, @RequestParam int num, Model model) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);

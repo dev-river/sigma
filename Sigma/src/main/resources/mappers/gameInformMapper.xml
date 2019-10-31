@@ -56,7 +56,7 @@
 	</update>
 
 	<update id="update">
-		update gamedetail set title=#{title}, price=#{price}, category=#{category}, content=#{content}, dcrate=#{dcrate}, gamefilepath=#{gamefilepath} where num=#{num}
+		update gamedetail set title=#{title}, price=#{price}, category=#{category}, content=#{content}, dcrate=#{dcrate}, gamefilepath=#{gamefilepath}, filepath=#{filepath} where num=#{num}
 	</update>
 	
 	<select id="reviewlist" resultType="kr.co.domain.reviewVO">
@@ -146,4 +146,12 @@
 			select floor(months_between(sysdate, userinfo.birth) /12) age from buylist,userinfo where buylist.id=userinfo.id and buylist.gdnum=#{num}
 		) where age <![CDATA[ >= ]]> 40
 	</select>
+	
+	<select id="filename" resultType="kr.co.domain.gameDetailFileVO">
+		select f.num, f.filename from gamedetailfile f, gamedetail g where f.gdnum=g.num and f.gdnum=#{num} order by f.num asc 
+	</select>
+	
+	<update id="gameimg">
+		update gamedetailfile set filename = #{filename} where num = #{num}
+	</update>
 </mapper>

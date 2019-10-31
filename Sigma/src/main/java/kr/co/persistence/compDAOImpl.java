@@ -45,6 +45,7 @@ public class compDAOImpl implements compDAO {
 
 	@Override
 	public void gameinsert(gameVO vo) {
+		vo.setFilepath(vo.getFilepath().substring(3));
 		session.insert(NS+".gameinsert", vo);
 	}
 
@@ -123,7 +124,7 @@ public class compDAOImpl implements compDAO {
 		for(int i=0;i<list.size();i++) {
 			gameDetailFileVO vo = new gameDetailFileVO();
 			String filename = (String) list.get(i);
-			vo.setFilename(filename);
+			vo.setFilename(filename.substring(3));
 			vo.setGdnum(gdnum);
 			session.insert(NS+".gameimg", vo);
 		}
@@ -147,5 +148,25 @@ public class compDAOImpl implements compDAO {
 	@Override
 	public int womancount(String writer) {
 		return session.selectOne(NS+".womancount", writer);
+	}
+
+	@Override
+	public int age10() {
+		return session.selectOne(NS+".age10");
+	}
+	
+	@Override
+	public int age20() {
+		return session.selectOne(NS+".age20");
+	}
+	
+	@Override
+	public int age30() {
+		return session.selectOne(NS+".age30");
+	}
+	
+	@Override
+	public int age40() {
+		return session.selectOne(NS+".age40");
 	}
 }

@@ -17,13 +17,15 @@ public class gameDetailDcVO implements Serializable{
    private String rqenddate;
    private String dcstartdate;
    private String dcenddate;
+   private String title;
    
    public gameDetailDcVO() {
 	// TODO Auto-generated constructor stub
 }
+   
 
 public gameDetailDcVO(int num, int gdnum, int dcrate, int joinclick, int goal, String rqstartdate, String rqenddate,
-		String dcstartdate, String dcenddate) {
+		String dcstartdate, String dcenddate, String title) {
 	super();
 	this.num = num;
 	this.gdnum = gdnum;
@@ -34,7 +36,21 @@ public gameDetailDcVO(int num, int gdnum, int dcrate, int joinclick, int goal, S
 	this.rqenddate = rqenddate;
 	this.dcstartdate = dcstartdate;
 	this.dcenddate = dcenddate;
+	this.title = title;
 }
+
+
+
+
+public String getTitle() {
+	return title;
+}
+
+
+public void setTitle(String title) {
+	this.title = title;
+}
+
 
 public int getNum() {
 	return num;

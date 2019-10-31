@@ -76,8 +76,7 @@
 								<input type="hidden" name="curPage" value="1">
 								<input type="hidden" name="perPage" value="6">
 								<input type="hidden" name="searchType" value="title">
-								<input class="form-control" type="text"
-									placeholder="검색어를 입력하세요." aria-label="Search" id="se" name="keyword">
+								<input class="form-control" type="text"	placeholder="검색어를 입력하세요." aria-label="Search" id="se" name="keyword">
 								<input type="submit" value="검색" class="btn btn-warning">
 								<!-- <a class="material-icons" href="/gameDetail/main/maincategory">search</a> -->
 							</form>

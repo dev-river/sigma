@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.co.domain.SPageTO;
 import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
+import kr.co.domain.gameDetailFileVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.reviewVO;
 import kr.co.persistence.gameDetailDAO;
@@ -164,4 +165,13 @@ public class gameDetailServiceImpl implements gameDetailService{
 		return gdao.ageratio4(num);
 	}
 
+	@Override
+	public List<gameDetailFileVO> filename(int num) {
+		return gdao.filename(num);
+	}
+
+	@Override
+	public void imgupdate(List list, int[] num) {
+		gdao.imgupdate(list, num);
+	}
 }

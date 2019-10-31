@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.domain.SPageTO;
 import kr.co.domain.gPageTO;
 import kr.co.domain.gameDetailDcVO;
+import kr.co.domain.gameDetailFileVO;
 import kr.co.domain.gameVO;
 import kr.co.domain.reviewVO;
 
@@ -199,5 +200,25 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 	@Override
 	public int ageratio4(int num) {
 		return session.selectOne(NS+".ageratio4", num);
+	}
+
+	@Override
+	public List<gameDetailFileVO> filename(int num) {
+		return session.selectList(NS+".filename", num);
+	}
+
+	@Override
+	public void imgupdate(List list, int[] num) {
+		for(int i=0; i<list.size();i++) {
+			gameDetailFileVO vo = new gameDetailFileVO();
+			String filename = list.get(i).toString();
+			System.out.println(num[i]);
+			int number = num[i];
+			vo.setNum(number);
+			vo.setFilename(filename);
+			System.out.println(vo);
+			session.update(NS+".imgupdate", vo);
+		}
+		
 	}
 }
