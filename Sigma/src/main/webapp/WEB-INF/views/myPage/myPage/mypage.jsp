@@ -117,11 +117,11 @@
 			
 			<div style="height: 180px;">
 				<h4 style="position: relative; left: 13%; top: -10px;" class="pull-left">단골 스토어 목록</h4>
-				<a class="pull-right" href="/myPage/subscribe/ssubComp">자세히 보기</a>
+				<a class="pull-right" href="/myPage/main/ssubComp">자세히 보기</a>
 				<br>
 				<c:forEach items="${favComp}" var="favComp" varStatus="status">
 					<c:if test="${status.index < 4}">
-						<a href="/myPage/subscribe/subComp?writer=${favComp.id}">
+						<a href="/myPage/main/subComp?writer=${favComp.id}">
 							<div style="width:18%; margin:2px; height:150px; text-align: center;" class="pull-left">
 								<c:choose>
 									<c:when test="${favComp.filepath eq null}">

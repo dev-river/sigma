@@ -16,7 +16,8 @@
 <body>
 <div class="container">
 		<div class="row">
-			<h1>회원정보 자세히 보기</h1>
+			<div class="col-xs-10 col-xs-offset-1">
+			<h1>회원정보 수정</h1>
 			
 			<form action="/admin/userManage/update" method="post">
 				<div class="form-group">
@@ -69,8 +70,9 @@
 					<input type="button" value="닫기" class="btn closebtn">
 				</div>
 			</form>
+			
 		</div>
-		
+	</div>
 </div>
 
 

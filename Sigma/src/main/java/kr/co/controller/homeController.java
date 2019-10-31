@@ -1,16 +1,21 @@
 package kr.co.controller;
 
-
 import java.util.List;
 import java.util.Locale;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.servlet.ModelAndView;
+import kr.co.domain.SPageTO;
+import kr.co.domain.gameVO;
+import kr.co.service.recommandService;
 import kr.co.domain.adminSetVO;
 import kr.co.domain.adminSlideVO;
 import kr.co.service.adminService;
@@ -40,11 +45,13 @@ public class homeController {
 //		model.addAttribute("logofilepath", to);
 
 		
+
 		return "main";
 	}
-	@RequestMapping(value = "/board/qand", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/QnA", method = RequestMethod.GET)
 	public String homeq(Locale locale, Model model) {
-		return "main";
+		return "QnA";
 	}
 
 }

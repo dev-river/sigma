@@ -55,7 +55,7 @@ public class myPageController {
 		//보유 게임 수
 		int gamecount = mpService.gameCount(id);
 		//작성 글 수
-		int writecount = mpService.writercount(id);
+		int writecount = mpService.writercount(obj.getNickname());
 		//작성 리뷰 수
 		int reviewcount = mpService.reviewcount(id);
 
@@ -251,14 +251,16 @@ public class myPageController {
 		}
 		//게임 정보 가져오기
 		gameVO vo = gservice.read(gdnum);
-		//구매 리스트에 추가
-		mpService.insertBuyList(gdnum, id, vo.getPrice());
 		//캐쉬 차감
+		int dcrate = vo.getDcrate();
 		int gamePrice = vo.getPrice();
 		memberVO myinfo = mpService.getMemberVO(id);
 		int myCash = myinfo.getCash();
-		int nowCash = myCash - gamePrice;
+		int gameprice = gamePrice*(100-dcrate)/100;
+		int nowCash = myCash - gameprice;
 		mpService.updateCash(nowCash, id);
+		//구매 리스트에 추가
+		mpService.insertBuyList(gdnum, id, gameprice);
 		//게임 통계 업데이트
 		//구매자 성별
 		memberVO userinfo = mpService.getSex(id); //원래는 sex만 받아왔는데 오류나서 memberVO 형태로 받아온 후 sex를 뺴옴
@@ -382,7 +384,7 @@ public class myPageController {
 	}
 	
 	//배급사 리스트로 이동
-	@RequestMapping(value = "/subscribe/subComp", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/subComp", method = RequestMethod.GET)
 	public void subComp(String writer, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		memberVO obj = (memberVO)session.getValue("login");
@@ -435,7 +437,7 @@ public class myPageController {
 	}
 	
 	//단골스토어 조회
-	@RequestMapping(value = "/subscribe/ssubComp", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/ssubComp", method = RequestMethod.GET)
 	public void ssubComp(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		memberVO obj = (memberVO)session.getValue("login");
@@ -446,6 +448,23 @@ public class myPageController {
 		List<favoriteStoreVO> favCompList = mpService.favCompList(id);
 		
 		model.addAttribute("favCompList", favCompList);
+	}
+	
+	//캐쉬체크
+	@ResponseBody
+	@RequestMapping(value = "/cashcheck", method = RequestMethod.GET)
+	public String cashcheck(HttpServletRequest request, int price) {
+		HttpSession session = request.getSession(false);
+		memberVO obj = (memberVO)session.getValue("login");
+		
+		String id = obj.getId();
+		memberVO vo = mpService.getMemberVO(id);
+		int mycash = vo.getCash();
+		if(mycash < price) {
+			return "failed";
+		}
+		
+		return "";
 	}
 
 }

@@ -14,7 +14,7 @@
 
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
 		<div class="row">
 			<div style="width: 100%; height: 250px; margin-top: 20px;">
 				<div class="pull-left">

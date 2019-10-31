@@ -58,7 +58,7 @@
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">배급사 : ${basket.writer}</p> 
 								<p style="position:relative; top:20px; width:35%" class="pull-left">출시일 : ${basket.gregidate}</p>
 								<p style="position:relative; top:20px; width:38%;" class="pull-right">등록 날짜 : ${basket.sregidate}</p>
-								<p style="position:relative; top:20px; width:35%" class="pull-left">가격 : ${basket.price}</p>
+								<p style="position:relative; top:20px; width:35%" class="pull-left">가격 : ${basket.price * (100-basket.dcrate)/100}</p>
 								<input style="position: relative; left: 145px; bottom: 14px; width: 200px;" type="checkbox" name="input_check" value="${basket.gdnum}">
 								
 								<input type="hidden" class="hiddengn" value="${basket.title}">
@@ -95,27 +95,51 @@
 					dataType : 'text',
 					success : function(vo) {
 						var gamename = JSON.parse(vo);
+						var price = (gamename.price * (100-gamename.dcrate)/100);
+
+						var yes = confirm("["+gamename.title+"]는 "+price+"원 입니다. 구매하시겠습니까?")
 						
-						confirm("["+gamename.title+"]는 "+gamename.price+"원 입니다. 구매하시겠습니까?")
-						
-						$.ajax({
-							type : 'post',
-							url : '/myPage/shopBasket/buyGame',
-							data : {
-								gdnum : gdnum,
-								id : id
-							},
-							dataType : 'text',
-							success : function(event) {
-								if(event=='failed'){
-									alert("["+gamename.title+"]는 이미 구매하신 게임입니다.");
-									window.location.reload();
-								} else{
-									alert("["+gamename.title+"]를 구매 완료 했습니다.");
-									window.location.reload();
+						if(yes){
+							$.ajax({
+								type : 'get',
+								url : '/myPage/cashcheck',
+								data : {
+									price : price
+								},
+								dataType : 'text',
+								success : function(ok) {
+									if(ok=='failed'){
+										var ok = confirm("캐쉬가 부족합니다. 충전창으로 이동하시겠습니까?");
+										if(ok){
+											location.href="/myPage/main/cash?id="+id;
+										}
+									} else{
+										$.ajax({
+											type : 'post',
+											url : '/myPage/shopBasket/buyGame',
+											data : {
+												gdnum : gdnum,
+												id : id
+											},
+											dataType : 'text',
+											success : function(event) {
+												if(event=='failed'){
+													alert("["+gamename.title+"]는 이미 구매하신 게임입니다.");
+													window.location.reload();
+												} else{
+													alert("["+gamename.title+"]를 구매 완료 했습니다.");
+													window.location.reload();
+												}
+											}
+										})
+									};
 								}
-							}
-						})
+							
+							})
+							
+							
+							
+						};
 					}
 				});
 		    });

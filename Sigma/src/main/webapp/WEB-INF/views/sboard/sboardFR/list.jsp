@@ -34,8 +34,8 @@ color: white;
 <br>
 <div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
 	<br>
-
-	<table class="table table-hover">
+	
+	<table class="table table-hover" style="margin-top: 30px;">
 		<thead>
 			<tr>
 				<th>글번호</th>

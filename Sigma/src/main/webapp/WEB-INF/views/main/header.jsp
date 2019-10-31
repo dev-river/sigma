@@ -80,8 +80,7 @@
 								<input type="hidden" name="searchType" value="title">
 								<input class="form-control" type="text"
 									placeholder="검색어를 입력하세요." aria-label="Search" id="se" name="keyword">
-								<input type="submit" value="검색" class="btn btn-warning">
-								<!-- <a class="material-icons" href="/gameDetail/main/maincategory">search</a> -->
+								<button type="submit" class="btn btn-warning" id="a"><span class="glyphicon glyphicon-search"></span></button>
 							</form>
 					</div>
 				</div><!-- menu -->
@@ -94,12 +93,12 @@
 									<li id="end"><a href="/board/main/newgame/NewGame">새 게임 소식</a></li>
 								</ul></li>
 
-							<li><a href="/recommand/customRec?curPage=1&perPage=6" id="current">맞춤 게임</a>
+							<li><a href="/recommand/main/hotgameRec?curPage=1&perPage=9" id="current">맞춤 게임</a>
 								<ul>
-									<li id="st"><a href="/recommand/hotgameRec?curPage=1&perPage=9">인기게임</a></li>
-									<li><a href="/recommand/freegameRec?curPage=1&perPage=6">무료게임</a></li>
-									<li><a href="/recommand/newgameRec?curPage=1&perPage=6">신작게임</a></li>
-									<li id="end"><a href="/recommand/dcgameRec?curPage=1&perPage=6">할인게임</a></li>
+									<li id="st"><a href="/recommand/main/hotgameRec?curPage=1&perPage=9">인기게임</a></li>
+									<li><a href="/recommand/main/freegameRec?curPage=1&perPage=6">무료게임</a></li>
+									<li><a href="/recommand/main/newgameRec?curPage=1&perPage=6">신작게임</a></li>
+									<li id="end"><a href="/recommand/main/dcgameRec?curPage=1&perPage=6">할인게임</a></li>
 								</ul>
 							<li><a href="/gameDetail/main/maincategory?category=all&curPage=1&perPage=6">카테고리</a>
 								<ul>
