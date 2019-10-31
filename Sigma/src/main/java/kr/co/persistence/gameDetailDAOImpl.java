@@ -208,17 +208,34 @@ public class gameDetailDAOImpl implements gameDetailDAO{
 	}
 
 	@Override
-	public void imgupdate(List list, int[] num) {
-		for(int i=0; i<list.size();i++) {
-			gameDetailFileVO vo = new gameDetailFileVO();
-			String filename = list.get(i).toString();
-			System.out.println(num[i]);
-			int number = num[i];
-			vo.setNum(number);
-			vo.setFilename(filename);
-			System.out.println(vo);
-			session.update(NS+".imgupdate", vo);
-		}
-		
+	public void imgupdate1(String filename1, int num1) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("filename", filename1.substring(3));
+		map.put("num", num1);
+		session.update(NS+".imgupdate1", map);
+	}
+
+	@Override
+	public void imgupdate2(String filename2, int num2) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("filename", filename2.substring(3));
+		map.put("num", num2);
+		session.update(NS+".imgupdate2", map);
+	}
+
+	@Override
+	public void imgupdate3(String filename3, int num3) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("filename", filename3.substring(3));
+		map.put("num", num3);
+		session.update(NS+".imgupdate3", map);
+	}
+
+	@Override
+	public void imgupdate4(String filename4, int num4) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("filename", filename4.substring(3));
+		map.put("num", num4);
+		session.update(NS+".imgupdate4", map);
 	}
 }

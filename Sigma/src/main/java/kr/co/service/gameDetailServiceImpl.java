@@ -171,7 +171,22 @@ public class gameDetailServiceImpl implements gameDetailService{
 	}
 
 	@Override
-	public void imgupdate(List list, int[] num) {
-		gdao.imgupdate(list, num);
+	public void imgupdate1(String filename1, int num1) {
+		gdao.imgupdate1(filename1, num1);
+	}
+
+	@Override
+	public void imgupdate2(String filename2, int num2) {
+		gdao.imgupdate2(filename2, num2);
+	}
+
+	@Override
+	public void imgupdate3(String filename3, int num3) {
+		gdao.imgupdate3(filename3, num3);
+	}
+
+	@Override
+	public void imgupdate4(String filename4, int num4) {
+		gdao.imgupdate4(filename4, num4);
 	}
 }
