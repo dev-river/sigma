@@ -98,10 +98,11 @@
 	<select id="NewGameList" resultType="kr.co.domain.gameVO">
 		<![CDATA[
 		select * from 
-		(select rownum rnum, num, title, content, writer, regidate, category, price, dcrate, mancount, womancount, totalage, profit, sellcharge, viewcnt, filepath, gamefilepath, status from 
+      (select rownum rnum, num, title, content, writer, regidate, category, price, dcrate, mancount, womancount, totalage, profit, sellcharge, viewcnt, filepath, gamefilepath, status from 
         (select * from 
-        (select * from gamedetail where regidate between (SELECT sysdate - 7 FROM DUAL) and sysdate ]]><include refid="search"></include><![CDATA[)
-         order by num desc)) order by regidate
+        (select * from gamedetail where regidate between (SELECT sysdate - 7 FROM DUAL) and sysdate)
+         order by num desc)) 
+        where rnum between 1 and 5
 		]]>
 	</select>
 	

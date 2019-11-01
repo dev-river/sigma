@@ -54,14 +54,20 @@ label {
 				
 				<div class="form-group">
 				<label for="content">내용</label>
-				<textarea class="form-control" id="content" name="content" rows="13">${readvo.content}</textarea>
+				<div style="background-color: white; border-radius: 10px; padding: 15px; min-height: 400px; max-height: auto;">${readvo.content}</div>
 				</div>
 				<div>
-				    <input type="button" value="수정" class="btn update btn-primary">
+				    
 					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/board/main/list/boardlist?curPage=${to.curPage}&perPage=${to.perPage}'">
+					<c:if test="${!empty login}">
+					<c:if test="${login.nickname eq readvo.writer}">
+					<input type="button" value="수정" class="btn update btn-primary">
 					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/board/boardFR/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
+					</c:if>
+					</c:if>
 				</div>
 			</div>
+		<c:if test="${not empty nickname}">
 		<hr>
 			<!-- Reply Form {s} -->
 		
@@ -79,29 +85,28 @@ label {
 
 					</div>
 
-					<div class="col-sm-2">
-
-						<input class="form-control" id="replyer" placeholder="댓글 작성자"></input>
-
-						<button type="button" class="btn btn-sm btn-primary" id="btnReplyInsert" style="width: 100%; margin-top: 10px"> 저 장 </button>
-						<button type="button" class="btn btn-sm btn-warning" id="btnReset" style="width: 100%; margin-top: 10px"> 취 소 </button>
-			
-					</div>
+					
+						<div class="col-sm-2">
+							<input class="form-control" id="replyer" placeholder="댓글 작성자" value="${nickname}" readonly="readonly"></input>
+							<button type="button" class="btn btn-sm btn-primary" id="btnReplyInsert" style="width: 100%; margin-top: 10px"> 저 장 </button>
+							<button type="button" class="btn btn-sm btn-warning" id="btnReset" style="width: 100%; margin-top: 10px"> 취 소 </button>
+						</div>
 				</div>
 				</form>
 			</div>
+		</c:if>
 		
 
 			<!-- Reply Form {e} -->
 			<!-- Reply List {s}-->
-
+			<hr>
 			<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
-
-				<h6 class="border-bottom pb-2 mb-0">Reply list</h6>
+				
+				<h3 class="border-bottom pb-2 mb-0" style="color: white;">댓글 목록</h3>
 
 				<div id="replyList" class="row">
 				
-					<hr>
+					
 				
 				</div>
 
@@ -135,157 +140,158 @@ label {
 </div>
 </div>
 <br>
+
 <script type="text/javascript">
-
- 
-
-	$(document).ready(function(){
-		var frnum = ${readvo.num}; /* 계속 사용될것이므로 전역변수로 지정 */
-		/* var replyPage = 1; */
-		
-		$(".pagination").on("click","li a", function(event) {
-			event.preventDefault();
-			replyPage =$(this).attr("href");
-			getAllList(frnum);
-		});
-		
-		/* replyDelete 부분 */
-		$("#modal_delete").click(function(){
-			var num = $("#modal_num").text();
-			
-			$.ajax({
-				type : 'DELETE',
-				url : '/reply/'+num,
-				headers : {
-					'Content-Type' : 'application/json',
-					'X-HTTP-Method-Override' : 'DELETE'
-				},
-				dataType : 'text',
-				success : function(result){
-					alert(result);
-					getAllList(frnum);
-				}
-			});
-		});
-		
-		/* replyUpdate 부분 */
-		$("#modal_update").click(function() {
-			
-			var num = $("#modal_num").text();
-			var replytext = $("#modal_content").val();
-			
-			
-			$.ajax({
-				type : 'POST',
-				url : '/reply/'+num,
-				ContentType : 'application/json',
-				data : {
-					'content' : replytext
-				},
-				dataType : 'text',
-				success : function(result) {
-					alert(result);
-					getAllList(frnum);
-				}
-			});
-		});
-		
-		/* replyModal 창 */
-		$("#replyList").on("click", ".callModal", function(){
-			var num = $(this).prev("p").attr("data-num");
-			var replytext = $(this).prev("p").text();
-			
-			$("#modal_num").text(num);
-			$("#modal_replytext").val(replytext);
-			
-			$("#myModal").modal("show");
-		});
-		
-		/* boardUpdate 부분 */
-		$(".update").on("click",function(){
-			location.href="/board/main/list/boardupdate?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}";
-		})
-		
-		/* replyReset 부분 */
-		$("#btnReset").click(function(){
-			$("#replycontent").val("");
-			$("#replyer").val("");
-		});
-		
+$(document).ready(function(){
+	var frnum = ${readvo.num}; /* 계속 사용될것이므로 전역변수로 지정 */
+	/* var replyPage = 1; */
+	
+	$(".pagination").on("click","li a", function(event) {
+		event.preventDefault();
+		replyPage =$(this).attr("href");
 		getAllList(frnum);
-		
-		/* replyInsert 부분 */
-		$("#btnReplyInsert").click(function() {
-			
-			var replyer = $("#replyer").val();
-			var replycontent = $("#replycontent").val();
-		
-			$.ajax({
-				type : 'post',
-				url : '/reply',
-				data : {
-					'frnum' : frnum,
-					'replyer' : replyer,
-					'content' : replycontent
-					
-				},
-				dataType : 'text',
-				
-				success : function(result) {
-					alert(result);
-					if (result == 'INSERT_SUCCESS') {
-						$("#replyer").val("");
-						$("#replycontent").val("");
-						getAllList(frnum);
-					}
-				}
-			});
-		});
-		
-		/* replyList 부분 */
-		function getAllList(frnum) {
-		
-			$.getJSON("/reply/"+frnum, function(arr) {
-				var str = '<hr>';
-				
-				for(var i=0; i<arr.length;i++){
-					str += '<div class="panel panel-info">'+
-					'<div class="panel-heading">'+
-						'<span>No.'+arr[i].num+' 작성자: <span class="glyphicon glyphicon-user"></span>'+arr[i].replyer+'</span>'+
-						'<span class="pull-right"><span class="glyphicon glyphicon-time"></span>'+arr[i].updatedate+'</span>'+
-					'</div>'+
-					'<div class="panel-body">'+
-						'<p data-num="'+arr[i].num+'">'+arr[i].content+'</p>'+
-						'<button class="btn callModal"><span class="glyphicon glyphicon-edit"></span>수정/삭제<span class="glyphicon glyphicon-trash"></span></button>'+
-					'</div>'+
-					'</div>';
-				}
-				
-				$("#replyList").html(str);
-				
-				printPaging(result);
-			});
-		}
 	});
 	
-/* 	function printPaging(to) {
-		var str = '';
-		if(to.curPage > 1){
-			str+="<li><a href='"+(to.curPage)+"'>&laquo;</a></li>"
-		}
+	/* replyDelete 부분 */
+	$("#modal_delete").click(function(){
+		var num = $("#modal_num").text();
 		
-		for(var i=to.bpn;i<to.spn+1;i++){
-			var strClass = to.curPage == i ? 'active':'';
-			str+="<li class='"+strClass+"'><a href='"+i+"'>"+i+"</a></li>";
-		}
-		
-		if(to.curPage < to.totalPage){
-			str+="<li><a href='"+(to.curPage+1)+"'>&raquo;</a></li>"
-		}
-		
-		$(".pagination").html(str);
-	} */
+		$.ajax({
+			type : 'DELETE',
+			url : '/reply/'+num,
+			headers : {
+				'Content-Type' : 'application/json',
+				'X-HTTP-Method-Override' : 'DELETE'
+			},
+			dataType : 'text',
+			success : function(result){
+				alert(result);
+				getAllList(frnum);
+			}
+		});
+	});
 	
+	/* replyUpdate 부분 */
+	$("#modal_update").click(function() {
+		
+		var num = $("#modal_num").text();
+		var replytext = $("#modal_content").val();
+		
+		
+		$.ajax({
+			type : 'POST',
+			url : '/reply/'+num,
+			ContentType : 'application/json',
+			data : {
+				'content' : replytext
+			},
+			dataType : 'text',
+			success : function(result) {
+				alert(result);
+				getAllList(frnum);
+			}
+		});
+	});
+	
+	/* replyModal 창 */
+	$("#replyList").on("click", ".callModal", function(){
+		var num = $(this).prev("p").attr("data-num");
+		var replytext = $(this).prev("p").text();
+		
+		$("#modal_num").text(num);
+		$("#modal_replytext").val(replytext);
+		
+		$("#myModal").modal("show");
+	});
+	
+	/* boardUpdate 부분 */
+	$(".update").on("click",function(){
+		location.href="/board/main/list/boardupdate?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}";
+	})
+	
+	/* replyReset 부분 */
+	$("#btnReset").click(function(){
+		$("#replycontent").val("");
+		$("#replyer").val("");
+	});
+	
+	getAllList(frnum);
+	
+	/* replyInsert 부분 */
+	$("#btnReplyInsert").click(function() {
+		
+		var replyer = $("#replyer").val();
+		var replycontent = $("#replycontent").val();
+	
+		$.ajax({
+			type : 'post',
+			url : '/reply',
+			data : {
+				'frnum' : frnum,
+				'replyer' : replyer,
+				'content' : replycontent
+				
+			},
+			dataType : 'text',
+			
+			success : function(result) {
+				alert(result);
+				if (result == 'INSERT_SUCCESS') {
+					$("#replyer").val("");
+					$("#replycontent").val("");
+					getAllList(frnum);
+				}
+			}
+		});
+	});
+	
+	/* replyList 부분 */
+	function getAllList(frnum) {
+	
+		$.getJSON("/reply/"+frnum, function(arr) {
+			var str = '<hr>';
+			
+			for(var i=0; i<arr.length;i++){
+				str += '<div class="panel panel-info">'+
+				'<div class="panel-heading">'+
+					'<span>No.'+arr[i].num+' 작성자: <span class="glyphicon glyphicon-user"></span>'+arr[i].replyer+'</span>'+
+					'<span class="pull-right"><span class="glyphicon glyphicon-time"></span>'+arr[i].updatedate+'</span>'+
+				'</div>'+
+				'<div class="panel-body">'+
+					'<p data-num="'+arr[i].num+'">'+arr[i].content+'</p>'+
+					'<c:if test="'+${!empty login}+'">'+
+					'<c:if test="'+${login.nickname eq readvo.writer}+'">'+
+					'<button class="btn callModal"><span class="glyphicon glyphicon-edit"></span>수정/삭제<span class="glyphicon glyphicon-trash"></span></button>'+
+					'</c:if>'+
+					'</c:if>'+
+				'</div>'+
+				'</div>';
+			}
+			
+			$("#replyList").html(str);
+			
+			printPaging(result);
+		});
+	}
+});
+
+/* 	function printPaging(to) {
+	var str = '';
+	if(to.curPage > 1){
+		str+="<li><a href='"+(to.curPage)+"'>&laquo;</a></li>"
+	}
+	
+	for(var i=to.bpn;i<to.spn+1;i++){
+		var strClass = to.curPage == i ? 'active':'';
+		str+="<li class='"+strClass+"'><a href='"+i+"'>"+i+"</a></li>";
+	}
+	
+	if(to.curPage < to.totalPage){
+		str+="<li><a href='"+(to.curPage+1)+"'>&raquo;</a></li>"
+	}
+	
+	$(".pagination").html(str);
+} */
 	
 </script>
 </body>

@@ -68,7 +68,16 @@ public class boardController {
 	}
 	
 	@RequestMapping(value = "/main/list/boardread")
-	public void boardFRread(boardVO vo, Model model , PageTO<boardVO> to) {
+	public void boardFRread(boardVO vo, Model model , PageTO<boardVO> to, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		memberVO mvo = (memberVO)session.getValue("login");
+		
+		if(mvo != null) {
+			String nickname = mvo.getNickname();
+			model.addAttribute("nickname", nickname);
+		}else {
+		}
+		
 		boardVO readvo  = bservice.boardFRread(vo);
 		model.addAttribute("readvo", readvo);
 		model.addAttribute("to", to);

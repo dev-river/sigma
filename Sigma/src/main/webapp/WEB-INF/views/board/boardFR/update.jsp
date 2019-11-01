@@ -46,7 +46,7 @@ label{
 			
 			<div class="form-group">
 				<label for="writer">작성자</label>
-				<input class="form-control" id="writer" name="writer" value="${nickname}">
+				<input class="form-control" id="writer" name="writer" value="${updatevo.writer}">
 			</div>
 			
 			<div class="form-group">
@@ -59,7 +59,7 @@ label{
 				<textarea class="form-control" id="content" name="content" rows="3">${updatevo.content}</textarea>
 			</div>
 			<div class="form-group">
-				<button class="btn btn-warning modify" style="float: right;">수정</button>
+				<button class="btn btn-warning modify" id="submitBoardBtn" style="float: right;">수정</button>
 			</div>
 		</form>
 	</div>

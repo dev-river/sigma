@@ -28,9 +28,9 @@
 					</c:choose>
 				</div>
 				<div class="pull-left" style="width: 20%;">
-					<h2>${writer}</h2>
+					<h2 style="color: white;">${writer}</h2>
 					<br>
-					<h4>${content}</h4>
+					<h4 style="color: white;">${content}</h4>
 				</div>
 				<c:choose>
 					<c:when test="${ok eq 'ok'}">

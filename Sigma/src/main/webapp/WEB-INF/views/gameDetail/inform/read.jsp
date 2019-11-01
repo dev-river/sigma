@@ -173,10 +173,14 @@
 		<div class="row pull-right" style="width: 30%; float: right;" >
 			<c:choose>
 				<c:when test="${vo.status eq 'o'}">
+				<c:if test="${login.id ne vo.writer}">
 				<div  id="btn_group" style="position: relative; left: 90px; top: 20px;">
 					<button class="pull-left shopBasket"  value="장바구니에 추가" id="test_btn1">장바구니</button>
 					<button class="pull-left zzim_list" value="찜목록에 추가" id="test_btn2">찜목록</button>
 					</div>
+				</c:if>
+				<c:if test="${login.id eq vo.writer}">
+				</c:if>
 				</c:when>
 				<c:otherwise>
 					<h3><input type="button" value="비활성화된 게임입니다" style="color: black; float: right; border-radius: 10px;"></h3>
@@ -325,7 +329,7 @@
 							<a
 								href="/gameDetail/main/maincategoryreviewupdate?num=${maxNoReview.num}"
 								target="_blank" class="btn btn-warning"
-								onclick="window.open(this.href, 'reviewUpdate', 'width=800, height=300'); return false;">수정</a>
+								onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">수정</a>
 							<button class="reviewdelete btn btn-danger"
 								value="${maxNoReview.num}">삭제</button>
 							<%-- <button class="reviewupdate btn btn-warning" value="${maxNoReview.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${maxNoReview.num}">삭제</button> --%>
@@ -351,7 +355,7 @@
 			      		<p style="float: right;">좋아요: ${review.assistyes} <button class="yesorno btn btn-success" id="assistYes" value="${review.num}">좋아요</button></p>
 			      		<c:if test="${id eq review.writer || author eq 'admin'}">
 			      			<a href="/gameDetail/main/maincategoryreviewupdate?num=${review.num}" target="_blank" class="btn btn-warning"
-			      			onclick="window.open(this.href, 'reviewUpdate', 'width=800, height=300'); return false;">수정</a>
+			      			onclick="window.open(this.href, 'reviewUpdate', 'width=1100, height=600'); return false;">수정</a>
 			      			<button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button>
 			      			<%-- <button class="reviewupdate btn btn-warning" value="${review.num}">수정</button> <button class="reviewdelete btn btn-danger" value="${review.num}">삭제</button> --%>
 			      		</c:if>

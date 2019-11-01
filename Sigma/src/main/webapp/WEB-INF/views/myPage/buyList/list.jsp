@@ -39,10 +39,10 @@
 							<td>
 								<c:choose>
 									<c:when test="${b.filepath eq null}">
-										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width:25%; padding-right: 5px;" class="pull-left">
+										<img alt="" src="/resources/gameDetailFile/noimage.png" style="width:180px; height:180px; padding-right: 5px;" class="pull-left">
 									</c:when>
 									<c:otherwise>
-										<img alt="" src="/resources/gameDetailFile/${b.filepath}" style="width:25%; padding-right: 5px;" class="pull-left">
+										<img alt="" src="/resources/gameDetailFile/${b.filepath}" style="width:180px; height:180px; padding-right: 5px;" class="pull-left">
 									</c:otherwise>
 								</c:choose>
 								<div style="position: relative; left: 10px;">								

@@ -48,14 +48,14 @@
 	<table class="table" style="color: #ffffff">
 		<thead>
 			<tr>
-				<th> QnA 질문</th>
+				<th style="font-size: 30px;"> QnA 질문</th>
 			</tr>
 		</thead>
-		
 		<tbody>
 		<tr>
 		<td>
 		<ul class="Leftmenulist"  style="width: 300px; color: white;">
+		<br>
 		<div>
          <li style="width: 700px; list-style: none; ">
             <a href="#" id="boarddrop1" style="color: white;">Q.제 명의 휴대폰이 맞는데도 본인인증이 어렵네요...여길 한번 참고해보시길!</a>
@@ -109,6 +109,7 @@
             </ul>   
          </li>
          </div>
+         <br>
           <div>
            <li style="width: 700px;list-style: none;">
             <a href="#" id="boarddrop3" style="margin-bottom: 30px; color: white;">Q.개명 후 정보 수정은 어떻게 하나요?</a>
@@ -128,9 +129,10 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
             </ul>   
          </li>
          </div>
+         <br>
      <div>
            <li style="width: 700px;list-style: none;">
-            <a href="#" id="boarddrop4" style="margin-bottom: 30px; color: white;">Q.네이버ID를 sigma 또는 던파ID로 변경할 수 있나요?</a>
+            <a href="#" id="boarddrop4" style="margin-bottom: 30px; color: white;">Q.네이버ID를 SIGMA 또는 던파ID로 변경할 수 있나요?</a>
             <ul id="boardsel4" style="display: none; background-color: white; color: black; margin-top: 5px; border-radius: 10px; padding-top: 15px; padding-left: 15px; padding-right: 15px; padding-bottom: 15px; ">
                <li style="list-style: none;"><p>A. 던전앤파이터에서는 연동된 ID를 변경하거나
 다른 ID로의 캐릭터 이동이 가능하지 않습니다.
@@ -139,7 +141,7 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
             </ul>   
          </li>
          </div>
-         
+         <br>
             <div>
            <li style="width: 700px;list-style: none;">
             <a href="#" id="boarddrop5" style="margin-bottom: 30px; color: white;">Q.휴대폰이 없는데, 회원가입을 하고 싶어요!</a>
@@ -151,7 +153,7 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
             </ul>   
          </li>
          </div>
-         
+         <br>
            <div>
            <li style="width: 700px;list-style: none;">
             <a href="#" id="boarddrop6" style="margin-bottom: 30px; color: white;">Q.불법 프로그램 사용으로 이용이 제한되었는데 어떤 불법 프로그램인지 알고싶어요.</a>
@@ -170,7 +172,7 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
             </ul>   
          </li>
          </div>
-         
+         <br>
            <div>
            <li style="width: 700px;list-style: none;">
             <a href="#" id="boarddrop7" style="margin-bottom: 30px; color: white;">Q.개인정보 이용내역 메일을 왜 받은거죠?</a>
@@ -184,7 +186,7 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
             </ul>   
          </li>
          </div>
-         
+         <br>
           <div>
            <li style="width: 700px;list-style: none;">
             <a href="#" id="boarddrop8" style="margin-bottom: 30px; color: white;">Q.보호자 동의가 필요한가요?</a>
@@ -197,7 +199,7 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
             </ul>   
          </li>
          </div>
-         
+         <br>
                    <div>
            <li style="width: 700px;list-style: none;">
             <a href="#" id="boarddrop9" style="margin-bottom: 30px; color: white;">Q.알뜰폰으로는 본인인증이 불가능한가요?</a>
@@ -210,7 +212,7 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
             </ul>   
          </li>
          </div>
-         
+         <br>
          <div>
          <li style="width: 700px; list-style: none; ">
             <a href="#" id="boarddrop10" style="color: white;">Q.외부 계정(구글, 페이스북)으로 던파에 가입하려는데 이미 3개의 ID가 등록되어 있다고 나와요.</a>
@@ -235,7 +237,6 @@ SIGMA ID는 SIGMA에서 개명된 정보가 반영되어야 하므로
 				<div class="input-group" style="padding-right: 100px; padding-left: 100px; padding-bottom: 50px;">
 					<span class="input-group-addon"> <select id="searchSel" style="height: 23px;">
 							<option disabled>검색 기준</option>
-							<option value="writer">작성자</option>
 							<!-- value : 서버로 넘어가는거, 작성자 : JSP에 보이는거 -->
 							<option value="title">제목</option>
 							<option value="content">내용</option>

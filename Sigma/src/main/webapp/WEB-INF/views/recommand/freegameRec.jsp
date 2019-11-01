@@ -13,7 +13,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-			img { display: block; margin: 0px auto;
+			.img1 { display: block; margin: 0px auto;
 			text-align: center;
 			border-radius: 10px;
  			box-shadow: 15px 15px 20px black;
@@ -65,10 +65,10 @@
 			<a href="/gameDetail/main/maincategoryread?num=${gvo.num}&curPage=1&perPage=5">
 			<c:choose>
 				<c:when test="${gvo.filepath eq null}">
-					<img alt="No image" src="/resources/gameDetailFile/noimage.png" width="280px" height="280px">
+					<img alt="No image" src="/resources/gameDetailFile/noimage.png" width="280px" height="280px"class="img1">
 				</c:when>
 				<c:when test="${gvo.filepath ne null}">
-					<img alt="Game image" src="/resources/gameDetailFile/${gvo.filepath}" width="280px" height="280px">
+					<img alt="Game image" src="/resources/gameDetailFile/${gvo.filepath}" width="280px" height="280px" class="img1">
 				</c:when>
 			</c:choose>
 			<p style="text-align: center; margin-top: 5px; margin-bottom: 0px">Title: ${gvo.title}</p>

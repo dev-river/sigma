@@ -349,6 +349,7 @@ public class gameDetailController {
 				gservice.update(vo);
 			}
 		}
+		gservice.update(vo);
 		
 		List<gameDetailFileVO> filevo = gservice.filename(vo.getNum());
 		int num1 = filevo.get(0).getNum();

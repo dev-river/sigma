@@ -12,26 +12,53 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.insert{
-	position: relative;
-	width: 1070px;
-	height: auto;
-	margin: 0;
-	right: 45px;
-}
+
 label{
 	color: white;
 }
+#submitBoardBtn {
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	float: left;
+	margin: 5px; padding:5px; width:80%;
+	}
+
+ #test_btn1 {
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	float: left;
+	margin: 5px; padding:5px; width:80%;
+	}
+
+
+	#btn_group button {
+		border: 1px solid white;
+		background-color: rgba(0, 0, 0, 0);
+		color: white;
+		padding: 5px;
+		position: relative;
+		width:7%;
+		float: right;
+	}
+
+	#btn_group button:hover {
+		color: white;
+		background-color: black;
+	}
 </style>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/se2/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
 </head>
 <body>
-	<br><br><br>
+	<br>
 	<div class="bodymain">
-	<div class="container" id="insert_form">
-		<div class="insert">
-		<div class="row">
+	<div class="container" id="insert_form" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
+		<div class="row" style="padding-left: 30px; padding-right: 30px;">
+		<br>
 			<form action="/board/main/list/boardinsert" method="post">
 				<div class="form-group">
 					<label for="title">제목</label>
@@ -39,23 +66,26 @@ label{
 				</div>
 				<div class="form-group">
 					<label for="writer">작성자</label>
-					<input id="writer" name="writer" class="form-control" placeholder="작성자">
+					<input id="writer" name="writer" class="form-control" value="${nickname}" readonly="readonly">
 				</div>
-				<br><br>
+				<br>
 				<div class="form-group">
 					<label for="content">내용</label>
-					<textarea style="width: 100%" rows="10" name="content" id="content" cols="80"></textarea>
+					<textarea style="width: 100%; border-radius: 10px;" rows="17" name="content" id="content" cols="80"></textarea>
 				</div>
-				<div class="form-group">
-					<button id="submitBoardBtn" class="btn btn-info">등록</button>
-					<input type="button" class="btn btn-danger" id="cancle" value="취소" onclick="location.href='/board/main/list/boardlist'">
+				
+				<div id="btn_group">		
+					<button id="submitBoardBtn">등록</button>
 				</div>
+				
 			</form>
-			
-		</div>
+				<div id="btn_group">
+					<button id="test_btn1" onclick="location.href='/board/main/list/boardlist'">취소</button>
+				</div>
+			</div>
 	</div>
 </div>
-</div>
+
 
 <!-- Smart Editor -->
 <script type="text/javascript">
