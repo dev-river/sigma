@@ -15,12 +15,12 @@
 </head>
 <body>
 	<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
-		<div class="row">
+		<div class="row" style="padding-left: 30px; padding-right: 30px;">
 			<div style="width: 100%; height: 250px; margin-top: 20px;">
 				<div class="pull-left">
 					<c:choose>
 						<c:when test="${filepath eq null}">
-							<img alt="" src="/resources/gameDetailFile/noimage.png" style="width: 100%; height: 100%; border: 1px; solid; black;">
+							
 						</c:when>
 						<c:otherwise>
 							<img alt="" src="/resources/gameDetailFile/${filepath}" style="width: 100%; height: 100%; border: 1px; solid; black;">
@@ -42,6 +42,7 @@
 				</c:choose>
 			</div>
 			<br>
+			<hr>
 			<c:forEach items="${comp}" var="com">
 				<a href="/gameDetail/main/maincategoryread?num=${com.num}">
 				<div  style="width: 120px; height: 120px; margin: 5px; padding: 5px; border: 10px; solid; black;" class="pull-left">

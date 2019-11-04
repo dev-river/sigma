@@ -144,22 +144,22 @@ public class compServiceImpl implements compService{
 	}
 
 	@Override
-	public int age10() {
-		return dao.age10();
+	public int age10(String writer) {
+		return dao.age10(writer);
 	}
 	
 	@Override
-	public int age20() {
-		return dao.age20();
+	public int age20(String writer) {
+		return dao.age20(writer);
 	}
 	
 	@Override
-	public int age30() {
-		return dao.age30();
+	public int age30(String writer) {
+		return dao.age30(writer);
 	}
 	
 	@Override
-	public int age40() {
-		return dao.age40();
+	public int age40(String writer) {
+		return dao.age40(writer);
 	}
 }

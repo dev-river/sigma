@@ -11,14 +11,23 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+	label{
+	color: white;
+	}
+	p{
+	color: white;
+	}
+</style>
 </head>
-<body>
-<h2>할인 요청 등록</h2>
+<body background="/resources/main/backgroundimg2.jpg">
+<img alt="" src="/resources/main/SIGMA로고.png" id="logo">
 <hr>
 
-<div class="container">
-	<h3>[게임: ${title}] 최근 할인 요청 리스트</h3>
-	<hr>
+<div class="container" style="background-color: rgb(25,25,25,0.6); border-radius: 10px; ">
+	<div class="row" style="padding-left: 30px; padding-right: 30px; padding-bottom: 30px;">
+	<h2 style="color: white;">게임 할인 요청</h2>
+	<h3 style="color: white;">[게임: ${title}] 최근 할인 요청 리스트</h3>
 	
 	<c:choose>
 		<c:when test="${empty list}">
@@ -50,7 +59,7 @@
 	
 	
 	<hr>
-	<h3>할인 요청 등록</h3>
+	<h3 style="color: white;">할인 요청 등록</h3>
 	<label for="dcrate">달성 시 할인율: </label> <input id="dcrate" required="required"><br/>
 	<label for="goal">목표 동참수: </label> <input id="goal" required="required"><br/>
 	<label for="rqstartdate">할인 요청 시작일: </label> <input id="rqstartdate" name="rqstartdate" type="date"><br/>
@@ -58,9 +67,9 @@
 	<label for="dcstartdate">할인 실행 시작일: </label> <input id="dcstartdate" name="dcstartdate" type="date"><br/>
 	<label for="dcenddate">할인 실행 종료일: </label> <input id="dcenddate" name="dcenddate" type="date"><br/>
 	<p>날짜 지정은 할인 요청 리스트의 마지막 할인이 끝난 날짜부터 가능합니다.</p>
-	<button class="btn btn-primary">등록</button>
+	<button class="btn btn-primary" style="float: right;">등록</button>
 </div>
-
+</div>
 <script type="text/javascript">
 document.getElementById('rqstartdate').value = new Date().toISOString().substring(0, 10);;
 document.getElementById('rqenddate').value = new Date().toISOString().substring(0, 10);;

@@ -49,7 +49,7 @@ a :hover{
 								id="mainimg">
 								<div class="container">
 									<div class="carousel-caption">
-										<a href="#"><h4>${firsturl}</h4></a>
+										
 									</div>
 								</div>
 						</div>
@@ -60,7 +60,7 @@ a :hover{
 									src="/resources/slideBanner/${filename.filepath}" alt="" id="mainimg">
 									<div class="container">
 									<div class="carousel-caption">
-										<a href="#"><h4>${filename.urlpath}</h4></a>
+									
 									</div>
 								</div>
 							</div>

@@ -41,7 +41,7 @@
 			</form>
 			<c:choose>
 				<c:when test="${search_id.id != null}">
-					당신의 비밀번호는 ${search_id.id} 입니다.
+					당신의 ID는 ${search_id.id} 입니다.
 				</c:when>
 				<c:otherwise>
 					${err_searchID}

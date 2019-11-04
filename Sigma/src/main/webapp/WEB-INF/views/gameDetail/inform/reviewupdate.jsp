@@ -25,11 +25,16 @@ color: white;
 	min-height: 300px;
 	width: auto;
 }
+html, body {
+	margin: 0;
+	max-height: auto;
+	min-height: 300px;
+}
 
 </style>
 </head>
 
-<body background="/resources/main/backgroundimg2.jpg" style="height: 15px;">
+<body background="/resources/main/backgroundimg2.jpg">
 
 		<div class="container">
 		<br>
@@ -48,7 +53,7 @@ color: white;
  	<div style="float: right;">
  	<button class="reviewEdit btn btn-warning">수정</button>
  	<a href="javascript:window.close()" class="btn btn-danger">취소</a>
- 	<!-- <button class="reviewDelete btn btn-danger" value="${vo.num}">삭제</button> -->
+ 	<button class="reviewDelete btn btn-danger" value="${vo.num}">삭제</button>
  	</div>
  	</div>
  	<script type="text/javascript">

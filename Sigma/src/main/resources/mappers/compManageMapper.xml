@@ -107,18 +107,18 @@
 	</select>
 	
 	<select id="age10" resultType="Integer">
-		select count(userage) as userage from sellinfo where userage between 1 and 19
+		select count(s.userage) as userage from sellinfo s, gamedetail g where s.gdnum=g.num and g.writer=#{writer} and s.userage between 1 and 19
 	</select>
 	
 	<select id="age20" resultType="Integer">
-		select count(userage) as userage from sellinfo where userage between 20 and 29
+		select count(s.userage) as userage from sellinfo s, gamedetail g where s.gdnum=g.num and g.writer=#{writer} and s.userage between 20 and 29
 	</select>
 	
 	<select id="age30" resultType="Integer">
-		select count(userage) as userage from sellinfo where userage between 30 and 39
+		select count(s.userage) as userage from sellinfo s, gamedetail g where s.gdnum=g.num and g.writer=#{writer} and s.userage between 30 and 39
 	</select>
 	
 	<select id="age40" resultType="Integer">
-		select count(userage) as userage from sellinfo where userage >= 40
+		select count(s.userage) as userage from sellinfo s, gamedetail g where s.gdnum=g.num and g.writer=#{writer} and s.userage >= 40
 	</select>
 </mapper>

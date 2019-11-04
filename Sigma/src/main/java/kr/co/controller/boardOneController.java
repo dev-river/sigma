@@ -37,6 +37,7 @@ public class boardOneController {
 		
 		PageTO<boardOVO> dbTO = oservice.pageList(to);
 		model.addAttribute("dboTO", dbTO);
+		
 	}
 	
 	@RequestMapping(value = "/main/One/OneInsert", method = RequestMethod.GET)

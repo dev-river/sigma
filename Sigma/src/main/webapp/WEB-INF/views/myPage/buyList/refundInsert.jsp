@@ -20,6 +20,31 @@
 	label{
 	color: white;
 	}
+	#test_btn1 {
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	float: left;
+	margin: 5px; padding:5px; width:80%;
+	}
+
+
+	#btn_group input {
+		border: 1px solid white;
+		background-color: rgba(0, 0, 0, 0);
+		color: white;
+		padding: 5px;
+		position: relative;
+		left:0%;
+		width:7%;
+	}
+
+	#btn_group input:hover {
+		color: white;
+		background-color: black;
+	}
+	
 </style>
 </head>
 <body>
@@ -50,8 +75,10 @@
 								<option value="기타">기타</option>
 							</select>
 						</div>
-						<div class="form-group" style="position: relative; left: 300px;">
-							<input type="submit" class="btn btn-primary" value="등록">
+						
+						
+						<div class="form-group" id="btn_group" style="position: relative; left: 300px;">
+							<input type="submit" class="btn btn-primary" value="등록" id="test_btn1">
 						</div>
 						<input type="hidden" value="${id}" name="id">
 					</form>

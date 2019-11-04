@@ -59,8 +59,10 @@
 	<div class="bodymain">
 		<div class="container" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
 			<div class="row" style="padding-top: 30px;">
+			<h3 style="color: white; float: left; padding-left: 30px;">자유게시판</h3>
 				<div class="col-xs-push-10 col-xs-2">
-					<select id="perPageSel" class="form-control">
+			
+					<select id="perPageSel" class="form-control" style="position: relative; right: 100%;">
 						<option disabled>페이지당 글 수</option>
 						<option ${dbTO.perPage == 10? 'selected':''}>10</option>
 						<option ${dbTO.perPage == 20? 'selected':''}>20</option>

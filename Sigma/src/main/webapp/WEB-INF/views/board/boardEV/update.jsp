@@ -13,7 +13,30 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
+	#test_btn1 {
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	float: left;
+	margin: 5px; padding:5px; width:80%;
+	}
 
+
+	#btn_group button {
+		border: 1px solid white;
+		background-color: rgba(0, 0, 0, 0);
+		color: white;
+		padding: 5px;
+		position: relative;
+		left:5%;
+		width:35%;
+	}
+
+	#btn_group button:hover {
+		color: white;
+		background-color: black;
+	}
 label{
 	color: white;
 }
@@ -50,8 +73,8 @@ label{
 				<label for="content">내용</label>
 				<textarea class="form-control" id="content" name="content" rows="13">${update.content}</textarea>
 			</div>
-			<div class="form-group">
-				<button class="btn btn-warning modify">수정</button>
+			<div id="btn_group">
+					<button class="update" id="test_btn1">수정</button>
 			</div>
 		</form>
 	</div>

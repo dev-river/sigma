@@ -59,9 +59,11 @@ label {
 				<textarea class="form-control" id="content" name="content" rows="13">${readvo.content}</textarea>
 			</div>
 				<div>
-				    <input type="button" value="수정" class="btn update btn-primary" id="update">
 					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/board/main/newgame/NewGame?curPage=${to.curPage}&perPage=${to.perPage}'">
+					<c:if test="${login.nickname eq readvo.writer || login.author eq 'admin' }">
+					<input type="button" value="수정" class="btn update btn-primary" id="update">
 					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/board/boardNG/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
+					</c:if>
 				</div>
 			</div>
 		<hr>

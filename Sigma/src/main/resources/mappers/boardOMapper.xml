@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id="Oinsert">
-		insert into boardOne values((select nvl2(max(num), max(num)+1, 1) from boardfr), #{title}, #{content}, #{writer}, sysdate, sysdate, 0, null, 0)
+		insert into boardOne values((select nvl2(max(num), max(num)+1, 1) from boardone), #{title}, #{content}, #{writer}, sysdate, sysdate, 0, null, 0)
 	</insert>
 	
 	<select id="Oread" resultType="kr.co.domain.boardOVO">

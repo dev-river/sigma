@@ -57,15 +57,18 @@ label {
 				<label for="content">내용</label>
 				<textarea class="form-control" id="content" name="content" rows="13">${readvo.content}</textarea>
 			</div>
+			
 				<div>
+				    <input type="button" value="목록" class="btn btn-info" onclick="location.href='/board/main/One/One?curPage=${to.curPage}&perPage=${to.perPage}'">
+				    <c:if test="${!empty login && login.nickname eq readvo.writer}">
 				    <input type="button" value="수정" class="btn update btn-primary">
-					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/board/main/One/One?curPage=${to.curPage}&perPage=${to.perPage}'">
 					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/board/boardO/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
+					</c:if>
 				</div>
 			</div>
 		<hr>
 			<!-- Reply Form {s} -->
-		
+		<c:if test="${!empty login && login.author eq 'admin'}">
 			<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top: 10px">
 
 				<form name="form" id="form">
@@ -82,7 +85,7 @@ label {
 
 					<div class="col-sm-2">
 
-						<input class="form-control" id="replyer" placeholder="댓글 작성자"></input>
+						<input class="form-control" id="replyer" value="${login.nickname}" readonly="readonly">
 
 						<button type="button" class="btn btn-sm btn-primary" id="btnReplyInsert" style="width: 100%; margin-top: 10px"> 저 장 </button>
 						<button type="button" class="btn btn-sm btn-warning" id="btnReset" style="width: 100%; margin-top: 10px"> 취 소 </button>
@@ -91,7 +94,7 @@ label {
 				</div>
 				</form>
 			</div>
-		
+		</c:if>
 
 			<!-- Reply Form {e} -->
 			<!-- Reply List {s}-->

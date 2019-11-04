@@ -20,6 +20,9 @@ label{
 </head>
 
 <body>
+<%-- 				<form action="">
+					<input type="hidden" name="perPage" value="${vo.nickname}">
+				</form> --%>
 	<br>
 	<div class="bodymain">
 	<div class="container" id="insert_form" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px;">
@@ -34,7 +37,7 @@ label{
 				</div>
 				<div class="form-group">
 					<label for="writer">작성자</label>
-					<input id="writer" name="writer" class="form-control" placeholder="작성자">
+					<input id="writer" name="writer" class="form-control" value="${login.nickname}" readonly="readonly">
 				</div>
 				<br><br>
 				

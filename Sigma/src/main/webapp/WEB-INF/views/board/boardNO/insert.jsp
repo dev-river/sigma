@@ -12,13 +12,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.insert{
-	position: relative;
-	width: 1070px;
-	height: auto;
-	margin: 0;
-	right: 45px;
-}
+
+
 label{
 	color: white;
 }
@@ -26,11 +21,12 @@ label{
 </head>
 
 <body>
-	<br><br><br>
+	<br>
 	<div class="bodymain">
-	<div class="container" id="insert_form">
-		<div class="insert">
-		<div class="row">
+	<div class="container" id="insert_form" style="background-color: rgb(25, 25, 25, 0.8); border-radius: 10px; min-height: 700px; max-height: auto;">
+
+		<div class="row" style="padding-left: 30px; padding-right: 30px;">
+			<br>
 			<form action="/board/main/notice/boardNOinsert" method="post">
 				<div class="form-group">
 					<label for="title">제목</label>
@@ -54,7 +50,7 @@ label{
 		</div>
 	</div>
 </div>
-</div>
+
 
 <!-- <script type="text/javascript">
       var oEditors = [];

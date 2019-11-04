@@ -73,10 +73,10 @@
 			<p style="text-align: center; margin-bottom: 10px;">Price: 
 			<c:choose>
 				<c:when test="${gvo.dcrate eq 0}">
-					${gvo.price}
+					<fmt:formatNumber value="${gvo.price}" pattern="#,###원"/>
 				</c:when>
 				<c:when test="${gvo.dcrate ne 0}">
-					${gvo.price * (1 - gvo.dcrate / 100)} <span style="color:red">(${gvo.dcrate}%off)</span>
+					<fmt:formatNumber value="${gvo.price * (1 - gvo.dcrate / 100)}" pattern="#,###원"/><span style="color:red">(${gvo.dcrate}%off)</span>
 				</c:when>
 			</c:choose>
 			</p>

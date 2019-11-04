@@ -22,7 +22,7 @@
 			 margin-right:10px;
 			 width: 100px;
 			 position: relative;
-			 left: 350px;
+			 left: 230px;
 			 top: 3px;
 			}
 			#btn_group button{

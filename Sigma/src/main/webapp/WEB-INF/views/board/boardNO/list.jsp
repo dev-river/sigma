@@ -25,6 +25,31 @@
 	position: relative;
 	right: 100px;
 }
+#test_btn1 {
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	float: left;
+	margin: 5px; padding:5px; width:80%;
+	}
+
+
+	#btn_group button {
+		border: 1px solid white;
+		background-color: rgba(0, 0, 0, 0);
+		color: white;
+		padding: 5px;
+		position: relative;
+		left:0%;
+		width:7%;
+		float: right;
+	}
+
+	#btn_group button:hover {
+		color: white;
+		background-color: black;
+	}
 </style>
 </head>
 <body>
@@ -46,6 +71,7 @@
 	<div class="row" style="padding-left: 30px; padding-right: 30px;">
 <!-- 	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a> -->
 	<table class="table table-hover" style="color: white">
+	<h3 style="color: white;">공지사항</h3>
 		<thead>
 			<tr>
 				<th>글번호</th>
@@ -68,7 +94,14 @@
 		</tbody>
 	</table>
 	</div>
-	<a href="/board/main/notice/boardNOinsert" class="btn btn-primary" style="float: right;">글쓰기</a>
+	
+					<div id="btn_group">
+	<c:if test="${not empty login}">
+	<c:if test="${login.author eq 'admin'}">
+					<button id="test_btn1" onclick="location.href='/board/main/notice/boardNOinsert'">글쓰기</button>
+					</c:if>
+					</c:if>
+					</div>
 <%-- 		<div class="row text-center" style="text-align: center">
 				<ul class="pagination"> <!-- ul에 pagination 클래스를 주면 예쁘다 -->
 				

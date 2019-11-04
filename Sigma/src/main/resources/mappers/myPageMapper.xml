@@ -5,149 +5,161 @@
 
 <mapper namespace="kr.co.mapper.myPage">
 
-	<select id="getMemberVO" resultType="kr.co.domain.memberVO">
-		select * from userinfo where id = #{id}
-	</select>
-	
-	<select id="updateUI" resultType="kr.co.domain.memberVO">
-		select * from userinfo where id = #{id}
-	</select>
-	
-	<update id="myProfileUpdate">
-		update userinfo set nickname=#{nickname}, name=#{name}, pw=#{pw}, phone=#{phone}, email=#{email}, address1=#{address1}, address2=#{address2} where id = #{id}
-	</update>
-	
-	<delete id="deleteUser">
-		delete from userinfo where id = #{id} and pw = #{pw}
-	</delete>
-	
-	<update id="updateCash">
-		update userinfo set cash=#{cash} where id=#{id}
-	</update>
-	
-	<insert id="regiBasket">
-		insert into shopBasket (num, id, gdnum) values ((select nvl2(max(num), max(num)+1, 1) from shopBasket), #{id}, #{gdnum})
-	</insert>
-	
-	<select id="basketList" resultType="kr.co.domain.basketVO">
-		select sb.gdnum, gd.dcrate, gd.title, gd.writer, gd.regidate gregidate, sb.regidate sregidate, gd.price, gd.filepath from gamedetail gd, (select * from shopbasket where id=#{id}) sb where gd.num = sb.gdnum order by sregidate desc
-	</select>
-	
-	<delete id="deleteBasketList">
-		delete from shopBasket where id=#{id} and gdnum=#{gdnum}
-	</delete>
-	
-	<insert id="zzim_insert">
-		insert into zzimlist (num, id, gdnum) values ((select nvl2(max(num), max(num)+1, 1) from zzimlist), #{id}, #{gdnum})
-	</insert>
-	
-	<select id="zzim_list" resultType="kr.co.domain.basketVO">
-		select sb.gdnum, gd.title, gd.writer, gd.regidate gregidate, sb.updatedate sregidate, gd.price, gd.filepath from gamedetail gd, (select * from zzimlist where id=#{id}) sb where gd.num = sb.gdnum order by sregidate desc
-	</select>
-	
-	<delete id="zzimDelete">
-		delete from zzimlist where id=#{id} and gdnum=#{gdnum}
-	</delete>
-	
-	<insert id="insertBuyList">
-		insert into buyList (buyprice, gdnum, id, num) values (#{buyprice}, #{gdnum}, #{id}, (select nvl2(max(num), max(num)+1, 1) from buyList))
-	</insert>
-	
-	<select id="buyList" resultType="kr.co.domain.buyListVO">
-		select filepath, writer, regidate, id, buyprice, title, category, buydate, gdnum from buylist, gamedetail where gamedetail.num = buylist.gdnum and id=#{id} order by regidate desc
-	</select>
-	
-	<delete id="buyListdelete">
-		delete from buyList where id=#{id} and gdnum=#{gdnum}
-	</delete>
-	
-	<select id="refundList" resultType="kr.co.domain.refundVO">
-		select dcrate, filepath, title, writer, b.num, r.id, gdnum, buyprice, buydate, r.status, r.content, compcontent, updatedate, refunddate, regidate from buylist b, refundlist r, gamedetail g where r.buynum=b.num and g.num = b.gdnum and r.id=#{id} order by updatedate desc
-	</select>
-	
-	<select id="getrefundgdnum" resultType="Integer">
-		select gdnum from buyList where num=#{num} and id=#{id}
-	</select>
-	
-	<select id="buyList24" resultType="kr.co.domain.buyListVO">
-		select gdnum, title, b.num from buyList b, gamedetail g where id=#{id} and buydate between (SELECT sysdate - 1 FROM DUAL) and sysdate and b.gdnum=g.num
-	</select>
-	
-	<insert id="refundInsert">
-		insert into refundlist(num, id, buynum, content) values ((select nvl2(max(num), max(num)+1, 1) from refundlist), #{id}, #{buynum}, #{content})
-	</insert>
-	
-	<delete id="refundDelete">
-		delete from refundlist where id=#{id} and buynum=#{num}
-	</delete>
-	
-	<select id="getSex" resultType="kr.co.domain.memberVO">
-		select * from userinfo where id=#{id}
-	</select>
-	
-	<update id="mancount">
-		update gamedetail set mancount=mancount+1 where num=#{gdnum}
-	</update>
-	
-	<update id="womancount">
-		update gamedetail set womancount=womancount+1 where num=#{gdnum}
-	</update>
-	
-	<update id="totalAge">
-		update gamedetail set totalage = totalage+#{age} where num=#{num}
-	</update>
-	
-	<update id="profit">
-		update gamedetail set profit = profit + (price*(1-(dcrate/100))) where num=#{gdnum}
-	</update>
-	
-	<update id="sellCharge">
-		update gameDetail set sellCharge = sellCharge + (price*(1-dcrate/100))*(1-(select buycharge from adminsetting)/100) where num=#{gdnum}
-	</update>
-	
-	<select id="subComp" resultType="kr.co.domain.gameVO">
-		select u.compnum, g.num, g.title, u.compdetail content, g.writer, g.filepath gamefilepath, u.filepath from gamedetail g, userinfo u where u.id=#{writer} and g.writer=#{writer} order by g.regidate desc
-	</select>
-	
-	<insert id="sellInfo">
-		insert into sellinfo (num, gdnum, price, usersex, userage) values ((select nvl2(max(num), max(num)+1, 1) from sellinfo), #{gdnum}, #{price}, #{usersex}, #{userage})
-	</insert>
-	
-	<insert id="subCompInsert">
-		insert into FavoriteStore values ((select nvl2(max(num), max(num)+1, 1) from FavoriteStore), #{id}, #{compnum})
-	</insert>
-	
-	<select id="favComp" resultType="kr.co.domain.favoriteStoreVO">
-		select compnum from FavoriteStore where id=#{id} and compnum=#{compnum}
-	</select>
-	
-	<delete id="subCompDelete">
-		delete from FavoriteStore where id=#{id} and compnum=#{compnum}
-	</delete>
-	
-	<select id="favCompList" resultType="kr.co.domain.favoriteStoreVO">
-		select u.id, u.filepath, g.title, g.filepath, g.num gdnum, f.num from favoriteStore f, userinfo u, gamedetail g where u.compnum=f.compnum and f.id = #{id} and g.writer=u.id
-	</select>
-	
-	<select id="favCompList2" resultType="kr.co.domain.favoriteStoreVO">
-		select u.id, u.filepath from favoriteStore f, userinfo u where u.compnum=f.compnum and f.id=#{id}
-	</select>
-	
-	<select id="gamecount" resultType="Integer">
-		select count(*) from buyList where id=#{id}
-	</select>
-	
-	<select id="writercount" resultType="Integer">
-		select count(*) from boardfr where writer = #{id}
-	</select>
-	
-	<select id="reviewcount" resultType="Integer">
-		select count(*) from gamereview where writer = #{id}
-	</select>
-	
-	<delete id="">
-		
-	</delete>
-	
-	
+   <select id="getMemberVO" resultType="kr.co.domain.memberVO">
+      select * from userinfo where id = #{id}
+   </select>
+   
+   <select id="updateUI" resultType="kr.co.domain.memberVO">
+      select * from userinfo where id = #{id}
+   </select>
+   
+   <update id="myProfileUpdate">
+      update userinfo set nickname=#{nickname}, name=#{name}, pw=#{pw}, phone=#{phone}, email=#{email}, address1=#{address1}, address2=#{address2} where id = #{id}
+   </update>
+   
+   <delete id="deleteUser">
+      delete from userinfo where id = #{id} and pw = #{pw}
+   </delete>
+   
+   <update id="updateCash">
+      update userinfo set cash=#{cash} where id=#{id}
+   </update>
+   
+   <insert id="regiBasket">
+      insert into shopBasket (num, id, gdnum) values ((select nvl2(max(num), max(num)+1, 1) from shopBasket), #{id}, #{gdnum})
+   </insert>
+   
+   <select id="basketList" resultType="kr.co.domain.basketVO">
+      select sb.gdnum, gd.dcrate, gd.title, gd.writer, gd.regidate gregidate, sb.regidate sregidate, gd.price, gd.filepath from gamedetail gd, (select * from shopbasket where id=#{id}) sb where gd.num = sb.gdnum order by sregidate desc
+   </select>
+   
+   <delete id="deleteBasketList">
+      delete from shopBasket where id=#{id} and gdnum=#{gdnum}
+   </delete>
+   
+   <insert id="zzim_insert">
+      insert into zzimlist (num, id, gdnum) values ((select nvl2(max(num), max(num)+1, 1) from zzimlist), #{id}, #{gdnum})
+   </insert>
+   
+   <select id="zzim_list" resultType="kr.co.domain.basketVO">
+      select sb.gdnum, gd.title, gd.writer, gd.regidate gregidate, sb.updatedate sregidate, gd.price, gd.filepath from gamedetail gd, (select * from zzimlist where id=#{id}) sb where gd.num = sb.gdnum order by sregidate desc
+   </select>
+   
+   <delete id="zzimDelete">
+      delete from zzimlist where id=#{id} and gdnum=#{gdnum}
+   </delete>
+   
+   <insert id="insertBuyList">
+      insert into buyList (buyprice, gdnum, id, num) values (#{buyprice}, #{gdnum}, #{id}, (select nvl2(max(num), max(num)+1, 1) from buyList))
+   </insert>
+   
+   <select id="buyList" resultType="kr.co.domain.buyListVO">
+      select filepath, writer, regidate, id, buyprice, title, category, buydate, gdnum from buylist, gamedetail where gamedetail.num = buylist.gdnum and id=#{id} order by regidate desc
+   </select>
+   
+   <delete id="buyListdelete">
+      delete from buyList where id=#{id} and gdnum=#{gdnum}
+   </delete>
+   
+   <select id="refundList" resultType="kr.co.domain.refundVO">
+      select dcrate, filepath, title, writer, b.num, r.id, gdnum, buyprice, buydate, r.status, r.content, compcontent, updatedate, refunddate, regidate from buylist b, refundlist r, gamedetail g where r.buynum=b.num and g.num = b.gdnum and r.id=#{id} order by updatedate desc
+   </select>
+   
+   <select id="getrefundgdnum" resultType="Integer">
+      select gdnum from buyList where num=#{num} and id=#{id}
+   </select>
+   
+   <select id="buyList24" resultType="kr.co.domain.buyListVO">
+      select gdnum, title, b.num from buyList b, gamedetail g where id=#{id} and buydate between (SELECT sysdate - 1 FROM DUAL) and sysdate and b.gdnum=g.num
+   </select>
+   
+   <insert id="refundInsert">
+      insert into refundlist(num, id, buynum, content) values ((select nvl2(max(num), max(num)+1, 1) from refundlist), #{id}, #{buynum}, #{content})
+   </insert>
+   
+   <delete id="refundDelete">
+      delete from refundlist where id=#{id} and buynum=#{num}
+   </delete>
+   
+   <select id="getSex" resultType="kr.co.domain.memberVO">
+      select * from userinfo where id=#{id}
+   </select>
+   
+   <update id="mancount">
+      update gamedetail set mancount=mancount+1 where num=#{gdnum}
+   </update>
+   
+   <update id="womancount">
+      update gamedetail set womancount=womancount+1 where num=#{gdnum}
+   </update>
+   
+   <update id="totalAge">
+      update gamedetail set totalage = totalage+#{age} where num=#{num}
+   </update>
+   
+   <update id="profit">
+      update gamedetail set profit = profit + (price*(1-(dcrate/100))) where num=#{gdnum}
+   </update>
+   
+   <update id="sellCharge">
+      update gameDetail set sellCharge = sellCharge + (price*(1-dcrate/100))*(1-(select buycharge from adminsetting)/100) where num=#{gdnum}
+   </update>
+   
+   <select id="subComp" resultType="kr.co.domain.gameVO">
+      select u.compnum, g.num, g.title, u.compdetail content, g.writer, g.filepath gamefilepath, u.filepath from gamedetail g, userinfo u where u.id=#{writer} and g.writer=#{writer} order by g.regidate desc
+   </select>
+   
+   <insert id="sellInfo">
+      insert into sellinfo (num, gdnum, price, usersex, userage) values ((select nvl2(max(num), max(num)+1, 1) from sellinfo), #{gdnum}, #{price}, #{usersex}, #{userage})
+   </insert>
+   
+   <insert id="subCompInsert">
+      insert into FavoriteStore values ((select nvl2(max(num), max(num)+1, 1) from FavoriteStore), #{id}, #{compnum})
+   </insert>
+   
+   <select id="favComp" resultType="kr.co.domain.favoriteStoreVO">
+      select compnum from FavoriteStore where id=#{id} and compnum=#{compnum}
+   </select>
+   
+   <delete id="subCompDelete">
+      delete from FavoriteStore where id=#{id} and compnum=#{compnum}
+   </delete>
+   
+   <select id="favCompList" resultType="kr.co.domain.favoriteStoreVO">
+      select u.id, u.filepath, g.title, g.filepath, g.num gdnum, f.num from favoriteStore f, userinfo u, gamedetail g where u.compnum=f.compnum and f.id = #{id} and g.writer=u.id
+   </select>
+   
+   <select id="favCompList2" resultType="kr.co.domain.favoriteStoreVO">
+      select u.id, u.filepath from favoriteStore f, userinfo u where u.compnum=f.compnum and f.id=#{id}
+   </select>
+   
+   <select id="gamecount" resultType="Integer">
+      select count(*) from buyList where id=#{id}
+   </select>
+   
+   <select id="writercount" resultType="Integer">
+      select count(*) from boardfr where writer = #{id}
+   </select>
+   
+   <select id="reviewcount" resultType="Integer">
+      select count(*) from gamereview where writer = #{id}
+   </select>
+   
+   <select id="buyCharge" resultType="Integer">
+      select buycharge from adminsetting
+   </select>
+   
+   <update id="adminCashCharge">
+      update userinfo set cash = (cash+#{cash}) where id = 'cashadmin'
+   </update>
+   
+   <select id="compname" resultType="kr.co.domain.gameVO">
+      select writer from gamedetail where num = #{gdnum}
+   </select>
+   
+   <update id="sellermoney">
+      update userinfo set cash = (cash+#{cash}) where id = #{writer}
+   </update>
+   
+   
 </mapper>
