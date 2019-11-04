@@ -148,6 +148,9 @@ public class gameDetailController {
 
 			map.put("id", id);
 			map.put("author", author);
+		}else {
+			map.put("id", null);
+			map.put("author", null);
 		}
 
 		return map;
@@ -165,6 +168,7 @@ public class gameDetailController {
 		Map<String, Object> sessioninfo = sessionInfo(request);
 		id = (String) sessioninfo.get("id");
 		author = (String) sessioninfo.get("author");
+		
 		
 		//num으로 gameVO 상세정보 부르기 from gameDetail
 		gameVO vo = gservice.read(num);
@@ -184,7 +188,6 @@ public class gameDetailController {
 			int buycheck = gservice.buycheck(id, num);
 			model.addAttribute("buycheck", buycheck);
 		}
-		
 		//할인정보 가져오기
 		gameDetailDcVO dcvo = null;
 		int dcjoincheck = 0;
@@ -218,7 +221,7 @@ public class gameDetailController {
 		int age2 = gservice.ageratio2(num);
 		int age3 = gservice.ageratio3(num);
 		int age4 = gservice.ageratio4(num);
-				
+		
 		model.addAttribute("vo", vo);
 		model.addAttribute("firstfilepath", firstfilepath);
 		model.addAttribute("filepath", filepath);

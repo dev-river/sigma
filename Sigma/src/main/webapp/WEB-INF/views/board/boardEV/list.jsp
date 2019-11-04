@@ -49,6 +49,7 @@
 <!-- 	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a> -->
 	<table class="table table-hover" style="color: white">
 		<thead>
+		<h3 style="color: white;"> 이벤트 게시판 </h3>
 			<tr>
 				<th>글번호</th>
 				<th>제목</th>
@@ -69,9 +70,11 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	
+		<c:if test="${!empty login}">
+		<c:if test="${login.author eq 'admin' || login.author eq 'seller'}">
 		<a href="/board/main/event/eventInsert" class="btn btn-primary" style="float: right;">글쓰기</a>
-		
+		</c:if>
+		</c:if>
 		<div class="row text-center" style="text-align: center">
 				<ul class="pagination"> <!-- ul에 pagination 클래스를 주면 예쁘다 -->
 				

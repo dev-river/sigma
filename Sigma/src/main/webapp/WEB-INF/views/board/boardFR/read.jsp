@@ -17,6 +17,61 @@
 label {
 	color: white;
 }
+#btnReplyInsert {
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	float: left;
+	margin: 5px; padding:5px; width:80%;
+	}
+
+#btnReset {
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	float: left;
+	margin: 5px; padding:5px; width:80%;
+	}
+	#test_btn1{
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	
+	margin: 5px; padding:5px; width:80%;
+	}
+	#btn_group button {
+		border: 1px solid white;
+		background-color: rgba(0, 0, 0, 0);
+		color: white;
+		padding: 5px;
+		position: relative;
+		right:0%;
+		width:7%;
+		
+	}
+
+	#btn_group button:hover {
+		color: white;
+		background-color: black;
+	}
+	#btn_group1 button {
+		border: 1px solid white;
+		background-color: rgba(0, 0, 0, 0);
+		color: white;
+		padding: 5px;
+		position: relative;
+		right:2%;
+		width:7%;
+		
+	}
+
+	#btn_group1 button:hover {
+		color: white;
+		background-color: black;
+	}
 </style>
 </head>
 <body>
@@ -56,13 +111,14 @@ label {
 				<label for="content">내용</label>
 				<div style="background-color: white; border-radius: 10px; padding: 15px; min-height: 400px; max-height: auto;">${readvo.content}</div>
 				</div>
-				<div>
+				<div id="btn_group">
 				    
-					<input type="button" value="목록" class="btn btn-info" onclick="location.href='/board/main/list/boardlist?curPage=${to.curPage}&perPage=${to.perPage}'">
+					
+					<button id="test_btn1" onclick="location.href='/board/main/list/boardlist?curPage=${to.curPage}&perPage=${to.perPage}'">목록</button>
 					<c:if test="${!empty login}">
 					<c:if test="${login.nickname eq readvo.writer}">
-					<input type="button" value="수정" class="btn update btn-primary">
-					<input type="button" value="삭제" class="btn btn-warning" onclick="location.href='/board/boardFR/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">
+					<button id="test_btn1" class="update">수정</button>
+					<button id="test_btn1" onclick="location.href='/board/boardFR/delete?num=${readvo.num}&curPage=${to.curPage}&perPage=${to.perPage}'">삭제</button>
 					</c:if>
 					</c:if>
 				</div>
@@ -86,10 +142,14 @@ label {
 					</div>
 
 					
-						<div class="col-sm-2">
-							<input class="form-control" id="replyer" placeholder="댓글 작성자" value="${nickname}" readonly="readonly"></input>
+						<div class="col-sm-2" id="btn_group1">
+							<input class="form-control" id="replyer" placeholder="댓글 작성자" value="${login.nickname}" readonly="readonly"></input>
 							<button type="button" class="btn btn-sm btn-primary" id="btnReplyInsert" style="width: 100%; margin-top: 10px"> 저 장 </button>
 							<button type="button" class="btn btn-sm btn-warning" id="btnReset" style="width: 100%; margin-top: 10px"> 취 소 </button>
+						</div>
+						<div id="btn_group">
+							
+					
 						</div>
 				</div>
 				</form>
@@ -212,7 +272,7 @@ $(document).ready(function(){
 	/* replyReset 부분 */
 	$("#btnReset").click(function(){
 		$("#replycontent").val("");
-		$("#replyer").val("");
+	
 	});
 	
 	getAllList(frnum);
@@ -259,14 +319,11 @@ $(document).ready(function(){
 				'</div>'+
 				'<div class="panel-body">'+
 					'<p data-num="'+arr[i].num+'">'+arr[i].content+'</p>'+
-					'<c:if test="'+${!empty login}+'">'+
-					'<c:if test="'+${login.nickname eq readvo.writer}+'">'+
 					'<button class="btn callModal"><span class="glyphicon glyphicon-edit"></span>수정/삭제<span class="glyphicon glyphicon-trash"></span></button>'+
-					'</c:if>'+
-					'</c:if>'+
 				'</div>'+
 				'</div>';
 			}
+			$("#replyList").append(str);
 			
 			$("#replyList").html(str);
 			

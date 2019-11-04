@@ -173,10 +173,10 @@ public class compController {
 		List<gameDetailDcVO> gameDetailDC =  compservice.gameDetailDC(writer);
 		int man = compservice.mancount(writer);
 		int woman = compservice.womancount(writer);
-		int s10 = compservice.age10();
-		int s20 = compservice.age20();
-		int s30 = compservice.age30();
-		int s40 = compservice.age40();
+		int s10 = compservice.age10(writer);
+		int s20 = compservice.age20(writer);
+		int s30 = compservice.age30(writer);
+		int s40 = compservice.age40(writer);
 		model.addAttribute("gamelist", gamelist);
 		model.addAttribute("gameDetailDC", gameDetailDC);
 		model.addAttribute("man", man);
@@ -205,16 +205,16 @@ public class compController {
 		
 		int gdnum = compservice.checknum(vo);
 		if(filename1 == null) {
-			filename1 = "noimage.png";
+			filename1 = "/s_noimage.png";
 		}
 		if(filename2 == null) {
-			filename2 = "noimage.png";
+			filename2 = "/s_noimage.png";
 		}
 		if(filename3 == null) {
-			filename3 = "noimage.png";
+			filename3 = "/s_noimage.png";
 		}
 		if(filename4 == null) {
-			filename4 = "noimage.png";
+			filename4 = "/s_noimage.png";
 		}
 		//gamedetailfile에 그림 이미지 4개 등록
 		List list = new ArrayList();

@@ -15,16 +15,35 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/se2/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <style type="text/css">
-.update{
-	position: relative;
-	width: 1070px;
-	height: auto;
-	margin: 0;
-	right: 0%;
-}
+
 label{
 	color: white;
 }
+	#submitBoardBtn {
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	float: right;
+	margin: 5px; padding:5px; width:80%;
+	}
+
+
+	#btn_group button {
+		border: 1px solid white;
+		background-color: rgba(0, 0, 0, 0);
+		color: white;
+		padding: 5px;
+		position: relative;
+		left:0%;
+		width:7%;
+	}
+
+	#btn_group button:hover {
+		color: white;
+		background-color: black;
+	}
+
 </style>
 </head>
 <body>
@@ -58,9 +77,10 @@ label{
 				<label for="content">내용</label>
 				<textarea class="form-control" id="content" name="content" rows="3">${updatevo.content}</textarea>
 			</div>
-			<div class="form-group">
-				<button class="btn btn-warning modify" id="submitBoardBtn" style="float: right;">수정</button>
+			<div id="btn_group">
+					<button class="update" id="submitBoardBtn">수정</button>
 			</div>
+		
 		</form>
 	</div>
 	</div>

@@ -12,11 +12,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
-	<div class="container" style="padding-top: 200px;">
-	
-		<div class="row col-xs-push-4 col-xs-4" >
-			<h2 style="position: relative; right: 30px;"><a href="/"><img alt="..." src="/resources/main/SIGMA로고.png" id="logo"></a>로그인</h2>
+<body background="/resources/main/backgroundimg2.jpg">
+   <div class="container" style="padding-top: 200px;">
+   
+      <div class="row col-xs-push-4 col-xs-4" style="background-color: rgb(255,255,255,0.5); width: 400px; border-radius: 10px; padding-left: 30px; padding-right: 30px; padding-top: 20px; padding-bottom: 20px;">
+         <img alt="..." src="/resources/main/SIGMA로고.png" id="logo" style="position: relative; left :40px;"><h4 style="position: relative; right: 0px; text-align: center;"><a href="/"></a><b>로그인</b></h4>
 			<c:if test="${not empty login_failed}">
 				<p style="color: red">${login_failed}</p>
 			</c:if>

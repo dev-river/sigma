@@ -59,11 +59,11 @@ public interface compDAO {
 
 	int womancount(String writer);
 
-	int age10();
+	int age10(String writer);
 
-	int age20();
+	int age20(String writer);
 	
-	int age30();
+	int age30(String writer);
 	
-	int age40();
+	int age40(String writer);
 }

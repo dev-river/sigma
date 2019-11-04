@@ -151,22 +151,22 @@ public class compDAOImpl implements compDAO {
 	}
 
 	@Override
-	public int age10() {
-		return session.selectOne(NS+".age10");
+	public int age10(String writer) {
+		return session.selectOne(NS+".age10",writer);
 	}
 	
 	@Override
-	public int age20() {
-		return session.selectOne(NS+".age20");
+	public int age20(String writer) {
+		return session.selectOne(NS+".age20",writer);
 	}
 	
 	@Override
-	public int age30() {
-		return session.selectOne(NS+".age30");
+	public int age30(String writer) {
+		return session.selectOne(NS+".age30",writer);
 	}
 	
 	@Override
-	public int age40() {
-		return session.selectOne(NS+".age40");
+	public int age40(String writer) {
+		return session.selectOne(NS+".age40",writer);
 	}
 }

@@ -25,6 +25,31 @@
 	position: relative;
 	right: 100px;
 }
+#test_btn1 {
+	border-radius: 5px;
+	padding-right: 10px;
+	margin-right: 10px;
+	width: 100px;
+	float: left;
+	margin: 5px; padding:5px; width:80%;
+	}
+
+
+	#btn_group button {
+		border: 1px solid white;
+		background-color: rgba(0, 0, 0, 0);
+		color: white;
+		padding: 5px;
+		position: relative;
+		left:0%;
+		width:7%;
+		float: right;
+	}
+
+	#btn_group button:hover {
+		color: white;
+		background-color: black;
+	}
 </style>
 </head>
 <body>
@@ -45,6 +70,7 @@
 	<br>
 <!-- 	<a href="/board/boardFR/insert" class="btn btn-primary">글쓰기</a> -->
 	<table class="table table-hover" style="color: white">
+	<h3 style="color: white;">1대1 게시판</h3>
 		<thead>
 			<tr>
 				<th>글번호</th>
@@ -55,7 +81,9 @@
 			</tr>
 		</thead>
 		<tbody>
+		
 			<c:forEach items="${dboTO.list}" var="vo">
+			<c:if test="${login.nickname eq vo.writer || login.author eq 'admin'}">
 				<tr>
 					<td>${vo.num}</td>
 					<td><a href="/board/main/One/OneRead?num=${vo.num}&curPage=${dboTO.curPage}&perPage=${dboTO.perPage}">${vo.title}</a></td>
@@ -63,11 +91,17 @@
 					<td>${vo.updatedate}</td>
 					<td>${vo.viewcnt}</td>
 				</tr>
+			</c:if>					
 			</c:forEach>
+
 		</tbody>
 	</table>
 	</div>
-	<a href="/board/main/One/OneInsert" class="btn btn-primary" style="float: right;">글쓰기</a>
+	
+		<div id="btn_group">
+				
+					<button id="test_btn1" onclick="location.href='/board/main/One/OneInsert'">글쓰기</button>
+					</div>
 <%-- 		<div class="row text-center" style="text-align: center">
 				<ul class="pagination"> <!-- ul에 pagination 클래스를 주면 예쁘다 -->
 				
