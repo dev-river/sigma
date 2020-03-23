@@ -44,7 +44,7 @@
 			<br>
 			<hr>
 			<c:forEach items="${comp}" var="com">
-				<a href="/gameDetail/main/maincategoryread?num=${com.num}">
+				<a href="/gameDetail/main/maincategoryread?num=${com.num}"  style="color: white;">
 				<div  style="width: 120px; height: 120px; margin: 5px; padding: 5px; border: 10px; solid; black;" class="pull-left">
 					<c:choose>
 						<c:when test="${com.gamefilepath eq null}">
